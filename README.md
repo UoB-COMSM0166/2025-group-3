@@ -11,16 +11,16 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ## Your Group
 
-<img src="./images/group_members.jpg" alt="photo of group members" />
+<img src="./images/group.jpg" alt="photo of group members" />
 
-|Name|Email|Github|Role|
+| Name | Email | Github | Role |
 | -- | -- | -- | -- |
-|Jiahao Liu|qi24477@bristol.ac.uk|@TYHD759|TBD|
-|Jiaxin Fan|sg24148@bristol.ac.uk|@paidaxin760|TBD|
-|Peixuan Li|ra24381@bristol.ac.uk|@pluvo070|TBD|
-|Shuyin Deng|ta24493@bristol.ac.uk|@Ruby-sy|TBD|
-|Yibu Ma|sd24536@bristol.ac.uk|@Grooveofmimosa|TBD|
-|Yu Qiu|kp24679@bristol.ac.uk|@PekkaLnx|TBD|
+| Jiahao Liu | qi24477@bristol.ac.uk | @TYHD759 | TBD |
+| Jiaxin Fan | sg24148@bristol.ac.uk | @paidaxin760 | TBD |
+| Peixuan Li | ra24381@bristol.ac.uk | @pluvo070 | TBD |
+| Shuyin Deng | ta24493@bristol.ac.uk | @Ruby-sy | TBD |
+| Yibu Ma | sd24536@bristol.ac.uk | @Grooveofmimosa | TBD |
+| Yu Qiu | kp24679@bristol.ac.uk | @PekkaLnx | TBD |
 
 
 ## Project Report
