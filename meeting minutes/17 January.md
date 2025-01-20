@@ -1,7 +1,6 @@
 ## Inspiration list
 
 1. Stardew Valley  - Farming Simulation / RPG
-
 2. The DioField Chronicle  - Strategy RPG
 3. Neon Abyss  - Roguelike Action
 4. Potion Craft: Alchemist Simulator  - Simulation / Crafting
