@@ -3,8 +3,8 @@ let brushSize = 20;
 let isErasing = false;
 
 function preload() {
-  img = loadImage('/paper.png');
-  fnt = loadFont('/Bruno.ttf');
+  img = loadImage('paper.png');
+  fnt = loadFont('Bruno.ttf');
 }
 
 function setup() {
