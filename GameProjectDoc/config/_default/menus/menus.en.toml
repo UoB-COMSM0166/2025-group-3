@@ -41,8 +41,14 @@
 
 [[main]]
   name = "Demo"
-#  url = "/devlog/"
+  url = "/game/"
   weight = 10
+
+[[main]]
+  name = "Kanban"
+  url = "https://github.com/orgs/UoB-COMSM0166/projects/76/views/1/"
+  weight = 70
+
 
 # [[social]]
 #   name = "X"
