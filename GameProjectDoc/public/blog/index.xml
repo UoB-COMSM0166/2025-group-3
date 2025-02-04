@@ -16,5 +16,19 @@
       <guid>http://localhost:1313/devlog/example-post/</guid>
       <description>You can use blog posts for announcing product updates and features.</description>
     </item>
+    <item>
+      <title>Example Post</title>
+      <link>http://localhost:1313/devlog/example-post/</link>
+      <pubDate>Thu, 07 Sep 2023 16:27:22 +0200</pubDate>
+      <guid>http://localhost:1313/devlog/example-post/</guid>
+      <description>You can use blog posts for announcing product updates and features.</description>
+    </item>
+    <item>
+      <title>Example Post</title>
+      <link>http://localhost:1313/devlog/example-post/</link>
+      <pubDate>Thu, 07 Sep 2023 16:27:22 +0200</pubDate>
+      <guid>http://localhost:1313/devlog/example-post/</guid>
+      <description>You can use blog posts for announcing product updates and features.</description>
+    </item>
   </channel>
 </rss>
