@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "DevLog"
 description: ""
 summary: ""
 date: 2023-09-07T16:21:44+02:00
