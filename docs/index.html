@@ -1,15 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
 
-  </head>
-  <body>
-    <main>
-    </main>
-    <script src="sketch.js"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Game development log and demo showcase">
+    <title>Game Dev Log & Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>Game Dev Project</h1>
+            <p>Your title or tagline here</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#dev-log">Dev Log</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Welcome to our Game Development Journey</h2>
+            <p>Follow along as we develop our exciting new game. Check out the latest updates and demo here!</p>
+        </div>
+    </section>
+
+    <section id="dev-log">
+        <div class="log-container">
+            <h2>Development Log</h2>
+            <div class="log-entry">
+                <h3>Update 1 - Initial Concept</h3>
+                <p>We started brainstorming ideas for our game, focusing on mechanics, art style, and story. Here's a sneak peek of our progress...</p>
+                <a href="#">Read More</a>
+            </div>
+            <div class="log-entry">
+                <h3>Update 2 - Prototype Build</h3>
+                <p>We've built our first playable prototype, with basic movement and interactions. Exciting stuff!</p>
+                <a href="#">Read More</a>
+            </div>
+            <div class="log-entry">
+                <h3>Update 3 - First Demo Released</h3>
+                <p>We released our first public demo! Feedback is pouring in, and we’re already planning the next steps.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo">
+        <div class="demo-container">
+            <h2>Game Demo</h2>
+            <p>Try out the latest demo of our game! Your feedback helps us improve the game further.</p>
+            <div class="demo-embed">
+                <iframe src="https://www.example.com/embed-your-game" frameborder="0" width="800" height="600"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or want to give feedback, feel free to reach out!</p>
+            <form action="#">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Game Dev Project. All rights reserved.</p>
+    </footer>
+</body>
+
 </html>
