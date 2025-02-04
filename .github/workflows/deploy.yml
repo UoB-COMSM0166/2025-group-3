@@ -42,9 +42,9 @@ jobs:
 
       - name: Copy files to content directory
         run: |
-          cp -r docs/* GameProjectDoc/static/
-          cp -r 'meeting minutes'/* GameProjectDoc/content/blog/meetingMinutes/
-          cp -r 'weekly updates'/* GameProjectDoc/content/blog/weeklyUpdates/
+          cp -r docs/* GameProjectDoc/static/ \
+          && cp -r 'meeting minutes'/* GameProjectDoc/content/blog/meetingMinutes/ \
+          && cp -r 'weekly updates'/* GameProjectDoc/content/blog/weeklyUpdates/
 
       - name: Install Hugo CLI
         run: |
