@@ -23,6 +23,10 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 | Yu Qiu | kp24679@bristol.ac.uk | @PekkaLnx | Developer |
 
 
+## Your kanban
+
+[Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/76)
+
 ## Project Report
 
 ### Introduction
