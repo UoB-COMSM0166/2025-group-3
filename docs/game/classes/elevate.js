@@ -1,26 +1,86 @@
-//机关控制的升降墙类
+// 机关控制的升降墙类 
+
+// 相同id的开关触发时, 所有相同id的机关墙按照towards方向移动range个瓦片
+// 移动一次: 开关关到开
+// 回移一次: 开关从开到关
 
 class EvelatingWall{
-    //构造函数
     constructor(x, y, imgIndex, levelIndex, id, range, towards) {
         this.x = x;
         this.y = y;
+
+        this.iniX = x; // record initial position
+        this.iniY = y;
+
         this.levelIndex = levelIndex;
         this.imgIndex = imgIndex;
 
-        this.id = id; // 属于哪个开关
-        this.towards = towards; // 升降方向
-        this.range = range;// 可以运动的瓦片长度有多少个
+        this.id = id; // Belongs to which switch
+        this.towards = towards; 
+        this.range = range; // range to move(in tiles)
         this.pixelRange = (range-1)*tileSize;
 
-        // 敌人自动巡逻参数
-        this.iniX = x; // 记录起始位置
-        this.facingLeft = true; // 最开始都向左侧移动
+        this.targetX = x;  
+        this.targetY = y;
+        this.beActivated = false; // 是否被激活 (由开关通知)
+        this.speed = 20; 
+
     }
 
-    //update
+    // 更新每一帧的坐标, 逐帧平滑移动
+    update() {
+        let dx = this.targetX - this.x;
+        let dy = this.targetY - this.y;
 
-    //show
+        if (Math.abs(dx) > this.speed) {
+            this.x += Math.sign(dx) * this.speed;
+        } else {
+            this.x = this.targetX;
+        }
 
-    //行为方法
+        if (Math.abs(dy) > this.speed) {
+            this.y += Math.sign(dy) * this.speed;
+        } else {
+            this.y = this.targetY;
+        }
+    }
+    
+
+    show() {
+        let offsetX = (player[this.levelIndex].x - windowWidth / 2);
+        let offsetY = (player[this.levelIndex].y - windowHeight / 2);
+        for(let i = 0; i < this.nowFrameData.length; i++){
+            let tileId = this.nowFrameData[i]; 
+            if (tileId === 0) { // igonore empty tiles
+                continue;  
+            }
+            let coord1 = getTilePosition(tileId);
+            let coord2 = getDrawPosition(i, this.levelIndex);
+            image(
+                assets.icon,  
+                coord2.x-offsetX, coord2.y-offsetY,  
+                tileSize, tileSize,    
+                coord1.x, coord1.y,  
+                tileSize, tileSize      
+            );
+        }
+    }
+
+
+    // 该函数由开关类触发, 用来设定机关移动的目标位置
+    move() {
+        this.activated = !this.activated;
+        if (this.activated) {
+            switch (this.towards) {
+                case "up":    this.targetY = this.iniY - this.pixelRange; break;
+                case "down":  this.targetY = this.iniY + this.pixelRange; break;
+                case "left":  this.targetX = this.iniX - this.pixelRange; break;
+                case "right": this.targetX = this.iniX + this.pixelRange; break;
+            }
+        } else {
+            this.targetX = this.iniX;
+            this.targetY = this.iniY;
+        }
+    }
+
 }
