@@ -47,8 +47,8 @@ class Spring {
 
     // draw the trap on canvas
     show() {
-        let offsetX = (player[this.levelIndex].x - windowWidth / 2);
-        let offsetY = (player[this.levelIndex].y - windowHeight / 2);
+        let offsetX = (player[this.levelIndex].x - gameWidth / 2);
+        let offsetY = (player[this.levelIndex].y - gameHeight / 2);
         for(let i = 0; i < this.nowFrameData.length; i++){
             let tileId = this.nowFrameData[i]; 
             if (tileId === 0) { // igonore empty tiles

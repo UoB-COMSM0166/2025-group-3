@@ -1,8 +1,10 @@
-//主角猫类
+// 主角猫类
+// 以下代码仅做地图交互测试 可完全删除
+
+
 class Cat {
 
-    // 构造函数
-    constructor(x, y, imgIndex, levelIndex, speed, hp) {
+    constructor(x, y, imgIndex, levelIndex) {
         this.x = x;
         this.y = y;
         this.iniX = x; //记录出生点坐标
@@ -13,15 +15,19 @@ class Cat {
         this.maxhp = 5; 
         this.hp = 5; 
     }
-    // 更新坐标update方法
-
-    // show方法
+    
+    update() {}
+    
     show() {
+        offsetX = this.x - gameWidth / 2;
+        offsetY = this.y - gameHeight / 2;
+  
         image(
-            assets.testcat,  // 源图像
-            this.x, this.y,   // 在画布上绘制的左上角坐标
-            210, 210,     // 在画布上绘制的宽度和高度
+            assets.testcat,
+            this.x - offsetX, this.y - offsetY, 
+            210, 210
         );
+
     }
     
     // 其他行为方法

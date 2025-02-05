@@ -20,6 +20,13 @@ function draw() {
   } else if (gameState === "levelComplete") {
     drawLevelCompleteScreen();
   }
+  window.addEventListener("keydown", function(event) {
+    let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
+    if (keysToPrevent.includes(event.key)) {
+        event.preventDefault();
+    }
+});
+
 }
 
 function drawStartScreen() {
@@ -82,7 +89,7 @@ function drawGameScreen() {
   }
   flag[selectedLevel].show();
   //player[selectedLevel].update();
-  //player[selectedLevel].show();
+  player[selectedLevel].show();
 
 }
 

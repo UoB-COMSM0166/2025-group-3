@@ -5,8 +5,8 @@ class Decorate{
     }
 
     show() {
-        let offsetX = (player[this.levelIndex].x - windowWidth / 2);
-        let offsetY = (player[this.levelIndex].y - windowHeight / 2);
+        let offsetX = (player[this.levelIndex].x - gameWidth / 2);
+        let offsetY = (player[this.levelIndex].y - gameHeight / 2);
         for(let i=0; i<this.data.length; i++){
             let tileId = this.data[i]; 
             if (tileId === 0) {  
