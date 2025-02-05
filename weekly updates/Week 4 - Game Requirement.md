@@ -1,3 +1,23 @@
+---
+title: "Week 4 - Game Requirement"
+description: ""
+summary: ""
+date: 2025-02-04T17:25:00+00:00
+lastmod: 2025-02-04T17:25:00+00:00
+draft: false
+weight: 50
+categories: []
+tags: []
+contributors: []
+pinned: false
+homepage: false
+seo:
+  title: "" # custom title (optional)
+  description: "" # custom description (recommended)
+  canonical: "" # custom canonical URL (optional)
+  robots: "" # custom robot tags (optional)
+---
+
 # Bugcat Game Requirements
 
 ## 1. Identify Stakeholders 

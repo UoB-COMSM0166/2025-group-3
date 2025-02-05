@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preload" href="http://localhost:1313/fonts/vendor/jost/jost-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="http://localhost:1313/fonts/vendor/jost/jost-v4-latin-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="http://localhost:1313/fonts/vendor/jost/jost-v4-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+<script 
+  src="/js/color-mode.f14b3e296de1d0b69e75af684b62a4a912a2cadab04e36123407cd8388204f1d.js"
+  integrity="sha256-8Us&#43;KW3h0Laeda9oS2KkqRKiytqwTjYSNAfNg4ggTx0=">
+</script>
+
+
+<link rel="stylesheet" href="/main.4b723c0c93204c78e83636c0d653dfd187695ffea8212df9038d06ef2a0921185a4c9f5fcfee7c4772306898696c8097a453f7ef105647c20c9da273e35f5618.css" integrity="sha512-S3I8DJMgTHjoNjbA1lPf0YdpX/6oIS35A40G7yoJIRhaTJ9fz&#43;58R3IwaJhpbICXpFP37xBWR8IMnaJz419WGA==" crossorigin="anonymous">
+
+<noscript><style>img.lazyload { display: none; }</style></noscript><base href="http://localhost:1313/devlog/week-1-game-research/">
+
+  <link rel="canonical" href="http://localhost:1313/devlog/week-1-game-research/">
+
+
+<title>Week 1 - Game Research  |  Capoo</title>
+<meta name="description" content="Explore devlogs, documentation and game demo!">
+
+    
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    
+      <link
+        rel="apple-touch-icon"
+        href="/apple-touch-icon.png"
+        sizes="180x180"
+        type="image/png"
+      >
+      <link
+        rel="icon"
+        href="/favicon-192x192.png"
+        sizes="192x192"
+        type="image/png"
+      >
+      <link
+        rel="icon"
+        href="/favicon-512x512.png"
+        sizes="512x512"
+        type="image/png"
+      >
+<link rel="manifest" href="/manifest.webmanifest">
+
+<meta property="og:url" content="http://localhost:1313/devlog/week-1-game-research/">
+  <meta property="og:site_name" content="Capoo">
+  <meta property="og:title" content="Week 1 - Game Research">
+  <meta property="og:description" content="Stardew Valley Introduction Genre: Simulation, RPG
+A charming farming simulator where players inherit a rundown farm and work to restore it. Alongside managing crops and livestock, the game features social interactions, exploration, and an optional combat system.
+Success Factors:
+The combination of relaxing farm management with engaging social dynamics, exploration, and occasional combat offers a versatile and immersive experience.
+Core Gameplay:">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-01-20T15:44:00+00:00">
+    <meta property="article:modified_time" content="2025-01-20T15:44:00+00:00">
+    <meta property="og:image" content="http://localhost:1313/cover.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/cover.png">
+  <meta name="twitter:title" content="Week 1 - Game Research">
+  <meta name="twitter:description" content="Stardew Valley Introduction Genre: Simulation, RPG
+A charming farming simulator where players inherit a rundown farm and work to restore it. Alongside managing crops and livestock, the game features social interactions, exploration, and an optional combat system.
+Success Factors:
+The combination of relaxing farm management with engaging social dynamics, exploration, and occasional combat offers a versatile and immersive experience.
+Core Gameplay:">
+
+    
+    <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Hi! This Is Capoo!",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/blog/",
+       "name": "Dev Log",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "name": "Week 1 Game Research",
+       "position": 3
+     }
+   ]
+ }
+</script>
+  
+	
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Week 1 - Game Research",
+      "description": "",
+      "isPartOf": {
+        "@id": "http://localhost:1313/devlog/week-1-game-research/"
+      },
+      "mainEntityOfPage": {
+        "@id": "http://localhost:1313/devlog/week-1-game-research/"
+      },
+      "datePublished": "2025-01-20T15:44:00+00:00",
+      "dateModified": "2025-01-20T15:44:00+00:00",
+      "author": {
+        "@type": "Organization",
+        "name": "Thulite",
+        "url": "http://localhost:1313/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Thulite"
+      }
+    }
+  ]
+}
+</script>
+
+
+
+
+
+
+</head>
+
+  
+  <body class="single section blog" data-bs-spy="scroll" data-bs-target="#toc" data-bs-root-margin="0px 0px -60%" data-bs-smooth-scroll="true" tabindex="0">
+    <div class="sticky-top">
+<header class="navbar navbar-expand-lg">
+  <div class="container-lg">
+  
+    <a class="navbar-brand me-auto me-lg-3" href="/">Capoo</a>
+
+    
+    
+    <button type="button" id="searchToggleMobile" class="btn btn-link nav-link mx-2 d-lg-none" aria-label="Search website">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <circle cx="10" cy="10" r="7"></circle>
+        <line x1="21" y1="21" x2="15" y2="15"></line>
+      </svg>
+    </button>
+    
+    
+    <button class="btn btn-link nav-link mx-2 order-3 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavMain" aria-controls="offcanvasNavMain" aria-label="Open main navigation menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <line x1="4" y1="8" x2="20" y2="8"></line>
+        <line x1="4" y1="16" x2="20" y2="16"></line>
+      </svg>
+    </button>
+
+    
+    <div class="offcanvas offcanvas-end h-auto" tabindex="-1" id="offcanvasNavMain" aria-labelledby="offcanvasNavMainLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavMainLabel">Capoo</h5>
+        <button type="button" class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss="offcanvas" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+         </svg>
+        </button>
+      </div>
+      
+      <div class="offcanvas-body d-flex flex-column flex-lg-row justify-content-between">
+        <ul class="navbar-nav flex-grow-1"><li class="nav-item">
+                <a class="nav-link" href="http://localhost:1313/game/">Demo</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:1313/docs/introduction/overview/">Docs</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:1313/blog/">DevLog</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/orgs/UoB-COMSM0166/projects/76/views/1/">Kanban</a>
+              </li>
+            </ul>
+
+        
+        
+        <button type="button" id="searchToggleDesktop" class="btn btn-link nav-link p-2 d-none d-lg-block" aria-label="Search website">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <circle cx="10" cy="10" r="7"></circle>
+            <line x1="21" y1="21" x2="15" y2="15"></line>
+          </svg>
+        </button>
+        
+        
+        
+        <button id="buttonColorMode" class="btn btn-link mx-auto nav-link p-0 ms-lg-2 me-lg-1" type="button" aria-label="Toggle theme">
+          <svg data-bs-theme-value="dark" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+          </svg>
+          <svg data-bs-theme-value="light" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0m-5 0h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+          </svg>
+        </button>
+        
+        <ul id="socialMenu" class="nav mx-auto flex-row order-lg-4">
+          <li class="nav-item">
+              <a class="nav-link social-link" href="https://github.com/UoB-COMSM0166/2025-group-3"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg><small class="ms-2 visually-hidden">GitHub</small></a>
+            </li>
+          </ul>
+        
+        </div>
+    </div>
+
+    
+    </div>
+</header>
+</div>
+
+<div class="modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-md-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 visually-hidden" id="searchModalLabel">Search</h1>
+        <button type="button" class="btn-close visually-hidden" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="search-input flex-grow-1 d-none">
+          <form id="search-form" class="search-form" action="#" method="post" accept-charset="UTF-8" role="search">
+            <label for="query" class="visually-hidden">Search</label>
+            <div class="d-flex">
+              <input type="search" id="query" name="query" class="search-text form-control form-control-lg" placeholder="Search" aria-label="Search" maxlength="128" autocomplete="off">
+              <button type="button" class="btn btn-link text-decoration-none px-0 ms-3 d-md-none" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p class="search-loading status message d-none mt-3 text-center">Loading search index…</p>
+        <p class="search-no-recent message d-none mt-3 text-center">No recent searches</p>
+        <p class="search-no-results message d-none mt-3 text-center">No results for "<strong><span class="query-no-results">Query here</span></strong>"</p>
+        <div id="searchResults" class="search-results"></div>
+        <template>
+          <article class="search-result list-view">
+            <div class="card my-3">
+              <div class="card-body">
+                <header>
+                  <h2 class="h5 title title-submitted mb-0"><a class="stretched-link text-decoration-none text-reset" href="#">Title here</a></h2>
+                  <div class="submitted d-none"><time class="created-date">Date here</time></div>
+                </header>
+                <div class="content">Summary here</div>
+              </div>
+            </div>
+          </article>
+        </template>
+      </div>
+      <div class="modal-footer">
+        <ul class="list-inline me-auto d-none d-md-block">
+          <li class="list-inline-item"><kbd class="me-2"><svg width="15" height="15" aria-label="Enter key" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M12 3.53088v3c0 1-1 2-2 2H4M7 11.53088l-3-3 3-3"></path></g></svg></kbd><span class="DocSearch-Label">to select</span></li>
+          <li class="list-inline-item"><kbd class="me-2"><svg width="15" height="15" aria-label="Arrow down" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M7.5 3.5v8M10.5 8.5l-3 3-3-3"></path></g></svg></kbd><kbd class="me-2"><svg width="15" height="15" aria-label="Arrow up" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M7.5 11.5v-8M10.5 6.5l-3-3-3 3"></path></g></svg></kbd><span class="DocSearch-Label">to navigate</span></li>
+          <li class="list-inline-item"><kbd class="me-2"><svg width="15" height="15" aria-label="Escape key" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956"></path></g></svg></kbd><span class="DocSearch-Label">to close</span></li>
+        </ul>
+        <p class="d-md-none">Search by <a class="text-decoration-none" href="https://github.com/nextapps-de/flexsearch">FlexSearch</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="wrap container-lg" role="document">
+      <div class="content">
+      
+        
+<article>
+<div class="row justify-content-center">
+  <div class="col-md-12 col-lg-10">
+    <div class="blog-header">
+      <h1>Week 1 - Game Research</h1>
+      <p>
+  <small>January 20, 2025<span class="stretched-link position-relative reading-time text-nowrap" title="Estimated reading time"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+        <path d="M12 7v5l3 3"></path>
+      </svg>13&nbsp;minutes</span></small>
+</p>
+
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-9">
+    <h1 id="stardew-valley"><strong>Stardew Valley</strong></h1>
+<h2 id="introduction">Introduction</h2>
+<p><strong>Genre:</strong> Simulation, RPG<br>
+A charming farming simulator where players inherit a rundown farm and work to restore it. Alongside managing crops and livestock, the game features social interactions, exploration, and an optional combat system.<br>
+<strong>Success Factors:</strong><br>
+The combination of relaxing farm management with engaging social dynamics, exploration, and occasional combat offers a versatile and immersive experience.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Farm Management:</strong> Grow crops, raise animals, and maintain your farm with attention to seasonal changes.</li>
+<li><strong>Social Interaction:</strong> Develop relationships with townsfolk, attend festivals, and explore character-driven storylines.</li>
+<li><strong>Exploration and Adventure:</strong> Mine for resources, fight creatures, and uncover hidden secrets.</li>
+<li><strong>Resource Management:</strong> Budget your time and energy to balance farming, social, and adventure pursuits.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Map Management:</strong> The expansive world of Stardew Valley can cause performance issues, especially with large farms and numerous NPCs.</li>
+<li><strong>NPC AI:</strong> Crafting detailed AI behavior, including NPC schedules and story progression, can be resource-heavy for a browser-based experience.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on the farming and social elements, with minimal emphasis on combat or large-scale exploration.</p>
+<hr>
+<h1 id="the-diofield-chronicle"><strong>The DioField Chronicle</strong></h1>
+<h2 id="introduction-1">Introduction</h2>
+<p><strong>Genre:</strong> Strategy RPG<br>
+A tactical strategy RPG with a real-time combat system, blending traditional fantasy storytelling with strategic planning. The game focuses on large-scale battles with a deep story about political intrigue and warfare.<br>
+<strong>Success Factors:</strong><br>
+The innovative real-time strategy mechanics paired with deep narrative choices create a rich experience for tactical RPG fans.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Tactical Combat:</strong> Plan and execute battle strategies in real-time, utilizing terrain and positioning.</li>
+<li><strong>Character Development:</strong> Grow your characters&rsquo; abilities and unlock powerful units through story progression.</li>
+<li><strong>Story-driven Gameplay:</strong> Navigate a complex narrative with moral choices and multiple paths.</li>
+<li><strong>Resource Management:</strong> Efficient use of your units&rsquo; abilities and managing resources during war is key to success.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Real-time Combat Mechanics:</strong> Ensuring smooth real-time strategy mechanics with complex AI and interactions.</li>
+<li><strong>Narrative Complexity:</strong> Writing a branching story that allows meaningful player decisions without overcomplicating the game&rsquo;s flow.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on turn-based or simplified real-time combat and streamline the narrative elements for greater accessibility.</p>
+<hr>
+<h1 id="neon-abyss"><strong>Neon Abyss</strong></h1>
+<h2 id="introduction-2">Introduction</h2>
+<p><strong>Genre:</strong> Roguelike Action<br>
+A fast-paced, action-packed roguelike featuring procedurally generated levels and a variety of unique weapons and upgrades. Players explore dungeons, defeat enemies, and gather power-ups to grow stronger.<br>
+<strong>Success Factors:</strong><br>
+The exciting, unpredictable combat combined with an extensive upgrade system makes each playthrough feel unique and challenging.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Action Combat:</strong> Fight your way through various enemies using fast-paced mechanics and unique weapons.</li>
+<li><strong>Roguelike Exploration:</strong> Every run is different, with randomly generated levels and new challenges in each session.</li>
+<li><strong>Upgrades and Power-ups:</strong> Collect a vast array of power-ups that alter gameplay, offering a fresh experience with every playthrough.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Procedural Generation:</strong> Creating a varied but balanced world through random generation while maintaining engaging level design.</li>
+<li><strong>Combat Balance:</strong> Ensuring the variety of upgrades and weapons doesn’t disrupt the challenge curve, especially in longer runs.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on combat mechanics and procedural dungeon generation, possibly limiting the sheer variety of upgrades available.</p>
+<hr>
+<h1 id="potion-craft-alchemist-simulator"><strong>Potion Craft: Alchemist Simulator</strong></h1>
+<h2 id="introduction-3">Introduction</h2>
+<p><strong>Genre:</strong> Simulation, Crafting<br>
+Step into the shoes of an alchemist, where you mix ingredients to craft potions and help customers with unique needs. The game focuses on experimentation, crafting, and managing a shop.<br>
+<strong>Success Factors:</strong><br>
+The game&rsquo;s emphasis on creativity, experimenting with various ingredients, and its soothing pace make it a unique and relaxing experience for fans of crafting simulators.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Potion Crafting:</strong> Combine ingredients in various ways to discover new potions and solutions.</li>
+<li><strong>Customer Interaction:</strong> Fulfill customer orders by crafting potions that match their requests or personal preferences.</li>
+<li><strong>Shop Management:</strong> Oversee your potion shop, manage resources, and maintain customer satisfaction.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Ingredient Balancing:</strong> Ensuring that ingredient interactions are both intuitive and engaging without overwhelming players.</li>
+<li><strong>Crafting System:</strong> Implementing a flexible yet structured system for creating potions that feels rewarding but not too complex.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on potion crafting and customer interactions while simplifying resource management aspects.</p>
+<hr>
+<h1 id="bloons-tower-defense"><strong>Bloons Tower Defense</strong></h1>
+<h2 id="introduction-4">Introduction</h2>
+<p><strong>Genre:</strong> Tower Defense<br>
+In this tower defense game, players place various types of towers along paths to stop waves of colorful balloons from reaching their goal. It’s a mix of strategy, planning, and fast decision-making.<br>
+<strong>Success Factors:</strong><br>
+The strategic depth of tower placement combined with the variety of towers and upgrades provides a fun challenge that keeps players coming back for more.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Tower Placement:</strong> Strategically place towers to pop incoming balloons before they escape.</li>
+<li><strong>Tower Upgrades:</strong> Upgrade towers with various abilities to make them more powerful and effective.</li>
+<li><strong>Wave Defense:</strong> As the game progresses, the difficulty increases with tougher balloons and more complex levels.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>AI Pathfinding:</strong> Ensuring balloons follow the correct path and interact with towers in a realistic manner.</li>
+<li><strong>Performance Issues:</strong> As waves intensify, performance could degrade with large numbers of balloons on screen.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on core tower defense mechanics and tower upgrades while possibly limiting the complexity of enemy types.</p>
+<hr>
+<h1 id="kingdom-rush"><strong>Kingdom Rush</strong></h1>
+<h2 id="introduction-5">Introduction</h2>
+<p><strong>Genre:</strong> Tower Defense<br>
+A classic tower defense game where players strategically place towers to fend off waves of enemies, with a strong focus on upgrading towers and managing resources.<br>
+<strong>Success Factors:</strong><br>
+The mix of challenging tower placement, strategic depth, and fun fantasy theme makes this a fan-favorite in the tower defense genre.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Tower Placement:</strong> Place and upgrade a variety of towers to defend against enemy waves.</li>
+<li><strong>Hero Units:</strong> Deploy hero units that bring powerful abilities to the battlefield.</li>
+<li><strong>Wave Management:</strong> Each level presents a new challenge, with diverse enemies and terrains to consider in your strategy.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Complexity of Tower Balance:</strong> Balancing the power of different towers and ensuring that no one strategy dominates.</li>
+<li><strong>Enemy AI:</strong> Designing enemy behaviors that challenge the player without being too predictable.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on a simplified version of the tower defense mechanics, reducing the number of tower types or heroes to streamline gameplay.</p>
+<hr>
+<h1 id="celeste"><strong>Celeste</strong></h1>
+<h2 id="introduction-6">Introduction</h2>
+<p><strong>Genre:</strong> Platformer<br>
+An emotionally charged platformer about a young woman climbing the titular Celeste Mountain, with gameplay that challenges both reflexes and mental endurance. The game combines tight, precise platforming mechanics with a deeply moving narrative.<br>
+<strong>Success Factors:</strong><br>
+The game’s combination of tight platforming mechanics, intricate level design, and a powerful narrative about self-discovery and mental health make it stand out in the platformer genre.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Precision Platforming:</strong> Navigate through difficult obstacles and hazards using precise controls and skills like dashing, climbing, and wall jumping.</li>
+<li><strong>Story and Character Development:</strong> Experience a heartfelt narrative about the protagonist’s personal growth as she climbs the mountain.</li>
+<li><strong>Challenging Difficulty:</strong> Overcome difficult levels that test your reflexes and patience, with each death offering a lesson toward mastery.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Level Design Balance:</strong> Creating a balance between challenging gameplay and accessibility, ensuring the game remains rewarding without feeling punishing.</li>
+<li><strong>Story Integration:</strong> Seamlessly blending the challenging platforming with the narrative elements, ensuring the story doesn’t feel out of place in the gameplay context.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on core platforming mechanics, potentially simplifying the story elements to allow for more focus on gameplay.</p>
+<hr>
+<h1 id="dungeon-fighter-online-dnf"><strong>Dungeon Fighter Online (DNF)</strong></h1>
+<h2 id="introduction-7">Introduction</h2>
+<p><strong>Genre:</strong> MMORPG, Action<br>
+A side-scrolling action MMORPG that blends classic arcade beat &rsquo;em up mechanics with deep RPG elements. Players explore dungeons, battle enemies, and level up their characters, all while experiencing a dynamic, action-packed world.<br>
+<strong>Success Factors:</strong><br>
+The combination of fast-paced combat, varied character classes, and the depth of RPG elements makes this game appealing to fans of both beat &rsquo;em up and MMO genres.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Side-Scrolling Combat:</strong> Engage in combo-based combat against hordes of enemies, utilizing character-specific skills and moves.</li>
+<li><strong>Dungeon Exploration:</strong> Explore dungeons solo or in groups, defeating powerful bosses and collecting loot.</li>
+<li><strong>Character Progression:</strong> Choose from diverse character classes and develop them through leveling, skill trees, and equipment upgrades.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Multiplayer Systems:</strong> Ensuring smooth matchmaking and multiplayer integration, especially in large-scale, real-time combat scenarios.</li>
+<li><strong>Balance Across Classes:</strong> Maintaining balance between different character classes and ensuring that no one class is overpowered.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on the core action and combat mechanics, possibly simplifying the RPG and MMO aspects for a more accessible experience.</p>
+<hr>
+<h1 id="slay-the-spire"><strong>Slay the Spire</strong></h1>
+<h2 id="introduction-8">Introduction</h2>
+<p><strong>Genre:</strong> Roguelike Deck-Building<br>
+A roguelike game that combines deck-building mechanics with strategic combat. Players choose a character, build a deck of cards, and battle through procedurally generated levels, with each playthrough offering different challenges and rewards.<br>
+<strong>Success Factors:</strong><br>
+The blend of deck-building and roguelike elements creates a unique, replayable experience where every decision matters, providing immense depth and strategy.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Deck-Building:</strong> Choose from hundreds of cards to create a personalized deck and build synergies.</li>
+<li><strong>Turn-Based Combat:</strong> Engage in strategic, turn-based combat where every card drawn can drastically alter the course of battle.</li>
+<li><strong>Roguelike Exploration:</strong> Traverse randomly generated paths filled with different enemies, events, and rewards.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Card Balance:</strong> Ensuring that no card or deck strategy is overpowered, maintaining diversity and variety in gameplay.</li>
+<li><strong>Procedural Generation:</strong> Designing random encounters and events that feel meaningful while maintaining the game&rsquo;s difficulty curve.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on the core deck-building mechanics and turn-based combat, while simplifying the roguelike exploration elements.</p>
+<hr>
+<h1 id="dead-cells"><strong>Dead Cells</strong></h1>
+<h2 id="introduction-9">Introduction</h2>
+<p><strong>Genre:</strong> Roguelike Metroidvania<br>
+A fast-paced, action-packed roguelike that mixes the exploration of a Metroidvania with procedurally generated levels. Players battle their way through interconnected areas, collecting new abilities to unlock previously inaccessible regions.<br>
+<strong>Success Factors:</strong><br>
+The seamless blend of Metroidvania exploration with roguelike progression and satisfying combat makes Dead Cells a standout title for action fans.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Exploration and Progression:</strong> Unlock new abilities and weapons to explore deeper into the world, opening up previously inaccessible areas.</li>
+<li><strong>Action Combat:</strong> Engage in fast-paced combat with various weapons, from swords to ranged options, each offering a distinct playstyle.</li>
+<li><strong>Roguelike Elements:</strong> Procedurally generated levels, permadeath, and randomly awarded upgrades make every run feel unique and challenging.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Procedural Generation:</strong> Creating varied and interesting world layouts that keep the game engaging over multiple runs.</li>
+<li><strong>Combat Balance:</strong> Ensuring that weapon variety and upgrades don’t break the balance and make certain strategies too easy or overpowered.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on the core action-combat and exploration mechanics, possibly streamlining the roguelike elements for smoother gameplay progression.</p>
+<hr>
+<h1 id="skul-the-hero-slayer"><strong>Skul: The Hero Slayer</strong></h1>
+<h2 id="introduction-10">Introduction</h2>
+<p><strong>Genre:</strong> Action Roguelike<br>
+A side-scrolling action game where players control Skul, a small warrior, as he fights through hordes of enemies to rescue his kidnapped princess. The game combines fast-paced combat with the ability to collect powers from defeated heroes.<br>
+<strong>Success Factors:</strong><br>
+The unique mechanic of transforming into different heroes by collecting their powers, combined with fluid combat and humorous storytelling, makes this a standout action title.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Combat System:</strong> Fast-paced, combo-heavy combat with various enemies to defeat.</li>
+<li><strong>Hero Abilities:</strong> Collect and transform into powerful hero forms, each with unique abilities.</li>
+<li><strong>Level Progression:</strong> Fight through levels filled with enemies, unlock new powers, and face boss battles at the end of each stage.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Hero Balance:</strong> Ensuring that the variety of hero abilities stays balanced, preventing certain forms from overshadowing others.</li>
+<li><strong>Difficulty Curve:</strong> Maintaining a balanced difficulty curve where combat remains challenging without becoming frustrating.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on the action-combat and hero transformation mechanics, potentially simplifying the level structure to maintain smooth progression.</p>
+<hr>
+<h1 id="hades"><strong>Hades</strong></h1>
+<h2 id="introduction-11">Introduction</h2>
+<p><strong>Genre:</strong> Action Roguelike<br>
+A fast-paced roguelike action game set in Greek mythology. Players control Zagreus, the son of Hades, as he attempts to escape the underworld. The game features smooth combat, a variety of weapons, and a rich narrative with branching dialogues.<br>
+<strong>Success Factors:</strong><br>
+Hades stands out for its fluid combat, engaging story, and strong character development, with each escape attempt feeling like a new chapter in the overall narrative.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Combat Mechanics:</strong> Use a variety of weapons with distinct playstyles to battle through waves of enemies.</li>
+<li><strong>Narrative Progression:</strong> Unveil the story through interactions with the gods and other characters, with each death advancing the narrative.</li>
+<li><strong>Roguelike Elements:</strong> Procedurally generated levels, power-ups, and random encounters make each escape attempt unique.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Narrative Integration:</strong> Balancing the roguelike progression with story-driven content to ensure the narrative advances meaningfully after each run.</li>
+<li><strong>Combat Balance:</strong> Offering diverse weapons and abilities while ensuring no one combination is too overpowered or breaks the flow.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on the core combat mechanics and roguelike elements, potentially simplifying or reducing narrative branches to streamline progression.</p>
+<hr>
+<h1 id="vampire-survivors"><strong>Vampire Survivors</strong></h1>
+<h2 id="introduction-12">Introduction</h2>
+<p><strong>Genre:</strong> Survival, Roguelike<br>
+A minimalistic, action-packed survival roguelike where players control a character fighting against endless waves of enemies. The goal is to survive as long as possible, using upgrades to become increasingly powerful.<br>
+<strong>Success Factors:</strong><br>
+Its simplicity and addictive gameplay loop, where players can focus entirely on dodging enemies and selecting upgrades, make <em>Vampire Survivors</em> a captivating experience.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Survival Combat:</strong> Survive endless waves of enemies using auto-attacks and special abilities.</li>
+<li><strong>Upgrades:</strong> Collect powerful upgrades that change your playstyle and improve your chances of survival.</li>
+<li><strong>Wave Progression:</strong> Each wave of enemies becomes progressively more difficult, requiring strategy in selecting upgrades.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Enemy Variety:</strong> Designing varied enemies that remain challenging without becoming repetitive.</li>
+<li><strong>Performance Optimization:</strong> Handling large numbers of enemies on screen simultaneously while maintaining smooth performance.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on the core survival and upgrade mechanics, potentially simplifying enemy types or scaling back the number of on-screen enemies at once.</p>
+<hr>
+<h1 id="kingdom-two-crowns"><strong>Kingdom: Two Crowns</strong></h1>
+<h2 id="introduction-13">Introduction</h2>
+<p><strong>Genre:</strong> Strategy, Simulation<br>
+A strategy simulation game where players build and defend their kingdom from a variety of threats, including mysterious creatures. It mixes real-time strategy and resource management with the need for exploration and expansion.<br>
+<strong>Success Factors:</strong><br>
+The game’s mix of strategic kingdom-building with an exploration component and the challenge of defending against invaders offers a deep yet accessible strategy experience.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Kingdom Building:</strong> Manage resources, build structures, and recruit citizens to expand your kingdom.</li>
+<li><strong>Defense Mechanisms:</strong> Protect your kingdom from nightly attacks by deploying defenses and preparing for combat.</li>
+<li><strong>Exploration:</strong> Explore surrounding areas to find new resources and unlock additional abilities.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>AI Pathfinding:</strong> Ensuring the movement and interaction of the kingdom’s citizens and invaders feels natural and responsive.</li>
+<li><strong>Resource Management:</strong> Balancing the need for exploration, kingdom expansion, and defense without overwhelming the player.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on the kingdom-building and defense elements while simplifying or removing exploration complexity for a more focused experience.</p>
+<hr>
+<h1 id="hearthstone"><strong>Hearthstone</strong></h1>
+<h2 id="introduction-14">Introduction</h2>
+<p><strong>Genre:</strong> Card Game<br>
+A digital collectible card game set in the <em>World of Warcraft</em> universe, where players build decks and battle other players in strategic matches. The game emphasizes deck-building, strategy, and card collection.<br>
+<strong>Success Factors:</strong><br>
+The blend of accessible yet deep strategic gameplay, set in the <em>Warcraft</em> universe, appeals to both casual players and competitive card game enthusiasts.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Deck-Building:</strong> Collect and build powerful decks from a vast array of cards.</li>
+<li><strong>Card Combat:</strong> Use strategic gameplay and card interactions to outwit your opponent.</li>
+<li><strong>Multiplayer Matches:</strong> Compete against other players in ranked or casual matches, with opportunities for tournaments and rewards.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Card Balance:</strong> Maintaining balance between a large number of cards to prevent dominant strategies from emerging.</li>
+<li><strong>Matchmaking:</strong> Ensuring fair and smooth matchmaking for players of all skill levels.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on the card combat and deck-building mechanics, potentially simplifying or reducing the card variety to streamline gameplay.</p>
+<hr>
+<h1 id="bomberman-online"><strong>Bomberman Online</strong></h1>
+<h2 id="introduction-15">Introduction</h2>
+<p><strong>Genre:</strong> Action, Multiplayer<br>
+An action-packed multiplayer game where players place bombs to defeat their opponents, with an emphasis on strategy, timing, and reflexes. The game’s fast-paced and competitive nature makes for intense battles.<br>
+<strong>Success Factors:</strong><br>
+The simple yet deeply strategic gameplay, coupled with the highly competitive multiplayer mode, has made <em>Bomberman</em> a classic party game.<br>
+<strong>Core Gameplay:</strong></p>
+<ul>
+<li><strong>Bomb Placement:</strong> Strategically place bombs to defeat enemies while avoiding traps.</li>
+<li><strong>Multiplayer Combat:</strong> Play with friends or other online players in fast-paced matches.</li>
+<li><strong>Power-ups:</strong> Collect power-ups to enhance bomb placement, speed, and defense.</li>
+</ul>
+<p><strong>Potential Challenges:</strong></p>
+<ul>
+<li><strong>Multiplayer Stability:</strong> Ensuring smooth and stable online gameplay with little lag during intense matches.</li>
+<li><strong>Map Variety:</strong> Designing diverse, balanced maps that provide variety while maintaining competitive integrity.</li>
+</ul>
+<p><strong>Feasible Implementation Scope:</strong><br>
+Focus on the core action gameplay and multiplayer mechanics, simplifying the variety of maps or power-ups for a more accessible experience.</p>
+
+    </div>
+</div>
+</article>
+
+      
+      </div>
+    </div>
+    
+    
+
+    <footer class="footer text-muted">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-lg-8 text-center text-lg-start">
+        <ul class="list-inline">
+          
+        </ul>
+      </div>
+      <div class="col-lg-8 text-center text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item">From <a class="text-muted" href="https://github.com/UoB-COMSM0166/2025-group-3">UoB-COMSM0166 Group 3</a>. Powered by <a class="text-muted" href="https://thulite.io/">Thulite</a> <a class="text-muted" href="https://getdoks.org/">Doks</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script async
+  src="/js/app.d425f3c365405833b25b64c1f42d49fc79eb5549e615324e8b8e6f9714552f3c.js"
+  integrity="sha256-1CXzw2VAWDOyW2TB9C1J/HnrVUnmFTJOi45vlxRVLzw=">
+</script>
+
+
+
+
+
+<script async
+  src="/js/flexsearch.8350d2f520e131f8552ed57c1eadd05c50eccf0427267781442dd8ddf8fdcdf7.js"
+  integrity="sha256-g1DS9SDhMfhVLtV8Hq3QXFDszwQnJneBRC3Y3fj9zfc=">
+</script>
+<script async
+  src="/js/search-modal.877cece5b6bc789456f89fa1955ccfcd8a5acdb2179e7882e292a6caa49efe68.js"
+  integrity="sha256-h3zs5ba8eJRW&#43;J&#43;hlVzPzYpazbIXnniC4pKmyqSe/mg=">
+</script>
+
+    <div class="d-inline-flex fixed-bottom-right pb-4 pe-4">
+  <button id="toTop" type="button" class="btn btn-primary rounded-circle ms-auto p-2"><span class="visually-hidden">Top</span><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M6 15l6 -6l6 6"></path></svg></button>
+</div>
+
+    
+  </body>
+</html>

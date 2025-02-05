@@ -1,62 +1,69 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Group3 Doc on Group3 Docs</title>
+    <title>Hi! This is Capoo! on Capoo</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content in Group3 Doc on Group3 Docs</description>
+    <description>Recent content in Hi! This is Capoo! on Capoo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copyright (c) 2020-2024 Thulite</copyright>
-    <lastBuildDate>Tue, 27 Feb 2024 09:30:56 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 04 Feb 2025 20:20:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Example Post</title>
-      <link>http://localhost:1313/devlog/example-post/</link>
-      <pubDate>Thu, 07 Sep 2023 16:27:22 +0200</pubDate>
-      <guid>http://localhost:1313/devlog/example-post/</guid>
-      <description>You can use blog posts for announcing product updates and features.</description>
+      <title>4 February</title>
+      <link>http://localhost:1313/devlog/4-february/</link>
+      <pubDate>Tue, 04 Feb 2025 20:20:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/4-february/</guid>
+      <description>Meeting minutes, decide on role allocation</description>
     </item>
     <item>
-      <title>Example Post</title>
-      <link>http://localhost:1313/devlog/example-post/</link>
-      <pubDate>Thu, 07 Sep 2023 16:27:22 +0200</pubDate>
-      <guid>http://localhost:1313/devlog/example-post/</guid>
-      <description>You can use blog posts for announcing product updates and features.</description>
+      <title>Week 4 - Game Requirement</title>
+      <link>http://localhost:1313/devlog/week-4-game-requirement/</link>
+      <pubDate>Tue, 04 Feb 2025 17:25:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/week-4-game-requirement/</guid>
+      <description>&lt;h1 id=&#34;bugcat-game-requirements&#34;&gt;Bugcat Game Requirements&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-identify-stakeholders&#34;&gt;1. Identify Stakeholders&lt;/h2&gt;&#xA;&lt;p&gt;Stakeholders are people who have an interest in the game. Possible stakeholders for &lt;strong&gt;Bugcat&lt;/strong&gt;:&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Example Post</title>
-      <link>http://localhost:1313/devlog/example-post/</link>
-      <pubDate>Thu, 07 Sep 2023 16:27:22 +0200</pubDate>
-      <guid>http://localhost:1313/devlog/example-post/</guid>
-      <description>You can use blog posts for announcing product updates and features.</description>
+      <title>Week 3 - Final Idea</title>
+      <link>http://localhost:1313/devlog/week-3-final-idea/</link>
+      <pubDate>Mon, 03 Feb 2025 16:55:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/week-3-final-idea/</guid>
+      <description>&lt;p&gt;The game, currently untitled, is a 2D puzzle platformer where players control both a cat and a toast, which can combine to form &amp;ldquo;Cato&amp;rdquo; and fly freely. Players must solve puzzles across various stages by utilizing the distinct movement abilities of both characters, including triggers, movable walls, tubes, sponges, and climbable walls to navigate and clear each level.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Example Guide</title>
-      <link>http://localhost:1313/docs/guides/example-guide/</link>
+      <title>Week 2 - Game Idea</title>
+      <link>http://localhost:1313/devlog/week-2-game-idea/</link>
+      <pubDate>Tue, 28 Jan 2025 13:40:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/week-2-game-idea/</guid>
+      <description>&lt;h3 id=&#34;game-idea-stardew-valley&#34;&gt;&lt;strong&gt;Game Idea: Stardew Valley&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;Genre:&lt;/strong&gt; Simulation RPG&#xA;&lt;strong&gt;Core Concept:&lt;/strong&gt;&#xA;&amp;ldquo;Stardew Valley&amp;rdquo; is a farming and life simulation game where players inherit a rundown farm from their grandfather in a small rural town. The core idea revolves around rebuilding the farm, integrating into the community, and balancing resource management with personal relationships.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Week 1 - Game Research</title>
+      <link>http://localhost:1313/devlog/week-1-game-research/</link>
+      <pubDate>Mon, 20 Jan 2025 15:44:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/week-1-game-research/</guid>
+      <description>&lt;h1 id=&#34;stardew-valley&#34;&gt;&lt;strong&gt;Stardew Valley&lt;/strong&gt;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Genre:&lt;/strong&gt; Simulation, RPG&lt;br&gt;&#xA;A charming farming simulator where players inherit a rundown farm and work to restore it. Alongside managing crops and livestock, the game features social interactions, exploration, and an optional combat system.&lt;br&gt;&#xA;&lt;strong&gt;Success Factors:&lt;/strong&gt;&lt;br&gt;&#xA;The combination of relaxing farm management with engaging social dynamics, exploration, and occasional combat offers a versatile and immersive experience.&lt;br&gt;&#xA;&lt;strong&gt;Core Gameplay:&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>17 January</title>
+      <link>http://localhost:1313/devlog/17-january/</link>
+      <pubDate>Fri, 17 Jan 2025 16:25:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/17-january/</guid>
+      <description>Meeting minutes, discuss inspirations and meeting schedule</description>
+    </item>
+    <item>
+      <title>Overview</title>
+      <link>http://localhost:1313/docs/introduction/overview/</link>
       <pubDate>Thu, 07 Sep 2023 16:04:48 +0200</pubDate>
-      <guid>http://localhost:1313/docs/guides/example-guide/</guid>
-      <description>&lt;p&gt;Guides lead a user through a specific task they want to accomplish, often with a sequence of steps. Writing a good guide requires thinking about what your users are trying to do.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/docs/introduction/overview/</guid>
+      <description>&lt;div class=&#34;p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3&#34;&gt;&#xD;&#xA;  under construction&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;h2 id=&#34;title-1&#34;&gt;Title 1&lt;/h2&gt;&#xA;&lt;p&gt;style test&lt;/p&gt;&#xA;&lt;h2 id=&#34;title-2&#34;&gt;Title 2&lt;/h2&gt;&#xA;&lt;p&gt;style test&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Example Reference</title>
-      <link>http://localhost:1313/docs/reference/example-reference/</link>
-      <pubDate>Thu, 07 Sep 2023 16:13:18 +0200</pubDate>
-      <guid>http://localhost:1313/docs/reference/example-reference/</guid>
-      <description>&lt;p&gt;Reference pages are ideal for outlining how things work in terse and clear terms. Less concerned with telling a story or addressing a specific use case, they should give a comprehensive outline of what your documenting.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Resources</title>
-      <link>http://localhost:1313/docs/resources/</link>
-      <pubDate>Tue, 27 Feb 2024 09:30:56 +0100</pubDate>
-      <guid>http://localhost:1313/docs/resources/</guid>
-      <description>&lt;p&gt;Link to valuable, relevant resources.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Privacy Policy</title>
-      <link>http://localhost:1313/privacy/</link>
-      <pubDate>Thu, 07 Sep 2023 17:19:07 +0200</pubDate>
-      <guid>http://localhost:1313/privacy/</guid>
-      <description></description>
+      <title>Report</title>
+      <link>http://localhost:1313/docs/report/report/</link>
+      <pubDate>Thu, 07 Sep 2023 16:04:48 +0200</pubDate>
+      <guid>http://localhost:1313/docs/report/report/</guid>
+      <description>&lt;div class=&#34;p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3&#34;&gt;&#xD;&#xA;  under construction&#xD;&#xA;&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>

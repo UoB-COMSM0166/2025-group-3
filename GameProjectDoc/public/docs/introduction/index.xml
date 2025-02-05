@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introduction on Capoo</title>
+    <link>http://localhost:1313/docs/introduction/</link>
+    <description>Recent content in Introduction on Capoo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copyright (c) 2020-2024 Thulite</copyright>
+    <lastBuildDate>Thu, 07 Sep 2023 16:04:48 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/docs/introduction/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview</title>
+      <link>http://localhost:1313/docs/introduction/overview/</link>
+      <pubDate>Thu, 07 Sep 2023 16:04:48 +0200</pubDate>
+      <guid>http://localhost:1313/docs/introduction/overview/</guid>
+      <description>&lt;div class=&#34;p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3&#34;&gt;&#xD;&#xA;  under construction&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;h2 id=&#34;title-1&#34;&gt;Title 1&lt;/h2&gt;&#xA;&lt;p&gt;style test&lt;/p&gt;&#xA;&lt;h2 id=&#34;title-2&#34;&gt;Title 2&lt;/h2&gt;&#xA;&lt;p&gt;style test&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

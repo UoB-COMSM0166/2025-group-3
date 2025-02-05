@@ -1,34 +1,55 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DevLog on Group3 Docs</title>
+    <title>DevLog on Capoo</title>
     <link>http://localhost:1313/blog/</link>
-    <description>Recent content in DevLog on Group3 Docs</description>
+    <description>Recent content in DevLog on Capoo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copyright (c) 2020-2024 Thulite</copyright>
-    <lastBuildDate>Thu, 07 Sep 2023 16:27:22 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 04 Feb 2025 20:20:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Example Post</title>
-      <link>http://localhost:1313/devlog/example-post/</link>
-      <pubDate>Thu, 07 Sep 2023 16:27:22 +0200</pubDate>
-      <guid>http://localhost:1313/devlog/example-post/</guid>
-      <description>You can use blog posts for announcing product updates and features.</description>
+      <title>4 February</title>
+      <link>http://localhost:1313/devlog/4-february/</link>
+      <pubDate>Tue, 04 Feb 2025 20:20:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/4-february/</guid>
+      <description>Meeting minutes, decide on role allocation</description>
     </item>
     <item>
-      <title>Example Post</title>
-      <link>http://localhost:1313/devlog/example-post/</link>
-      <pubDate>Thu, 07 Sep 2023 16:27:22 +0200</pubDate>
-      <guid>http://localhost:1313/devlog/example-post/</guid>
-      <description>You can use blog posts for announcing product updates and features.</description>
+      <title>Week 4 - Game Requirement</title>
+      <link>http://localhost:1313/devlog/week-4-game-requirement/</link>
+      <pubDate>Tue, 04 Feb 2025 17:25:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/week-4-game-requirement/</guid>
+      <description>&lt;h1 id=&#34;bugcat-game-requirements&#34;&gt;Bugcat Game Requirements&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-identify-stakeholders&#34;&gt;1. Identify Stakeholders&lt;/h2&gt;&#xA;&lt;p&gt;Stakeholders are people who have an interest in the game. Possible stakeholders for &lt;strong&gt;Bugcat&lt;/strong&gt;:&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Example Post</title>
-      <link>http://localhost:1313/devlog/example-post/</link>
-      <pubDate>Thu, 07 Sep 2023 16:27:22 +0200</pubDate>
-      <guid>http://localhost:1313/devlog/example-post/</guid>
-      <description>You can use blog posts for announcing product updates and features.</description>
+      <title>Week 3 - Final Idea</title>
+      <link>http://localhost:1313/devlog/week-3-final-idea/</link>
+      <pubDate>Mon, 03 Feb 2025 16:55:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/week-3-final-idea/</guid>
+      <description>&lt;p&gt;The game, currently untitled, is a 2D puzzle platformer where players control both a cat and a toast, which can combine to form &amp;ldquo;Cato&amp;rdquo; and fly freely. Players must solve puzzles across various stages by utilizing the distinct movement abilities of both characters, including triggers, movable walls, tubes, sponges, and climbable walls to navigate and clear each level.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Week 2 - Game Idea</title>
+      <link>http://localhost:1313/devlog/week-2-game-idea/</link>
+      <pubDate>Tue, 28 Jan 2025 13:40:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/week-2-game-idea/</guid>
+      <description>&lt;h3 id=&#34;game-idea-stardew-valley&#34;&gt;&lt;strong&gt;Game Idea: Stardew Valley&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;Genre:&lt;/strong&gt; Simulation RPG&#xA;&lt;strong&gt;Core Concept:&lt;/strong&gt;&#xA;&amp;ldquo;Stardew Valley&amp;rdquo; is a farming and life simulation game where players inherit a rundown farm from their grandfather in a small rural town. The core idea revolves around rebuilding the farm, integrating into the community, and balancing resource management with personal relationships.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Week 1 - Game Research</title>
+      <link>http://localhost:1313/devlog/week-1-game-research/</link>
+      <pubDate>Mon, 20 Jan 2025 15:44:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/week-1-game-research/</guid>
+      <description>&lt;h1 id=&#34;stardew-valley&#34;&gt;&lt;strong&gt;Stardew Valley&lt;/strong&gt;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Genre:&lt;/strong&gt; Simulation, RPG&lt;br&gt;&#xA;A charming farming simulator where players inherit a rundown farm and work to restore it. Alongside managing crops and livestock, the game features social interactions, exploration, and an optional combat system.&lt;br&gt;&#xA;&lt;strong&gt;Success Factors:&lt;/strong&gt;&lt;br&gt;&#xA;The combination of relaxing farm management with engaging social dynamics, exploration, and occasional combat offers a versatile and immersive experience.&lt;br&gt;&#xA;&lt;strong&gt;Core Gameplay:&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>17 January</title>
+      <link>http://localhost:1313/devlog/17-january/</link>
+      <pubDate>Fri, 17 Jan 2025 16:25:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/17-january/</guid>
+      <description>Meeting minutes, discuss inspirations and meeting schedule</description>
     </item>
   </channel>
 </rss>
