@@ -19,11 +19,12 @@ let merge = [];
 let ice = [];
 let spring = [];
 let switches = [];
+let keysItem = [];//keys item in game
 let flag = [];
 
 let offsetX = 0;  
 let offsetY = 0;  
-let keys = {}; 
+let keys = {}; //keys pressed by keyboard
 let messages = []; 
 
 /*  ============= utility function ============= */

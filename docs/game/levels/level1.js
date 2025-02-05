@@ -11,6 +11,7 @@ merge[levelIndex] = [];
 ice[levelIndex] = [];
 spring[levelIndex] = [];
 switches[levelIndex] = [];
+key[levelIndex] = [];
 
 // Load the json file and parse it
 function ParseJSON(jsonData) {
@@ -82,7 +83,7 @@ function getInteract(){
             let x = Layer.objects[i].x;
             let y = Layer.objects[i].y - tileSize;
             let imgIndex = Layer.objects[i].gid;
-            diamonds[levelIndex][keyNum++] = new OneDiamond(x,y,imgIndex,levelIndex);
+            keysItem[levelIndex][keyNum++] = new OneDiamond(x,y,imgIndex,levelIndex);
         }
         else if(interType === "switch"){
             let x = Layer.objects[i].x;
