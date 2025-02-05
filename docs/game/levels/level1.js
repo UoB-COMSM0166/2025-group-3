@@ -11,7 +11,7 @@ merge[levelIndex] = [];
 ice[levelIndex] = [];
 spring[levelIndex] = [];
 switches[levelIndex] = [];
-key[levelIndex] = [];
+keysItem[levelIndex] = [];
 
 // Load the json file and parse it
 function ParseJSON(jsonData) {
@@ -35,9 +35,8 @@ $.getJSON('asset/level1.json', ParseJSON);
 // 此函数需删除. 
 // 暂时从测试地图文件中加载一个图片作为player(cat), 用于初步测试
 function getPlayer(){
-    let playerLayer = Level1Data.layers.find(layer => layer.name === "player");
-    let playerObject = playerLayer.objects.find(player => player.name === "player1");
-    tileindex = playerObject.gid;
+    let playerLayer = Level1Data.layers.find(layer => layer.name === "cat");
+    let playerObject = playerLayer.objects.find(player => player.name === "cat1");
     let x = playerObject.x;
     let y = playerObject.y - 210/2;
     player[levelIndex] = new Cat(x, y);
@@ -83,13 +82,13 @@ function getInteract(){
             let x = Layer.objects[i].x;
             let y = Layer.objects[i].y - tileSize;
             let imgIndex = Layer.objects[i].gid;
-            keysItem[levelIndex][keyNum++] = new OneDiamond(x,y,imgIndex,levelIndex);
+            keysItem[levelIndex][keyNum++] = new Key(x,y,imgIndex,levelIndex);
         }
         else if(interType === "switch"){
             let x = Layer.objects[i].x;
             let y = Layer.objects[i].y - tileSize;
             let imgIndex = Layer.objects[i].gid;
-            switches[levelIndex][switchNum++] = new OneBox(x,y,imgIndex,levelIndex);
+            switches[levelIndex][switchNum++] = new Switch(x,y,imgIndex,levelIndex);
         }
         else if(interType === "elevator"){
             //暂缺

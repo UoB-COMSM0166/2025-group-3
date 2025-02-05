@@ -895,7 +895,7 @@
                  "gid":1,
                  "height":210,
                  "id":2,
-                 "name":"",
+                 "name":"cat1",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -918,11 +918,11 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"testcat.tsx"
+         "source":"..\/..\/..\/..\/..\/p5\u4ee3\u7801\/11. CatGame\/asset\/testcat.tsx"
         }, 
         {
          "firstgid":2,
-         "source":"spritesheet.tsx"
+         "source":"..\/..\/..\/..\/..\/p5\u4ee3\u7801\/11. CatGame\/asset\/spritesheet.tsx"
         }],
  "tilewidth":70,
  "type":"map",
