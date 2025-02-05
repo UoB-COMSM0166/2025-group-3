@@ -4,7 +4,7 @@
 // 移动一次: 开关关到开
 // 回移一次: 开关从开到关
 
-class EvelatingWall{
+class ElevatingWall{
     constructor(x, y, imgIndex, levelIndex, id, range, towards) {
         this.x = x;
         this.y = y;

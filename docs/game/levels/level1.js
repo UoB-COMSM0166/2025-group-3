@@ -76,6 +76,7 @@ function getInteract(){
     let Layer = Level1Data.layers.find(layer => layer.name === "interact");
     let keyNum = 0;
     let switchNum = 0;
+    let elevatingWallNum = 0;
     for(let i = 0; i < Layer.objects.length; i++){
         let interType = Layer.objects[i].type;
         if(interType === "key"){
@@ -88,10 +89,17 @@ function getInteract(){
             let x = Layer.objects[i].x;
             let y = Layer.objects[i].y - tileSize;
             let imgIndex = Layer.objects[i].gid;
-            switches[levelIndex][switchNum++] = new Switch(x,y,imgIndex,levelIndex);
+            let id = Layer.objects[i].properties.find(p => p.name === "id").value;
+            switches[levelIndex][switchNum++] = new Switch(x,y,imgIndex,levelIndex,id);
         }
         else if(interType === "elevator"){
-            //暂缺
+            let x = Layer.objects[i].x;
+            let y = Layer.objects[i].y - tileSize;
+            let imgIndex = Layer.objects[i].gid;
+            let id = Layer.objects[i].properties.find(p => p.name === "id").value;
+            let range = Layer.objects[i].properties.find(p => p.name === "range").value;
+            let towards = Layer.objects[i].properties.find(p => p.name === "towards").value;
+            elevatingWalls[levelIndex][elevatingWallNum++] = new ElevatingWall(x,y,imgIndex,levelIndex,id,range,towards);
         }
         else if(interType === "flag"){
             let x = Layer.objects[i].x;

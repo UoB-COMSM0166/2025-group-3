@@ -21,6 +21,7 @@ let spring = [];
 let switches = [];
 let keysItem = [];//keys item in game
 let flag = [];
+let elevatingWalls = [];
 
 let offsetX = 0;  
 let offsetY = 0;  
