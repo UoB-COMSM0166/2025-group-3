@@ -3,6 +3,7 @@
 let gameWidth = 500; 
 let gameHeight = 500;
 let tileSize = 70;
+let tilemargin = 0;
 let levelList = [];
 let frameInterval = 18;
  
