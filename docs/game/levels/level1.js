@@ -12,6 +12,7 @@ ice[levelIndex] = [];
 spring[levelIndex] = [];
 switches[levelIndex] = [];
 keysItem[levelIndex] = [];
+elevatingWalls[levelIndex] = [];
 
 // Load the json file and parse it
 function ParseJSON(jsonData) {
@@ -27,6 +28,7 @@ function ParseJSON(jsonData) {
     getIce();
     getSpring();
     getInteract();
+    //console.log("ParseJSON done");
 }
 $.getJSON('asset/level1.json', ParseJSON);
 
@@ -91,6 +93,7 @@ function getInteract(){
             let imgIndex = Layer.objects[i].gid;
             let id = Layer.objects[i].properties.find(p => p.name === "id").value;
             switches[levelIndex][switchNum++] = new Switch(x,y,imgIndex,levelIndex,id);
+            //console.log(switches);
         }
         else if(interType === "elevator"){
             let x = Layer.objects[i].x;
@@ -99,7 +102,9 @@ function getInteract(){
             let id = Layer.objects[i].properties.find(p => p.name === "id").value;
             let range = Layer.objects[i].properties.find(p => p.name === "range").value;
             let towards = Layer.objects[i].properties.find(p => p.name === "towards").value;
+            //console.log("range: "+ range);
             elevatingWalls[levelIndex][elevatingWallNum++] = new ElevatingWall(x,y,imgIndex,levelIndex,id,range,towards);
+            //console.log(elevatingWalls);
         }
         else if(interType === "flag"){
             let x = Layer.objects[i].x;
