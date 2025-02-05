@@ -2,22 +2,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     <url>
-      <loc>http://localhost:1313/devlog/example-post/</loc>
-      <lastmod>2023-09-07T16:27:22+02:00</lastmod>
+      <loc>http://localhost:1313/devlog/4-february/</loc>
+      <lastmod>2025-02-04T20:20:00+00:00</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
     </url>
     
     <url>
-      <loc>http://localhost:1313/devlog/example-post/</loc>
-      <lastmod>2023-09-07T16:27:22+02:00</lastmod>
+      <loc>http://localhost:1313/devlog/week-4-game-requirement/</loc>
+      <lastmod>2025-02-04T17:25:00+00:00</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
     </url>
     
     <url>
-      <loc>http://localhost:1313/devlog/example-post/</loc>
-      <lastmod>2023-09-07T16:27:22+02:00</lastmod>
+      <loc>http://localhost:1313/devlog/week-3-final-idea/</loc>
+      <lastmod>2025-02-03T16:55:00+00:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>http://localhost:1313/devlog/week-2-game-idea/</loc>
+      <lastmod>2025-01-28T13:40:00+00:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>http://localhost:1313/devlog/week-1-game-research/</loc>
+      <lastmod>2025-01-20T15:44:00+00:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>http://localhost:1313/devlog/17-january/</loc>
+      <lastmod>2025-01-17T16:25:00+00:00</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
     </url>

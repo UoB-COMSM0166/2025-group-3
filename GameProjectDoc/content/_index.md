@@ -1,7 +1,7 @@
 ---
-title: "Group3 Doc"
+title: "Hi! This is Capoo!"
 description: ""
-lead: "Explore dev logs, documentation and game demo!"
+lead: "Explore devlogs, documentation and game demo!"
 date: 2023-09-07T16:33:54+02:00
 lastmod: 2023-09-07T16:33:54+02:00
 draft: false

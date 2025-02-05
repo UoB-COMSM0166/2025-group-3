@@ -1,3 +1,23 @@
+---
+title: "4 February"
+description: ""
+summary: "Meeting minutes, decide on role allocation"
+date: 2025-02-04T20:20:00+00:00
+lastmod: 2025-02-04T20:20:00+00:00
+draft: false
+weight: 50
+categories: []
+tags: []
+contributors: []
+pinned: false
+homepage: false
+seo:
+  title: "" # custom title (optional)
+  description: "" # custom description (recommended)
+  canonical: "" # custom canonical URL (optional)
+  robots: "" # custom robot tags (optional)
+---
+
 **Meeting Minutes**
  **Date:** February 4, 2025
  **Time:** 14:00
