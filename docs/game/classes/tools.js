@@ -1,7 +1,7 @@
 
 /*  ============= global constant ============== */
-let gameWidth = 500; 
-let gameHeight = 500;
+let gameWidth = 1600; 
+let gameHeight = 1200;
 let tileSize = 70;
 let tilemargin = 0;
 let levelList = [];
@@ -33,10 +33,11 @@ let messages = [];
 
 // index in png -> coordinate in png
 function getTilePosition(i) {
+    i --;// 此地图导出json后坐标从2开始(原因未知?), 需调整为1
     let row = Math.floor((i - 1) / 30);  
     let col = (i - 1) % 30;              
-    let xCoordinate = col * (tileSize + tilemargin) + 2;  
-    let yCoordinate = row * (tileSize + tilemargin) + 2;  
+    let xCoordinate = col * (tileSize + tilemargin);  
+    let yCoordinate = row * (tileSize + tilemargin);  
     return { x: xCoordinate, y: yCoordinate };
 }
 

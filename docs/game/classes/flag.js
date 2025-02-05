@@ -19,8 +19,8 @@ class Flag{
             this.imgIndex = this.animationFrames[this.frameIndex];
         }
         let coordinate = getTilePosition(this.imgIndex);
-        let offsetX = (player[this.levelIndex].x - windowWidth / 2);
-        let offsetY = (player[this.levelIndex].y - windowHeight / 2);
+        let offsetX = (player[this.levelIndex].x - gameWidth / 2);
+        let offsetY = (player[this.levelIndex].y - gameHeight / 2);
         image(
             assets.icon,  
             this.x-offsetX, this.y-offsetY,   
