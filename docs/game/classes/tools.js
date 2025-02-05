@@ -1,12 +1,52 @@
-// 工具类
 
-// 全局常量
-let gameWidth = 500;
-let gameHeight = 500;
-let levels = [1, 2, 3, 4, 5];  // 关卡列表
+/*  ============= global constant ============== */
+let canvasWidth = 500; 
+let canvasHeight = 500;
+let tileSize = 70;
+let levelList = [];
+let frameInterval = 18;
+ 
+/*  ============= global variable ============= */
+let levelHeight = []; // number of tiles
+let levelWidth = [];
 
-// 全局变量
+// store the layers of every level
+let player = []; //暂未确定cat和attach机制, 暂时只设一个数组
+let decorate = []; 
+let trap = [];
+let coll = [];
+let merge = [];
+let ice = [];
+let spring = [];
+let switches = [];
+let flag = [];
 
-// 工具函数
+let offsetX = 0;  
+let offsetY = 0;  
+let keys = {}; 
+let messages = []; 
 
-// 工具类等
+/*  ============= utility function ============= */
+
+// index in png -> coordinate in png
+function getTilePosition(i) {
+    let row = Math.floor((i - 1) / 30);  
+    let col = (i - 1) % 30;              
+    let xCoordinate = col * (tileSize + tilemargin) + 2;  
+    let yCoordinate = row * (tileSize + tilemargin) + 2;  
+    return { x: xCoordinate, y: yCoordinate };
+}
+
+// index in data arr -> coordinate on canvas
+function getDrawPosition(i, levelIndex) {
+    let row = Math.floor(i / levelWidth[levelIndex]);  
+    let col = i % levelWidth[levelIndex];  
+    let xCoordinate = col * tileSize;  
+    let yCoordinate = row * tileSize; 
+    return { x: xCoordinate, y: yCoordinate };
+}
+
+
+/* ============= other tool classes ============= */
+
+
