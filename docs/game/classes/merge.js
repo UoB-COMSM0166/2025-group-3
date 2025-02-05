@@ -11,7 +11,7 @@ class Merge {
     }
 
     show() {
-        if(visible){
+        if(this.visible){
             let offsetX = (player[this.levelIndex].x - windowWidth / 2);
             let offsetY = (player[this.levelIndex].y - windowHeight / 2);
             for(let i=0; i<this.data.length; i++){
