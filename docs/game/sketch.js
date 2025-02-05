@@ -71,11 +71,11 @@ function drawGameScreen() {
   for(let i =0; i<keysItem[selectedLevel].length; i++){
     keysItem[selectedLevel][i].show();
   }
-  /*
+  
   for(let i =0; i<elevatingWalls[selectedLevel].length; i++){
     elevatingWalls[selectedLevel][i].update();
     elevatingWalls[selectedLevel][i].show();
-  }*/
+  }
   for(let i =0; i<switches[selectedLevel].length; i++){
     switches[selectedLevel][i].update();
     switches[selectedLevel][i].show();
