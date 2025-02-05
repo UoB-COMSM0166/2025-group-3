@@ -1,7 +1,7 @@
 
 /*  ============= global constant ============== */
-let canvasWidth = 500; 
-let canvasHeight = 500;
+let gameWidth = 500; 
+let gameHeight = 500;
 let tileSize = 70;
 let levelList = [];
 let frameInterval = 18;

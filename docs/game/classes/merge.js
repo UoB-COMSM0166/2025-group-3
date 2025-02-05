@@ -3,7 +3,7 @@
 // 具体机制尚未确定,后续再更改
 // cat类中update方法中每次合体解体时,merge[levelIndex].visible取反
 // merge[levelIndex].visible为真时,需要在cat类中进行碰撞检测
-class MergeWall {
+class Merge {
     constructor(data, levelIndex) {
         this.data = data;
         this.levelIndex = levelIndex;
