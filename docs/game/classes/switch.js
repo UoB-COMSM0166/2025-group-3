@@ -1,6 +1,6 @@
 
-// 机关开关
-// 在cat类里添加方法检测位置是否接近每一个开关, 接近切换开关状态(switch[levelIndex][i].beActivated取反)
+// The switch to control the elevatingWall
+
 class Switch{
     constructor(x, y, imgIndex, levelIndex, id) {
         this.x = x;
@@ -8,7 +8,24 @@ class Switch{
         this.levelIndex = levelIndex;
         this.imgIndex = imgIndex;
         this.id = id;
-        this.beActivated = false;
+        this.beActivated = false; // The current state
+        this.prevState = false; // state in previous frame
+    }
+
+    // caluate the position of player and update the state of switch
+    update() {
+        if (this.isNear(player[this.levelIndex].x, player[this.levelIndex].y)) {
+            this.beActivated = !this.beActivated;
+        }
+        // call the elevatingWall to moveif the state changed
+        if (this.prevState !== this.beActivated) {
+            for (let i = 0; i < elevatingWalls[this.levelIndex].length; i++) {
+                if (elevatingWalls[this.levelIndex][i].id === this.id) {
+                    elevatingWalls[this.levelIndex][i].move();
+                }
+            }
+        }
+        this.prevState = this.beActivated;
     }
 
     show() {
