@@ -5,7 +5,7 @@
   [en.params]
     languageISO = "EN"
     languageTag = "en-US"
-    footer = 'From <a class="text-muted" href="https://github.com/UoB-COMSM0166/2025-group-3">UoB-COMSM0166 Group 3</a>. Powered by <a class="text-muted" href="https://thulite.io/">Thulite</a> <a class="text-muted" href="https://getdoks.org/">Doks</a>.'
+    footer = 'From <a class="text-muted" href="/about">UoB-COMSM0166 Group 3</a>. Powered by <a class="text-muted" href="https://thulite.io/">Thulite</a> <a class="text-muted" href="https://getdoks.org/">Doks</a>.'
     alertText = '<a class="alert-link stretched-link fw-normal" href="/blog/example-post/">Doks version 1.0 just shipped!</a>'
 
 [de]

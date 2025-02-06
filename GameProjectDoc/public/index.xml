@@ -65,5 +65,12 @@
       <guid>http://localhost:1313/docs/report/report/</guid>
       <description>&lt;div class=&#34;p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3&#34;&gt;&#xD;&#xA;  under construction&#xD;&#xA;&lt;/div&gt;</description>
     </item>
+    <item>
+      <title>About Us</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Thu, 07 Sep 2023 16:33:54 +0200</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;div class=&#34;p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3&#34;&gt;&#xD;&#xA;  under construction&#xD;&#xA;&lt;/div&gt;</description>
+    </item>
   </channel>
 </rss>
