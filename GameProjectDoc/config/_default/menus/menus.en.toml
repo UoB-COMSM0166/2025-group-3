@@ -49,6 +49,10 @@
   url = "https://github.com/orgs/UoB-COMSM0166/projects/76/views/1/"
   weight = 70
 
+[[main]]
+  name = "About"
+  url = "/about"
+  weight = 90
 
 # [[social]]
 #   name = "X"

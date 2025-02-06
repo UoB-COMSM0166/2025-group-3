@@ -58,6 +58,7 @@
     ],
     "classes": [
       "DocSearch-Label",
+      "about",
       "active",
       "anchor",
       "bg-dots",
@@ -173,6 +174,7 @@
       "mt-n3",
       "mx-2",
       "mx-auto",
+      "mx-xl-auto",
       "my-3",
       "nav",
       "nav-item",
@@ -279,7 +281,6 @@
       "epic-game-testing-tester",
       "epic-gameplay-experience-player",
       "epic-visual-design-artist",
-      "further-reading",
       "game-idea-cato",
       "game-idea-stardew-valley",
       "hades",
