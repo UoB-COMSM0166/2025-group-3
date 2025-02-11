@@ -18,7 +18,7 @@ seo:
   robots: "" # custom robot tags (optional)
 ---
 
-# Meeting Minutes - Team Meeting 
+# Meeting Minutes
 
  **Date:** 11/2/2025
  
