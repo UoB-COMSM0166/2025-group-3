@@ -18,11 +18,14 @@ seo:
   robots: "" # custom robot tags (optional)
 ---
 
-# **Meeting Minutes - Team Meeting **
+# Meeting Minutes - Team Meeting 
 
- **Date:**11/2/2025
+ **Date:** 11/2/2025
+ 
  **Time:** 14:00
+ 
  **Location:** MVB2.11
+ 
  **Attendees:**
 
 - Jiahao Liu, Jiaxin Fan, Peixuan Li, Shuyin Deng, Yibu Ma, Yu Qiu
@@ -78,7 +81,7 @@ This week, we will complete the **Workshop 5** tasks, which include **Planning P
 
 ------
 
-## **3. P5.js Coding Exercises **
+## 3. P5.js Coding Exercises 
 
  **Task:**
 
