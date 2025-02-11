@@ -59,7 +59,8 @@ This week, we will complete the **Workshop 5** tasks, which include **Planning P
 
 - **Facilitator:** Shuyin Deng 
 - **Recorder:** Jiaxin Fan 
-   📆 **Deadline:** **During this meeting**
+
+  📆 **Deadline:** **During this meeting**
 
 ------
 
@@ -77,7 +78,8 @@ This week, we will complete the **Workshop 5** tasks, which include **Planning P
 - **Class Diagram:** Peixuan Li , Yu Qiu 
 - **Sequence Diagram:** Yibu Ma 
 - **Review & Documentation:** Jiaxin Fan 
-   📆 **Deadline:** **By Friday**
+
+  📆 **Deadline:** **By Friday**
 
 ------
 
@@ -94,7 +96,8 @@ This week, we will complete the **Workshop 5** tasks, which include **Planning P
 - **Inheritance Practice:**
   - **Create a Bounce class and modify Spin class to add bouncing effects**.
      ✅ **Assigned to:** Jiahao Liu 
-     📆 **Deadline:** **Complete within this week, each person submits their part to GitHub**
+
+    📆 **Deadline:** **Complete within this week, each person submits their part to GitHub**
 
 ------
 
@@ -110,7 +113,8 @@ This week, we will complete the **Workshop 5** tasks, which include **Planning P
 
 - **Class & Sequence Diagram Refinement:** Peixuan Li , Yu Qiu , Yibu Ma 
 - **Technical Documentation:** Jiaxin Fan 
-   📆 **Deadline:** **By Thursday**
+
+  📆 **Deadline:** **By Thursday**
 
 ------
 
@@ -127,7 +131,8 @@ This week, we will complete the **Workshop 5** tasks, which include **Planning P
 - **Code Documentation**:
   - **Write guidelines on how to run and test the code**.
      ✅ **Assigned to:** Jiaxin Fan 
-     📆 **Deadline:** **Before the end of the reading week**
+
+    📆 **Deadline:** **Before the end of the reading week**
 
 ------
 
