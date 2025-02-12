@@ -1,5 +1,5 @@
 ---
-title: "Week 5 - Game Develope"
+title: "11 February"
 description: ""
 summary: ""
 date: 2025-02-11T15:44:00+00:00
@@ -43,65 +43,11 @@ seo:
 
 ## Task Breakdown & Assignment
 
-This week, we will complete the **Workshop 5** tasks, which include **Planning Poker, Pac-Man class & sequence diagrams, P5.js coding exercises, game design, and initial implementation**.
+This week, we will complete the **Workshop 5** tasks, which include game design, and initial implementation.
 
 ------
 
-## **1. Planning Poker - Estimating User Stories** 
-
- **Task:**
-
-- **Select two user stories** and estimate their story points using **Planning Poker**.
-- Discuss and determine the **expected workload** for each story.
-- **Record the estimation results** for task scheduling.
-
-✅ **Assigned to:**
-
-- **Facilitator:** Shuyin Deng 
-- **Recorder:** Jiaxin Fan 
-
-  📆 **Deadline:** **During this meeting**
-
-------
-
-## **2. Pac-Man Game Class & Sequence Diagrams** 
-
- **Task:**
-
-- Create the class diagram, including: 
-  - Main classes (**PacMan, Ghost, PacDot, GameBoard**).
-  - Relationships (inheritance, association, aggregation, etc.).
-- **Create the sequence diagram** to illustrate key interactions in the game.
-
-✅ **Assigned to:**
-
-- **Class Diagram:** Peixuan Li , Yu Qiu 
-- **Sequence Diagram:** Yibu Ma 
-- **Review & Documentation:** Jiaxin Fan 
-
-  📆 **Deadline:** **By Friday**
-
-------
-
-## 3. P5.js Coding Exercises 
-
- **Task:**
-
-- **Objects Practice:**
-  - **Create an MRect array** and use the `update()` function to remove elements dynamically.
-     ✅ **Assigned to:** Yibu Ma 
-- **Composite Objects Practice:**
-  - **Add a face or hat to the Egg object**.
-     ✅ **Assigned to:** Yu Qiu 
-- **Inheritance Practice:**
-  - **Create a Bounce class and modify Spin class to add bouncing effects**.
-     ✅ **Assigned to:** Jiahao Liu 
-
-    📆 **Deadline:** **Complete within this week, each person submits their part to GitHub**
-
-------
-
-## **4. Game Design Task**
+## **Game Design Task**
 
  **Task:**
 
@@ -118,18 +64,13 @@ This week, we will complete the **Workshop 5** tasks, which include **Planning P
 
 ------
 
-## **5. Code Implementation (After Optimization)**
+## **Code Implementation (After Optimization)**
 
  **Task:**
 
-- **Implement core game classes**:
-  - **PacMan & GameBoard classes** ✅ Assigned to: Peixuan Li 
-  - **Ghost & PacDot classes** ✅ Assigned to: Yu Qiu 
 - **Testing & Game Logic Adjustments**:
-  - **Test Pac-Man’s ability to chase Ghosts and eat PacDots**.
      ✅ **Assigned to:** Jiahao Liu 
 - **Code Documentation**:
-  - **Write guidelines on how to run and test the code**.
      ✅ **Assigned to:** Jiaxin Fan 
 
     📆 **Deadline:** **Before the end of the reading week**
@@ -151,5 +92,4 @@ This week, we will complete the **Workshop 5** tasks, which include **Planning P
 
 📌 **UML Class Diagram Tool:** [Umletino](https://www.umletino.com/umletino.html)
  📌 **P5.js Official Examples:** [P5.js Examples](https://p5js.org/examples/)
- 📌 **Planning Poker Tool:** [Planning Poker](https://planning-poker-agile.web.app/)
 
