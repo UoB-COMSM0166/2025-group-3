@@ -7,14 +7,14 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copyright (c) 2020-2024 Thulite</copyright>
-    <lastBuildDate>Thu, 07 Sep 2023 16:04:48 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 18 Feb 2025 11:39:50 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/docs/introduction/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Overview</title>
       <link>http://localhost:1313/docs/introduction/overview/</link>
-      <pubDate>Thu, 07 Sep 2023 16:04:48 +0200</pubDate>
+      <pubDate>Tue, 18 Feb 2025 11:39:50 +0000</pubDate>
       <guid>http://localhost:1313/docs/introduction/overview/</guid>
-      <description>&lt;div class=&#34;p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3&#34;&gt;&#xD;&#xA;  under construction&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;h2 id=&#34;title-1&#34;&gt;Title 1&lt;/h2&gt;&#xA;&lt;p&gt;style test&lt;/p&gt;&#xA;&lt;h2 id=&#34;title-2&#34;&gt;Title 2&lt;/h2&gt;&#xA;&lt;p&gt;style test&lt;/p&gt;</description>
+      <description>&lt;div class=&#34;p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3&#34;&gt;&#xD;&#xA;  under construction&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;br&gt;&#xD;&#xA;The pages in &lt;font style=&#34;font-weight:bold&#34;&gt;introduction&lt;/font&gt; section is references for javascript files, providing description and test methodology.</description>
     </item>
   </channel>
 </rss>

@@ -1,6 +1,12 @@
 let gameState = "start"; 
 let selectedLevel = 0;  
 let firstGameStarted = true; 
+let assets = {};
+
+function preload() {
+    assets.icon = loadImage("asset/spritesheet.png");
+    assets.testcat = loadImage("asset/testcat.png");//仅作测试,后续删除
+}
 
 function setup() {
   createCanvas(gameWidth, gameHeight);
