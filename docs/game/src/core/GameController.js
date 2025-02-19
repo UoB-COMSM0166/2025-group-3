@@ -1,4 +1,9 @@
-// Parse the map(json) of the first level into objects
+class GameController {
+    constructor() {
+        this.game = new Game();
+    }
+
+    // Parse the map(json) of the first level into objects
 let Level1Data = {};  
 let levelIndex = 0;
 
@@ -113,4 +118,7 @@ function getInteract(){
             flag[levelIndex] = new Flag(x,y,imgIndex,levelIndex);
         }
     }
+}
+
+  
 }

@@ -1,4 +1,4 @@
-class AbstractCharacter {
+class AbstractCharacter extends AbstractEntity {
     // properties
     x;
     y;
