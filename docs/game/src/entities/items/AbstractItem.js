@@ -1,14 +1,18 @@
-class AbstractItem extends AbstractEntity {
+import AbstractEntity from "../AbstractEntity";
+
+export default class AbstractItem extends AbstractEntity {
     // properties
     x;
     y;
-    type;
-    effect;
+    imgIndex;
+    levelIndex;
+
     // constructor
-    constructor(x, y, type, effect) {
+    constructor(x,y,imgIndex,levelIndex) {
+        super();
         this.x = x;
         this.y = y;
-        this.type = type;
-        this.effect = effect;
+        this.imgIndex = imgIndex;
+        this.levelIndex = levelIndex;
     }
 }

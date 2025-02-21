@@ -1,4 +1,4 @@
-class GameView {
+export default class GameView {
     constructor() {}
 
     // main function of GameView

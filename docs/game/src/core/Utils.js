@@ -1,30 +1,6 @@
-export const globalState = {
-    gameState: GAME_STATE.START,
-    selectedLevel: 0,
-    firstGameStarted: true,
-    assets: {},
-    levelHeight : [], // number of tiles
-    levelWidth : [],
-    player : [], //暂未确定cat和attach机制, 暂时只设一个数组
-    decorate : [],
-    trap : [],
-    coll : [],
-    merge : [],
-    ice : [],
-    spring : [],
-    switches : [],
-    keysItem : [],//keys item in game
-    flag : [],
-    elevatingWalls : [],
-    offsetX : 0, 
-    offsetY : 0,  
-    keys : {}, //keys pressed by keyboard
-    messages : [], 
-}
-
 export const CONSTANT = Object.freeze({
-    GAME_WIDTH: 1600,
-    GAME_HEIGHT: 1200,
+    GAME_WIDTH: 1280,
+    GAME_HEIGHT: 720,
     TILE_SIZE: 70,
     TILE_MARGIN: 0,
     LEVEL_LIST: [],
@@ -39,13 +15,13 @@ export const GAME_STATE = Object.freeze({
     GAME_OVER: "game_over",
   });
 
-export const stateHandlers = {
-    [GAME_STATE.START]: drawStartScreen,
-    [GAME_STATE.LEVEL_SELECT]: drawLevelSelectScreen,
-    [GAME_STATE.PLAYING]: drawGameScreen,
-    [GAME_STATE.LEVEL_COMPLETE]: drawLevelCompleteScreen,
-    [GAME_STATE.GAME_OVER]: drawGameOverScreen,
-};
+// export const stateHandlers = {
+//     [GAME_STATE.START]: drawStartScreen,
+//     [GAME_STATE.LEVEL_SELECT]: drawLevelSelectScreen,
+//     [GAME_STATE.PLAYING]: drawGameScreen,
+//     [GAME_STATE.LEVEL_COMPLETE]: drawLevelCompleteScreen,
+//     [GAME_STATE.GAME_OVER]: drawGameOverScreen,
+// };
 
 
 // index in png -> coordinate in png

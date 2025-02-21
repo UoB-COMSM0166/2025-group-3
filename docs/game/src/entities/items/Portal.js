@@ -1,5 +1,7 @@
-class Portal extends AbstractItem {
-    constructor() {
-      
-    }
+import AbstractItem from './AbstractItem.js';
+
+export default class Portal extends AbstractItem {
+    constructor(x,y,imgIndex,levelIndex){
+        super(x,y,imgIndex,levelIndex);
+      }
 }

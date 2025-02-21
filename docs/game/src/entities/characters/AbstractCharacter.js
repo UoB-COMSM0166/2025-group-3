@@ -1,4 +1,6 @@
-class AbstractCharacter extends AbstractEntity {
+import AbstractEntity from "../AbstractEntity";
+
+export default class AbstractCharacter extends AbstractEntity {
     // properties
     x;
     y;
@@ -9,6 +11,7 @@ class AbstractCharacter extends AbstractEntity {
     hp;
 
     constructor(x, y) {
+        super();
         this.x = x;
         this.y = y;
         this.iniX = x; //记录出生点坐标

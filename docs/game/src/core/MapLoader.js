@@ -1,122 +1,151 @@
-class MapLoader {
-    constructor() {
-        this.map = null;
+// load assets used in game levels, such as json, images etc.
+// every level has to new a MapLoader object to load the level 
+// (this process is controlled by GameController)
+// the MapLoader object will parse the json file and create objects in the gameModel
+
+import Capoo from "../entities/characters/Capoo";
+import CollideBrick from "../entities/terrain/CollideBrick";
+import DecorativeBrick from "../entities/terrain/DecorativeBrick";
+import PoisonPond from "../entities/terrain/PoisonPond";
+// import MagicalBox from "../entities/items/MagicalBox";
+import Ice from "../entities/terrain/Ice";
+import SpringPad from "../entities/terrain/SpringPad";
+import CheckPoint from "../entities/items/CheckPoint";
+import CapooTrigger from "../entities/items/CapooTrigger";
+import MovableBox from "../entities/items/MovableBox";
+import Portal from "../entities/items/Portal";
+import { CONSTANT } from "./Utils";
+
+
+export default class MapLoader {
+    // properties
+    gameModel;
+    levelIndex;
+    levelData;
+    
+    constructor(gameModel, levelIndex) {
+        // set properties
+        this.gameModel = gameModel;
+        this.levelIndex = levelIndex; // which level to load
+        this.levelData = {};  // store parsed json data
+
+        // array initialization
+        this.gameModel.levelHeight[levelIndex] = 0;
+        this.gameModel.levelWidth[levelIndex] = 0;
+        this.gameModel.player[levelIndex] = null; 
+        this.gameModel.decorate[levelIndex] = []; 
+        this.gameModel.trap[levelIndex] = [];
+        this.gameModel.coll[levelIndex] = [];
+        this.gameModel.merge[levelIndex] = [];
+        this.gameModel.ice[levelIndex] = [];
+        this.gameModel.spring[levelIndex] = [];
+        this.gameModel.switches[levelIndex] = [];
+        this.gameModel.keysItem[levelIndex] = [];
+        this.gameModel.elevatingWalls[levelIndex] = [];
+        this.gameModel.flag[levelIndex] = null;
     }
 
-    // Parse the map(json) of the first level into objects
-let Level1Data = {};  
-let levelIndex = 0;
+    loadGame() {
+        loadJSON('../../asset/level1.json', (jsonData) => this.parseJSON(jsonData)); // Use arrow function to bind context
+        this.gameModel.assets.icon = loadImage("../../asset/spritesheet.png");
+        this.gameModel.assets.testcat = loadImage("../../asset/testcat.png");//仅作测试,后续删除
+    }
 
-// initialize arrays
-player[levelIndex] = null; 
-decorate[levelIndex] = []; 
-trap[levelIndex] = [];
-coll[levelIndex] = [];
-merge[levelIndex] = [];
-ice[levelIndex] = [];
-spring[levelIndex] = [];
-switches[levelIndex] = [];
-keysItem[levelIndex] = [];
-elevatingWalls[levelIndex] = [];
+    // Load the json file and parse it
+    parseJSON(jsonData) {
+        this.levelData = jsonData; 
+        console.log(this.levelData); // test
+        this.gameModel.levelHeight[this.levelIndex] = this.levelData.height;
+        this.gameModel.levelWidth[this.levelIndex] = this.levelData.width; 
+        this.getPlayer();
+        this.getColl();    
+        this.getDecorate();
+        this.getTrap();
+        // this.getMerge();
+        this.getIce();
+        this.getSpring();
+        this.getInteract();
+        console.log("ParseJSON done");
+    }
 
-// Load the json file and parse it
-function ParseJSON(jsonData) {
-    Level1Data = jsonData; 
-    console.log(Level1Data); // test
-    levelHeight[levelIndex] = Level1Data.height;
-    levelWidth[levelIndex] = Level1Data.width; 
-    getPlayer();
-    getColl();    
-    getDecorate();
-    getTrap();
-    getMerge();
-    getIce();
-    getSpring();
-    getInteract();
-    //console.log("ParseJSON done");
-}
-$.getJSON('asset/level1.json', ParseJSON);
+    // 此函数需删除. 
+    // 暂时从测试地图文件中加载一个图片作为player(cat), 用于初步测试
+    getPlayer(){
+        let playerLayer = this.levelData.layers.find(layer => layer.name === "cat");
+        let playerObject = playerLayer.objects.find(player => player.name === "cat1");
+        let x = playerObject.x;
+        let y = playerObject.y - 210/2;
+        this.gameModel.player[this.levelIndex] = new Capoo(x, y);
+    }
 
-// parse functions
+    getColl(){
+        let collisionLayer = this.levelData.layers.find(layer => layer.name === "coll");
+        this.gameModel.coll[this.levelIndex] = new CollideBrick(collisionLayer.data, this.levelIndex);
+    }
 
-// 此函数需删除. 
-// 暂时从测试地图文件中加载一个图片作为player(cat), 用于初步测试
-function getPlayer(){
-    let playerLayer = Level1Data.layers.find(layer => layer.name === "cat");
-    let playerObject = playerLayer.objects.find(player => player.name === "cat1");
-    let x = playerObject.x;
-    let y = playerObject.y - 210/2;
-    player[levelIndex] = new Cat(x, y);
-}
+    getDecorate(){
+        let Layer = this.levelData.layers.find(layer => layer.name === "decorate");
+        this.gameModel.decorate[this.levelIndex] = new DecorativeBrick(Layer.data, this.levelIndex);
+    }
 
-function getColl(){
-    let collisionLayer = Level1Data.layers.find(layer => layer.name === "coll");
-    coll[levelIndex] = new Coll(collisionLayer.data, levelIndex);
-}
+    getTrap(){
+        let Layer = this.levelData.layers.find(layer => layer.name === "trap");
+        this.gameModel.trap[this.levelIndex] = new PoisonPond(Layer.data, this.levelIndex);
+    }
 
-function getDecorate(){
-    let Layer = Level1Data.layers.find(layer => layer.name === "decorate");
-    decorate[levelIndex] = new Decorate(Layer.data, levelIndex);
-}
+    // getMerge(){
+    //     let Layer = this.levelData.layers.find(layer => layer.name === "merge");
+    //     this.gameModel.merge[this.levelIndex] = new MagicalBox(Layer.data, this.levelIndex);
+    // }
 
-function getTrap(){
-    let Layer = Level1Data.layers.find(layer => layer.name === "trap");
-    trap[levelIndex] = new Trap(Layer.data, levelIndex);
-}
+    getIce(){
+        let Layer = this.levelData.layers.find(layer => layer.name === "ice");
+        this.gameModel.ice[this.levelIndex] = new Ice(Layer.data, this.levelIndex);
+    }
 
-function getMerge(){
-    let Layer = Level1Data.layers.find(layer => layer.name === "merge");
-    merge[levelIndex] = new Merge(Layer.data, levelIndex);
-}
+    getSpring(){
+        let Layer = this.levelData.layers.find(layer => layer.name === "spring");
+        this.gameModel.spring[this.levelIndex] = new SpringPad(Layer.data, this.levelIndex);
+    }
 
-function getIce(){
-    let Layer = Level1Data.layers.find(layer => layer.name === "ice");
-    ice[levelIndex] = new Ice(Layer.data, levelIndex);
-}
-
-function getSpring(){
-    let Layer = Level1Data.layers.find(layer => layer.name === "spring");
-    spring[levelIndex] = new Spring(Layer.data, levelIndex);
-}
-
-function getInteract(){
-    let Layer = Level1Data.layers.find(layer => layer.name === "interact");
-    let keyNum = 0;
-    let switchNum = 0;
-    let elevatingWallNum = 0;
-    for(let i = 0; i < Layer.objects.length; i++){
-        let interType = Layer.objects[i].type;
-        if(interType === "key"){
-            let x = Layer.objects[i].x;
-            let y = Layer.objects[i].y - tileSize;
-            let imgIndex = Layer.objects[i].gid;
-            keysItem[levelIndex][keyNum++] = new Key(x,y,imgIndex,levelIndex);
-        }
-        else if(interType === "switch"){
-            let x = Layer.objects[i].x;
-            let y = Layer.objects[i].y - tileSize;
-            let imgIndex = Layer.objects[i].gid;
-            let id = Layer.objects[i].properties.find(p => p.name === "id").value;
-            switches[levelIndex][switchNum++] = new Switch(x,y,imgIndex,levelIndex,id);
-            //console.log(switches);
-        }
-        else if(interType === "elevator"){
-            let x = Layer.objects[i].x;
-            let y = Layer.objects[i].y - tileSize;
-            let imgIndex = Layer.objects[i].gid;
-            let id = Layer.objects[i].properties.find(p => p.name === "id").value;
-            let range = Layer.objects[i].properties.find(p => p.name === "range").value;
-            let towards = Layer.objects[i].properties.find(p => p.name === "towards").value;
-            //console.log("range: "+ range);
-            elevatingWalls[levelIndex][elevatingWallNum++] = new ElevatingWall(x,y,imgIndex,levelIndex,id,range,towards);
-            //console.log(elevatingWalls);
-        }
-        else if(interType === "flag"){
-            let x = Layer.objects[i].x;
-            let y = Layer.objects[i].y - tileSize;
-            let imgIndex = Layer.objects[i].gid;
-            flag[levelIndex] = new Flag(x,y,imgIndex,levelIndex);
+    getInteract(){
+        let Layer = this.levelData.layers.find(layer => layer.name === "interact");
+        let keyNum = 0;
+        let switchNum = 0;
+        let elevatingWallNum = 0;
+        for(let i = 0; i < Layer.objects.length; i++){
+            let interType = Layer.objects[i].type;
+            if(interType === "key"){
+                let x = Layer.objects[i].x;
+                let y = Layer.objects[i].y - CONSTANT.TILE_SIZE;
+                let imgIndex = Layer.objects[i].gid;
+                this.gameModel.keysItem[this.levelIndex][keyNum++] = new CheckPoint(x,y,imgIndex,this.levelIndex);
+            }
+            else if(interType === "switch"){
+                let x = Layer.objects[i].x;
+                let y = Layer.objects[i].y - CONSTANT.TILE_SIZE;
+                let imgIndex = Layer.objects[i].gid;
+                let id = Layer.objects[i].properties.find(p => p.name === "id").value;
+                this.gameModel.switches[this.levelIndex][switchNum++] = new CapooTrigger(x,y,imgIndex,this.levelIndex,id);
+                //console.log(switches);
+            }
+            else if(interType === "elevator"){
+                let x = Layer.objects[i].x;
+                let y = Layer.objects[i].y - CONSTANT.TILE_SIZE;
+                let imgIndex = Layer.objects[i].gid;
+                let id = Layer.objects[i].properties.find(p => p.name === "id").value;
+                let range = Layer.objects[i].properties.find(p => p.name === "range").value;
+                let towards = Layer.objects[i].properties.find(p => p.name === "towards").value;
+                //console.log("range: "+ range);
+                this.gameModel.elevatingWalls[this.levelIndex][elevatingWallNum++] = new MovableBox(x,y,imgIndex,this.levelIndex,id,range,towards);
+                //console.log(elevatingWalls);
+            }
+            else if(interType === "flag"){
+                let x = Layer.objects[i].x;
+                let y = Layer.objects[i].y - CONSTANT.TILE_SIZE;
+                let imgIndex = Layer.objects[i].gid;
+                this.gameModel.flag[this.levelIndex] = new Portal(x,y,imgIndex,this.levelIndex);
+            }
         }
     }
-}
 }

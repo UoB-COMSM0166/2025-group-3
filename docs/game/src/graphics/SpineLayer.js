@@ -51,10 +51,12 @@ function init() {
     renderer.setClearColor(0x000000, 0);
     document.body.appendChild(renderer.domElement);
     canvas = renderer.domElement;
+
+    // set the canvas to be full screen, above main layer
     canvas.style.position = "absolute";
     canvas.style.top = "0";
     canvas.style.left = "0";
-    canvas.style.pointerEvents = "none";
+    canvas.style.pointerEvents = "none"; // prevent canvas from blocking pointer events
 
     // load the assets required to display the Raptor model
     assetManager = new spine.AssetManager(baseUrl);
@@ -73,73 +75,73 @@ function init() {
     assetManager3.loadText(skeletonFile3);
     assetManager3.loadTextureAtlas(atlasFile3);
 
-    console.log("initialized");
+    console.log("SpineLayer initialized");
     requestAnimationFrame(load);
 }
 
 function load(name, scale) {
-    console.log("loading");
+    console.log("SpineLayer loading");
     if (assetManager.isLoadingComplete() && assetManager1.isLoadingComplete() && assetManager2.isLoadingComplete() && assetManager3.isLoadingComplete()) {
-    console.log(assetManager.isLoadingComplete());
+        console.log("SpineLayer loading complete:" + assetManager.isLoadingComplete());
 
-    // Load the texture atlas using name.atlas and name.png from the AssetManager.
-    // The function passed to TextureAtlas is used to resolve relative paths.
-    atlas = assetManager.require(atlasFile);
+        // Load the texture atlas using name.atlas and name.png from the AssetManager.
+        // The function passed to TextureAtlas is used to resolve relative paths.
+        atlas = assetManager.require(atlasFile);
 
-    // Create a AtlasAttachmentLoader that resolves region, mesh, boundingbox and path attachments
-    atlasLoader = new spine.AtlasAttachmentLoader(atlas);
+        // Create a AtlasAttachmentLoader that resolves region, mesh, boundingbox and path attachments
+        atlasLoader = new spine.AtlasAttachmentLoader(atlas);
 
-    // Create a SkeletonJson instance for parsing the .json file.
-    let skeletonJson = new spine.SkeletonJson(atlasLoader);
+        // Create a SkeletonJson instance for parsing the .json file.
+        let skeletonJson = new spine.SkeletonJson(atlasLoader);
 
-    // Set the scale to apply during parsing, parse the file, and create a new skeleton.
-    skeletonJson.scale = 0.4;
-    let skeletonData = skeletonJson.readSkeletonData(
-        assetManager.require(skeletonFile)
-    );
+        // Set the scale to apply during parsing, parse the file, and create a new skeleton.
+        skeletonJson.scale = 0.4;
+        let skeletonData = skeletonJson.readSkeletonData(
+            assetManager.require(skeletonFile)
+        );
 
-    // Create a SkeletonMesh from the data and attach it to the scene
-    skeletonMesh = new spine.SkeletonMesh({ skeletonData: skeletonData });
-    skeletonMesh.state.setAnimation(0, animation, true);
-    scene.add(skeletonMesh);
+        // Create a SkeletonMesh from the data and attach it to the scene
+        skeletonMesh = new spine.SkeletonMesh({ skeletonData: skeletonData });
+        skeletonMesh.state.setAnimation(0, animation, true);
+        scene.add(skeletonMesh);
 
-    // add face
-    atlas1 = assetManager1.require(atlasFile1);
-    atlasLoader1 = new spine.AtlasAttachmentLoader(atlas1);
-    let skeletonJson1 = new spine.SkeletonJson(atlasLoader1);
-    skeletonJson1.scale = 0.4;
-    let skeletonData1 = skeletonJson1.readSkeletonData(
-        assetManager1.require(skeletonFile1)
-    );
-    skeletonMesh1 = new spine.SkeletonMesh({ skeletonData: skeletonData1 });
-    skeletonMesh1.state.setAnimation(0, animation1, true);
-    scene.add(skeletonMesh1);
+        // add face
+        atlas1 = assetManager1.require(atlasFile1);
+        atlasLoader1 = new spine.AtlasAttachmentLoader(atlas1);
+        let skeletonJson1 = new spine.SkeletonJson(atlasLoader1);
+        skeletonJson1.scale = 0.4;
+        let skeletonData1 = skeletonJson1.readSkeletonData(
+            assetManager1.require(skeletonFile1)
+        );
+        skeletonMesh1 = new spine.SkeletonMesh({ skeletonData: skeletonData1 });
+        skeletonMesh1.state.setAnimation(0, animation1, true);
+        scene.add(skeletonMesh1);
 
-    // add hat
-    atlas2 = assetManager2.require(atlasFile2);
-    atlasLoader2 = new spine.AtlasAttachmentLoader(atlas2);
-    let skeletonJson2 = new spine.SkeletonJson(atlasLoader2);
-    skeletonJson2.scale = 0.4;
-    let skeletonData2 = skeletonJson2.readSkeletonData(
-        assetManager2.require(skeletonFile2)
-    );
-    skeletonMesh2 = new spine.SkeletonMesh({ skeletonData: skeletonData2 });
-    skeletonMesh2.state.setAnimation(0, animation2, true);
-    scene.add(skeletonMesh2);
+        // add hat
+        atlas2 = assetManager2.require(atlasFile2);
+        atlasLoader2 = new spine.AtlasAttachmentLoader(atlas2);
+        let skeletonJson2 = new spine.SkeletonJson(atlasLoader2);
+        skeletonJson2.scale = 0.4;
+        let skeletonData2 = skeletonJson2.readSkeletonData(
+            assetManager2.require(skeletonFile2)
+        );
+        skeletonMesh2 = new spine.SkeletonMesh({ skeletonData: skeletonData2 });
+        skeletonMesh2.state.setAnimation(0, animation2, true);
+        scene.add(skeletonMesh2);
 
-    // add back
-    atlas3 = assetManager3.require(atlasFile3);
-    atlasLoader3 = new spine.AtlasAttachmentLoader(atlas3);
-    let skeletonJson3 = new spine.SkeletonJson(atlasLoader3);
-    skeletonJson3.scale = 0.4;
-    let skeletonData3 = skeletonJson3.readSkeletonData(
-        assetManager3.require(skeletonFile3)
-    );
-    skeletonMesh3 = new spine.SkeletonMesh({ skeletonData: skeletonData3 });
-    skeletonMesh3.state.setAnimation(0, animation3, true);
-    scene.add(skeletonMesh3);
+        // add back
+        atlas3 = assetManager3.require(atlasFile3);
+        atlasLoader3 = new spine.AtlasAttachmentLoader(atlas3);
+        let skeletonJson3 = new spine.SkeletonJson(atlasLoader3);
+        skeletonJson3.scale = 0.4;
+        let skeletonData3 = skeletonJson3.readSkeletonData(
+            assetManager3.require(skeletonFile3)
+        );
+        skeletonMesh3 = new spine.SkeletonMesh({ skeletonData: skeletonData3 });
+        skeletonMesh3.state.setAnimation(0, animation3, true);
+        scene.add(skeletonMesh3);
 
-    requestAnimationFrame(render);
+        requestAnimationFrame(render);
     } else requestAnimationFrame(load);
 }
 

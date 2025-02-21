@@ -1,71 +1,83 @@
-import {globalState, GAME_STATE, stateHandlers} from "./core/Utils.js";
+import GameModel from "./core/GameModel";
+import GameController from "./core/GameController";
+import { CONSTANT } from "./core/Utils";
 
-function preload() {
-    globalState.assets.icon = loadImage("asset/spritesheet.png");
-    globalState.assets.testcat = loadImage("asset/testcat.png");//仅作测试,后续删除
+// global variables
+let gameModel;
+let gameController;
+
+window.preload = function () {
+  console.log("Main preload done");
+    // 暂定为加载开始画面的背景图片和音乐、字体等， 游戏关卡内的图片和json在MapLoader.js中加载
 }
 
-function setup() {
-  createCanvas(gameWidth, gameHeight);
-}
-
-function draw() {
+window.setup = function () {
+  createCanvas(CONSTANT.GAME_WIDTH, CONSTANT.GAME_HEIGHT);
+  gameModel = new GameModel();
+  gameController = new GameController(gameModel);
+  console.log("Main setup done");
   background(220);
+  gameController.newGame();
+}
+
+window.draw = function () {
+
   // stateHandlers (in GlobalState.js) 
   // is an object that contains functions
   // that draw the screen for each state
-  if (stateHandlers[globalState.gameState]) {
-    stateHandlers[globalState.gameState]();
-  } else {
-    console.log("Unknown State");
-  }
 
-  window.addEventListener("keydown", function(event) {
-    let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
-    if (keysToPrevent.includes(event.key)) {
-        event.preventDefault();
-    }
-});
+//   if (stateHandlers[globalState.gameState]) {
+//     stateHandlers[globalState.gameState]();
+//   } else {
+//     console.log("Unknown State");
+//   }
+
+//   window.addEventListener("keydown", function(event) {
+//     let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
+//     if (keysToPrevent.includes(event.key)) {
+//         event.preventDefault();
+//     }
+// });
 
 }
 
 
 
 
-function keyPressed() {
-  if (globalState.gameState === "start" && keyCode === ENTER) {
-    globalState.gameState = "levelSelect";
-  } else if (globalState.gameState === "levelSelect") {
-    if (keyCode === LEFT_ARROW) {
-      selectedLevel = max(0, selectedLevel - 1);
-    } else if (keyCode === RIGHT_ARROW) {
-      selectedLevel = min(levelList.length - 1, selectedLevel + 1);
-    } else if (keyCode === 32) {  // Space
-      globalState.gameState = "playing";
-    }
-  } else if (globalState.gameState === "gameOver" && key === 'r') {
-    globalState.gameState = "start";
-  }
-  else if(globalState.gameState ==="playing"){
-    keys[key] = true;// record the key pressed
-    console.log(key + " " + keyCode);//test
-  }
-  else if (globalState.gameState === "levelComplete") {
-    // ESC -> select level
-    if (keyCode === ESCAPE) {
-      globalState.gameState = "levelSelect";
-    } else {
-      // next level
-      if (selectedLevel < levelList.length - 1) {
-        selectedLevel++;
-        globalState.gameState = "playing";
-      } else {
-        globalState.gameState = "levelSelect"; // the last level -> select level
-      }
-    }
-  }
-}
+// function keyPressed() {
+//   // if (globalState.gameState === "start" && keyCode === ENTER) {
+//   //   globalState.gameState = "levelSelect";
+//   // } else if (globalState.gameState === "levelSelect") {
+//   //   if (keyCode === LEFT_ARROW) {
+//   //     selectedLevel = max(0, selectedLevel - 1);
+//   //   } else if (keyCode === RIGHT_ARROW) {
+//   //     selectedLevel = min(levelList.length - 1, selectedLevel + 1);
+//   //   } else if (keyCode === 32) {  // Space
+//   //     globalState.gameState = "playing";
+//   //   }
+//   // } else if (globalState.gameState === "gameOver" && key === 'r') {
+//   //   globalState.gameState = "start";
+//   // }
+//   // else if(globalState.gameState ==="playing"){
+//   //   keys[key] = true;// record the key pressed
+//   //   console.log(key + " " + keyCode);//test
+//   // }
+//   // else if (globalState.gameState === "levelComplete") {
+//   //   // ESC -> select level
+//   //   if (keyCode === ESCAPE) {
+//   //     globalState.gameState = "levelSelect";
+//   //   } else {
+//   //     // next level
+//   //     if (selectedLevel < levelList.length - 1) {
+//   //       selectedLevel++;
+//   //       globalState.gameState = "playing";
+//   //     } else {
+//   //       globalState.gameState = "levelSelect"; // the last level -> select level
+//   //     }
+//   //   }
+//   // }
+// }
 
-function keyReleased() {}
-function mousePressed() {}
-function mouseReleased() {}
+// function keyReleased() {}
+// function mousePressed() {}
+// function mouseReleased() {}
