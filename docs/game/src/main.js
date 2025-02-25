@@ -1,11 +1,15 @@
 import GameModel from "./core/GameModel";
 import GameController from "./core/GameController";
+import GameView from "./graphics/GameView";
 import { CONSTANT } from "./core/Utils";
 
 // global variables
 let gameModel;
 let gameController;
+let gameView;
 export let showCapoo = true;
+export let CapooX = 100;
+export let CapooY = 100;
 
 window.preload = function () {
   console.log("Main preload done");
@@ -13,12 +17,14 @@ window.preload = function () {
 }
 
 window.setup = function () {
-  createCanvas(CONSTANT.GAME_WIDTH, CONSTANT.GAME_HEIGHT);
-  gameModel = new GameModel();
-  gameController = new GameController(gameModel);
-  console.log("Main setup done");
-  background(220);
-  gameController.newGame();
+    createCanvas(CONSTANT.GAME_WIDTH, CONSTANT.GAME_HEIGHT);
+    gameModel = new GameModel();
+    gameController = new GameController(gameModel);
+    gameView = new GameView(gameModel);
+    console.log("Main setup done");
+    // background(220);
+    gameController.newGame();
+    gameView.render();
 }
 
 window.draw = function () {
@@ -33,12 +39,12 @@ window.draw = function () {
 //     console.log("Unknown State");
 //   }
 
-//   window.addEventListener("keydown", function(event) {
-//     let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
-//     if (keysToPrevent.includes(event.key)) {
-//         event.preventDefault();
-//     }
-// });
+  window.addEventListener("keydown", function(event) {
+    let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
+    if (keysToPrevent.includes(event.key)) {
+        event.preventDefault();
+    }
+});
 
 }
 
@@ -46,6 +52,18 @@ window.keyPressed = function () {
      if (keyCode === ENTER) {
           showCapoo = !showCapoo;
      }
+     if (keyCode === LEFT_ARROW) {
+          CapooX -= 30;
+     }
+      if (keyCode === RIGHT_ARROW) {
+          CapooX += 30;
+     }
+      if (keyCode === UP_ARROW) {
+          CapooY += 30;
+      }
+      if (keyCode === DOWN_ARROW) {
+          CapooY -= 30;
+      }
 //   // if (globalState.gameState === "start" && keyCode === ENTER) {
 //   //   globalState.gameState = "levelSelect";
 //   // } else if (globalState.gameState === "levelSelect") {

@@ -1,11 +1,15 @@
 import * as RenderLogic from './RenderLogic.js';
 
 export default class GameView {
-    constructor() {}
+    constructor(gameModel) {
+        this.gameModel = gameModel;
+        this.assets = this.gameModel.assets;
+    }
 
     // main function of GameView
     render() {
-
+        RenderLogic.showEntities(this.gameModel, this.assets);
+        console.log("GameView render done");
     }
 
     drawStartScreen() {
@@ -13,10 +17,9 @@ export default class GameView {
         textAlign(CENTER, CENTER);
         textSize(32);
         strokeWeight(3);
-        text("Press ENTER to start", width/2, height/2);
+        text("Press ENTER to start", width / 2, height / 2);
     }
-      
-      
+
     drawLevelSelectScreen() {
         background(137, 172, 206);
         textAlign(CENTER, CENTER);
@@ -24,11 +27,11 @@ export default class GameView {
         fill(0, 0, 0);
         strokeWeight(3);
         stroke(255, 255, 255);
-        text("Use LEFT/RIGHT to chose\nPress SPACE to begin", width/2, 100);
+        text("Use LEFT/RIGHT to chose\nPress SPACE to begin", width / 2, 100);
         for (let i = 0; i < levelList.length; i++) {
             let size = 60;
-            let x = width/2 - (levelList.length*size)/2 + i*size; 
-            let y = height/2;
+            let x = width / 2 - (levelList.length * size) / 2 + i * size;
+            let y = height / 2;
             if (i === selectedLevel) {
                 fill(255, 255, 0); // color when selected
             } else {
@@ -39,43 +42,15 @@ export default class GameView {
             textSize(26);
             strokeWeight(3);
             stroke(255, 255, 255);
-            text(levelList[i], x + size/2, y + size/2); 
+            text(levelList[i], x + size / 2, y + size / 2);
         }
     }
-      
-      
-    drawGameScreen() {
-        coll[selectedLevel].show();
-        trap[selectedLevel].update();
-        trap[selectedLevel].show();
-        decorate[selectedLevel].show();
-        merge[selectedLevel].show();
-        ice[selectedLevel].show();
-        spring[selectedLevel].update();
-        spring[selectedLevel].show();
-      
-        for(let i =0; i<keysItem[selectedLevel].length; i++){
-            keysItem[selectedLevel][i].show();
-        }
-        
-        for(let i =0; i<elevatingWalls[selectedLevel].length; i++){
-            elevatingWalls[selectedLevel][i].update();
-            elevatingWalls[selectedLevel][i].show();
-        }
-        for(let i =0; i<switches[selectedLevel].length; i++){
-            switches[selectedLevel][i].update();
-            switches[selectedLevel][i].show();
-        }
-        flag[selectedLevel].show();
-        //player[selectedLevel].update();
-        player[selectedLevel].show();
-    }
-      
-      
-    drawGameOverScreen() {}
-        
-        
-    drawLevelCompleteScreen() {}
 
-    
+    drawGameScreen() {
+        this.render();
+    }
+
+    drawGameOverScreen() {}
+
+    drawLevelCompleteScreen() {}
 }

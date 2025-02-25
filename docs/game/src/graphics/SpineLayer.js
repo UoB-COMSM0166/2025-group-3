@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as spine from "@esotericsoftware/spine-threejs";
-import { showCapoo } from '../main';
+import { showCapoo, CapooX, CapooY } from '../main';
 
 let scene, camera, renderer;
 let canvas;
@@ -161,19 +161,22 @@ function render() {
     skeletonMesh1.update(delta);
     skeletonMesh2.update(delta);
     skeletonMesh3.update(delta);
+
+    // set the position of Capoo
+    skeletonMesh.position.set(CapooX, CapooY, 0);
     
     // Synchronize the body_face bone of skeletonMesh1 with skeletonMesh
     let bodyFaceSlot = skeletonMesh.skeleton.findBone("body_face_root");
     let faceBodySlot = skeletonMesh1.skeleton.findBone("root");
-    skeletonMesh1.position.set(bodyFaceSlot.worldX - faceBodySlot.worldX, bodyFaceSlot.worldY - faceBodySlot.worldY, 1); 
+    skeletonMesh1.position.set(CapooX+bodyFaceSlot.worldX - faceBodySlot.worldX, CapooY+bodyFaceSlot.worldY - faceBodySlot.worldY, 1); 
 
     let bodyHatSlot = skeletonMesh.skeleton.findBone("hat");
     let hatBodySlot = skeletonMesh2.skeleton.findBone("root");
-    skeletonMesh2.position.set(bodyHatSlot.worldX - hatBodySlot.worldX, bodyHatSlot.worldY - hatBodySlot.worldY, 1); 
+    skeletonMesh2.position.set(CapooX+bodyHatSlot.worldX - hatBodySlot.worldX, CapooY+bodyHatSlot.worldY - hatBodySlot.worldY, 1); 
 
     let bodyBackSlot = skeletonMesh.skeleton.findBone("back");
     let backBodySlot = skeletonMesh3.skeleton.findBone("root");
-    skeletonMesh3.position.set(bodyBackSlot.worldX - backBodySlot.worldX, bodyBackSlot.worldY - backBodySlot.worldY, -1);
+    skeletonMesh3.position.set(CapooX+bodyBackSlot.worldX - backBodySlot.worldX, CapooY+bodyBackSlot.worldY - backBodySlot.worldY, -1);
 
     // render the scene
     if (typeof showCapoo !== "undefined") {
