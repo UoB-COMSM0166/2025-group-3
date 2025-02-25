@@ -1,15 +1,15 @@
 import AbstractItem from './AbstractItem.js';
 
-export default class CheckPoint extends AbstractItem {
-    // properties
-    frameCounter;
-    frameIndex;
-    animationFrames;
-    
+export default class Flag extends AbstractItem {
+  // properties
+  frameCounter;
+  frameIndex;
+  animationFrames;
+
     constructor(x,y,imgIndex,levelIndex){
         super(x,y,imgIndex,levelIndex);
         this.frameCounter = 0; 
         this.frameIndex = 0; 
         this.animationFrames = [imgIndex, imgIndex+1]; 
-    }
+      }
 }

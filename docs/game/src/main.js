@@ -8,8 +8,8 @@ let gameModel;
 let gameController;
 let gameView;
 export let showCapoo = true;
-export let CapooX = 400;
-export let CapooY = 2500;
+export let CapooX = 400; //400
+export let CapooY = 2500; //2500
 
 window.preload = function () {
   console.log("Main preload done");
@@ -17,7 +17,8 @@ window.preload = function () {
 }
 
 window.setup = function () {
-    createCanvas(CONSTANT.GAME_WIDTH, CONSTANT.GAME_HEIGHT);
+    // createCanvas(CONSTANT.GAME_WIDTH, CONSTANT.GAME_HEIGHT);
+    createCanvas(window.innerWidth, window.innerHeight);
     gameModel = new GameModel();
     gameController = new GameController(gameModel);
     gameView = new GameView(gameModel);
@@ -26,8 +27,8 @@ window.setup = function () {
     gameController.newGame();
   }
   
-window.draw = function () {
-  gameView.render();
+  window.draw = function () {
+    gameView.render();
 
   // stateHandlers (in GlobalState.js) 
   // is an object that contains functions

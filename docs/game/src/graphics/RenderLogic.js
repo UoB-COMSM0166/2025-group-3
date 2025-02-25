@@ -1,5 +1,4 @@
 import { CONSTANT } from '../core/Utils.js';
-import CollideBrick from '../entities/terrain/CollideBrick.js';
 import { showCapoo, CapooX, CapooY } from '../main';
 
 export function getTilePosition(i) {
@@ -36,21 +35,23 @@ export function showEntities(gameModel, assets) {
             showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.ice[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets);      
+            showTerrain(gameModel.merge[levelIndex], offsetX, offsetY, assets);      
+            for(let i =0; i<gameModel.keysItem[levelIndex].length; i++){
+                showItem(gameModel.keysItem[levelIndex][i], offsetX, offsetY, assets, true);
+            }
+            for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
+                // elevatingWalls[selectedLevel][i].update();
+                showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets, false);
+            }
+            for(let i =0; i<gameModel.switches[levelIndex].length; i++){
+            // switches[selectedLevel][i].update();
+                showItem(gameModel.switches[levelIndex][i], offsetX, offsetY, assets, false);
+            }
+            showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets, true);
         }
     }, 1000); // 每 100ms 检查一次
 
-    // for(let i =0; i<gameModel.keysItem[levelIndex].length; i++){
-    //     showItem(gameModel.keysItem[levelIndex][i], offsetX, offsetY, assets);
-    // }
     
-    // for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
-    // // elevatingWalls[selectedLevel][i].update();
-    //     showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets);
-    // }
-    // for(let i =0; i<gameModel.switches[levelIndex].length; i++){
-    // // switches[selectedLevel][i].update();
-    //     showItem(gameModel.switches[levelIndex][i], offsetX, offsetY, assets);
-    // }
 
     // showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets);
 
@@ -70,7 +71,6 @@ export function showEntities(gameModel, assets) {
     // });
 
     // // 显示旗帜
-    // showEntity(gameModel.flag[levelIndex], offsetX, offsetY, assets);
 
     
 }
@@ -100,11 +100,13 @@ function showTerrain(entity, offsetX, offsetY, assets) {
     }
 }
 
-function showItem(entity, offsetX, offsetY, assets) {
-    entity.frameCounter++;
-    if (entity.frameCounter % frameInterval === 0) { 
-        entity.frameIndex = (entity.frameIndex + 1) % entity.animationFrames.length;
-        entity.imgIndex = entity.animationFrames[entity.frameIndex];
+function showItem(entity, offsetX, offsetY, assets, isAnimated) {
+    if (isAnimated) {
+        entity.frameCounter++;
+        if (entity.frameCounter % CONSTANT.FRAME_INTERVAL === 0) { 
+            entity.frameIndex = (entity.frameIndex + 1) % entity.animationFrames.length;
+            entity.imgIndex = entity.animationFrames[entity.frameIndex];
+        }
     }
     let coord = getTilePosition(entity.imgIndex);
     // let offsetX = (player[this.levelIndex].x - gameWidth / 2);

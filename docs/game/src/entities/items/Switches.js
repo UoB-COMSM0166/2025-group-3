@@ -1,6 +1,6 @@
 import AbstractItem from './AbstractItem.js';
 
-export default class CapooTrigger extends AbstractItem {
+export default class Switches extends AbstractItem {
     // properties
     id;
 

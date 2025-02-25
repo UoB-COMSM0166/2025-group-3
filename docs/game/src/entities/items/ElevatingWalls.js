@@ -1,6 +1,6 @@
 import AbstractItem from './AbstractItem.js';
 
-export default class MovableBox extends AbstractItem {
+export default class ElevatingWalls extends AbstractItem {
     // properties
     id;
     range;

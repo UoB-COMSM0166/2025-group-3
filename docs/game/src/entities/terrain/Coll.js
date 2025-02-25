@@ -1,6 +1,7 @@
 import AbstractTerrain from './AbstractTerrain';
 
-export default class DecorativeBrick extends AbstractTerrain {
+// CollideBrick
+export default class Coll extends AbstractTerrain {
     constructor(data, levelIndex) {
         super(data, levelIndex);
     }
