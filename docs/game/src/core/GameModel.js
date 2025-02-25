@@ -8,7 +8,8 @@ export default class GameModel {
     assets;
     levelHeight;
     levelWidth;
-    player;
+    capooX;
+    capooY;
     decorate;
     trap;
     coll;
@@ -34,7 +35,6 @@ export default class GameModel {
         // utilized by MapLoader
         this.levelHeight = []; // number of tiles
         this.levelWidth = [];
-        this.player = []; //暂未确定cat和attach机制; 暂时只设一个数组
         this.decorate = [];
         this.trap = [];
         this.coll = [];

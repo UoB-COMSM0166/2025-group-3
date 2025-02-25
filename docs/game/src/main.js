@@ -8,8 +8,8 @@ let gameModel;
 let gameController;
 let gameView;
 export let showCapoo = true;
-export let CapooX = 100;
-export let CapooY = 100;
+export let CapooX = 0;
+export let CapooY = 0;
 
 window.preload = function () {
   console.log("Main preload done");

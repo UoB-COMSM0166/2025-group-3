@@ -32,7 +32,6 @@ export default class MapLoader {
         // array initialization
         this.gameModel.levelHeight[levelIndex] = 0;
         this.gameModel.levelWidth[levelIndex] = 0;
-        this.gameModel.player[levelIndex] = null; 
         this.gameModel.decorate[levelIndex] = []; 
         this.gameModel.trap[levelIndex] = [];
         this.gameModel.coll[levelIndex] = [];
@@ -57,7 +56,6 @@ export default class MapLoader {
         console.log(this.levelData); // test
         this.gameModel.levelHeight[this.levelIndex] = this.levelData.height;
         this.gameModel.levelWidth[this.levelIndex] = this.levelData.width; 
-        this.getPlayer();
         this.getColl();    
         this.getDecorate();
         this.getTrap();
@@ -66,16 +64,6 @@ export default class MapLoader {
         this.getSpring();
         this.getInteract();
         console.log("ParseJSON done");
-    }
-
-    // 此函数需删除. 
-    // 暂时从测试地图文件中加载一个图片作为player(cat), 用于初步测试
-    getPlayer(){
-        let playerLayer = this.levelData.layers.find(layer => layer.name === "cat");
-        let playerObject = playerLayer.objects.find(player => player.name === "cat1");
-        let x = playerObject.x;
-        let y = playerObject.y - 210/2;
-        this.gameModel.player[this.levelIndex] = new Capoo(x, y);
     }
 
     getColl(){

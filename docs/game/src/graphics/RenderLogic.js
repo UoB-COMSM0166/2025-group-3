@@ -1,5 +1,6 @@
 import { CONSTANT } from '../core/Utils.js';
 import CollideBrick from '../entities/terrain/CollideBrick.js';
+import { showCapoo, CapooX, CapooY } from '../main';
 
 export function getTilePosition(i) {
     i--; // 此地图导出json后坐标从2开始(原因未知?), 需调整为1
@@ -29,64 +30,51 @@ export function showEntities(gameModel, assets) {
         if (gameModel.coll.length > 0) { // 确保数据已经加载
             console.log("数据已加载:", gameModel.coll[0]);
             clearInterval(checkDataLoaded); // 停止轮询
-            showEntity(gameModel.coll[levelIndex], offsetX, offsetY, assets);
-            console.log("showCollideBrick done");
+            showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets);
+            showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets);
+            showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets);
+            showTerrain(gameModel.ice[levelIndex], offsetX, offsetY, assets);
+            showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets);      
         }
     }, 1000); // 每 100ms 检查一次
-    // 显示碰撞砖块
 
-    // // 显示装饰砖块
-    // gameModel.decorate[levelIndex].forEach((brick) => {
-    //     showEntity(brick, offsetX, offsetY, assets);
-    // });
-    // console.log("showDecorateBrick done");
+    // for(let i =0; i<gameModel.keysItem[levelIndex].length; i++){
+    //     showItem(gameModel.keysItem[levelIndex][i], offsetX, offsetY, assets);
+    // }
+    
+    // for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
+    // // elevatingWalls[selectedLevel][i].update();
+    //     showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets);
+    // }
+    // for(let i =0; i<gameModel.switches[levelIndex].length; i++){
+    // // switches[selectedLevel][i].update();
+    //     showItem(gameModel.switches[levelIndex][i], offsetX, offsetY, assets);
+    // }
 
-    // // 显示陷阱
-    // gameModel.trap[levelIndex].forEach((trap) => {
-    //     showEntity(trap, offsetX, offsetY, assets);
-    // });
-    // console.log("showTrap done");
-
-    // // 显示冰块
-    // gameModel.ice[levelIndex].forEach((ice) => {
-    //     showEntity(ice, offsetX, offsetY, assets);
-    // });
-    // console.log("showIce done");
-
-    // // 显示弹簧
-    // gameModel.spring[levelIndex].forEach((spring) => {
-    //     showEntity(spring, offsetX, offsetY, assets);
-    // });
-    // console.log("showSpring done");
+    // showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets);
 
     // // 显示钥匙
     // gameModel.keysItem[levelIndex].forEach((key) => {
-    //     showEntity(key, offsetX, offsetY, assets);
+    //     showItem(key, offsetX, offsetY, assets);
     // });
-    // console.log("showKey done");
 
     // // 显示升降墙
     // gameModel.elevatingWalls[levelIndex].forEach((wall) => {
     //     showEntity(wall, offsetX, offsetY, assets);
     // });
-    // console.log("showElevatingWall done");
 
     // // 显示开关
     // gameModel.switches[levelIndex].forEach((switchItem) => {
     //     showEntity(switchItem, offsetX, offsetY, assets);
     // });
-    // console.log("showSwitch done");
 
     // // 显示旗帜
     // showEntity(gameModel.flag[levelIndex], offsetX, offsetY, assets);
-    // console.log("showFlag done");
 
-    // // 显示玩家
-    // showEntity(gameModel.player[levelIndex], offsetX, offsetY, assets);
-    // console.log("showPlayer done");
+    
 }
 
-function showEntity(entity, offsetX, offsetY, assets) {
+function showTerrain(entity, offsetX, offsetY, assets) {
     if (!entity) {
         console.log("!!!!!noentitey!!!!!");
         return;
@@ -109,4 +97,22 @@ function showEntity(entity, offsetX, offsetY, assets) {
             CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE
         );
     }
+}
+
+function showItem(entity, offsetX, offsetY, assets) {
+    entity.frameCounter++;
+    if (entity.frameCounter % frameInterval === 0) { 
+        entity.frameIndex = (entity.frameIndex + 1) % entity.animationFrames.length;
+        entity.imgIndex = entity.animationFrames[entity.frameIndex];
+    }
+    let coord = getTilePosition(entity.imgIndex);
+    // let offsetX = (player[this.levelIndex].x - gameWidth / 2);
+    // let offsetY = (player[this.levelIndex].y - gameHeight / 2);
+    image(
+        assets.icon,
+        entity.x - offsetX, entity.y - offsetY,
+        CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+        coord.x, coord.y,
+        CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE
+    );
 }
