@@ -1,3 +1,5 @@
+import * as RenderLogic from './RenderLogic.js';
+
 export default class GameView {
     constructor() {}
 

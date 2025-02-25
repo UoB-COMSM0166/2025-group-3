@@ -5,6 +5,7 @@ import { CONSTANT } from "./core/Utils";
 // global variables
 let gameModel;
 let gameController;
+export let showCapoo = true;
 
 window.preload = function () {
   console.log("Main preload done");
@@ -41,10 +42,10 @@ window.draw = function () {
 
 }
 
-
-
-
-// function keyPressed() {
+window.keyPressed = function () {
+     if (keyCode === ENTER) {
+          showCapoo = !showCapoo;
+     }
 //   // if (globalState.gameState === "start" && keyCode === ENTER) {
 //   //   globalState.gameState = "levelSelect";
 //   // } else if (globalState.gameState === "levelSelect") {
@@ -76,7 +77,7 @@ window.draw = function () {
 //   //     }
 //   //   }
 //   // }
-// }
+}
 
 // function keyReleased() {}
 // function mousePressed() {}

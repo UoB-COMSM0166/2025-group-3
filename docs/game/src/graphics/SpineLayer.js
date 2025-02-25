@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import * as spine from "@esotericsoftware/spine-threejs";
+import { showCapoo } from '../main';
 
 let scene, camera, renderer;
 let canvas;
@@ -175,8 +176,16 @@ function render() {
     skeletonMesh3.position.set(bodyBackSlot.worldX - backBodySlot.worldX, bodyBackSlot.worldY - backBodySlot.worldY, -1);
 
     // render the scene
-    renderer.render(scene, camera);
+    if (typeof showCapoo !== "undefined") {
+        skeletonMesh.visible = showCapoo;
+        skeletonMesh1.visible = showCapoo;
+        skeletonMesh2.visible = showCapoo;
+        skeletonMesh3.visible = showCapoo;
+    }
+    console.log("showCapoo:" + showCapoo);
 
+    renderer.render(scene, camera);
+    
     requestAnimationFrame(render);
 }
 
