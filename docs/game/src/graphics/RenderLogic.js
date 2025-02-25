@@ -23,13 +23,14 @@ export function showEntities(gameModel, assets) {
     let levelIndex = gameModel.selectedLevel;
     // let offsetX = (gameModel.player[levelIndex].x - CONSTANT.GAME_WIDTH / 2);
     // let offsetY = (gameModel.player[levelIndex].y - CONSTANT.GAME_HEIGHT / 2);
-    let offsetX = 0;
-    let offsetY = 0;
+    let offsetX = CapooX;
+    let offsetY = CapooY;
 
     const checkDataLoaded = setInterval(() => {
         if (gameModel.coll.length > 0) { // 确保数据已经加载
             console.log("数据已加载:", gameModel.coll[0]);
             clearInterval(checkDataLoaded); // 停止轮询
+            image(gameModel.assets.bg, 0, 0, windowWidth, windowHeight * 5 / 4);
             showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets);

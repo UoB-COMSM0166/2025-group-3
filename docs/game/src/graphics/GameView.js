@@ -8,7 +8,9 @@ export default class GameView {
 
     // main function of GameView
     render() {
+        // 显示实体
         RenderLogic.showEntities(this.gameModel, this.assets);
+
         console.log("GameView render done");
     }
 

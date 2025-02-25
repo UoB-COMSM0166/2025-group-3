@@ -8,8 +8,8 @@ let gameModel;
 let gameController;
 let gameView;
 export let showCapoo = true;
-export let CapooX = 0;
-export let CapooY = 0;
+export let CapooX = 400;
+export let CapooY = 2500;
 
 window.preload = function () {
   console.log("Main preload done");
@@ -24,10 +24,10 @@ window.setup = function () {
     console.log("Main setup done");
     // background(220);
     gameController.newGame();
-    gameView.render();
-}
-
+  }
+  
 window.draw = function () {
+  gameView.render();
 
   // stateHandlers (in GlobalState.js) 
   // is an object that contains functions
@@ -43,9 +43,8 @@ window.draw = function () {
     let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
     if (keysToPrevent.includes(event.key)) {
         event.preventDefault();
-    }
-});
-
+      }
+    });
 }
 
 window.keyPressed = function () {
@@ -53,16 +52,16 @@ window.keyPressed = function () {
           showCapoo = !showCapoo;
      }
      if (keyCode === LEFT_ARROW) {
-          CapooX -= 30;
+          CapooX -= 100;
      }
       if (keyCode === RIGHT_ARROW) {
-          CapooX += 30;
+          CapooX += 100;
      }
       if (keyCode === UP_ARROW) {
-          CapooY += 30;
+          CapooY -= 100;
       }
       if (keyCode === DOWN_ARROW) {
-          CapooY -= 30;
+          CapooY += 100;
       }
 //   // if (globalState.gameState === "start" && keyCode === ENTER) {
 //   //   globalState.gameState = "levelSelect";
