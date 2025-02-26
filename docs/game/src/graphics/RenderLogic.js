@@ -49,7 +49,7 @@ export function showEntities(gameModel, assets) {
             }
             showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets, true);
         }
-    }, 1000); // 每 100ms 检查一次
+    }, 10); // 每 100ms 检查一次
 
     
 

@@ -1,7 +1,7 @@
 import GameModel from "./core/GameModel";
 import GameController from "./core/GameController";
 import GameView from "./graphics/GameView";
-import { CONSTANT } from "./core/Utils";
+import { CONSTANT, GAME_STATE } from "./core/Utils";
 
 // global variables
 let gameModel;
@@ -27,74 +27,63 @@ window.setup = function () {
     gameController.newGame();
   }
   
-  window.draw = function () {
+window.draw = function () {
     gameView.render();
-
-  // stateHandlers (in GlobalState.js) 
-  // is an object that contains functions
-  // that draw the screen for each state
-
-//   if (stateHandlers[globalState.gameState]) {
-//     stateHandlers[globalState.gameState]();
-//   } else {
-//     console.log("Unknown State");
-//   }
-
-  window.addEventListener("keydown", function(event) {
-    let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
-    if (keysToPrevent.includes(event.key)) {
-        event.preventDefault();
+    window.addEventListener("keydown", function(event) {
+      let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
+      if (keysToPrevent.includes(event.key)) {
+          event.preventDefault();
       }
     });
 }
 
 window.keyPressed = function () {
-     if (keyCode === ENTER) {
-          showCapoo = !showCapoo;
-     }
-     if (keyCode === LEFT_ARROW) {
-          CapooX -= 100;
-     }
-      if (keyCode === RIGHT_ARROW) {
-          CapooX += 100;
-     }
-      if (keyCode === UP_ARROW) {
-          CapooY -= 100;
+    //  if (keyCode === ENTER) {
+    //       showCapoo = !showCapoo;
+    //  }
+    //  if (keyCode === LEFT_ARROW) {
+    //       CapooX -= 100;
+    //  }
+    //   if (keyCode === RIGHT_ARROW) {
+    //       CapooX += 100;
+    //  }
+    //   if (keyCode === UP_ARROW) {
+    //       CapooY -= 100;
+    //   }
+    //   if (keyCode === DOWN_ARROW) {
+    //       CapooY += 100;
+    //   }
+  if (gameModel.gameState === GAME_STATE.START && keyCode === ENTER) {
+      gameModel.gameState = GAME_STATE.LEVEL_SELECT;
+  } else if (gameModel.gameState === GAME_STATE.LEVEL_SELECT) {
+      if (keyCode === LEFT_ARROW) {
+        gameModel.selectedLevel = max(0, gameModel.selectedLevel - 1);
+      } else if (keyCode === RIGHT_ARROW) {
+        gameModel.selectedLevel = min(CONSTANT.LEVEL_LIST.length - 1, gameModel.selectedLevel + 1);
+      } else if (keyCode === 32) {  // Space
+        gameModel.gameState = GAME_STATE.PLAYING;
       }
-      if (keyCode === DOWN_ARROW) {
-          CapooY += 100;
+  } else if (gameModel.gameState === GAME_STATE.GAME_OVER && key === 'r') {
+      gameModel.gameState = GAME_STATE.START;
+  }
+  else if(gameModel.gameState === GAME_STATE.PLAYING) {
+      keys[key] = true;// record the key pressed
+      console.log(key + " " + keyCode);//test
+  }
+  else if (gameModel.gameState === GAME_STATE.LEVEL_COMPLETE) {
+      // ESC -> select level
+      if (keyCode === ESCAPE) {
+          gameModel.gameState = GAME_STATE.LEVEL_SELECT;
+      } else {
+        // next level
+          if (gameModel.selectedLevel < CONSTANT.LEVEL_LIST.length - 1) {
+              gameModel.selectedLevel++;
+              gameModel.gameState = GAME_STATE.PLAYING;
+          } else {
+              gameModel.gameState = GAME_STATE.LEVEL_SELECT; // the last level -> select level
+          }
       }
-//   // if (globalState.gameState === "start" && keyCode === ENTER) {
-//   //   globalState.gameState = "levelSelect";
-//   // } else if (globalState.gameState === "levelSelect") {
-//   //   if (keyCode === LEFT_ARROW) {
-//   //     selectedLevel = max(0, selectedLevel - 1);
-//   //   } else if (keyCode === RIGHT_ARROW) {
-//   //     selectedLevel = min(levelList.length - 1, selectedLevel + 1);
-//   //   } else if (keyCode === 32) {  // Space
-//   //     globalState.gameState = "playing";
-//   //   }
-//   // } else if (globalState.gameState === "gameOver" && key === 'r') {
-//   //   globalState.gameState = "start";
-//   // }
-//   // else if(globalState.gameState ==="playing"){
-//   //   keys[key] = true;// record the key pressed
-//   //   console.log(key + " " + keyCode);//test
-//   // }
-//   // else if (globalState.gameState === "levelComplete") {
-//   //   // ESC -> select level
-//   //   if (keyCode === ESCAPE) {
-//   //     globalState.gameState = "levelSelect";
-//   //   } else {
-//   //     // next level
-//   //     if (selectedLevel < levelList.length - 1) {
-//   //       selectedLevel++;
-//   //       globalState.gameState = "playing";
-//   //     } else {
-//   //       globalState.gameState = "levelSelect"; // the last level -> select level
-//   //     }
-//   //   }
-//   // }
+  }
 }
 
 // function keyReleased() {}

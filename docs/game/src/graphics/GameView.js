@@ -1,4 +1,5 @@
 import * as RenderLogic from './RenderLogic.js';
+import { CONSTANT, GAME_STATE } from "../core/Utils";
 
 export default class GameView {
     constructor(gameModel) {
@@ -8,10 +9,18 @@ export default class GameView {
 
     // main function of GameView
     render() {
-        // 显示实体
-        RenderLogic.showEntities(this.gameModel, this.assets);
-
-        console.log("GameView render done");
+        const stateHandlers = {
+            [GAME_STATE.START]: this.drawStartScreen.bind(this),
+            [GAME_STATE.LEVEL_SELECT]: this.drawLevelSelectScreen.bind(this),
+            [GAME_STATE.PLAYING]: this.drawGameScreen.bind(this),
+            [GAME_STATE.LEVEL_COMPLETE]: this.drawLevelCompleteScreen.bind(this),
+            [GAME_STATE.GAME_OVER]: this.drawGameOverScreen.bind(this),
+        };
+        if (stateHandlers[this.gameModel.gameState]) {
+            stateHandlers[this.gameModel.gameState]();
+        } else {
+            console.log("Unknown State");
+        }
     }
 
     drawStartScreen() {
@@ -23,6 +32,8 @@ export default class GameView {
     }
 
     drawLevelSelectScreen() {
+        console.log("GameView level gameModel: ");
+        console.log(this.gameModel);
         background(137, 172, 206);
         textAlign(CENTER, CENTER);
         textSize(28);
@@ -30,11 +41,11 @@ export default class GameView {
         strokeWeight(3);
         stroke(255, 255, 255);
         text("Use LEFT/RIGHT to chose\nPress SPACE to begin", width / 2, 100);
-        for (let i = 0; i < levelList.length; i++) {
+        for (let i = 0; i < CONSTANT.LEVEL_LIST.length; i++) {
             let size = 60;
-            let x = width / 2 - (levelList.length * size) / 2 + i * size;
+            let x = width / 2 - (CONSTANT.LEVEL_LIST.length * size) / 2 + i * size;
             let y = height / 2;
-            if (i === selectedLevel) {
+            if (i === this.gameModel.selectedLevel) {
                 fill(255, 255, 0); // color when selected
             } else {
                 fill(200, 200, 200);
@@ -44,12 +55,14 @@ export default class GameView {
             textSize(26);
             strokeWeight(3);
             stroke(255, 255, 255);
-            text(levelList[i], x + size / 2, y + size / 2);
+            text(CONSTANT.LEVEL_LIST[i], x + size / 2, y + size / 2);
         }
     }
 
     drawGameScreen() {
-        this.render();
+        // 显示实体
+        RenderLogic.showEntities(this.gameModel, this.assets);
+        console.log("GameView render done");
     }
 
     drawGameOverScreen() {}

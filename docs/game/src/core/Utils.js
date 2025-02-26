@@ -3,10 +3,11 @@ export const CONSTANT = Object.freeze({
     GAME_HEIGHT: 3200,  //windowHeight
     TILE_SIZE: 70, //70
     TILE_MARGIN: 0,
-    LEVEL_LIST: [],
+    LEVEL_LIST: [1,2],
     FRAME_INTERVAL: 18
 });
 
+// enum of possible game states
 export const GAME_STATE = Object.freeze({
     START: "start",
     LEVEL_SELECT: "levelSelect",
@@ -14,11 +15,3 @@ export const GAME_STATE = Object.freeze({
     LEVEL_COMPLETE: "levelComplete",
     GAME_OVER: "game_over",
   });
-
-// export const stateHandlers = {
-//     [GAME_STATE.START]: drawStartScreen,
-//     [GAME_STATE.LEVEL_SELECT]: drawLevelSelectScreen,
-//     [GAME_STATE.PLAYING]: drawGameScreen,
-//     [GAME_STATE.LEVEL_COMPLETE]: drawLevelCompleteScreen,
-//     [GAME_STATE.GAME_OVER]: drawGameOverScreen,
-// };
