@@ -29,7 +29,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ## Project Report
 
-### 1. GAME-RESERCH
+### 1. Game Reserch
 | **Game Type** | **Game Inspiration** | **Game Description** | **Possible Game Twists** |
 |-----------------|------------------------|------------------------|----------------------------|
 | **🌱 Simulation, RPG** | 🏡 **Stardew Valley** | A game combining **farm management, social interaction, exploration, and combat.** Players manage their farm, interact with NPCs, and explore unknown areas. | ✨ Add a **magic system,** random events, or **dynamic weather** affecting crop growth. |
@@ -49,7 +49,110 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 | **🃏 Card Game** | 🔮 **Hearthstone** | A **card battle game** set in the **World of Warcraft universe**, where players **build decks & compete**. | 🎭 Introduce **new game modes**, such as **'Survival Mode'** where players **continuously battle AI opponents**. |
 | **💣 Action, Multiplayer** | 💥 **Bomberman Online** | A **classic multiplayer battle game**, where players **place bombs to eliminate opponents** within a time limit. | 🌪️ Introduce **randomized maps** or **weather effects affecting bomb explosions**. |
 
+### 2. Final Idea
 
+# 🌾 **Stardew Valley**  
+### 🎮 **Genre:** Simulation RPG  
+
+## 🎯 **Introduction**  
+**Stardew Valley** is a **farming and life simulation game**, where players **inherit a rundown farm** from their grandfather in a **small rural town**. The game revolves around **rebuilding the farm**, **forming relationships with the townspeople**, and **balancing resource management with personal life**. With **open-ended gameplay**, players can choose their own path, whether it's **farming, fishing, mining, crafting, or socializing**.
+
+---
+
+## 🕹️ **Core Gameplay Elements**  
+
+### 🌱 **Farming & Resource Management**  
+- **Grow crops, raise animals, and manage farm resources** to build a thriving homestead.  
+- **Seasonal changes** impact **crop availability, weather, and activities**.  
+- **Crafting and cooking** allow players to create useful tools and meals.  
+
+### 🏡 **Community Interaction**  
+- The town is filled with **diverse NPCs**, each with **unique personalities, schedules, and storylines**.  
+- **Friendships & Romances**:  
+  - Building relationships unlocks **cutscenes, dialogues, and events**.  
+  - Players can **date, marry, and even start a family**.  
+
+### ⛏️ **Exploration & Combat**  
+- **Explore dangerous mines** to gather valuable **resources, ores, and gems**.  
+- **Combat mechanics** allow players to **fight monsters and uncover treasures**.  
+- **Fishing & Foraging** provide additional activities for relaxation and progression.  
+
+### 🎨 **Customization & Creativity**  
+- **Personalize farm layouts**, **decorate the house**, and **craft unique tools**.  
+- **Farm expansion & upgrades** provide long-term goals.  
+
+### 🔀 **Freedom & Choice**  
+- **Non-linear gameplay** allows players to focus on their favorite activities.  
+- **Multiple progression paths**: **farming, socializing, mining, fishing, crafting, or a mix of everything**.  
+
+---
+
+## ❤️ **Themes & Appeal**  
+- **A nostalgic and relaxing experience** with a **focus on self-sufficiency and community bonding**.  
+- **Heartwarming storytelling** that embraces themes of **rural life, connection, and personal growth**.  
+- **A rewarding sense of achievement**, as players **watch their farm flourish over time**.  
+
+---
+
+## ⚙️ **Development & Technical Aspects**  
+- **Developed by ConcernedApe (Eric Barone)** as a **solo project**.  
+- Inspired by **Harvest Moon**, but with **deeper mechanics and open-ended gameplay**.  
+- **Pixel art aesthetic** with **handcrafted animations**.  
+- **Modding support** allows the community to expand the game further.  
+## 🌾 **Rebuild, Connect, and Live Your Dream Farm Life!**  
+---
+
+# 🐱 **Cato**   
+### 🎮 **Genre:** 2D Puzzle-Platformer  
+
+## 🎯 **Introduction**  
+**Cato (Butter Cat)** is a **physics-based puzzle platformer** inspired by the **buttered cat paradox** meme. In this **hilarious and absurd world**, a **cat with a slice of buttered toast strapped to its back** hovers uncontrollably due to **the paradox of the toast always trying to land butter-side down**. Players must **master the erratic spinning physics** to **solve puzzles, overcome obstacles, and uncover the secrets of the paradox**.
+
+---
+
+## 🕹️ **Core Gameplay Elements**  
+
+### 🌀 **Physics-Based Movement**  
+- **Cato continuously spins or hovers**, creating **chaotic yet skill-based movement mechanics**.  
+- Players must **control Cato’s momentum and rotation** to **traverse obstacles and land precisely**.  
+
+### 🧩 **Puzzle Challenges**  
+- **Manipulate spinning motion** to **activate switches, flip levers, and solve environmental puzzles**.  
+- **Skillful timing and strategic positioning** are essential for **navigating complex stages**.  
+
+### 🎨 **Creative Level Design**  
+- **Physics-defying environments**, including:  
+  - 🌀 **Anti-gravity zones**  
+  - 💨 **Wind tunnels**  
+  - 🧲 **Butter magnets**  
+  - 🍞 **Toast-eating enemies**  
+- **Dynamic obstacles and interactive elements** provide a constantly evolving challenge.  
+
+### 🎭 **Humorous Storyline**  
+- **An absurd, meme-inspired adventure** where Cato embarks on a quest to **unravel the paradox**.  
+- **Eccentric NPCs**, including:  
+  - 🔬 **Mad scientists** experimenting on physics theories.  
+  - 🐱 **Rival cats** competing for "The Ultimate Paradox Cat" title.  
+  - 🍞 **Bread-themed villains** trying to capture the perfect toast.  
+
+### 🎨 **Customization & Power-Ups**  
+- **Unlockable skins** for Cato, featuring **hats, colors, and hilarious outfits**.  
+- **Butter-toast power-ups**, including:  
+  - **Sticky Butter** 🧈 (Better grip on walls)  
+  - **Turbo Spin** 🔄 (Higher jumps)  
+---
+## 🔥 **Themes & Appeal**  
+- **Lighthearted and comedic**—perfect for fans of **quirky indie games** and **physics-based mechanics**.  
+- **A mix of skill, timing, and absurd humor** keeps players engaged.  
+- **Appeals to casual and hardcore gamers** due to its **simple premise but challenging execution**.  
+---
+## ⚙️ **Development & Technical Aspects**  
+- Developed by **Hyper Luminal Games**.  
+- **Physics engine designed around momentum-based movement**.  
+- **Hand-drawn 2D animation** with **charming, cartoon-style visuals**.  
+- **Potential modding support** for custom levels.
+## 🐱 **Spin, Solve, and Defy Gravity in a Buttered Chaos!**  
+---
 
 ### Introduction
 
