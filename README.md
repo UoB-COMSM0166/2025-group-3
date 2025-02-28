@@ -99,12 +99,8 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 - Inspired by **Harvest Moon**, but with **deeper mechanics and open-ended gameplay**.  
 - **Pixel art aesthetic** with **handcrafted animations**.  
 - **Modding support** allows the community to expand the game further.  
-## 🌾 **Rebuild, Connect, and Live Your Dream Farm Life!**  [Watch Week 3 - PPT Prototype 02 (MP4)](https://github.com/UoB-COMSM0166/2025-group-3/blob/main/weekly%20updates/Week%203%20-%20PPT%20Prototype%2002.mp4)
-
-
-
+### 🌾 **Rebuild, Connect, and Live Your Dream Farm Life!**  [Watch Week 3 - PPT Prototype 02 (MP4)](https://github.com/UoB-COMSM0166/2025-group-3/blob/main/weekly%20updates/Week%203%20-%20PPT%20Prototype%2002.mp4)
 ---
-
 # 🐱 **Cato**   
 ### 🎮 **Genre:** 2D Puzzle-Platformer  
 
@@ -154,7 +150,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 - **Physics engine designed around momentum-based movement**.  
 - **Hand-drawn 2D animation** with **charming, cartoon-style visuals**.  
 - **Potential modding support** for custom levels.
-## 🐱 **Spin, Solve, and Defy Gravity in a Buttered Chaos!**  [Download Week 3 - PPT Prototype 02 (PPTX)](https://github.com/UoB-COMSM0166/2025-group-3/blob/main/weekly%20updates/Week%203%20-%20PPT%20Prototype%2002.pptx)
+### 🐱 **Spin, Solve, and Defy Gravity in a Buttered Chaos!**  [Download Week 3 - PPT Prototype 02 (PPTX)](https://github.com/UoB-COMSM0166/2025-group-3/blob/main/weekly%20updates/Week%203%20-%20PPT%20Prototype%2002.pptx)
 ---
 
 ### Introduction
