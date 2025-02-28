@@ -86,6 +86,6 @@ window.keyPressed = function () {
   }
 }
 
-// function keyReleased() {}
-// function mousePressed() {}
-// function mouseReleased() {}
+// window.keyReleased = function () {}
+// window.mousePressed = function () {}
+// window.mouseReleased = function () {}
