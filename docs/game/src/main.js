@@ -36,6 +36,9 @@ window.draw = function () {
           event.preventDefault();
       }
     });
+    if (gameModel.gameState === GAME_STATE.PLAYING) {
+        gameController.moveCapoo();
+    }
 }
 
 window.keyPressed = function () {
@@ -68,8 +71,8 @@ window.keyPressed = function () {
       gameModel.gameState = GAME_STATE.START;
   }
   else if(gameModel.gameState === GAME_STATE.PLAYING) {
-      keys[key] = true;// record the key pressed
-      console.log(key + " " + keyCode);//test
+      gameModel.keys[key] = true;// record the key pressed
+      //console.log(key + " " + keyCode);//test
   }
   else if (gameModel.gameState === GAME_STATE.LEVEL_COMPLETE) {
       // ESC -> select level
@@ -87,7 +90,12 @@ window.keyPressed = function () {
   }
 }
 
-// window.keyReleased = function () {}
+// 松开键盘后停止人物移动
+window.keyReleased = function() {
+  if (gameModel.keys[key] !== undefined) {
+    gameModel.keys[key] = false;
+  }
+}
 // window.mousePressed = function () {}
 // window.mouseReleased = function () {}
 
@@ -98,3 +106,5 @@ window.windowResized = function () {
     // gameView.render();
     // console.log("windowResized");
 }
+
+

@@ -19,6 +19,15 @@ export default class GameController {
         //console.log(this.gameModel);// 测试
     }
     
-
+    // 控制猫移动
+    moveCapoo() {
+        let selectedLevel = this.gameModel.selectedLevel;
+        if (this.gameModel.keys['ArrowLeft']) {
+            this.gameModel.cat[selectedLevel].x -= this.gameModel.cat[selectedLevel].speed; 
+        }
+        if (this.gameModel.keys['ArrowRight']) {
+            this.gameModel.cat[selectedLevel].x += this.gameModel.cat[selectedLevel].speed;
+        }
+    }
   
 }

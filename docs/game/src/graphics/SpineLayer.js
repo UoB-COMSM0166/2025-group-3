@@ -3,8 +3,6 @@ import * as spine from "@esotericsoftware/spine-threejs";
 import { showCapoo/*, CapooX, CapooY*/ } from '../main';
 //import { cat } from '../GameModel';
 
-//let CapooX = cat[0].x;
-//let CapooY = cat[0].y;
 
 
 let scene, camera, renderer;
@@ -81,14 +79,14 @@ function init() {
     assetManager3.loadText(skeletonFile3);
     assetManager3.loadTextureAtlas(atlasFile3);
 
-    console.log("SpineLayer initialized");
+    //console.log("SpineLayer initialized");
     requestAnimationFrame(load);
 }
 
 function load(name, scale) {
     console.log("SpineLayer loading");
     if (assetManager.isLoadingComplete() && assetManager1.isLoadingComplete() && assetManager2.isLoadingComplete() && assetManager3.isLoadingComplete()) {
-        console.log("SpineLayer loading complete:" + assetManager.isLoadingComplete());
+        //console.log("SpineLayer loading complete:" + assetManager.isLoadingComplete());
 
         // Load the texture atlas using name.atlas and name.png from the AssetManager.
         // The function passed to TextureAtlas is used to resolve relative paths.

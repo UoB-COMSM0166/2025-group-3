@@ -32,8 +32,8 @@ export default class GameView {
     }
 
     drawLevelSelectScreen() {
-        console.log("GameView level gameModel: ");
-        console.log(this.gameModel);
+        //console.log("GameView level gameModel: ");
+        //console.log(this.gameModel);
         background(137, 172, 206);
         textAlign(CENTER, CENTER);
         textSize(28);
@@ -62,7 +62,7 @@ export default class GameView {
     drawGameScreen() {
         // 显示实体
         RenderLogic.showEntities(this.gameModel, this.assets);
-        console.log("GameView render done");
+        //console.log("GameView render done");
     }
 
     drawGameOverScreen() {}

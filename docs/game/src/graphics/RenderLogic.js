@@ -27,7 +27,7 @@ export function showEntities(gameModel, assets) {
 
     const checkDataLoaded = setInterval(() => {
         if (gameModel.coll.length > 0) { // 确保数据已经加载
-            console.log("数据已加载:", gameModel.coll[0]);
+            //console.log("数据已加载:", gameModel.coll[0]);
             clearInterval(checkDataLoaded); // 停止轮询
             image(gameModel.assets.bg, 0, 0, windowWidth, windowHeight * 5 / 4);
             showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets);
