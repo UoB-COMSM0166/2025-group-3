@@ -29,26 +29,26 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ## Project Report
 
-### 1.🎮 GAME-RESERCH
-
-| **🎲 Game Type** | **🕹️ Game Inspiration** | **📖 Game Description** | **💡 Possible Game Twists** |
+### 1. GAME-RESERCH
+| **Game Type** | **Game Inspiration** | **Game Description** | **Possible Game Twists** |
 |-----------------|------------------------|------------------------|----------------------------|
-| **🌱 Simulation, RPG** | 🏡 **Stardew Valley** | A game combining **farm management, social interaction, exploration, and combat.** Players manage their farm, interact with NPCs, and explore unknown areas. | ✨ **Add a magic system, random events, or dynamic weather affecting crop growth.** |
-| **⚔️ Strategy RPG** | 🏰 **The DioField Chronicle** | A **real-time tactical battle** game blending **political storytelling** and strategy. Players **lead armies** and influence the story. | 🔀 **Add multiple endings** or introduce a **customizable character development path.** |
-| **🔫 Roguelike Action** | 💥 **Neon Abyss** | A **fast-paced shooting** game featuring **procedurally generated levels and weapon upgrades.** | 🎯 **Introduce a character progression system,** increase Roguelike growth, or **add more random events affecting combat.** |
-| **🧪 Crafting Simulation** | 🏺 **Potion Craft: Alchemist Simulator** | Players become an **alchemist**, crafting potions from various ingredients while managing a potion shop. | 🏆 **Add an alchemy battle mode** or introduce **hidden quests and special customer needs.** |
-| **🏰 Tower Defense** | 🎈 **Bloons Tower Defense** | Place **different towers** to stop waves of balloons, upgrading them for better defense. | 🎭 **Introduce a PVP mode** or set **dynamically changing maps.** |
-| **🏰 Tower Defense** | 🏹 **Kingdom Rush** | A **classic tower defense game** with **hero units and diverse upgrades** battling various enemies. | 🦸 **Add RPG elements allowing players to control heroes directly in battle.** |
-| **🧗 Platformer** | 🌄 **Celeste** | A game about a protagonist **climbing Celeste Mountain, combining precise platforming and emotional storytelling.** | ⏳ **Add a time challenge mode** or a **level editor** allowing custom high-difficulty levels. |
-| **⚔️ MMORPG, Action** | 🏆 **Dungeon Fighter Online (DNF)** | A **side-scrolling action** MMORPG combining **dungeon exploration, character development, and loot collection.** | 🎮 **Introduce a PVP arena mode** or **add dynamic event dungeons.** |
-| **🃏 Roguelike Deck-Building** | 🎴 **Slay the Spire** | Players **build a deck** to battle through **procedurally generated levels,** ensuring a unique experience each run. | 🤝 **Introduce co-op or PVP battle modes** where players build **competitive decks.** |
-| **🗡️ Roguelike Metroidvania** | 🔥 **Dead Cells** | Combines **fluid combat mechanics** with **procedurally generated levels**, where players explore and fight enemies. | ⚙️ **Add a customizable weapon system** or allow **multiple playable characters.** |
-| **💀 Action Roguelike** | ⚔️ **Skul: The Hero Slayer** | Players **control a small skeleton** who can transform into heroes with different abilities. | 🏅 **Introduce a PVP mode** or provide **more transformable hero abilities.** |
-| **🏛️ Action Roguelike** | 🔱 **Hades** | Players control **Zagreus, the son of Hades,** attempting to escape the underworld. Each failure **progresses the story.** | 👹 **Add 'Nightmare Mode'** with stronger enemies or **completely random skill selection.** |
-| **🧛 Survival, Roguelike** | 🦇 **Vampire Survivors** | Characters **auto-attack** while continuously **upgrading abilities** to **survive endless enemy waves.** | 💡 **Add a character talent system** or allow players to **customize auto-attack styles.** |
-| **🏰 Strategy, Simulation** | 👑 **Kingdom: Two Crowns** | Players **manage and expand their kingdom** while defending against nightly monster attacks. | 🌦️ **Introduce seasonal changes affecting resources** or add **AI-controlled kingdoms.** |
-| **🃏 Card Game** | 🔮 **Hearthstone** | A **collectible card game** set in the World of Warcraft universe, where players **build decks and compete.** | 🎭 **Introduce new game modes,** like **'Survival Mode'** with continuous AI battles. |
-| **💣 Action, Multiplayer** | 💥 **Bomberman Online** | A **classic multiplayer game** where players **place bombs to eliminate opponents** within a time limit. | 🌪️ **Introduce random map mechanics** or **weather effects affecting explosions.** |
+| **🌱 Simulation, RPG** | 🏡 **Stardew Valley** | A game combining **farm management, social interaction, exploration, and combat.** Players manage their farm, interact with NPCs, and explore unknown areas. | ✨ Add a **magic system,** random events, or **dynamic weather** affecting crop growth. |
+| **⚔️ Strategy RPG** | 🏰 **The DioField Chronicle** | A **real-time tactical battle** game blending **political storytelling** and **strategic warfare**. Players **lead armies** and influence the story. | 🔀 Add **multiple endings** or introduce a **customizable character development path**. |
+| **🔫 Roguelike Action** | 💥 **Neon Abyss** | A **fast-paced shooting game** featuring **procedurally generated levels** and various **weapon upgrades**. | 🎯 Introduce **character progression mechanics**, **increase long-term growth**, or **add random combat-affecting events**. |
+| **🧪 Crafting Simulation** | 🏺 **Potion Craft: Alchemist Simulator** | Players take on the role of an **alchemist**, combining ingredients to craft potions while managing a shop. | 🏆 Add **alchemy duels** or introduce **hidden quests & unique customer requests**. |
+| **🏰 Tower Defense** | 🎈 **Bloons Tower Defense** | Players **place and upgrade towers** to **prevent balloon waves** from reaching their goal. | 🎭 Introduce a **PVP mode** or **dynamic map alterations**. |
+| **🏰 Tower Defense** | 🏹 **Kingdom Rush** | A **tower defense game** with **hero units** and **diverse upgrade options** against enemy waves. | 🦸 Add **RPG mechanics** allowing **direct hero control in battles**. |
+| **🧗 Platformer** | 🌄 **Celeste** | A **platforming game** about **climbing Celeste Mountain**, featuring **precise controls & emotional storytelling**. | ⏳ Add a **time trial mode** or a **level editor** for **custom challenges**. |
+| **⚔️ MMORPG, Action** | 🏆 **Dungeon Fighter Online (DNF)** | A **side-scrolling action MMORPG**, blending **dungeon exploration** and **character development**. Players **level up & collect loot**. | 🎮 Introduce **PVP arenas** or **dynamic event dungeons**. |
+| **🃏 Roguelike Deck-Building** | 🎴 **Slay the Spire** | Players **build a deck** and battle through **procedurally generated levels**, making each run unique. | 🤝 Introduce **co-op** or **PVP battle modes** for **competitive deck-building**. |
+| **🗡️ Roguelike Metroidvania** | 🔥 **Dead Cells** | A **Metroidvania-style combat game** with **procedurally generated dungeons & fluid combat**. | ⚙️ Add a **customizable weapon system** or **multi-character control mechanics**. |
+| **💀 Action Roguelike** | ⚔️ **Skul: The Hero Slayer** | Players control **a small skeleton warrior** who can **acquire and switch hero abilities**. | 🏅 Introduce **PVP battles** or **expand the number of transformable heroes**. |
+| **🏛️ Action Roguelike** | 🔱 **Hades** | Players control **Zagreus, the son of Hades**, trying to escape the underworld. Each failure **progresses the story**. | 👹 Add a **'Nightmare Mode'** with **stronger enemies** or **randomized skill selection**. |
+| **🧛 Survival, Roguelike** | 🦇 **Vampire Survivors** | Players **auto-attack and upgrade abilities**, surviving **endless enemy waves**. | 💡 Add a **character talent system** or **customizable attack styles**. |
+| **🏰 Strategy, Simulation** | 👑 **Kingdom: Two Crowns** | Players **manage and expand their kingdom** while **defending against nightly monster invasions**. | 🌦️ Introduce **seasons affecting resources** or **AI-controlled kingdoms competing dynamically**. |
+| **🃏 Card Game** | 🔮 **Hearthstone** | A **card battle game** set in the **World of Warcraft universe**, where players **build decks & compete**. | 🎭 Introduce **new game modes**, such as **'Survival Mode'** where players **continuously battle AI opponents**. |
+| **💣 Action, Multiplayer** | 💥 **Bomberman Online** | A **classic multiplayer battle game**, where players **place bombs to eliminate opponents** within a time limit. | 🌪️ Introduce **randomized maps** or **weather effects affecting bomb explosions**. |
+
 
 
 ### Introduction
