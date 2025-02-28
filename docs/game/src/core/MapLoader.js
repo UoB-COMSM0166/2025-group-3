@@ -3,6 +3,7 @@
 // (this process is controlled by GameController)
 // the MapLoader object will parse the json file and create objects in the gameModel
 
+import Capoo from "../entities/characters/Capoo";
 import ElevatingWalls from "../entities/items/ElevatingWalls";
 import Flag from "../entities/items/Flag";
 import KeysItem from "../entities/items/KeysItem";
@@ -64,12 +65,28 @@ export default class MapLoader {
         this.getIce();
         this.getSpring();
         this.getInteract();
+        this.getClimb();
+        this.getCatPosition();
         console.log("ParseJSON done");
     }
 
+    // 从地图获取每一关猫的初始位置坐标
+    getCatPosition(){
+        let Layer = this.levelData.layers.find(layer => layer.name === "cat");
+        let catX = Layer.objects[0].x;
+        let catY = Layer.objects[0].y;
+        this.gameModel.cat[this.levelIndex] = new Capoo(catX, catY, this.levelIndex);
+        
+    }
+
     getColl(){
-        let collisionLayer = this.levelData.layers.find(layer => layer.name === "coll");
-        this.gameModel.coll[this.levelIndex] = new Coll(collisionLayer.data, this.levelIndex);
+        let Layer = this.levelData.layers.find(layer => layer.name === "coll");
+        this.gameModel.coll[this.levelIndex] = new Coll(Layer.data, this.levelIndex);
+    }
+
+    getClimb(){
+        let Layer = this.levelData.layers.find(layer => layer.name === "climb");
+        this.gameModel.climb[this.levelIndex] = new Climb(Layer.data, this.levelIndex);
     }
 
     getDecorate(){

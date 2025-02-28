@@ -8,8 +8,9 @@ let gameModel;
 let gameController;
 let gameView;
 export let showCapoo = true;
-export let CapooX = 400; //400
-export let CapooY = 2500; //2500
+// 主角猫坐标
+//export let CapooX = 770; // TODO 每一关刚开始都从地图中读取初始坐标
+//export let CapooY = 2800; 
 
 window.preload = function () {
   console.log("Main preload done");
@@ -24,7 +25,7 @@ window.setup = function () {
     gameView = new GameView(gameModel);
     console.log("Main setup done");
     // background(220);
-    gameController.newGame();
+    gameController.newGame(); // 读取地图文件到gameModel
   }
   
 window.draw = function () {

@@ -1,8 +1,8 @@
 import { CONSTANT } from '../core/Utils.js';
-import { showCapoo, CapooX, CapooY } from '../main';
+//import { showCapoo/*, CapooX, CapooY*/ } from '../main';
 
 export function getTilePosition(i) {
-    i--; // 此地图导出json后坐标从2开始(原因未知?), 需调整为1
+    i--; // 测试地图导出json后坐标从2开始, 需调整为1
     let row = Math.floor((i - 1) / 30);
     let col = (i - 1) % 30;
     let xCoordinate = col * (CONSTANT.TILE_SIZE + CONSTANT.TILE_MARGIN);
@@ -22,8 +22,8 @@ export function showEntities(gameModel, assets) {
     let levelIndex = gameModel.selectedLevel;
     // let offsetX = (gameModel.player[levelIndex].x - CONSTANT.GAME_WIDTH / 2);
     // let offsetY = (gameModel.player[levelIndex].y - CONSTANT.GAME_HEIGHT / 2);
-    let offsetX = CapooX - window.innerWidth / 2;
-    let offsetY = CapooY - window.innerHeight / 2;
+    let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;
+    let offsetY = gameModel.cat[levelIndex].y - window.innerHeight / 2;
 
     const checkDataLoaded = setInterval(() => {
         if (gameModel.coll.length > 0) { // 确保数据已经加载
@@ -80,8 +80,8 @@ function showTerrain(entity, offsetX, offsetY, assets) {
         console.log("!!!!!noentitey!!!!!");
         return;
     }
-    console.log("showEntity");
-    console.log(entity);
+    //console.log("showEntity");
+    //console.log(entity);
 
     for(let i=0; i<entity.data.length; i++){
         let tileId = entity.data[i]; 

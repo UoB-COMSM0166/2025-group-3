@@ -1,15 +1,17 @@
 import { GAME_STATE } from './Utils.js';
 
+// 用于初始化所有关卡所需要的所有图层
+// 存放所有关卡的所有图层数据
 export default class GameModel {
     // properties
     gameState;
-    selectedLevel;
+    selectedLevel; // 初始化0,之后用户选择关卡更改这里的值
     firstGameStarted;
     assets;
     levelHeight;
     levelWidth;
-    capooX;
-    capooY;
+    //capooX;
+    //capooY;
     decorate;
     trap;
     coll;
@@ -24,6 +26,7 @@ export default class GameModel {
     offsetY;
     keys;
     messages;
+    cat;
 
     constructor() {
         // global state
@@ -45,6 +48,11 @@ export default class GameModel {
         this.keysItem = [];//keys item in game
         this.elevatingWalls = [];
         this.flag = [];
+
+        this.climb = [];
+        this.cat = []; // 存储每一关的主角猫对象
+        /* 地图未设置黄油层, 即默认所有关卡开始时猫和黄油都是一体的, 其对象存在cat中, 
+           之后再考虑是否要设计分离的单独黄油数组 */
 
         this.offsetX = 0; 
         this.offsetY = 0;  

@@ -4,7 +4,8 @@ export const CONSTANT = Object.freeze({
     TILE_SIZE: 70, //70
     TILE_MARGIN: 0,
     LEVEL_LIST: [1,2],
-    FRAME_INTERVAL: 18
+    FRAME_INTERVAL: 18,
+    CAT_SIZE: 210
 });
 
 // enum of possible game states

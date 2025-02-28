@@ -1,6 +1,11 @@
 import * as THREE from 'three';
 import * as spine from "@esotericsoftware/spine-threejs";
-import { showCapoo, CapooX, CapooY } from '../main';
+import { showCapoo/*, CapooX, CapooY*/ } from '../main';
+//import { cat } from '../GameModel';
+
+//let CapooX = cat[0].x;
+//let CapooY = cat[0].y;
+
 
 let scene, camera, renderer;
 let canvas;
