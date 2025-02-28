@@ -89,3 +89,11 @@ window.keyPressed = function () {
 // window.keyReleased = function () {}
 // window.mousePressed = function () {}
 // window.mouseReleased = function () {}
+
+
+window.windowResized = function () {
+    resizeCanvas(window.innerWidth, window.innerHeight);
+    // resizeCanvas(CONSTANT.GAME_WIDTH, CONSTANT.GAME_HEIGHT);
+    // gameView.render();
+    // console.log("windowResized");
+}
