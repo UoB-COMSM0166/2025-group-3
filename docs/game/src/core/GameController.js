@@ -5,6 +5,7 @@ import { CONSTANT } from "./Utils";
 export default class GameController {
     // properties
     gameModel;
+    
 
     constructor(gameModel) { 
         this.gameModel = gameModel;
@@ -21,7 +22,8 @@ export default class GameController {
     }
     
     // 控制猫移动, 相当于原来类里的update
-    /* 猫实际坐标在猫图像正下方, 但是猫显示坐标在猫左侧半个身距处 */
+    /* 猫实际坐标在猫图像正下方, 但是猫显示坐标在猫左侧半个身距处
+       因此所有计算都向左偏移半个身距(-catW/2) */
     moveCapoo() {
         let selectedLevel = this.gameModel.selectedLevel;
         let newX = this.gameModel.cat[selectedLevel].x;
@@ -29,7 +31,14 @@ export default class GameController {
         let catW = CONSTANT.CAT_WIDTH;
         let catH = CONSTANT.CAT_HEIGHT;
 
-        
+        // 判断猫是否入水(以最下边中心点计算), 重置回出生点
+        if(this.inTrap(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y)){
+            // 播放死亡音效等
+            this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
+            this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
+            return;
+        }
+
         if (this.gameModel.keys['ArrowLeft']) {
             newX -= this.gameModel.cat[selectedLevel].speed; 
         }
@@ -99,20 +108,27 @@ export default class GameController {
         let tileSize = CONSTANT.TILE_SIZE;
         let levelWidth = this.gameModel.levelWidth;
 
-        //console.log("px: ", px); // 测试
-        //console.log("py: ", py); // 测试
-        
+        let col = Math.floor(px / tileSize);
+        let row = Math.floor(py / tileSize);
+        let tileIndex = row * levelWidth[selectedLevel] + col;
+
+        // 碰撞检测：如果这个格子是碰撞体(非0), 返回 true
+        return this.gameModel.coll[selectedLevel].data[tileIndex] !== 0;
+    }
+
+
+    // 计算是否碰到水
+    inTrap(px, py){
+        let selectedLevel = this.gameModel.selectedLevel;
+        let tileSize = CONSTANT.TILE_SIZE;
+        let levelWidth = this.gameModel.levelWidth;
 
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
-        // console.log("tileIndex: ", tileIndex); // 测试
-        // console.log("col: ", col); // 测试
-        // console.log("row: ", row); // 测试
-
-        // 碰撞检测：如果这个格子是碰撞体(非0), 返回 true
-        return this.gameModel.coll[selectedLevel].data[tileIndex] !== 0;
+        // 碰撞检测：如果这个格子是水, 返回真
+        return this.gameModel.trap[selectedLevel].data[tileIndex] !== 0;
     }
   
 }
