@@ -22,8 +22,8 @@ export function showEntities(gameModel, assets) {
     let levelIndex = gameModel.selectedLevel;
     // let offsetX = (gameModel.player[levelIndex].x - CONSTANT.GAME_WIDTH / 2);
     // let offsetY = (gameModel.player[levelIndex].y - CONSTANT.GAME_HEIGHT / 2);
-    let offsetX = CapooX;
-    let offsetY = CapooY;
+    let offsetX = CapooX - window.innerWidth / 2;
+    let offsetY = CapooY - window.innerHeight / 2;
 
     const checkDataLoaded = setInterval(() => {
         if (gameModel.coll.length > 0) { // 确保数据已经加载
