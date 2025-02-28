@@ -10,8 +10,6 @@ export default class GameModel {
     assets;
     levelHeight;
     levelWidth;
-    //capooX;
-    //capooY;
     decorate;
     trap;
     coll;

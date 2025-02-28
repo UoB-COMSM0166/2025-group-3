@@ -36,9 +36,15 @@ window.draw = function () {
           event.preventDefault();
       }
     });
+    // 游戏界面的主角猫移动
     if (gameModel.gameState === GAME_STATE.PLAYING) {
         gameController.moveCapoo();
     }
+    // 测试猫猫的坐标
+    // let levelIndex = gameModel.selectedLevel;
+    // let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;
+    // let offsetY = gameModel.cat[levelIndex].y - window.innerHeight / 2;
+    // circle(gameModel.cat[gameModel.selectedLevel].x - offsetX, gameModel.cat[gameModel.selectedLevel].y - offsetY, 10);
 }
 
 window.keyPressed = function () {

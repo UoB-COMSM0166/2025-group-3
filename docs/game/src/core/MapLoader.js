@@ -73,7 +73,7 @@ export default class MapLoader {
     // 从地图获取每一关猫的初始位置坐标
     getCatPosition(){
         let Layer = this.levelData.layers.find(layer => layer.name === "cat");
-        let catX = Layer.objects[0].x;
+        let catX = Layer.objects[0].x + CONSTANT.CAT_WIDTH/2; // 让猫的显示位置和地图位置对齐
         let catY = Layer.objects[0].y;
         this.gameModel.cat[this.levelIndex] = new Capoo(catX, catY, this.levelIndex);
         
