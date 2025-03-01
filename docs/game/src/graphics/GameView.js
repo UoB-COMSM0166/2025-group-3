@@ -63,6 +63,15 @@ export default class GameView {
         // 显示实体
         RenderLogic.showEntities(this.gameModel, this.assets);
         //console.log("GameView render done");
+
+        // 显示所有提示消息
+        for (let i = 0; i < this.gameModel.messages.length; i++) {
+            this.gameModel.messages[i].show();
+        }
+        // 删除已过期的第一条消息
+        if (this.gameModel.messages.length > 0 && this.gameModel.messages[0].isExpired()) {
+            this.gameModel.messages.shift();
+        }
     }
 
     drawGameOverScreen() {}

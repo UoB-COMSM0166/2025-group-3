@@ -34,6 +34,7 @@ export function showEntities(gameModel, assets) {
             showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.ice[levelIndex], offsetX, offsetY, assets);
+            showTerrain(gameModel.climb[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets);      
             showTerrain(gameModel.merge[levelIndex], offsetX, offsetY, assets);      
             for(let i =0; i<gameModel.keysItem[levelIndex].length; i++){
