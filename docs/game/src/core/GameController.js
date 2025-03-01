@@ -22,8 +22,7 @@ export default class GameController {
     }
     
     // 控制猫移动, 相当于原来类里的update
-    /* 猫实际坐标在猫图像正下方, 但是猫显示坐标在猫左侧半个身距处
-       因此所有计算都向左偏移半个身距(-catW/2) */
+    
     moveCapoo() {
         let selectedLevel = this.gameModel.selectedLevel;
         let tileSize = CONSTANT.TILE_SIZE;
@@ -32,6 +31,9 @@ export default class GameController {
         let newY = this.gameModel.cat[selectedLevel].y;
         let catW = CONSTANT.CAT_WIDTH;
         let catH = CONSTANT.CAT_HEIGHT;
+        let offSetHalf = -catW/2; /* 猫实际坐标在猫图像正下方, 但是猫显示坐标在猫左侧半个身距处
+                                    因此所有计算都向左偏移半个身距(-catW/2) */
+        let offSetFeet = catH/10; /* 用于猫纵坐标的脚底距离偏移 */
 
         // 判断猫是否入水(以最下边中心点计算), 重置回出生点
         if(this.inTrap(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
@@ -48,16 +50,16 @@ export default class GameController {
 
         // 计算猫是否处于攀爬墙位置(给予一个offSetClimb的差值, 确保不是在刚碰到攀爬梯子的边缘时就能攀爬)
         let offSetClimb = catW/4;  // 用于攀爬墙的水平偏移量
-        let offSetFeet = catH/10; // 用于猫纵坐标的脚底距离偏移
-        let catCanClimbY = this.canClimbY(this.gameModel.cat[selectedLevel].x-catW/2+offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet, 
+        
+        let catCanClimbY = this.canClimbY(this.gameModel.cat[selectedLevel].x+offSetHalf+offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet, 
                 selectedLevel, tileSize, levelWidth) // 左下角, 向上偏移一个脚底距离
-            || this.canClimbY(this.gameModel.cat[selectedLevel].x+catW-catW/2-offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet,
+            || this.canClimbY(this.gameModel.cat[selectedLevel].x+catW+offSetHalf-offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet,
                 selectedLevel, tileSize, levelWidth); // 右下角, 向上偏移一个脚底距离
         
 
-        let catCanClimbX = this.canClimbX(this.gameModel.cat[selectedLevel].x-catW/2+offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet, 
+        let catCanClimbX = this.canClimbX(this.gameModel.cat[selectedLevel].x+offSetHalf+offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet, 
                 selectedLevel, tileSize, levelWidth) // 左下角, 向上偏移一个脚底距离
-            || this.canClimbX(this.gameModel.cat[selectedLevel].x+catW-catW/2-offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet,
+            || this.canClimbX(this.gameModel.cat[selectedLevel].x+catW+offSetHalf-offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet,
                 selectedLevel, tileSize, levelWidth); // 右下角, 向上偏移一个脚底距离
 
 
@@ -105,23 +107,23 @@ export default class GameController {
         // 水平方向偏移半个身距(-catW/2), 并且竖直方向偏移一个脚底距离(offSetFeet=-catH/10)
         /* 注意碰撞检测不可以阉割, 因为猫的大小>>图块大小 */
 
-        let left   = this.isColliding(newX-catW/2, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth) // 左边中间两个点
-            || this.isColliding(newX-catW/2, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX-catW/2, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth);  // 左上角
+        let left   = this.isColliding(newX+offSetHalf, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth) // 左边中间两个点
+            || this.isColliding(newX+offSetHalf, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth);  // 左上角
 
-        let right  = this.isColliding(newX+catW-catW/2, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth)  // 右边中间两个点
-            || this.isColliding(newX+catW-catW/2, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX+catW-catW/2, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右上
+        let right  = this.isColliding(newX+catW+offSetHalf, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth)  // 右边中间两个点
+            || this.isColliding(newX+catW+offSetHalf, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右上
 
-        let top    = this.isColliding(newX+catW/3-catW/2, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) // 上方中间两个点
-            || this.isColliding(newX+2*catW/3-catW/2, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) 
-            || this.isColliding(newX-catW/2, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth)     //左上角
-            || this.isColliding(newX+catW-catW/2, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth); //右上角
+        let top    = this.isColliding(newX+catW/3+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) // 上方中间两个点
+            || this.isColliding(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) 
+            || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth)     //左上角
+            || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth); //右上角
 
-        let bottom = this.isColliding(newX+catW/3-catW/2, newY-offSetFeet, selectedLevel, tileSize, levelWidth) // 下方中间两个点
-            || this.isColliding(newX+2*catW/3-catW/2, newY-offSetFeet, selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX-catW/2, newY-offSetFeet, selectedLevel, tileSize, levelWidth) // 左下角
-            || this.isColliding(newX+catW-catW/2, newY-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右下角
+        let bottom = this.isColliding(newX+catW/3+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth) // 下方中间两个点
+            || this.isColliding(newX+2*catW/3+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth) // 左下角
+            || this.isColliding(newX+catW+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右下角
 
         
         if( left || right || top || bottom){ // 测试
