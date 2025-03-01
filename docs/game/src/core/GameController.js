@@ -69,6 +69,8 @@ export default class GameController {
                 
         }
 
+        this.controlMergedWall();
+
 
         // 判断猫是否入水(以最下边中心点计算), 重置回出生点
         if(this.inTrap(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
@@ -214,7 +216,13 @@ export default class GameController {
         let isColliding = this.gameModel.coll[selectedLevel].data[tileIndex] !== 0;
         
         // 合体墙检测
-        let collWithMergedWall = this.gameModel.merge[selectedLevel].data[tileIndex] !== 0;
+        let collWithMergedWall = false;
+        let hasMergedWall = this.gameModel.merge[selectedLevel].data[tileIndex] !== 0;
+        let mergeWallvisible = this.gameModel.merge[selectedLevel].visible;
+        if(hasMergedWall && mergeWallvisible){
+            console.log("碰到合体墙");
+            collWithMergedWall = true;
+        }
 
         // 机关墙检测
         let collwithElevatingWall = false;
