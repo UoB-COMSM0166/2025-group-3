@@ -2,6 +2,18 @@ import MapLoader from "./MapLoader";
 import { CONSTANT, Message } from "./Utils";
 
 // 用于所有关卡的控制和交互
+
+/*  =======已完成内容=======
+    碰撞检测
+    合体时按空格向上飞
+    在空中时自动下落
+    碰到水时重置回出生点
+    攀爬墙交互
+
+    =======需要debug=======
+    用户按住左右或空格键不放时,在空中碰到墙壁时不会自动下落
+*/
+
 export default class GameController {
     // properties
     gameModel;
@@ -22,7 +34,6 @@ export default class GameController {
     }
     
     // 控制猫移动, 相当于原来类里的update
-    
     moveCapoo() {
         let selectedLevel = this.gameModel.selectedLevel;
         let tileSize = CONSTANT.TILE_SIZE;
@@ -77,11 +88,11 @@ export default class GameController {
         }
 
 
-        // 跳跃, 仅用于测试, 后续删除
-        // if (this.gameModel.keys[" "] && this.onGround) {
-        //     this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength; // 赋予向上的初速度
-        //     this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
-        // }
+        // 合体时按空格可以持续向上飞
+        if(this.gameModel.keys[" "] && this.gameModel.cat[selectedLevel].isMerged){
+            this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength; // 赋予向上的初速度
+            this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
+        }
 
         // 不在攀爬墙上时需要施加重力, 确保向下落下
         if(!catCanClimb){
