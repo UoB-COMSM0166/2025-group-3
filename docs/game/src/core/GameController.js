@@ -9,9 +9,10 @@ import { CONSTANT, Message } from "./Utils";
     在空中时自动下落
     碰到水时重置回出生点
     攀爬墙交互
+    钥匙交互
 
     =======需要debug=======
-    用户按住左右键不放时,在空中碰到墙壁时不会自动下落
+    在空中碰撞墙体+按住按键不放时,有小概率会卡到墙里
 
 */
 
@@ -114,8 +115,8 @@ export default class GameController {
         // let top    = this.isColliding(newX + catW/3, newY - catH) || this.isColliding(newX + 2*catW/3, newY - catH) ;  // 上方中间两个点
         // let bottom = this.isColliding(newX + catW/3, newY) || this.isColliding(newX + 2*catW/3, newY);  // 下方中间两个点
         
-        // 水平方向偏移半个身距(-catW/2), 并且竖直方向偏移一个脚底距离(offSetFeet=-catH/10)
-        /* 注意碰撞检测不可以阉割, 因为猫的大小>>图块大小 */
+        /* 水平方向偏移半个身距(-catW/2), 并且竖直方向偏移一个脚底距离(offSetFeet=-catH/10)
+           注意碰撞检测不可以阉割, 因为猫的大小>>图块大小, 减少检测点会导致卡墙里 */
 
         let left   = this.isColliding(newX+offSetHalf, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth) // 左边中间两个点
             || this.isColliding(newX+offSetHalf, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
@@ -145,17 +146,31 @@ export default class GameController {
             this.gameModel.cat[selectedLevel].x = newX; // 无碰撞可移动
         } 
 
-        // 处理在空中碰到墙壁时, 按住按键无法下落的问题, 但未解决???
-        let standingOnWall = (left || right) && bottom;
-        if (standingOnWall) {
-            bottom = false; // 避免误判底部为地面
+        // 处理在空中碰到墙壁时, 按住按键无法下落的问题
+        // if ((left || right) && bottom && top) {
+        //     bottom = false; // 避免误判底部为地面
+        //     top = false;
+        //     this.gameModel.keys['ArrowLeft'] = false; // 强制松开左右按键
+        //     this.gameModel.keys['ArrowRight'] = false;
+        // }
+        if (left && bottom && top) {
+            bottom = false; // 避免误判
+            top = false;
+            this.gameModel.keys['ArrowLeft'] = false; // 强制松开按键
+
+        }
+        if (right && bottom && top) {
+            bottom = false; 
+            top = false;
+            this.gameModel.keys['ArrowRight'] = false;
         }
 
+        
         // 处理垂直碰撞
         if (top) { // 碰到天花板时给一个轻微反弹, 防止角色停滞
             this.gameModel.cat[selectedLevel].velocityY = Math.abs(this.gameModel.cat[selectedLevel].velocityY) * 0.2; 
         }        
-        if (!top && !bottom) {
+        else if (!top && !bottom) { // 没有上方和下方碰撞时, 竖直方向自由落体
             this.gameModel.cat[selectedLevel].y = newY;
             if(!catCanClimb){ // 不在攀爬墙上时, 重力生效
                 this.gameModel.cat[selectedLevel].onGround = false; // 空中
