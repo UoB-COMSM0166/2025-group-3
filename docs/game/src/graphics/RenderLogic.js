@@ -38,7 +38,9 @@ export function showEntities(gameModel, assets) {
             showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets);      
             showTerrain(gameModel.merge[levelIndex], offsetX, offsetY, assets);      
             for(let i =0; i<gameModel.keysItem[levelIndex].length; i++){
-                showItem(gameModel.keysItem[levelIndex][i], offsetX, offsetY, assets, true);
+                if(gameModel.keysItem[levelIndex][i].visible){
+                    showItem(gameModel.keysItem[levelIndex][i], offsetX, offsetY, assets, true);
+                }
             }
             for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
                 // elevatingWalls[selectedLevel][i].update();

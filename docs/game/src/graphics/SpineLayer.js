@@ -188,7 +188,7 @@ function render() {
         skeletonMesh2.visible = showCapoo;
         skeletonMesh3.visible = showCapoo;
     }
-    console.log("showCapoo:" + showCapoo);
+    //console.log("showCapoo:" + showCapoo);
 
     renderer.render(scene, camera);
     

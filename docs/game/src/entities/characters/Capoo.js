@@ -17,6 +17,6 @@ export default class Capoo extends AbstractCharacter {
       this.facingRight = true; // 记录朝向, 用于控制翻转
       this.isMerged = true; // 是否与黄油合并
 
-
+      this.keyNum = 0; // 钥匙数量
     }
 }

@@ -11,7 +11,8 @@ import { CONSTANT, Message } from "./Utils";
     攀爬墙交互
 
     =======需要debug=======
-    用户按住左右或空格键不放时,在空中碰到墙壁时不会自动下落
+    用户按住左右键不放时,在空中碰到墙壁时不会自动下落
+
 */
 
 export default class GameController {
@@ -33,7 +34,7 @@ export default class GameController {
         //console.log(this.gameModel);// 测试
     }
     
-    // 控制猫移动, 相当于原来类里的update
+    // 控制猫的坐标移动, 以及遍历所有交互, 相当于原来类里的update
     moveCapoo() {
         let selectedLevel = this.gameModel.selectedLevel;
         let tileSize = CONSTANT.TILE_SIZE;
@@ -45,6 +46,12 @@ export default class GameController {
         let offSetHalf = -catW/2; /* 猫实际坐标在猫图像正下方, 但是猫显示坐标在猫左侧半个身距处
                                     因此所有计算都向左偏移半个身距(-catW/2) */
         let offSetFeet = catH/10; /* 用于猫纵坐标的脚底距离偏移 */
+
+        /* ------------------和所有对象层的交互----------------- */
+
+        this.getkey(this.gameModel.cat[selectedLevel].x+offSetHalf, this.gameModel.cat[selectedLevel].y, selectedLevel); // 检查是否碰到钥匙
+
+        /* ------------------和所有碰撞层的交互----------------- */
 
         // 判断猫是否入水(以最下边中心点计算), 重置回出生点
         if(this.inTrap(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
@@ -129,15 +136,25 @@ export default class GameController {
             || this.isColliding(newX+catW+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右下角
 
         
-        if( left || right || top || bottom){ // 测试
-            console.log("碰撞了");
-        }
+        // if( left || right || top || bottom){ // 测试
+        //     console.log("碰撞了");
+        // }
 
         // 处理水平碰撞
         if (!left && !right) { 
             this.gameModel.cat[selectedLevel].x = newX; // 无碰撞可移动
+        } 
+
+        // 处理在空中碰到墙壁时, 按住按键无法下落的问题, 但未解决???
+        let standingOnWall = (left || right) && bottom;
+        if (standingOnWall) {
+            bottom = false; // 避免误判底部为地面
         }
+
         // 处理垂直碰撞
+        if (top) { // 碰到天花板时给一个轻微反弹, 防止角色停滞
+            this.gameModel.cat[selectedLevel].velocityY = Math.abs(this.gameModel.cat[selectedLevel].velocityY) * 0.2; 
+        }        
         if (!top && !bottom) {
             this.gameModel.cat[selectedLevel].y = newY;
             if(!catCanClimb){ // 不在攀爬墙上时, 重力生效
@@ -146,6 +163,7 @@ export default class GameController {
         } else if(bottom) { // 碰到地面
              if (this.gameModel.cat[selectedLevel].velocityY > 0) { // 在下落并且有碰撞地面时, 设置状态为在地上
                 this.gameModel.cat[selectedLevel].onGround = true;
+                //this.gameModel.cat[selectedLevel].velocityY = -this.gameModel.cat[selectedLevel].velocityY * 0.1; // 轻微反弹，而不是完全清零
              }
              this.gameModel.cat[selectedLevel].velocityY = 0; // 碰到地面时停止竖直向下的速度
         }
@@ -187,6 +205,20 @@ export default class GameController {
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
         return this.gameModel.climb[selectedLevel].data[tileIndex] !== 0;
+    }
+
+
+    // 计算给定坐标是否碰到钥匙
+    getkey(px, py, selectedLevel){
+        for(let i = 0; i < this.gameModel.keysItem[selectedLevel].length; i++){
+            if(this.gameModel.keysItem[selectedLevel][i].visible 
+                && this.gameModel.keysItem[selectedLevel][i].isNear(px,py,CONSTANT.TILE_SIZE,CONSTANT.CAT_WIDTH,CONSTANT.CAT_HEIGHT)){
+                //assets.getDiamondSound.play();//播放音效
+                this.gameModel.keysItem[selectedLevel][i].visible = false;
+                this.gameModel.cat[selectedLevel].keyNum++;
+                console.log("钥匙数量:", this.gameModel.cat[selectedLevel].keyNum++);
+            }
+        }
     }
   
 }
