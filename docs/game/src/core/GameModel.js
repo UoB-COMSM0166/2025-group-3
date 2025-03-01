@@ -56,6 +56,8 @@ export default class GameModel {
         this.offsetY = 0;  
         this.keys = {}; //keys pressed by keyboard
         this.messages = []; 
+
+        this.potion; // 用于存储黄油对象? 可删除
     }
     
     

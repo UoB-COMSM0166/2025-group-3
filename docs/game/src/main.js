@@ -8,9 +8,7 @@ let gameModel;
 let gameController;
 let gameView;
 export let showCapoo = true;
-// 主角猫坐标
-//export let CapooX = 770; // TODO 每一关刚开始都从地图中读取初始坐标
-//export let CapooY = 2800; 
+
 
 window.preload = function () {
   console.log("Main preload done");
@@ -105,12 +103,9 @@ window.keyReleased = function() {
 // window.mousePressed = function () {}
 // window.mouseReleased = function () {}
 
-
+// 浏览器窗口大小变化时自适应改变画布大小
 window.windowResized = function () {
     resizeCanvas(window.innerWidth, window.innerHeight);
-    // resizeCanvas(CONSTANT.GAME_WIDTH, CONSTANT.GAME_HEIGHT);
-    // gameView.render();
-    // console.log("windowResized");
 }
 
 

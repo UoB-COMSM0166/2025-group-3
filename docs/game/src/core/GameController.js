@@ -1,5 +1,6 @@
 import MapLoader from "./MapLoader";
 import { CONSTANT, Message } from "./Utils";
+import Potion from "../entities/characters/Potion";
 
 // 用于所有关卡的控制和交互
 
@@ -53,6 +54,21 @@ export default class GameController {
         this.getkey(this.gameModel.cat[selectedLevel].x+offSetHalf, this.gameModel.cat[selectedLevel].y, selectedLevel); // 检查是否碰到钥匙
 
         /* ------------------和所有碰撞层的交互----------------- */
+
+        // 控制黄油分离  待完成
+        // 按X键分离
+        if(this.gameModel.cat[selectedLevel].isMerged 
+            && (this.gameModel.keys['X']||this.gameModel.keys['x'])){
+                console.log("分离");
+                this.gameModel.cat[selectedLevel].isMerged = false;
+                // 新建黄油类, 给一个初始向上初速度?
+                // 修改spinelayer, 猫和黄油分开渲染?
+
+
+
+                
+        }
+
 
         // 判断猫是否入水(以最下边中心点计算), 重置回出生点
         if(this.inTrap(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
@@ -246,6 +262,18 @@ export default class GameController {
                 this.gameModel.cat[selectedLevel].keyNum++;
                 console.log("钥匙数量:", this.gameModel.cat[selectedLevel].keyNum++);
             }
+        }
+    }
+
+
+    // 根据猫和黄油是否分离来控制合体墙是否显示(待测试)
+    controlMergedWall(){
+        let selectedLevel = this.gameModel.selectedLevel;
+        if(this.gameModel.cat[selectedLevel].isMerged){
+            this.gameModel.merge[selectedLevel].visible = true;
+        }
+        else{
+            this.gameModel.merge[selectedLevel].visible = false;
         }
     }
   

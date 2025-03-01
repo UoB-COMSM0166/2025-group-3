@@ -5,11 +5,12 @@ import { showCapoo/*, CapooX, CapooY*/ } from '../main';
 
 
 
-let scene, camera, renderer;
-let canvas;
-let lastFrameTime = Date.now() / 1000;
-let baseUrl = "../../asset/spine/";
+let scene, camera, renderer; // 场景, 相机, 渲染器
+let canvas; // 画布
+let lastFrameTime = Date.now() / 1000;  // 上一帧时间,用于计算动画的时间增量
+let baseUrl = "../../asset/spine/"; 
 
+// 4 套 Spine 模型资源（主体、脸部、帽子、背部）
 let atlas;
 let assetManager;
 let atlasLoader;
@@ -42,6 +43,8 @@ let skeletonFile3 = "capoo_back_102.json";
 let atlasFile3 = "capoo_back_102.atlas";
 let animation3 = "animation";
 
+// 初始化 Three.js 场景
+// 创建 Three.js 场景、相机、渲染器，并将 <canvas> 添加到网页
 function init() {
     // create the THREE.JS camera, scene and renderer (WebGL)
     let width = window.innerWidth,
@@ -83,32 +86,37 @@ function init() {
     requestAnimationFrame(load);
 }
 
+// 加载 Spine 模型
+// 加载角色的 .json 骨骼结构和 .atlas 纹理贴图，并将其渲染到 Three.js 场景中
 function load(name, scale) {
     console.log("SpineLayer loading");
-    if (assetManager.isLoadingComplete() && assetManager1.isLoadingComplete() && assetManager2.isLoadingComplete() && assetManager3.isLoadingComplete()) {
+    if (assetManager.isLoadingComplete()  //等待资源加载完成后，创建模型并添加到场景
+        && assetManager1.isLoadingComplete() 
+        && assetManager2.isLoadingComplete() 
+        && assetManager3.isLoadingComplete()) {
         //console.log("SpineLayer loading complete:" + assetManager.isLoadingComplete());
+
+
+        // --------------加载 Capoo 主体-------------
 
         // Load the texture atlas using name.atlas and name.png from the AssetManager.
         // The function passed to TextureAtlas is used to resolve relative paths.
         atlas = assetManager.require(atlasFile);
-
         // Create a AtlasAttachmentLoader that resolves region, mesh, boundingbox and path attachments
         atlasLoader = new spine.AtlasAttachmentLoader(atlas);
-
         // Create a SkeletonJson instance for parsing the .json file.
         let skeletonJson = new spine.SkeletonJson(atlasLoader);
-
         // Set the scale to apply during parsing, parse the file, and create a new skeleton.
         skeletonJson.scale = 0.4;
         let skeletonData = skeletonJson.readSkeletonData(
             assetManager.require(skeletonFile)
         );
-
         // Create a SkeletonMesh from the data and attach it to the scene
         skeletonMesh = new spine.SkeletonMesh({ skeletonData: skeletonData });
         skeletonMesh.state.setAnimation(0, animation, true);
         scene.add(skeletonMesh);
 
+        // --------------加载 Capoo 脸-------------
         // add face
         atlas1 = assetManager1.require(atlasFile1);
         atlasLoader1 = new spine.AtlasAttachmentLoader(atlas1);
@@ -121,6 +129,7 @@ function load(name, scale) {
         skeletonMesh1.state.setAnimation(0, animation1, true);
         scene.add(skeletonMesh1);
 
+        // --------------加载 Capoo 帽子-------------
         // add hat
         atlas2 = assetManager2.require(atlasFile2);
         atlasLoader2 = new spine.AtlasAttachmentLoader(atlas2);
@@ -133,6 +142,7 @@ function load(name, scale) {
         skeletonMesh2.state.setAnimation(0, animation2, true);
         scene.add(skeletonMesh2);
 
+        // --------------加载 Capoo 背部(需要分离)-------------
         // add back
         atlas3 = assetManager3.require(atlasFile3);
         atlasLoader3 = new spine.AtlasAttachmentLoader(atlas3);
@@ -149,8 +159,11 @@ function load(name, scale) {
     } else requestAnimationFrame(load);
 }
 
+
+// 不断更新并渲染动画
 let lastTime = Date.now();
 function render() {
+    // 计算 delta（两帧之间的时间差），用于动画更新
     // calculate delta time for animation purposes
     let now = Date.now() / 1000;
     let delta = now - lastFrameTime;
@@ -168,6 +181,7 @@ function render() {
     // set the position of Capoo
     // skeletonMesh.position.set(CapooX, CapooY, 0);
     
+    // 更新所有模型的动画状态
     // Synchronize the body_face bone of skeletonMesh1 with skeletonMesh
     let bodyFaceSlot = skeletonMesh.skeleton.findBone("body_face_root");
     let faceBodySlot = skeletonMesh1.skeleton.findBone("root");
