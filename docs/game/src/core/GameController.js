@@ -195,7 +195,20 @@ export default class GameController {
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
         // 碰撞检测：如果这个格子是碰撞体(非0), 返回 true
-        return this.gameModel.coll[selectedLevel].data[tileIndex] !== 0;
+        let isColliding = this.gameModel.coll[selectedLevel].data[tileIndex] !== 0;
+        
+        // 合体墙检测
+        let collWithMergedWall = this.gameModel.merge[selectedLevel].data[tileIndex] !== 0;
+
+        // 机关墙检测
+        let collwithElevatingWall = false;
+        for(let i = 0; i < this.gameModel.elevatingWalls[selectedLevel].length; i++){
+            if(this.gameModel.elevatingWalls[selectedLevel][i].isColling(px, py, tileSize, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)){
+                collwithElevatingWall = true;
+            }
+        }
+
+        return isColliding || collWithMergedWall || collwithElevatingWall;
     }
 
 
