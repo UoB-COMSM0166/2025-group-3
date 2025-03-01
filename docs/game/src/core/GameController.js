@@ -51,31 +51,22 @@ export default class GameController {
         // 计算猫是否处于攀爬墙位置(给予一个offSetClimb的差值, 确保不是在刚碰到攀爬梯子的边缘时就能攀爬)
         let offSetClimb = catW/4;  // 用于攀爬墙的水平偏移量
         
-        let catCanClimbY = this.canClimbY(this.gameModel.cat[selectedLevel].x+offSetHalf+offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet, 
-                selectedLevel, tileSize, levelWidth) // 左下角, 向上偏移一个脚底距离
-            || this.canClimbY(this.gameModel.cat[selectedLevel].x+catW+offSetHalf-offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet,
-                selectedLevel, tileSize, levelWidth); // 右下角, 向上偏移一个脚底距离
-        
-
-        let catCanClimbX = this.canClimbX(this.gameModel.cat[selectedLevel].x+offSetHalf+offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet, 
-                selectedLevel, tileSize, levelWidth) // 左下角, 向上偏移一个脚底距离
-            || this.canClimbX(this.gameModel.cat[selectedLevel].x+catW+offSetHalf-offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet,
-                selectedLevel, tileSize, levelWidth); // 右下角, 向上偏移一个脚底距离
+        let catCanClimb = this.canClimb(this.gameModel.cat[selectedLevel].x+offSetHalf+offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet, 
+            selectedLevel, tileSize, levelWidth) // 左下角, 向上偏移一个脚底距离
+        || this.canClimb(this.gameModel.cat[selectedLevel].x+catW+offSetHalf-offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet,
+            selectedLevel, tileSize, levelWidth); // 右下角, 向上偏移一个脚底距离
 
 
         // 水平移动的按键控制
-        if(!catCanClimbY){ // 攀爬到一半时不能水平移动
-            if (this.gameModel.keys['ArrowLeft']) {
-                newX -= this.gameModel.cat[selectedLevel].speed; 
-            }
-            if (this.gameModel.keys['ArrowRight']) {
-                newX += this.gameModel.cat[selectedLevel].speed;
-            }
+        if (this.gameModel.keys['ArrowLeft']) {
+            newX -= this.gameModel.cat[selectedLevel].speed; 
         }
-        
+        if (this.gameModel.keys['ArrowRight']) {
+            newX += this.gameModel.cat[selectedLevel].speed;
+        }
             
         // 攀爬墙 垂直移动的按键控制
-        if(catCanClimbY || catCanClimbX){
+        if(catCanClimb){
             console.log("可以攀爬");
             if (this.gameModel.keys['ArrowUp']) {
                 newY -= this.gameModel.cat[selectedLevel].speed;
@@ -91,8 +82,9 @@ export default class GameController {
         //     this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength; // 赋予向上的初速度
         //     this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
         // }
+
         // 不在攀爬墙上时需要施加重力, 确保向下落下
-        if(!catCanClimbY && !catCanClimbX){
+        if(!catCanClimb){
             this.gameModel.cat[selectedLevel].velocityY += this.gameModel.cat[selectedLevel].gravity; // 施加向下的重力加速度
             newY += this.gameModel.cat[selectedLevel].velocityY;
         }
@@ -137,7 +129,7 @@ export default class GameController {
         // 处理垂直碰撞
         if (!top && !bottom) {
             this.gameModel.cat[selectedLevel].y = newY;
-            if(!catCanClimbY && !catCanClimbX){ // 不在攀爬墙上时, 重力生效
+            if(!catCanClimb){ // 不在攀爬墙上时, 重力生效
                 this.gameModel.cat[selectedLevel].onGround = false; // 空中
             }
         } else if(bottom) { // 碰到地面
@@ -174,45 +166,16 @@ export default class GameController {
         return this.gameModel.trap[selectedLevel].data[tileIndex] !== 0;
     }
 
-    // 计算是否在攀爬墙且没有到达边界, 此时只能垂直移动不能水平移动
-    canClimbY(px, py, selectedLevel, tileSize, levelWidth){
+
+    // 计算是否在攀爬墙
+    canClimb(px, py, selectedLevel, tileSize, levelWidth){
 
         // 传递的坐标所处的格子行列和索引
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
-        // 这个格子的正上方格子的索引
-        let tileIndexUp = (row-1) * levelWidth[selectedLevel] + col;
-        // 这个格子的正下方格子的索引
-        let tileIndexDown = (row+1) * levelWidth[selectedLevel] + col;
-
-        let flag = this.gameModel.climb[selectedLevel].data[tileIndex] !== 0; // 这个格子是攀爬墙
-        let flagUp = this.gameModel.climb[selectedLevel].data[tileIndexUp] !== 0; // 这个格子上方是攀爬墙
-        let flagDown = this.gameModel.climb[selectedLevel].data[tileIndexDown] !== 0; // 这个格子下方是攀爬墙
-
-        return flag && flagUp && flagDown;
-        //return this.gameModel.climb[selectedLevel].data[tileIndex] !== 0;
-    }
-
-    // 计算是否在攀爬墙边界处, 此时可以水平和垂直移动
-    canClimbX(px, py, selectedLevel, tileSize, levelWidth){
-        // 传递的坐标所处的格子行列和索引
-        let col = Math.floor(px / tileSize);
-        let row = Math.floor(py / tileSize);
-        let tileIndex = row * levelWidth[selectedLevel] + col;
-
-        // 这个格子的正上方格子的索引
-        let tileIndexUp = (row-1) * levelWidth[selectedLevel] + col;
-        // 这个格子的正下方格子的索引
-        let tileIndexDown = (row+1) * levelWidth[selectedLevel] + col;
-
-        let flag = this.gameModel.climb[selectedLevel].data[tileIndex] !== 0; // 这个格子是攀爬墙
-        let flagUp = this.gameModel.climb[selectedLevel].data[tileIndexUp] !== 0; // 这个格子上方是攀爬墙
-        let flagDown = this.gameModel.climb[selectedLevel].data[tileIndexDown] !== 0; // 这个格子下方是攀爬墙
-
-        return (flag && !flagUp) || (flag && !flagDown);
-
+        return this.gameModel.climb[selectedLevel].data[tileIndex] !== 0;
     }
   
 }
