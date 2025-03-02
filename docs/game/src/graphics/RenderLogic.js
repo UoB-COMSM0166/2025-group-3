@@ -52,7 +52,9 @@ export function showEntities(gameModel, assets) {
             // switches[selectedLevel][i].update();
                 showItem(gameModel.switches[levelIndex][i], offsetX, offsetY, assets, false);
             }
-            showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets, true);
+            if(gameModel.flag[levelIndex].visible){
+                showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets, true);
+            }
         }
     }, 10); // 每 10ms 检查一次
 

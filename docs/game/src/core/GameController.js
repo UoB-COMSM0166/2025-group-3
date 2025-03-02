@@ -12,6 +12,7 @@ import Potion from "../entities/characters/Potion";
     攀爬墙交互
     钥匙交互
     合体墙加入碰撞检测, 猫和墙分离时合体墙消失
+    机关墙交互, 猫主体碰到机关控制升降墙
 
     =======需要debug=======
     在空中碰撞墙体+按住按键不放时,有小概率会卡到墙里
@@ -52,7 +53,14 @@ export default class GameController {
 
         /* ------------------和所有对象层的交互----------------- */
 
-        this.getkey(this.gameModel.cat[selectedLevel].x+offSetHalf, this.gameModel.cat[selectedLevel].y, selectedLevel); // 检查是否碰到钥匙
+        // 检查是否碰到钥匙
+        this.getkey(this.gameModel.cat[selectedLevel].x+offSetHalf, this.gameModel.cat[selectedLevel].y, selectedLevel); 
+
+        // 钥匙满时, flag设置为显示
+        if(this.gameModel.cat[selectedLevel].keyNum == this.gameModel.keysItem[selectedLevel].length){
+            console.log("旗子显示");
+            this.gameModel.flag[selectedLevel].visible = true;
+        }
 
         /* ------------------和所有碰撞层的交互----------------- */
 
@@ -268,7 +276,7 @@ export default class GameController {
                 //assets.getDiamondSound.play();//播放音效
                 this.gameModel.keysItem[selectedLevel][i].visible = false;
                 this.gameModel.cat[selectedLevel].keyNum++;
-                console.log("钥匙数量:", this.gameModel.cat[selectedLevel].keyNum++);
+                //console.log("钥匙数量:", this.gameModel.cat[selectedLevel].keyNum);
             }
         }
     }

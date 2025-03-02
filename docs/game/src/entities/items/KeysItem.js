@@ -16,7 +16,7 @@ export default class KeysItem extends AbstractItem {
     }
 
     isNear(px, py, tileSize, catW, catH) { 
-        let d = 30; 
+        let d = 20; 
 
         let centX = this.x + tileSize/2;
         let centY = this.y + tileSize/2;

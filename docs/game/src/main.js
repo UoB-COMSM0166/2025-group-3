@@ -42,12 +42,22 @@ window.draw = function () {
       }
     });
     // 游戏界面的所有状态和位置更新函数
+    let selectedLevel = gameModel.selectedLevel;
     if (gameModel.gameState === GAME_STATE.PLAYING) {
       gameController.moveCapoo();
       gameController.controlMergedWall();
       gameController.controlElevatingWall();
+      // 判定是否触碰旗帜结束当前关卡
+      if (gameModel.flag[selectedLevel].isNear(
+        gameModel.cat[selectedLevel].x, gameModel.cat[selectedLevel].y,
+        CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)) {
+        //assets.levelClearSound.play();
+        console.log("关卡完成");
+        gameModel.gameState = GAME_STATE.LEVEL_COMPLETE;
+        // 画面切换!!!
+      }
+    }
 
-  }
     // 测试猫猫的坐标
     // let levelIndex = gameModel.selectedLevel;
     // let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;
