@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import * as spine from "@esotericsoftware/spine-threejs";
-import { showCapoo/*, CapooX, CapooY*/ } from '../main';
+import { showCapoo/*, CapooX, CapooY*/ } from "../main";
+import { showPotion,showBack } from "../core/Utils";
 //import { cat } from '../GameModel';
 
 
@@ -43,6 +44,18 @@ let skeletonFile3 = "capoo_back_102.json";
 let atlasFile3 = "capoo_back_102.atlas";
 let animation3 = "animation";
 
+let atlas4;
+let assetManager4;
+let atlasLoader4;
+let skeletonMesh4;
+
+
+
+let atlas5;
+let assetManager5;
+let atlasLoader5;
+let skeletonMesh5;
+
 // 初始化 Three.js 场景
 // 创建 Three.js 场景、相机、渲染器，并将 <canvas> 添加到网页
 function init() {
@@ -82,6 +95,7 @@ function init() {
     assetManager3.loadText(skeletonFile3);
     assetManager3.loadTextureAtlas(atlasFile3);
 
+
     //console.log("SpineLayer initialized");
     requestAnimationFrame(load);
 }
@@ -115,7 +129,25 @@ function load(name, scale) {
         skeletonMesh = new spine.SkeletonMesh({ skeletonData: skeletonData });
         skeletonMesh.state.setAnimation(0, animation, true);
         scene.add(skeletonMesh);
+ 
+        //--------------加载 Capoo 第二个角色（独立实例）-------------
+        
+        // skeletonMesh4.position.set(2000, 0, 0); // 让第二个角色在右边 200px 处
+        // scene.add(skeletonMesh4);
 
+        // //
+        // atlas5 = assetManager3.require(atlasFile3);
+        // atlasLoader5 = new spine.AtlasAttachmentLoader(atlas5);
+        // let skeletonJson5 = new spine.SkeletonJson(atlasLoader5);
+        // skeletonJson5.scale = 0.4;
+        // let skeletonData5 = skeletonJson5.readSkeletonData(
+        //     assetManager3.require(skeletonFile3)
+        // );
+        // skeletonMesh5 = new spine.SkeletonMesh({ skeletonData4: skeletonData5 });
+        // skeletonMesh5.state.setAnimation(0, animation3, true);
+        // scene.add(skeletonMesh5);
+
+       
         // --------------加载 Capoo 脸-------------
         // add face
         atlas1 = assetManager1.require(atlasFile1);
@@ -155,6 +187,16 @@ function load(name, scale) {
         skeletonMesh3.state.setAnimation(0, animation3, true);
         scene.add(skeletonMesh3);
 
+        atlas4 = assetManager3.require(atlasFile3);
+        atlasLoader4 = new spine.AtlasAttachmentLoader(atlas4);
+        let skeletonJson4 = new spine.SkeletonJson(atlasLoader4);
+        skeletonJson4.scale = 0.4;
+        let skeletonData4 = skeletonJson4.readSkeletonData(
+            assetManager3.require(skeletonFile3)
+        );
+        skeletonMesh4 = new spine.SkeletonMesh({ skeletonData: skeletonData4 });
+        skeletonMesh4.state.setAnimation(0, animation3, true);
+        scene.add(skeletonMesh4);
         requestAnimationFrame(render);
     } else requestAnimationFrame(load);
 }
@@ -177,6 +219,8 @@ function render() {
     skeletonMesh1.update(delta);
     skeletonMesh2.update(delta);
     skeletonMesh3.update(delta);
+    skeletonMesh4.update(delta);
+   // skeletonMesh5.update(delta);
 
     // set the position of Capoo
     // skeletonMesh.position.set(CapooX, CapooY, 0);
@@ -200,7 +244,8 @@ function render() {
         skeletonMesh.visible = showCapoo;
         skeletonMesh1.visible = showCapoo;
         skeletonMesh2.visible = showCapoo;
-        skeletonMesh3.visible = showCapoo;
+        skeletonMesh3.visible = showBack;
+        skeletonMesh4.visible = showPotion;
     }
     //console.log("showCapoo:" + showCapoo);
 

@@ -10,6 +10,7 @@ let gameView;
 export let showCapoo = true;
 
 
+
 window.preload = function () {
   console.log("Main preload done");
     // 暂定为加载开始画面的背景图片和音乐、字体等， 游戏关卡内的图片和json在MapLoader.js中加载

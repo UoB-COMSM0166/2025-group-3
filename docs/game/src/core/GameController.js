@@ -1,6 +1,7 @@
 import MapLoader from "./MapLoader";
 import { CONSTANT, Message } from "./Utils";
 import Potion from "../entities/characters/Potion";
+import {setShowBack,setShowPotion} from "../core/Utils";
 
 // 用于所有关卡的控制和交互
 
@@ -74,9 +75,8 @@ export default class GameController {
                 this.gameModel.cat[selectedLevel].isMerged = false;
                 // 新建黄油类, 给一个初始向上初速度?
                 // 修改spinelayer, 猫和黄油分开渲染?
-
-
-
+                setShowBack(false);
+                setShowPotion(true);
                 
         }
 
