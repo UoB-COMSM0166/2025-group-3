@@ -4,6 +4,7 @@
 // the MapLoader object will parse the json file and create objects in the gameModel
 
 import Capoo from "../entities/characters/Capoo";
+import Potion from "../entities/characters/Potion";
 import ElevatingWalls from "../entities/items/ElevatingWalls";
 import Flag from "../entities/items/Flag";
 import KeysItem from "../entities/items/KeysItem";
@@ -76,6 +77,7 @@ export default class MapLoader {
         let catX = Layer.objects[0].x + CONSTANT.CAT_WIDTH/2; // 让猫的显示位置和地图位置对齐
         let catY = Layer.objects[0].y;
         this.gameModel.cat[this.levelIndex] = new Capoo(catX, catY, this.levelIndex);
+        this.gameModel.potion=new Potion(0,0);
         
     }
 

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as spine from "@esotericsoftware/spine-threejs";
 import { showCapoo/*, CapooX, CapooY*/ } from "../main";
-import { showPotion,showBack } from "../core/Utils";
+import { showPotion,showBack,PotionX, PotionY } from "../core/Utils";
 //import { cat } from '../GameModel';
 
 
@@ -130,23 +130,7 @@ function load(name, scale) {
         skeletonMesh.state.setAnimation(0, animation, true);
         scene.add(skeletonMesh);
  
-        //--------------加载 Capoo 第二个角色（独立实例）-------------
         
-        // skeletonMesh4.position.set(2000, 0, 0); // 让第二个角色在右边 200px 处
-        // scene.add(skeletonMesh4);
-
-        // //
-        // atlas5 = assetManager3.require(atlasFile3);
-        // atlasLoader5 = new spine.AtlasAttachmentLoader(atlas5);
-        // let skeletonJson5 = new spine.SkeletonJson(atlasLoader5);
-        // skeletonJson5.scale = 0.4;
-        // let skeletonData5 = skeletonJson5.readSkeletonData(
-        //     assetManager3.require(skeletonFile3)
-        // );
-        // skeletonMesh5 = new spine.SkeletonMesh({ skeletonData4: skeletonData5 });
-        // skeletonMesh5.state.setAnimation(0, animation3, true);
-        // scene.add(skeletonMesh5);
-
        
         // --------------加载 Capoo 脸-------------
         // add face
@@ -187,6 +171,7 @@ function load(name, scale) {
         skeletonMesh3.state.setAnimation(0, animation3, true);
         scene.add(skeletonMesh3);
 
+        //小罐子
         atlas4 = assetManager3.require(atlasFile3);
         atlasLoader4 = new spine.AtlasAttachmentLoader(atlas4);
         let skeletonJson4 = new spine.SkeletonJson(atlasLoader4);
@@ -197,6 +182,7 @@ function load(name, scale) {
         skeletonMesh4 = new spine.SkeletonMesh({ skeletonData: skeletonData4 });
         skeletonMesh4.state.setAnimation(0, animation3, true);
         scene.add(skeletonMesh4);
+
         requestAnimationFrame(render);
     } else requestAnimationFrame(load);
 }
@@ -223,7 +209,7 @@ function render() {
    // skeletonMesh5.update(delta);
 
     // set the position of Capoo
-    // skeletonMesh.position.set(CapooX, CapooY, 0);
+    
     
     // 更新所有模型的动画状态
     // Synchronize the body_face bone of skeletonMesh1 with skeletonMesh
@@ -238,6 +224,9 @@ function render() {
     let bodyBackSlot = skeletonMesh.skeleton.findBone("back");
     let backBodySlot = skeletonMesh3.skeleton.findBone("root");
     skeletonMesh3.position.set(bodyBackSlot.worldX - backBodySlot.worldX, bodyBackSlot.worldY - backBodySlot.worldY, -1);
+
+    //设置罐子位置
+    skeletonMesh4.position.set(PotionX, PotionY, 0);
 
     // render the scene
     if (typeof showCapoo !== "undefined") {

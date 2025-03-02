@@ -55,6 +55,10 @@ export function showEntities(gameModel, assets) {
             if(gameModel.flag[levelIndex].visible){
                 showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets, true);
             }
+        //    gameModel.potion.updatePotion(gameModel.potion.x-gameModel.cat[levelIndex].x,gameModel.potion.y-gameModel.cat[levelIndex].y);
+            gameModel.potion.updatePotion(offsetX,offsetY);
+           console.log("tag:potion",gameModel.potion.x,gameModel.cat[levelIndex].x,gameModel.potion.y,gameModel.cat[levelIndex].y,offsetX, offsetY);
+            //gameModel.potion.updatePotion(1000,1000);
         }
     }, 10); // 每 10ms 检查一次
 
