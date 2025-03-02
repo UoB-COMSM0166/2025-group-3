@@ -10,6 +10,7 @@ import KeysItem from "../entities/items/KeysItem";
 import Switches from "../entities/items/Switches";
 import Climb from "../entities/terrain/Climb";
 import Coll from "../entities/terrain/Coll";
+import Ground from "../entities/terrain/Ground";
 import Decorate from "../entities/terrain/Decorate";
 import Ice from "../entities/terrain/Ice";
 import Merge from "../entities/terrain/Merge";
@@ -59,6 +60,7 @@ export default class MapLoader {
         this.gameModel.levelHeight[this.levelIndex] = this.levelData.height;
         this.gameModel.levelWidth[this.levelIndex] = this.levelData.width; 
         this.getColl();    
+        this.getGround();
         this.getDecorate();
         this.getTrap();
         this.getMerge();
@@ -82,6 +84,11 @@ export default class MapLoader {
     getColl(){
         let Layer = this.levelData.layers.find(layer => layer.name === "coll");
         this.gameModel.coll[this.levelIndex] = new Coll(Layer.data, this.levelIndex);
+    }
+
+    getGround(){
+        let Layer = this.levelData.layers.find(layer => layer.name === "ground");
+        this.gameModel.ground[this.levelIndex] = new Ground(Layer.data, this.levelIndex);
     }
 
     getClimb(){

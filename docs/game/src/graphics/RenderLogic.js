@@ -30,6 +30,10 @@ export function showEntities(gameModel, assets) {
             //console.log("数据已加载:", gameModel.coll[0]);
             clearInterval(checkDataLoaded); // 停止轮询
             image(gameModel.assets.bg, 0, 0, windowWidth, windowHeight * 5 / 4);
+            for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
+                // elevatingWalls[selectedLevel][i].update();
+                showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets, false);
+            } // 机关墙需要显示在碰撞层下面,因此先加载
             showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets);
@@ -43,10 +47,6 @@ export function showEntities(gameModel, assets) {
                 if(gameModel.keysItem[levelIndex][i].visible){
                     showItem(gameModel.keysItem[levelIndex][i], offsetX, offsetY, assets, true);
                 }
-            }
-            for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
-                // elevatingWalls[selectedLevel][i].update();
-                showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets, false);
             }
             for(let i =0; i<gameModel.switches[levelIndex].length; i++){
             // switches[selectedLevel][i].update();

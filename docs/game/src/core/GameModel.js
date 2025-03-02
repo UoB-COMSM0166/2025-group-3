@@ -39,6 +39,7 @@ export default class GameModel {
         this.decorate = [];
         this.trap = [];
         this.coll = [];
+        this.ground = [];
         this.merge = [];
         this.ice = [];
         this.spring = [];
