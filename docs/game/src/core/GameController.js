@@ -68,6 +68,10 @@ export default class GameController {
                 
         }
 
+        if(this.gameModel.keys['h']||this.gameModel.keys['H']){
+            this.gameModel.potion.setPotionPosition(100,100);       
+         }
+
 
 
         // 判断猫是否入水(以最下边中心点计算), 重置回出生点

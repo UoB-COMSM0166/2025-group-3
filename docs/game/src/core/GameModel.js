@@ -25,6 +25,7 @@ export default class GameModel {
     keys;
     messages;
     cat;
+    potion;
 
     constructor() {
         // global state

@@ -1,7 +1,8 @@
 import AbstractCharacter from "./AbstractCharacter";
+import {setPotionX,setPotionY} from "../../core/Utils";
 
 export default class Potion extends AbstractCharacter {
-    constructor(x, y) {
+    constructor(x=0, y=0) {
         super(x, y);
         this.facingRight = true; // 记录朝向, 用于跳跃的方向, 初始默认向右
 
@@ -13,4 +14,14 @@ export default class Potion extends AbstractCharacter {
 
 
       }
+
+    setPotionPosition(x,y){
+      this.x=x;
+      this.y=y;
+    }  
+
+    updatePotion(x,y){
+      setPotionX(x/5);
+      setPotionY(y/5);
+    }
 }
