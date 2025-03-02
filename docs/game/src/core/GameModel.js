@@ -25,6 +25,7 @@ export default class GameModel {
     keys;
     messages;
     cat;
+    potion;
 
     constructor() {
         // global state
@@ -39,6 +40,7 @@ export default class GameModel {
         this.decorate = [];
         this.trap = [];
         this.coll = [];
+        this.ground = [];
         this.merge = [];
         this.ice = [];
         this.spring = [];
@@ -56,6 +58,8 @@ export default class GameModel {
         this.offsetY = 0;  
         this.keys = {}; //keys pressed by keyboard
         this.messages = []; 
+
+        this.potion; // 用于存储黄油对象? 可删除
     }
     
     

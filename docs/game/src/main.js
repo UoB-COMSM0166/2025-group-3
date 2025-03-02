@@ -8,9 +8,8 @@ let gameModel;
 let gameController;
 let gameView;
 export let showCapoo = true;
-// 主角猫坐标
-//export let CapooX = 770; // TODO 每一关刚开始都从地图中读取初始坐标
-//export let CapooY = 2800; 
+
+
 
 window.preload = function () {
   console.log("Main preload done");
@@ -30,16 +29,36 @@ window.setup = function () {
   
 window.draw = function () {
     gameView.render();
+    // 阻止默认按键行为
     window.addEventListener("keydown", function(event) {
       let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
       if (keysToPrevent.includes(event.key)) {
           event.preventDefault();
       }
+      // 阻止浏览器缩放
+      if (event.ctrlKey) {
+        if (event.key === "-" || event.key === "+") {
+            event.preventDefault();
+        }
+      }
     });
-    // 游戏界面的主角猫移动
+    // 游戏界面的所有状态和位置更新函数
+    let selectedLevel = gameModel.selectedLevel;
     if (gameModel.gameState === GAME_STATE.PLAYING) {
-        gameController.moveCapoo();
+      gameController.moveCapoo();
+      gameController.controlMergedWall();
+      gameController.controlElevatingWall();
+      // 判定是否触碰旗帜结束当前关卡
+      if (gameModel.flag[selectedLevel].isNear(
+        gameModel.cat[selectedLevel].x, gameModel.cat[selectedLevel].y,
+        CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)) {
+        //assets.levelClearSound.play();
+        console.log("关卡完成");
+        gameModel.gameState = GAME_STATE.LEVEL_COMPLETE;
+        // 画面切换!!!
+      }
     }
+
     // 测试猫猫的坐标
     // let levelIndex = gameModel.selectedLevel;
     // let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;
@@ -105,12 +124,9 @@ window.keyReleased = function() {
 // window.mousePressed = function () {}
 // window.mouseReleased = function () {}
 
-
+// 浏览器窗口大小变化时自适应改变画布大小
 window.windowResized = function () {
     resizeCanvas(window.innerWidth, window.innerHeight);
-    // resizeCanvas(CONSTANT.GAME_WIDTH, CONSTANT.GAME_HEIGHT);
-    // gameView.render();
-    // console.log("windowResized");
 }
 
 

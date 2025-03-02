@@ -4,12 +4,14 @@
 // the MapLoader object will parse the json file and create objects in the gameModel
 
 import Capoo from "../entities/characters/Capoo";
+import Potion from "../entities/characters/Potion";
 import ElevatingWalls from "../entities/items/ElevatingWalls";
 import Flag from "../entities/items/Flag";
 import KeysItem from "../entities/items/KeysItem";
 import Switches from "../entities/items/Switches";
 import Climb from "../entities/terrain/Climb";
 import Coll from "../entities/terrain/Coll";
+import Ground from "../entities/terrain/Ground";
 import Decorate from "../entities/terrain/Decorate";
 import Ice from "../entities/terrain/Ice";
 import Merge from "../entities/terrain/Merge";
@@ -60,6 +62,7 @@ export default class MapLoader {
         this.gameModel.levelHeight[this.levelIndex] = this.levelData.height;
         this.gameModel.levelWidth[this.levelIndex] = this.levelData.width; 
         this.getColl();    
+        this.getGround();
         this.getDecorate();
         this.getTrap();
         this.getMerge();
@@ -77,12 +80,18 @@ export default class MapLoader {
         let catX = Layer.objects[0].x + CONSTANT.CAT_WIDTH/2; // 让猫的显示位置和地图位置对齐
         let catY = Layer.objects[0].y;
         this.gameModel.cat[this.levelIndex] = new Capoo(catX, catY, this.levelIndex);
+        this.gameModel.potion=new Potion(0,0);
         
     }
 
     getColl(){
         let Layer = this.levelData.layers.find(layer => layer.name === "coll");
         this.gameModel.coll[this.levelIndex] = new Coll(Layer.data, this.levelIndex);
+    }
+
+    getGround(){
+        let Layer = this.levelData.layers.find(layer => layer.name === "ground");
+        this.gameModel.ground[this.levelIndex] = new Ground(Layer.data, this.levelIndex);
     }
 
     getClimb(){

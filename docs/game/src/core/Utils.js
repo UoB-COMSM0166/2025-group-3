@@ -1,3 +1,9 @@
+//几个控制动画用的参数
+export let showPotion = false;
+export let showBack = true;
+export let PotionX = 0;
+export let PotionY = 0;
+
 export const CONSTANT = Object.freeze({
   GAME_WIDTH: 6400,  //windowWidth
   GAME_HEIGHT: 3200,  //windowHeight
@@ -8,6 +14,27 @@ export const CONSTANT = Object.freeze({
   CAT_WIDTH: 160,
   CAT_HEIGHT: 112
 });
+
+//用于修改全局变量是否显示分离的罐子
+export function setShowPotion(value) {
+  showPotion = value;
+}
+
+
+//用于修改全局变量是否显示背上的罐子
+export function setShowBack(value) {
+  showBack = value;
+}
+
+
+//修改Potion动画坐标的几个参数
+export function setPotionX(value) {
+  PotionX = value;
+}
+
+export function setPotionY(value) {
+  PotionY = value;
+}
 
 // enum of possible game states
 export const GAME_STATE = Object.freeze({

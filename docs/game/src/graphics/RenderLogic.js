@@ -30,27 +30,35 @@ export function showEntities(gameModel, assets) {
             //console.log("数据已加载:", gameModel.coll[0]);
             clearInterval(checkDataLoaded); // 停止轮询
             image(gameModel.assets.bg, 0, 0, windowWidth, windowHeight * 5 / 4);
+            for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
+                // elevatingWalls[selectedLevel][i].update();
+                showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets, false);
+            } // 机关墙需要显示在碰撞层下面,因此先加载
             showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.ice[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.climb[levelIndex], offsetX, offsetY, assets);
-            showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets);      
-            showTerrain(gameModel.merge[levelIndex], offsetX, offsetY, assets);      
+            showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets);   
+            if(gameModel.merge[levelIndex].visible){
+                showTerrain(gameModel.merge[levelIndex], offsetX, offsetY, assets);      
+            }     
             for(let i =0; i<gameModel.keysItem[levelIndex].length; i++){
                 if(gameModel.keysItem[levelIndex][i].visible){
                     showItem(gameModel.keysItem[levelIndex][i], offsetX, offsetY, assets, true);
                 }
             }
-            for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
-                // elevatingWalls[selectedLevel][i].update();
-                showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets, false);
-            }
             for(let i =0; i<gameModel.switches[levelIndex].length; i++){
             // switches[selectedLevel][i].update();
                 showItem(gameModel.switches[levelIndex][i], offsetX, offsetY, assets, false);
             }
-            showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets, true);
+            if(gameModel.flag[levelIndex].visible){
+                showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets, true);
+            }
+        //    gameModel.potion.updatePotion(gameModel.potion.x-gameModel.cat[levelIndex].x,gameModel.potion.y-gameModel.cat[levelIndex].y);
+            gameModel.potion.updatePotion(offsetX,offsetY);
+            console.log("tag:potion",gameModel.potion.x,gameModel.cat[levelIndex].x,gameModel.potion.y,gameModel.cat[levelIndex].y,offsetX, offsetY);
+            //gameModel.potion.updatePotion(1000,1000);
             image(gameModel.assets.teachCommand, 0, 0, 1920/5, 1080/5);
         }
     }, 1); // 每 10ms 检查一次
