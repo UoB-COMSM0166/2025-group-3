@@ -11,7 +11,7 @@ export default class Potion extends AbstractCharacter {
         this.gravity = 0.4; // 重力
         this.jumpStrength = -12; // 跳跃初速度
         this.onGround = false; // 是否在地面上
-
+        this.tanshe=true; //弹射起步
 
       }
 

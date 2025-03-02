@@ -1,7 +1,7 @@
 import MapLoader from "./MapLoader";
 import { CONSTANT, Message } from "./Utils";
 import Potion from "../entities/characters/Potion";
-import {setShowBack,setShowPotion} from "../core/Utils";
+import {setShowBack,setShowPotion,PotionX,PotionY} from "../core/Utils";
 
 // 用于所有关卡的控制和交互
 
@@ -60,15 +60,13 @@ export default class GameController {
         if(this.gameModel.cat[selectedLevel].isMerged 
             && (this.gameModel.keys['X']||this.gameModel.keys['x'])){
                 console.log("分离");
-                //this.gameModel.cat[selectedLevel].isMerged = false;
+                this.gameModel.cat[selectedLevel].isMerged = false;
                 // 新建黄油类, 给一个初始向上初速度?
                 // 修改spinelayer, 猫和黄油分开渲染?
                 this.gameModel.potion.x=this.gameModel.cat[selectedLevel].x;
                 this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
                 setShowBack(false);
-                setShowPotion(true);
-                
-                
+                setShowPotion(true); 
         }
 
         if(this.gameModel.keys['h']||this.gameModel.keys['H']){
@@ -214,10 +212,11 @@ export default class GameController {
 
     //Potion移动逻辑
     movePotion() {
+        let selectedLevel = this.gameModel.selectedLevel;
         let tileSize = CONSTANT.TILE_SIZE;
         let levelWidth = this.gameModel.levelWidth;
-        let newX = this.gameModel.potion.getx;
-        let newY = this.gameModel.potion.gety;
+        let newX = this.gameModel.potion.x;
+        let newY = this.gameModel.potion.y;
         let potionW = CONSTANT.POTION_WIDTH;  // 需要定义 POTION_WIDTH
         let potionH = CONSTANT.POTION_HEIGHT; // 需要定义 POTION_HEIGHT
         let offSetHalf = -potionW / 2;
@@ -225,8 +224,37 @@ export default class GameController {
     
         // 水平方向偏移量
         let offSetClimb = potionW / 4;
-    
-    
+        this.gameModel.potion.updatePotion(this.gameModel.cat[selectedLevel].x,this.gameModel.cat[selectedLevel].y);
+        console.log("showshow",this.gameModel.cat[selectedLevel].x,this.gameModel.cat[selectedLevel].y);
+        //检测是否可以合体
+        if(Math.abs(newX-this.gameModel.cat[selectedLevel].x)<50 && Math.abs(newY-this.gameModel.cat[selectedLevel].y)<50 && this.gameModel.flagp>50){
+            this.gameModel.cat[selectedLevel].isMerged = true;
+            setShowBack(true);
+            setShowPotion(false);
+            console.log("showshow",this.gameModel.cat[selectedLevel].isMerged,PotionX,PotionY);
+            this.gameModel.flagp=0;
+        }
+        
+        if(!this.gameModel.cat[selectedLevel].isMerged && this.gameModel.flagp<60){
+            this.gameModel.flagp++;
+        }    //用来屏蔽黄油刚开始分开的时候
+     
+
+        if (this.gameModel.cat[selectedLevel].isMerged) {
+            // 如果结合，面包跟随猫的位置
+            this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
+            this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y;
+            this.gameModel.potion.tanshe=true;
+        } else {
+            // 否则正常自由落体
+            if(this.gameModel.potion.tanshe)
+            {this.gameModel.potion.velocityY= -30;
+             this.gameModel.potion.tanshe=false;
+            }
+            this.gameModel.potion.velocityY= this.gameModel.potion.velocityY+1;
+            this.gameModel.potion.y=this.gameModel.potion.y+this.gameModel.potion.velocityY;
+        }
+
         // // 检测是否可以攀爬
         // let potionCanClimb = this.canClimb(newX + offSetHalf + offSetClimb, newY - offSetFeet,
         //     this.gameModel.selectedLevel, tileSize, levelWidth) 

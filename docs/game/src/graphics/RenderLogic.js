@@ -57,8 +57,8 @@ export function showEntities(gameModel, assets) {
                 showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets, true);
             }
         //    gameModel.potion.updatePotion(gameModel.potion.x-gameModel.cat[levelIndex].x,gameModel.potion.y-gameModel.cat[levelIndex].y);
-            gameModel.potion.updatePotion(gameModel.cat[levelIndex].x,gameModel.cat[levelIndex].y);
-            console.log("tag:potion",gameModel.potion.x,gameModel.cat[levelIndex].x,gameModel.potion.y,gameModel.cat[levelIndex].y,PotionX,PotionY);
+            
+            //console.log("tag:potion",gameModel.potion.x,gameModel.cat[levelIndex].x,gameModel.potion.y,gameModel.cat[levelIndex].y,PotionX,PotionY);
             //gameModel.potion.updatePotion(1000,1000);
             image(gameModel.assets.teachCommand, 0, 0, 1920/5, 1080/5);
         }

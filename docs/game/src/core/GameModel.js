@@ -26,6 +26,7 @@ export default class GameModel {
     messages;
     cat;
     potion;
+    flagp;
 
     constructor() {
         // global state
@@ -48,7 +49,7 @@ export default class GameModel {
         this.keysItem = [];//keys item in game
         this.elevatingWalls = [];
         this.flag = [];
-
+        this.flagp=0; //用来屏蔽黄油刚开始分开的时候
         this.climb = [];
         this.cat = []; // 存储每一关的主角猫对象
         /* 地图未设置黄油层, 即默认所有关卡开始时猫和黄油都是一体的, 其对象存在cat中, 
