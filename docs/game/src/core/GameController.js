@@ -13,6 +13,8 @@ import Potion from "../entities/characters/Potion";
     钥匙交互
     合体墙加入碰撞检测, 猫和墙分离时合体墙消失
     机关墙交互, 猫主体碰到机关控制升降墙
+    钥匙集齐显现旗帜, 接近旗帜结束这一关
+    弹簧床
 
     =======需要debug=======
     在空中碰撞墙体+按住按键不放时,有小概率会卡到墙里
@@ -54,7 +56,7 @@ export default class GameController {
         /* ------------------和所有对象层的交互----------------- */
 
         // 检查是否碰到钥匙
-        this.getkey(this.gameModel.cat[selectedLevel].x+offSetHalf, this.gameModel.cat[selectedLevel].y, selectedLevel); 
+        this.getkey(this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y, selectedLevel); 
 
         // 钥匙满时, flag设置为显示
         if(this.gameModel.cat[selectedLevel].keyNum == this.gameModel.keysItem[selectedLevel].length){
@@ -101,6 +103,21 @@ export default class GameController {
         || this.canClimb(this.gameModel.cat[selectedLevel].x+catW+offSetHalf-offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet,
             selectedLevel, tileSize, levelWidth); // 右下角, 向上偏移一个脚底距离
 
+
+        // 计算是否弹簧床(取下方中点, 和左右1/5点)
+        let offSetSpring = catW/5;
+        let catUseSpring = this.canUseSpring(this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y-offSetFeet,
+            selectedLevel, tileSize, levelWidth)
+            || this.canUseSpring(this.gameModel.cat[selectedLevel].x + offSetSpring, this.gameModel.cat[selectedLevel].y-offSetFeet,
+                selectedLevel, tileSize, levelWidth)
+            || this.canUseSpring(this.gameModel.cat[selectedLevel].x - offSetSpring, this.gameModel.cat[selectedLevel].y-offSetFeet,
+                selectedLevel, tileSize, levelWidth);
+        if(catUseSpring){ // 给一个向上的加速度
+            console.log("弹簧床");
+            //this.gameModel.cat[selectedLevel].velocityY = Math.abs(this.gameModel.cat[selectedLevel].velocityY) * 0.2;
+            this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength * 2; // 赋予向上的初速度
+            this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
+        }
 
         // 水平移动的按键控制
         if (this.gameModel.keys['ArrowLeft']) {
@@ -265,6 +282,17 @@ export default class GameController {
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
         return this.gameModel.climb[selectedLevel].data[tileIndex] !== 0;
+    }
+
+    // 计算是否在弹簧床
+    canUseSpring(px, py, selectedLevel, tileSize, levelWidth){
+
+        // 传递的坐标所处的格子行列和索引
+        let col = Math.floor(px / tileSize);
+        let row = Math.floor(py / tileSize);
+        let tileIndex = row * levelWidth[selectedLevel] + col;
+
+        return this.gameModel.spring[selectedLevel].data[tileIndex] !== 0;
     }
 
 
