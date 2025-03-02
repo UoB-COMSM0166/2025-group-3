@@ -28,16 +28,26 @@ window.setup = function () {
   
 window.draw = function () {
     gameView.render();
+    // 阻止默认按键行为
     window.addEventListener("keydown", function(event) {
       let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
       if (keysToPrevent.includes(event.key)) {
           event.preventDefault();
       }
+      // 阻止浏览器缩放
+      if (event.ctrlKey) {
+        if (event.key === "-" || event.key === "+") {
+            event.preventDefault();
+        }
+      }
     });
-    // 游戏界面的主角猫移动
+    // 游戏界面的所有状态和位置更新函数
     if (gameModel.gameState === GAME_STATE.PLAYING) {
-        gameController.moveCapoo();
-    }
+      gameController.moveCapoo();
+      gameController.controlMergedWall();
+      gameController.controlElevatingWall();
+
+  }
     // 测试猫猫的坐标
     // let levelIndex = gameModel.selectedLevel;
     // let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;

@@ -11,6 +11,7 @@ import Potion from "../entities/characters/Potion";
     碰到水时重置回出生点
     攀爬墙交互
     钥匙交互
+    合体墙加入碰撞检测, 猫和墙分离时合体墙消失
 
     =======需要debug=======
     在空中碰撞墙体+按住按键不放时,有小概率会卡到墙里
@@ -69,7 +70,6 @@ export default class GameController {
                 
         }
 
-        this.controlMergedWall();
 
 
         // 判断猫是否入水(以最下边中心点计算), 重置回出生点
@@ -78,7 +78,7 @@ export default class GameController {
             // 播放死亡音效等
 
             let message1 = "Don't jump into water!"
-            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,3000,20,200,200,255,159,237));
+            this.gameModel.messages.push(new Message(message1,window.innerWidth/2,4*window.innerHeight/5,3000,20,200,200,255,159,237));
 
             this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
             this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
@@ -216,7 +216,7 @@ export default class GameController {
         let isColliding = this.gameModel.coll[selectedLevel].data[tileIndex] !== 0;
         
         // 合体墙检测
-        let collWithMergedWall = false;
+         let collWithMergedWall = false;
         let hasMergedWall = this.gameModel.merge[selectedLevel].data[tileIndex] !== 0;
         let mergeWallvisible = this.gameModel.merge[selectedLevel].visible;
         if(hasMergedWall && mergeWallvisible){
@@ -274,7 +274,7 @@ export default class GameController {
     }
 
 
-    // 根据猫和黄油是否分离来控制合体墙是否显示(待测试)
+    // 根据猫和黄油是否分离来控制合体墙是否显示
     controlMergedWall(){
         let selectedLevel = this.gameModel.selectedLevel;
         if(this.gameModel.cat[selectedLevel].isMerged){
@@ -284,5 +284,69 @@ export default class GameController {
             this.gameModel.merge[selectedLevel].visible = false;
         }
     }
+
+    // 猫触碰开关时, 机关墙自动移动
+    controlElevatingWall(){
+        let selectedLevel = this.gameModel.selectedLevel;
+        // 机关的更新
+        for(let i=0; i<this.gameModel.elevatingWalls[selectedLevel].length; i++){
+            this.gameModel.elevatingWalls[selectedLevel][i].update();
+        }
+       
+        // 开关的控制
+        for(let i=0; i<this.gameModel.switches[selectedLevel].length; i++){ // 遍历所有开关
+            // 如果猫触碰到开关(并且不在无效状态时), 则开关状态反转, 并切换开关图标
+            // 设置无效状态并计时开始, 防止短时间多次触发同一开关
+            if(this.gameModel.switches[selectedLevel][i].isNear(
+                    this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y, 
+                    CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)
+                && !this.gameModel.switches[selectedLevel][i].invincible ){
+                console.log("猫触碰到开关");
+                // 添加音效....
+                this.gameModel.switches[selectedLevel][i].invincible = true; // 设置无效状态
+                this.gameModel.switches[selectedLevel][i].invincibleTimer = 0;//重置计时器
+                let img = this.gameModel.switches[selectedLevel][i].iniImgIndex;
+                if(this.gameModel.switches[selectedLevel][i].beActivated){ // 开关素材切换
+                    this.gameModel.switches[selectedLevel][i].imgIndex = img+1;
+                } else {
+                    this.gameModel.switches[selectedLevel][i].imgIndex = img;
+                }
+                // 开关状态反转
+                this.gameModel.switches[selectedLevel][i].beActivated = !this.gameModel.switches[selectedLevel][i].beActivated;
+            }
+            // 开关状态切换时, 通知机关墙块移动
+            if(this.gameModel.switches[selectedLevel][i].prevState !== this.gameModel.switches[selectedLevel][i].beActivated){
+                console.log("开关状态切换, 机关墙移动");
+                for(let j=0; j<this.gameModel.elevatingWalls[selectedLevel].length; j++){
+                    if(this.gameModel.elevatingWalls[selectedLevel][j].id === this.gameModel.switches[selectedLevel][i].id){
+                        this.gameModel.elevatingWalls[selectedLevel][j].move();
+                        console.log("机关墙应该在移动");
+                        console.log( this.gameModel.elevatingWalls[selectedLevel][j].range);
+                        console.log( this.gameModel.elevatingWalls[selectedLevel][j].pixelRange);
+                    }
+                }
+            }
+            // 更新开关状态
+            this.gameModel.switches[selectedLevel][i].prevState = this.gameModel.switches[selectedLevel][i].beActivated;
+        
+            // 机关在无敌状态下: 计时器增加
+            if (this.gameModel.switches[selectedLevel][i].invincible) {
+                this.gameModel.switches[selectedLevel][i].invincibleTimer++;
+            } 
+            // 如果在无效状态下+无效时间计时到最大值, 则停止无敌状态
+            if (this.gameModel.switches[selectedLevel][i].invincible 
+                && this.gameModel.switches[selectedLevel][i].invincibleTimer >= this.gameModel.switches[selectedLevel][i].invincibleDuration) {
+                this.gameModel.switches[selectedLevel][i].invincible = false;
+                this.gameModel.switches[selectedLevel][i].invincibleTimer = 0;
+            }
+        
+        }
+
+        
+    }
+
+
+
+
   
 }
