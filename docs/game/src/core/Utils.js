@@ -12,7 +12,9 @@ export const CONSTANT = Object.freeze({
   LEVEL_LIST: [1,2],
   FRAME_INTERVAL: 18,
   CAT_WIDTH: 160,
-  CAT_HEIGHT: 112
+  CAT_HEIGHT: 112,
+  POTION_WIDTH: 100,
+  POTION_HEIGHT: 100
 });
 
 //用于修改全局变量是否显示分离的罐子

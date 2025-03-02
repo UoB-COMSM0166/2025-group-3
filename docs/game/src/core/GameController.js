@@ -60,11 +60,14 @@ export default class GameController {
         if(this.gameModel.cat[selectedLevel].isMerged 
             && (this.gameModel.keys['X']||this.gameModel.keys['x'])){
                 console.log("分离");
-                this.gameModel.cat[selectedLevel].isMerged = false;
+                //this.gameModel.cat[selectedLevel].isMerged = false;
                 // 新建黄油类, 给一个初始向上初速度?
                 // 修改spinelayer, 猫和黄油分开渲染?
+                this.gameModel.potion.x=this.gameModel.cat[selectedLevel].x;
+                this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
                 setShowBack(false);
                 setShowPotion(true);
+                
                 
         }
 
@@ -208,6 +211,90 @@ export default class GameController {
         // 测试
         //console.log("是否在地上: " + this.gameModel.cat[selectedLevel].onGround);
     }
+
+    //Potion移动逻辑
+    movePotion() {
+        let tileSize = CONSTANT.TILE_SIZE;
+        let levelWidth = this.gameModel.levelWidth;
+        let newX = this.gameModel.potion.getx;
+        let newY = this.gameModel.potion.gety;
+        let potionW = CONSTANT.POTION_WIDTH;  // 需要定义 POTION_WIDTH
+        let potionH = CONSTANT.POTION_HEIGHT; // 需要定义 POTION_HEIGHT
+        let offSetHalf = -potionW / 2;
+        let offSetFeet = potionH / 10; 
+    
+        // 水平方向偏移量
+        let offSetClimb = potionW / 4;
+    
+    
+        // // 检测是否可以攀爬
+        // let potionCanClimb = this.canClimb(newX + offSetHalf + offSetClimb, newY - offSetFeet,
+        //     this.gameModel.selectedLevel, tileSize, levelWidth) 
+        //     || this.canClimb(newX + potionW + offSetHalf - offSetClimb, newY - offSetFeet,
+        //     this.gameModel.selectedLevel, tileSize, levelWidth);
+    
+        // 水平移动
+        if (this.gameModel.keys['a']) {
+            newX -= this.gameModel.potion.speed; 
+        }
+        if (this.gameModel.keys['d']) {
+            newX += this.gameModel.potion.speed;
+        }
+    
+        // // 攀爬墙时的垂直移动
+        // if (potionCanClimb) {
+        //     if (this.gameModel.keys['w']) {
+        //         newY -= this.gameModel.potion.speed;
+        //     }
+        //     if (this.gameModel.keys['s']) {
+        //         newY += this.gameModel.potion.speed;
+        //     }
+        // }
+    
+        // // 如果按空格，让 potion 上升
+        // if (this.gameModel.keys[" "]) {
+        //     this.gameModel.potion.velocityY = this.gameModel.potion.jumpStrength;
+        //     this.gameModel.potion.onGround = false;
+        // }
+    
+        // // 不在攀爬墙上时，应用重力
+        // if (!potionCanClimb) {
+        //     this.gameModel.potion.velocityY += this.gameModel.potion.gravity;
+        //     newY += this.gameModel.potion.velocityY;
+        // }
+    
+        // // **碰撞检测**
+        // let left = this.isColliding(newX + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+        //     || this.isColliding(newX + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+        //     || this.isColliding(newX + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
+    
+        // let right = this.isColliding(newX + potionW + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+        //     || this.isColliding(newX + potionW + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+        //     || this.isColliding(newX + potionW + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
+    
+        // let bottom = this.isCollidingWithGround(newX + potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+        //     || this.isCollidingWithGround(newX + 2 * potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+        //     || this.isCollidingWithGround(newX + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+        //     || this.isCollidingWithGround(newX + potionW + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
+    
+        // // 水平方向的碰撞处理
+        // if (!left && !right) { 
+        //     this.gameModel.potion.x = newX;
+        // } 
+    
+        // // 处理垂直碰撞
+        // if (!bottom) { 
+        //     this.gameModel.potion.y = newY;
+        //     if (!potionCanClimb) { 
+        //         this.gameModel.potion.onGround = false;
+        //     }
+        // } else { 
+        //     this.gameModel.potion.velocityY = 0;
+        //     this.gameModel.potion.onGround = true;
+        // }
+    }
+    
+
 
     // 计算给定坐标是否在碰撞层
     isColliding(px, py, selectedLevel, tileSize, levelWidth){ 

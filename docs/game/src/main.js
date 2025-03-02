@@ -46,6 +46,7 @@ window.draw = function () {
     let selectedLevel = gameModel.selectedLevel;
     if (gameModel.gameState === GAME_STATE.PLAYING) {
       gameController.moveCapoo();
+      gameController.movePotion();
       gameController.controlMergedWall();
       gameController.controlElevatingWall();
       // 判定是否触碰旗帜结束当前关卡

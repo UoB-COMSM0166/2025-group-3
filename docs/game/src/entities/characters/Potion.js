@@ -1,5 +1,5 @@
 import AbstractCharacter from "./AbstractCharacter";
-import {setPotionX,setPotionY} from "../../core/Utils";
+import {setPotionX,setPotionY,PotionX,PotionY} from "../../core/Utils";
 
 export default class Potion extends AbstractCharacter {
     constructor(x=0, y=0) {
@@ -21,7 +21,15 @@ export default class Potion extends AbstractCharacter {
     }  
 
     updatePotion(x,y){
-      setPotionX(x/5);
-      setPotionY(y/5);
+      setPotionX((this.x-x)/2.5);
+      setPotionY((y-this.y)/2.6);
+    }
+
+    getx(){
+      return PotionX;
+    }
+
+    gety(){
+      return PotionY;
     }
 }
