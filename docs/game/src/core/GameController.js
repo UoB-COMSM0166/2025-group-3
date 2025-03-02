@@ -59,8 +59,8 @@ export default class GameController {
             selectedLevel, tileSize, levelWidth)){
             // 播放死亡音效等
 
-            let message1 = "Don't jump into water!"
-            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,3000,20,200,200,255,159,237));
+            let message1 = "Cats dissolve easily in water!"
+            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,3000,100,{},"playing"));
 
             this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
             this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;

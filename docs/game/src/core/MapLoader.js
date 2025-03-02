@@ -50,6 +50,7 @@ export default class MapLoader {
         this.gameModel.assets.icon = loadImage("../../asset/spritesheet.png");
         this.gameModel.assets.testcat = loadImage("../../asset/testcat.png");//仅作测试,后续删除
         this.gameModel.assets.bg = loadImage("../../asset/backgrounds.png");
+        this.gameModel.assets.teachCommand = loadImage("../../asset/teachCommand.png");
     }
 
     // Load the json file and parse it

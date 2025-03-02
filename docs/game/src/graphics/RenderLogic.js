@@ -51,8 +51,9 @@ export function showEntities(gameModel, assets) {
                 showItem(gameModel.switches[levelIndex][i], offsetX, offsetY, assets, false);
             }
             showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets, true);
+            image(gameModel.assets.teachCommand, 0, 0, 1920/5, 1080/5);
         }
-    }, 10); // 每 10ms 检查一次
+    }, 1); // 每 10ms 检查一次
 
     
 
