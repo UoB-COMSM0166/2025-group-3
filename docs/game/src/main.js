@@ -50,13 +50,12 @@ window.draw = function () {
       gameController.controlMergedWall();
       gameController.controlElevatingWall();
       // 判定是否触碰旗帜结束当前关卡
-      if (gameModel.flag[selectedLevel].isNear(
+      if (gameModel.flag[selectedLevel].visible && gameModel.flag[selectedLevel].isNear(
         gameModel.cat[selectedLevel].x, gameModel.cat[selectedLevel].y,
         CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)) {
         //assets.levelClearSound.play();
         console.log("关卡完成");
         gameModel.gameState = GAME_STATE.LEVEL_COMPLETE;
-        // 画面切换!!!
       }
     }
 
@@ -87,9 +86,11 @@ window.keyPressed = function () {
       gameModel.gameState = GAME_STATE.LEVEL_SELECT;
   } else if (gameModel.gameState === GAME_STATE.LEVEL_SELECT) {
       if (keyCode === LEFT_ARROW) {
-        gameModel.selectedLevel = max(0, gameModel.selectedLevel - 1);
+        gameModel.selectedLevel = Math.max(0, gameModel.selectedLevel - 1);
+        console.log("selectedLevel: " + gameModel.selectedLevel);
       } else if (keyCode === RIGHT_ARROW) {
-        gameModel.selectedLevel = min(CONSTANT.LEVEL_LIST.length - 1, gameModel.selectedLevel + 1);
+        gameModel.selectedLevel = Math.min(CONSTANT.LEVEL_LIST.length - 1, gameModel.selectedLevel + 1);
+        console.log("selectedLevel: " + gameModel.selectedLevel);
       } else if (keyCode === 32) {  // Space
         gameModel.gameState = GAME_STATE.PLAYING;
       }

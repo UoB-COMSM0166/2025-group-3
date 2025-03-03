@@ -163,7 +163,7 @@ function load(name, scale) {
         atlas3 = assetManager3.require(atlasFile3);
         atlasLoader3 = new spine.AtlasAttachmentLoader(atlas3);
         let skeletonJson3 = new spine.SkeletonJson(atlasLoader3);
-        skeletonJson3.scale = 0.4;
+        skeletonJson3.scale = 0.2;
         let skeletonData3 = skeletonJson3.readSkeletonData(
             assetManager3.require(skeletonFile3)
         );
@@ -175,7 +175,7 @@ function load(name, scale) {
         atlas4 = assetManager3.require(atlasFile3);
         atlasLoader4 = new spine.AtlasAttachmentLoader(atlas4);
         let skeletonJson4 = new spine.SkeletonJson(atlasLoader4);
-        skeletonJson4.scale = 0.4;
+        skeletonJson4.scale = 0.2;
         let skeletonData4 = skeletonJson4.readSkeletonData(
             assetManager3.require(skeletonFile3)
         );

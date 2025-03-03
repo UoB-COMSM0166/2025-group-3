@@ -1,7 +1,7 @@
 import MapLoader from "./MapLoader";
 import { CONSTANT, Message } from "./Utils";
 import Potion from "../entities/characters/Potion";
-import {setShowBack,setShowPotion} from "../core/Utils";
+import {setShowBack,setShowPotion,PotionX,PotionY} from "../core/Utils";
 
 // 用于所有关卡的控制和交互
 
@@ -49,7 +49,7 @@ export default class GameController {
 
         // 钥匙满时, flag设置为显示
         if(this.gameModel.cat[selectedLevel].keyNum == this.gameModel.keysItem[selectedLevel].length){
-            console.log("旗子显示");
+            //console.log("旗子显示");
             this.gameModel.flag[selectedLevel].visible = true;
         }
 
@@ -57,28 +57,16 @@ export default class GameController {
 
         // 控制黄油分离  待完成
         // 按X键分离
-        if(this.gameModel.cat[selectedLevel].isMerged 
-            && (this.gameModel.keys['X']||this.gameModel.keys['x'])){
-                console.log("分离");
-                //this.gameModel.cat[selectedLevel].isMerged = false;
-                // 新建黄油类, 给一个初始向上初速度?
-                // 修改spinelayer, 猫和黄油分开渲染?
-                this.gameModel.potion.x=this.gameModel.cat[selectedLevel].x;
-                this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
-                setShowBack(false);
-                setShowPotion(true);
-                
-                
-        }
+        
 
-        if(this.gameModel.keys['h']||this.gameModel.keys['H']){
-            this.gameModel.potion.setPotionPosition(100,100);       
-         }
+        // if(this.gameModel.keys['h']||this.gameModel.keys['H']){
+        //     this.gameModel.potion.setPotionPosition(100,100);       
+        //  }
 
 
 
         // 判断猫是否入水(以最下边中心点计算), 重置回出生点
-        if(this.inTrap(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
+        if(this.inWater(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
             selectedLevel, tileSize, levelWidth)){
             // 播放死亡音效等
 
@@ -89,6 +77,28 @@ export default class GameController {
             this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
             return;
         }
+
+        
+        // 判断猫是否碰到陷阱(上下边分別检测两个点), 重置回出生点
+        let offSetTrapped = catW/4;
+        let beTrapedUp = this.beTraped(this.gameModel.cat[selectedLevel].x-offSetTrapped, this.gameModel.cat[selectedLevel].y-catH, 
+            selectedLevel, tileSize, levelWidth)
+            ||this.beTraped(this.gameModel.cat[selectedLevel].x+offSetTrapped, this.gameModel.cat[selectedLevel].y-catH, 
+                selectedLevel, tileSize, levelWidth);
+        let beTrapedBottom = this.beTraped(this.gameModel.cat[selectedLevel].x-offSetTrapped, this.gameModel.cat[selectedLevel].y-offSetFeet*2, 
+            selectedLevel, tileSize, levelWidth) 
+            || this.beTraped(this.gameModel.cat[selectedLevel].x+offSetTrapped, this.gameModel.cat[selectedLevel].y-offSetFeet*2, 
+                selectedLevel, tileSize, levelWidth);
+        if(beTrapedUp || beTrapedBottom){
+            // 播放死亡音效等
+            let message1 = "You are trapped!"
+            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,3000,100,{},"playing"));
+
+            this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
+            this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
+            return;
+        }
+
 
         // 计算猫是否处于攀爬墙位置(给予一个offSetClimb的差值, 确保不是在刚碰到攀爬梯子的边缘时就能攀爬)
         let offSetClimb = catW/4;  // 用于攀爬墙的水平偏移量
@@ -108,7 +118,7 @@ export default class GameController {
             || this.canUseSpring(this.gameModel.cat[selectedLevel].x - offSetSpring, this.gameModel.cat[selectedLevel].y-offSetFeet,
                 selectedLevel, tileSize, levelWidth);
         if(catUseSpring){ // 给一个向上的加速度
-            console.log("弹簧床");
+            //console.log("弹簧床");
             //this.gameModel.cat[selectedLevel].velocityY = Math.abs(this.gameModel.cat[selectedLevel].velocityY) * 0.2;
             this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength * 2; // 赋予向上的初速度
             this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
@@ -145,22 +155,25 @@ export default class GameController {
             newY += this.gameModel.cat[selectedLevel].velocityY;
         }
 
-        // 检查猫的四条边界是否碰撞: 每条边取两个点
+        // 检查猫的四条边界是否碰撞: 每条边取至少三个点
         /* 水平方向偏移半个身距(-catW/2), 并且竖直方向偏移一个脚底距离(offSetFeet=-catH/10)
            注意碰撞检测不可以阉割, 因为猫的大小>>图块大小, 减少检测点会导致卡墙里 */
 
         let left   = this.isColliding(newX+offSetHalf, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth) // 左边中间两个点
             || this.isColliding(newX+offSetHalf, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth);  // 左上角
+            || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) // 左上角
+            || this.isColliding(newX+offSetHalf, newY-offSetFeet*3/2, selectedLevel, tileSize, levelWidth);  // 左下角向上一点
 
         let right  = this.isColliding(newX+catW+offSetHalf, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth)  // 右边中间两个点
             || this.isColliding(newX+catW+offSetHalf, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右上
+            || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) // 右上
+            || this.isColliding(newX+catW+offSetHalf, newY-offSetFeet*3/2, selectedLevel, tileSize, levelWidth);  //右下角向上一点
 
-        let top    = this.isCollidingWithGround(newX+catW/3+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) // 上方中间两个点
-            || this.isCollidingWithGround(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) 
-            || this.isCollidingWithGround(newX+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth)     //左上角
-            || this.isCollidingWithGround(newX+catW+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth); //右上角
+        let topOffset = catH/5; // 只用于top的偏移量,相当于加上罐子高度, 因为碰到顶的时候必有罐子在身上
+        let top    = this.isCollidingWithGround(newX+catW/3+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth) // 上方中间两个点
+            || this.isCollidingWithGround(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth) 
+            || this.isCollidingWithGround(newX+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth)     //左上角
+            || this.isCollidingWithGround(newX+catW+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth); //右上角
 
         let bottom = this.isCollidingWithGround(newX+catW/3+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth) // 下方中间两个点
             || this.isCollidingWithGround(newX+2*catW/3+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth)
@@ -168,10 +181,10 @@ export default class GameController {
             || this.isCollidingWithGround(newX+catW+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右下角
         
         // 真正的顶部碰撞: 新位置碰撞top且新位置上方也碰撞top, 并且角色不在下落状态中
-        let topUp = this.isColliding(newX+catW/3+offSetHalf, newY-catH-offSetFeet -70, selectedLevel, tileSize, levelWidth) // 上方中间两个点
-        || this.isColliding(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet-70, selectedLevel, tileSize, levelWidth) 
-        || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet-70, selectedLevel, tileSize, levelWidth)     //左上角
-        || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet-70, selectedLevel, tileSize, levelWidth); //右上角
+        let topUp = this.isColliding(newX+catW/3+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth) // 上方中间两个点
+        || this.isColliding(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth) 
+        || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth)     //左上角
+        || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth); //右上角
 
         let topReal = top && topUp && this.gameModel.cat[selectedLevel].velocityY <= 0;;
 
@@ -214,10 +227,11 @@ export default class GameController {
 
     //Potion移动逻辑
     movePotion() {
+        let selectedLevel = this.gameModel.selectedLevel;
         let tileSize = CONSTANT.TILE_SIZE;
         let levelWidth = this.gameModel.levelWidth;
-        let newX = this.gameModel.potion.getx;
-        let newY = this.gameModel.potion.gety;
+        let newX = this.gameModel.potion.x;
+        let newY = this.gameModel.potion.y;
         let potionW = CONSTANT.POTION_WIDTH;  // 需要定义 POTION_WIDTH
         let potionH = CONSTANT.POTION_HEIGHT; // 需要定义 POTION_HEIGHT
         let offSetHalf = -potionW / 2;
@@ -225,73 +239,152 @@ export default class GameController {
     
         // 水平方向偏移量
         let offSetClimb = potionW / 4;
-    
-    
-        // // 检测是否可以攀爬
-        // let potionCanClimb = this.canClimb(newX + offSetHalf + offSetClimb, newY - offSetFeet,
-        //     this.gameModel.selectedLevel, tileSize, levelWidth) 
-        //     || this.canClimb(newX + potionW + offSetHalf - offSetClimb, newY - offSetFeet,
-        //     this.gameModel.selectedLevel, tileSize, levelWidth);
-    
-        // 水平移动
-        if (this.gameModel.keys['a']) {
-            newX -= this.gameModel.potion.speed; 
+        this.gameModel.potion.updatePotion(this.gameModel.cat[selectedLevel].x,this.gameModel.cat[selectedLevel].y);
+        console.log("showshow",this.gameModel.cat[selectedLevel].x,this.gameModel.cat[selectedLevel].y);
+        //检测是否可以合体
+        if(Math.abs(newX-this.gameModel.cat[selectedLevel].x)<100 && Math.abs(newY-this.gameModel.cat[selectedLevel].y)<100 && this.gameModel.flagp>50){
+            this.gameModel.cat[selectedLevel].isMerged = true;
+            setShowBack(true);
+            setShowPotion(false);
+            console.log("showshow",this.gameModel.cat[selectedLevel].isMerged,PotionX,PotionY);
+            this.gameModel.flagp=0;
         }
-        if (this.gameModel.keys['d']) {
-            newX += this.gameModel.potion.speed;
+        
+        if(!this.gameModel.cat[selectedLevel].isMerged && this.gameModel.flagp<60){
+            this.gameModel.flagp++;
+        }    //用来屏蔽黄油刚开始分开的时候
+     
+
+        if(this.gameModel.cat[selectedLevel].isMerged 
+            && (this.gameModel.keys['X']||this.gameModel.keys['x'])){
+                console.log("分离");
+                this.gameModel.cat[selectedLevel].isMerged = false;
+
+                // 修改spinelayer, 猫和黄油分开渲染
+                this.gameModel.potion.x=this.gameModel.cat[selectedLevel].x;
+                this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
+                setShowBack(false);
+                setShowPotion(true); 
         }
+
+
+        if (this.gameModel.keys['q'] && this.gameModel.potion.tanshe ) {     
+            this.gameModel.potion.facingLeft=true;
+            this.gameModel.cat[selectedLevel].isMerged = false;
+            this.gameModel.potion.x=this.gameModel.cat[selectedLevel].x;
+                this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
+                setShowBack(false);
+                setShowPotion(true); 
+           
+        }
+
+        if (this.gameModel.keys['w'] && this.gameModel.potion.tanshe ) {
+                 this.gameModel.cat[selectedLevel].isMerged = false;
+                 this.gameModel.potion.facingRight=true;
+                 this.gameModel.potion.x=this.gameModel.cat[selectedLevel].x;
+                this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
+                setShowBack(false);
+                setShowPotion(true); 
+               
+        }
+        console.log("mykey",this.gameModel.keys);
+
+
+        if (this.gameModel.cat[selectedLevel].isMerged) {
+            // 如果结合，面包跟随猫的位置
+            this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
+            this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y;
+            this.gameModel.potion.tanshe=true;
+        } 
+        else {
+            // 否则正常自由落体
+            if(this.gameModel.potion.tanshe && (this.gameModel.potion.onWall || this.gameModel.potion.onGround))
+            {
+             if(this.gameModel.potion.facingLeft){
+                 this.gameModel.potion.speed=-15;
+                 this.gameModel.potion.facingLeft=false; 
+                 this.gameModel.potion.velocityY= -35; //发射初速度
+                this.gameModel.potion.tanshe=false;
+             }
+             if(this.gameModel.potion.facingRight){
+                this.gameModel.potion.speed=15;
+                this.gameModel.potion.facingRight=false;
+                this.gameModel.potion.velocityY= -35; //发射初速度
+                this.gameModel.potion.tanshe=false;
+            }
+            }
+            
+        }
+
     
-        // // 攀爬墙时的垂直移动
-        // if (potionCanClimb) {
-        //     if (this.gameModel.keys['w']) {
-        //         newY -= this.gameModel.potion.speed;
-        //     }
-        //     if (this.gameModel.keys['s']) {
-        //         newY += this.gameModel.potion.speed;
-        //     }
-        // }
     
-        // // 如果按空格，让 potion 上升
-        // if (this.gameModel.keys[" "]) {
-        //     this.gameModel.potion.velocityY = this.gameModel.potion.jumpStrength;
-        //     this.gameModel.potion.onGround = false;
-        // }
+        // **碰撞检测**   不完善，left和right的面积太大
+        let left = this.isColliding(newX + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
     
-        // // 不在攀爬墙上时，应用重力
-        // if (!potionCanClimb) {
-        //     this.gameModel.potion.velocityY += this.gameModel.potion.gravity;
-        //     newY += this.gameModel.potion.velocityY;
-        // }
+        let right = this.isColliding(newX + potionW + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + potionW + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + potionW + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
     
-        // // **碰撞检测**
-        // let left = this.isColliding(newX + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isColliding(newX + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isColliding(newX + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
+        let bottom = this.isCollidingWithGround(newX + potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isCollidingWithGround(newX + 2 * potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isCollidingWithGround(newX + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isCollidingWithGround(newX + potionW + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
     
-        // let right = this.isColliding(newX + potionW + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isColliding(newX + potionW + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isColliding(newX + potionW + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
-    
-        // let bottom = this.isCollidingWithGround(newX + potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isCollidingWithGround(newX + 2 * potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isCollidingWithGround(newX + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isCollidingWithGround(newX + potionW + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
-    
-        // // 水平方向的碰撞处理
-        // if (!left && !right) { 
-        //     this.gameModel.potion.x = newX;
-        // } 
-    
-        // // 处理垂直碰撞
-        // if (!bottom) { 
-        //     this.gameModel.potion.y = newY;
-        //     if (!potionCanClimb) { 
-        //         this.gameModel.potion.onGround = false;
-        //     }
-        // } else { 
-        //     this.gameModel.potion.velocityY = 0;
-        //     this.gameModel.potion.onGround = true;
-        // }
+
+        // 真正的底部碰撞: 新位置 bottom 且新位置下方也碰撞 bottom, 并且 potion 不在上升状态中
+        let bottomDown = this.isColliding(newX + potionW / 3 + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth) // 下方中间两个点
+        || this.isColliding(newX + 2 * potionW / 3 + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth)
+        || this.isColliding(newX + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth) // 左下角
+        || this.isColliding(newX + potionW + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth);  // 右下角
+
+        let bottomReal = bottom && bottomDown && this.gameModel.potion.velocityY >= 0;
+
+
+        if(left || right){
+            this.gameModel.potion.onWall=true;
+        }
+        // 处理水平碰撞
+        if (left && this.gameModel.potion.speed<0) { 
+        this.gameModel.potion.speed=0; 
+        this.gameModel.potion.tanshe=true;
+        this.gameModel.potion.facingLeft=false;
+        } 
+        if (right && this.gameModel.potion.speed>0) { 
+            this.gameModel.potion.speed=0; 
+            this.gameModel.potion.tanshe=true;
+            this.gameModel.potion.facingRight=false;
+            } 
+
+        // 处理垂直碰撞
+            console.log("speedd",this.gameModel.potion.velocityY,this.gameModel.potion.onWall);
+        if (!bottomReal && !this.gameModel.cat[selectedLevel].isMerged) { // 没有上方和下方碰撞时, 竖直方向自由落体
+            if(this.gameModel.potion.onWall){
+                if(this.gameModel.potion.velocityY<15){
+                this.gameModel.potion.velocityY=this.gameModel.potion.velocityY+1.5;
+                 }
+            }
+            else if(this.gameModel.potion.velocityY<15){
+            this.gameModel.potion.velocityY= this.gameModel.potion.velocityY+1.5;
+            }
+            this.gameModel.potion.y=newY+this.gameModel.potion.velocityY;//重力逻辑
+            //this.gameModel.potion.speed= this.gameModel.potion.speed-0.5*(Math.sign(this.gameModel.potion.speed));
+            this.gameModel.potion.x=newX+this.gameModel.potion.speed;//空气阻力
+            this.gameModel.potion.onGround = false; // 空中
+        } else if (bottomReal) { // 碰到地面
+        if (this.gameModel.potion.velocityY > 0) { // 在下落并且有碰撞地面时, 设置状态为在地上
+            this.gameModel.potion.onGround = true;
+            this.gameModel.potion.velocityY = -this.gameModel.potion.velocityY * 0.1; // 轻微反弹，而不是完全清零
+        }
+        this.gameModel.potion.velocityY = 0; // 碰到地面时停止竖直向下的速度
+        this.gameModel.potion.speed=0;
+        this.gameModel.potion.tanshe=true;
+     
+        }
+
+
+
     }
     
 
@@ -352,13 +445,25 @@ export default class GameController {
 
 
     // 计算是否碰到水
-    inTrap(px, py, selectedLevel, tileSize, levelWidth){
+    inWater(px, py, selectedLevel, tileSize, levelWidth){
 
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
         // 检测：如果这个格子是水, 返回真
+        return this.gameModel.water[selectedLevel].data[tileIndex] !== 0;
+    }
+
+
+    // 计算是否碰到陷阱
+    beTraped(px, py, selectedLevel, tileSize, levelWidth){
+
+        let col = Math.floor(px / tileSize);
+        let row = Math.floor(py / tileSize);
+        let tileIndex = row * levelWidth[selectedLevel] + col;
+
+        // 检测：如果这个格子是trap, 返回真
         return this.gameModel.trap[selectedLevel].data[tileIndex] !== 0;
     }
 
@@ -427,26 +532,26 @@ export default class GameController {
                     this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y, 
                     CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)
                 && !this.gameModel.switches[selectedLevel][i].invincible ){
-                console.log("猫触碰到开关");
+                //console.log("猫触碰到开关");
                 // 添加音效....
                 this.gameModel.switches[selectedLevel][i].invincible = true; // 设置无效状态
                 this.gameModel.switches[selectedLevel][i].invincibleTimer = 0;//重置计时器
                 let img = this.gameModel.switches[selectedLevel][i].iniImgIndex;
                 if(this.gameModel.switches[selectedLevel][i].beActivated){ // 开关素材切换
-                    this.gameModel.switches[selectedLevel][i].imgIndex = img+1;
-                } else {
                     this.gameModel.switches[selectedLevel][i].imgIndex = img;
+                } else {
+                    this.gameModel.switches[selectedLevel][i].imgIndex = img+1;
                 }
                 // 开关状态反转
                 this.gameModel.switches[selectedLevel][i].beActivated = !this.gameModel.switches[selectedLevel][i].beActivated;
             }
             // 开关状态切换时, 通知机关墙块移动
             if(this.gameModel.switches[selectedLevel][i].prevState !== this.gameModel.switches[selectedLevel][i].beActivated){
-                console.log("开关状态切换, 机关墙移动");
+                //console.log("开关状态切换, 机关墙移动");
                 for(let j=0; j<this.gameModel.elevatingWalls[selectedLevel].length; j++){
                     if(this.gameModel.elevatingWalls[selectedLevel][j].id === this.gameModel.switches[selectedLevel][i].id){
                         this.gameModel.elevatingWalls[selectedLevel][j].move();
-                        console.log("机关墙应该在移动");
+                        //console.log("机关墙应该在移动");
                         console.log( this.gameModel.elevatingWalls[selectedLevel][j].range);
                         console.log( this.gameModel.elevatingWalls[selectedLevel][j].pixelRange);
                     }
