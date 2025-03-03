@@ -48,8 +48,8 @@ export default class MapLoader {
         // };
 
         const levels = [
-            "../../asset/level1.json",
-            "../../asset/level2-test.json"
+            "/asset/level1.json",
+            "/asset/level2-test.json"
         ];
         
         // 避免 this.levelIndex 影响所有关卡，每个关卡独立加载
@@ -67,10 +67,10 @@ export default class MapLoader {
         //     console.error(`Invalid level index: ${selectedLevel}`);
         // }
 
-        this.gameModel.assets.icon = loadImage("../../asset/spritesheet.png");
-        this.gameModel.assets.testcat = loadImage("../../asset/testcat.png");
-        this.gameModel.assets.bg = loadImage("../../asset/backgrounds.png");
-        this.gameModel.assets.teachCommand = loadImage("../../asset/teachCommand.png");
+        this.gameModel.assets.icon = loadImage("/asset/spritesheet.png");
+        this.gameModel.assets.testcat = loadImage("/asset/testcat.png");
+        this.gameModel.assets.bg = loadImage("/asset/backgrounds.png");
+        this.gameModel.assets.teachCommand = loadImage("/asset/teachCommand.png");
     }
 
     // Load the json file and parse it
