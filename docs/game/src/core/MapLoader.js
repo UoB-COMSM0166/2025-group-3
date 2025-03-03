@@ -29,103 +29,140 @@ export default class MapLoader {
     constructor(gameModel, levelIndex) {
         // set properties
         this.gameModel = gameModel;
-        this.levelIndex = levelIndex; // which level to load
-        this.levelData = {};  // store parsed json data
+        //this.levelIndex = levelIndex; // which level to load
+        //this.levelData = {};  // store parsed json data
+        this.levelData = [];  // store parsed json data 数组的每个元素代表每一关的json对象
 
-        // array initialization
-        this.gameModel.levelHeight[levelIndex] = 0;
-        this.gameModel.levelWidth[levelIndex] = 0;
-        this.gameModel.decorate[levelIndex] = []; 
-        this.gameModel.trap[levelIndex] = [];
-        this.gameModel.coll[levelIndex] = [];
-        this.gameModel.merge[levelIndex] = [];
-        this.gameModel.ice[levelIndex] = [];
-        this.gameModel.spring[levelIndex] = [];
-        this.gameModel.switches[levelIndex] = [];
-        this.gameModel.keysItem[levelIndex] = [];
-        this.gameModel.elevatingWalls[levelIndex] = [];
-        this.gameModel.flag[levelIndex] = null;
+       
     }
 
     loadGame() {
-        loadJSON('../../asset/level1.json', (jsonData) => this.parseJSON(jsonData)); // Use arrow function to bind context
+        //loadJSON('../../asset/level1.json', (jsonData) => this.parseJSON(jsonData)); // Use arrow function to bind context
+        //loadJSON('../../asset/level2-test.json', (jsonData) => this.parseJSON(jsonData));
+
+        // 关卡映射关系
+        // const levelMap = {
+        //     0: "../../asset/level1.json",
+        //     1: "../../asset/level2-test.json"
+        // };
+
+        const levels = [
+            "../../asset/level1.json",
+            "../../asset/level2-test.json"
+        ];
+        
+        // 避免 this.levelIndex 影响所有关卡，每个关卡独立加载
+        levels.forEach((levelPath, index) => {
+            loadJSON(levelPath, (jsonData) => this.parseJSON(jsonData, index));
+        });
+
+        // const selectedLevel = this.gameModel.selectedLevel; // 获取当前选中的关卡
+        // const levelPath = levelMap[selectedLevel]; // 获取对应的 JSON 文件路径
+
+        // // 根据选中的关卡选择加载哪个地图
+        // if (levelPath) {
+        //     loadJSON(levelPath, (jsonData) => this.parseJSON(jsonData, selectedLevel));
+        // } else {
+        //     console.error(`Invalid level index: ${selectedLevel}`);
+        // }
+
         this.gameModel.assets.icon = loadImage("../../asset/spritesheet.png");
-        this.gameModel.assets.testcat = loadImage("../../asset/testcat.png");//仅作测试,后续删除
+        this.gameModel.assets.testcat = loadImage("../../asset/testcat.png");
         this.gameModel.assets.bg = loadImage("../../asset/backgrounds.png");
         this.gameModel.assets.teachCommand = loadImage("../../asset/teachCommand.png");
     }
 
     // Load the json file and parse it
-    parseJSON(jsonData) {
-        this.levelData = jsonData; 
-        console.log(this.levelData); // test
-        this.gameModel.levelHeight[this.levelIndex] = this.levelData.height;
-        this.gameModel.levelWidth[this.levelIndex] = this.levelData.width; 
-        this.getColl();    
-        this.getGround();
-        this.getDecorate();
-        this.getTrap();
-        this.getMerge();
-        this.getIce();
-        this.getSpring();
-        this.getInteract();
-        this.getClimb();
-        this.getCatPosition();
+    parseJSON(jsonData, index) {
+        this.levelData[index] = jsonData;  // 让每个关卡数据独立存储
+        console.log(`Loaded level ${index}:`, this.levelData[index]); // 每一关的json对象
+
+         // array initialization
+         this.gameModel.levelHeight[index] = 0;
+         this.gameModel.levelWidth[index] = 0;
+         this.gameModel.decorate[index] = []; 
+         this.gameModel.trap[index] = [];
+         this.gameModel.coll[index] = [];
+         this.gameModel.merge[index] = [];
+         this.gameModel.ice[index] = [];
+         this.gameModel.spring[index] = [];
+         this.gameModel.switches[index] = [];
+         this.gameModel.keysItem[index] = [];
+         this.gameModel.elevatingWalls[index] = [];
+         this.gameModel.flag[index] = null;
+
+        //this.levelData = jsonData; 
+        //console.log(this.levelData); 
+
+        this.gameModel.levelHeight[index] = this.levelData[index].height;
+        this.gameModel.levelWidth[index] = this.levelData[index].width; 
+        this.getColl(index);    
+        this.getGround(index);
+        this.getDecorate(index);
+        this.getTrap(index);
+        this.getMerge(index);
+        this.getIce(index);
+        this.getSpring(index);
+        this.getInteract(index);
+        this.getClimb(index);
+        this.getCatPosition(index);
         console.log("ParseJSON done");
+
+        console.log("this.levelIndex", index);
     }
 
     // 从地图获取每一关猫的初始位置坐标
-    getCatPosition(){
-        let Layer = this.levelData.layers.find(layer => layer.name === "cat");
+    getCatPosition(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "cat");
         let catX = Layer.objects[0].x + CONSTANT.CAT_WIDTH/2; // 让猫的显示位置和地图位置对齐
         let catY = Layer.objects[0].y;
-        this.gameModel.cat[this.levelIndex] = new Capoo(catX, catY, this.levelIndex);
+        this.gameModel.cat[index] = new Capoo(catX, catY, index);
         this.gameModel.potion=new Potion(0,0);
         
     }
 
-    getColl(){
-        let Layer = this.levelData.layers.find(layer => layer.name === "coll");
-        this.gameModel.coll[this.levelIndex] = new Coll(Layer.data, this.levelIndex);
+    getColl(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "coll");
+        this.gameModel.coll[index] = new Coll(Layer.data, index);
     }
 
-    getGround(){
-        let Layer = this.levelData.layers.find(layer => layer.name === "ground");
-        this.gameModel.ground[this.levelIndex] = new Ground(Layer.data, this.levelIndex);
+    getGround(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "ground");
+        this.gameModel.ground[index] = new Ground(Layer.data, index);
     }
 
-    getClimb(){
-        let Layer = this.levelData.layers.find(layer => layer.name === "climb");
-        this.gameModel.climb[this.levelIndex] = new Climb(Layer.data, this.levelIndex);
+    getClimb(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "climb");
+        this.gameModel.climb[index] = new Climb(Layer.data, index);
     }
 
-    getDecorate(){
-        let Layer = this.levelData.layers.find(layer => layer.name === "decorate");
-        this.gameModel.decorate[this.levelIndex] = new Decorate(Layer.data, this.levelIndex);
+    getDecorate(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "decorate");
+        this.gameModel.decorate[index] = new Decorate(Layer.data, index);
     }
 
-    getTrap(){
-        let Layer = this.levelData.layers.find(layer => layer.name === "trap");
-        this.gameModel.trap[this.levelIndex] = new Trap(Layer.data, this.levelIndex);
+    getTrap(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "trap");
+        this.gameModel.trap[index] = new Trap(Layer.data, index);
     }
 
-    getMerge(){
-        let Layer = this.levelData.layers.find(layer => layer.name === "merge");
-        this.gameModel.merge[this.levelIndex] = new Merge(Layer.data, this.levelIndex);
+    getMerge(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "merge");
+        this.gameModel.merge[index] = new Merge(Layer.data, index);
     }
 
-    getIce(){
-        let Layer = this.levelData.layers.find(layer => layer.name === "ice");
-        this.gameModel.ice[this.levelIndex] = new Ice(Layer.data, this.levelIndex);
+    getIce(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "ice");
+        this.gameModel.ice[index] = new Ice(Layer.data,index);
     }
 
-    getSpring(){
-        let Layer = this.levelData.layers.find(layer => layer.name === "spring");
-        this.gameModel.spring[this.levelIndex] = new Spring(Layer.data, this.levelIndex);
+    getSpring(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "spring");
+        this.gameModel.spring[index] = new Spring(Layer.data, index);
     }
 
-    getInteract(){
-        let Layer = this.levelData.layers.find(layer => layer.name === "interact");
+    getInteract(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "interact");
         let keyNum = 0;
         let switchNum = 0;
         let elevatingWallNum = 0;
@@ -135,14 +172,14 @@ export default class MapLoader {
                 let x = Layer.objects[i].x;
                 let y = Layer.objects[i].y - CONSTANT.TILE_SIZE;
                 let imgIndex = Layer.objects[i].gid;
-                this.gameModel.keysItem[this.levelIndex][keyNum++] = new KeysItem(x,y,imgIndex,this.levelIndex);
+                this.gameModel.keysItem[index][keyNum++] = new KeysItem(x,y,imgIndex,index);
             }
             else if(interType === "switch"){
                 let x = Layer.objects[i].x;
                 let y = Layer.objects[i].y - CONSTANT.TILE_SIZE;
                 let imgIndex = Layer.objects[i].gid;
                 let id = Layer.objects[i].properties.find(p => p.name === "id").value;
-                this.gameModel.switches[this.levelIndex][switchNum++] = new Switches(x,y,imgIndex,this.levelIndex,id);
+                this.gameModel.switches[index][switchNum++] = new Switches(x,y,imgIndex,index,id);
                 //console.log(switches);
             }
             else if(interType === "elevator"){
@@ -153,14 +190,14 @@ export default class MapLoader {
                 let range = Layer.objects[i].properties.find(p => p.name === "range").value;
                 let towards = Layer.objects[i].properties.find(p => p.name === "towards").value;
                 //console.log("range: "+ range);
-                this.gameModel.elevatingWalls[this.levelIndex][elevatingWallNum++] = new ElevatingWalls(x,y,imgIndex,this.levelIndex,id,range,towards);
+                this.gameModel.elevatingWalls[index][elevatingWallNum++] = new ElevatingWalls(x,y,imgIndex,index,id,range,towards);
                 //console.log(elevatingWalls);
             }
             else if(interType === "flag"){
                 let x = Layer.objects[i].x;
                 let y = Layer.objects[i].y - CONSTANT.TILE_SIZE;
                 let imgIndex = Layer.objects[i].gid;
-                this.gameModel.flag[this.levelIndex] = new Flag(x,y,imgIndex,this.levelIndex);
+                this.gameModel.flag[index] = new Flag(x,y,imgIndex,index);
             }
         }
     }

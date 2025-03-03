@@ -14,7 +14,7 @@ export default class GameView {
 
     // main function of GameView
     render() {
-        //console.log('Current game state:', this.gameModel.gameState);
+        console.log('Current game state:', this.gameModel.gameState);
 
         const stateHandlers = {
             [GAME_STATE.START]: this.drawStartScreen.bind(this),
@@ -86,5 +86,20 @@ export default class GameView {
 
     drawGameOverScreen() {}
 
-    drawLevelCompleteScreen() {}
+    drawLevelCompleteScreen() { // 仅测试, 待修改
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        background(123, 180, 145);
+        //...这里插入关卡选择背景图片
+        textAlign(CENTER, CENTER);
+        textSize(26);
+        fill(0, 0, 0);
+        strokeWeight(3);
+        stroke(255, 255, 255);
+        text("Level Complete!", width/2, height/2 - 50);
+        textSize(20);
+        strokeWeight(2);
+        text("Press ANY KEY for next level", width/2, height/2 +50);
+        text("Press ESC to return to level select", width/2, height/2 +100);
+    }
 }

@@ -475,26 +475,26 @@ export default class GameController {
                     this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y, 
                     CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)
                 && !this.gameModel.switches[selectedLevel][i].invincible ){
-                console.log("猫触碰到开关");
+                //console.log("猫触碰到开关");
                 // 添加音效....
                 this.gameModel.switches[selectedLevel][i].invincible = true; // 设置无效状态
                 this.gameModel.switches[selectedLevel][i].invincibleTimer = 0;//重置计时器
                 let img = this.gameModel.switches[selectedLevel][i].iniImgIndex;
                 if(this.gameModel.switches[selectedLevel][i].beActivated){ // 开关素材切换
-                    this.gameModel.switches[selectedLevel][i].imgIndex = img+1;
-                } else {
                     this.gameModel.switches[selectedLevel][i].imgIndex = img;
+                } else {
+                    this.gameModel.switches[selectedLevel][i].imgIndex = img+1;
                 }
                 // 开关状态反转
                 this.gameModel.switches[selectedLevel][i].beActivated = !this.gameModel.switches[selectedLevel][i].beActivated;
             }
             // 开关状态切换时, 通知机关墙块移动
             if(this.gameModel.switches[selectedLevel][i].prevState !== this.gameModel.switches[selectedLevel][i].beActivated){
-                console.log("开关状态切换, 机关墙移动");
+                //console.log("开关状态切换, 机关墙移动");
                 for(let j=0; j<this.gameModel.elevatingWalls[selectedLevel].length; j++){
                     if(this.gameModel.elevatingWalls[selectedLevel][j].id === this.gameModel.switches[selectedLevel][i].id){
                         this.gameModel.elevatingWalls[selectedLevel][j].move();
-                        console.log("机关墙应该在移动");
+                        //console.log("机关墙应该在移动");
                         console.log( this.gameModel.elevatingWalls[selectedLevel][j].range);
                         console.log( this.gameModel.elevatingWalls[selectedLevel][j].pixelRange);
                     }
