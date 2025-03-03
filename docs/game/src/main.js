@@ -47,6 +47,7 @@ window.preload = function () {
 }
 
 window.setup = function () {
+
   // 保证所有音频素材都加载完再开始游戏
   let checkSoundsLoaded = setInterval(() => {
     if (window.allSoundsLoaded) {
@@ -70,6 +71,7 @@ window.setup = function () {
         loop();  // 在音频加载完后启动 draw()
     }
   }, 100);
+
   noLoop(); // 防止 draw() 在 setup() 完成前运行
     
 }
@@ -80,42 +82,41 @@ window.draw = function () {
     console.log("Waiting for sounds to load or gameView to initialize...");
     return;
   }
-    gameView.render();
-    // 阻止默认按键行为
-    window.addEventListener("keydown", function(event) {
-      let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
-      if (keysToPrevent.includes(event.key)) {
+
+  gameView.render();
+  // 阻止默认按键行为
+  window.addEventListener("keydown", function(event) {
+    let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
+    if (keysToPrevent.includes(event.key)) {
+        event.preventDefault();
+    }
+    // 阻止浏览器缩放
+    if (event.ctrlKey) {
+      if (event.key === "-" || event.key === "+") {
           event.preventDefault();
       }
-      // 阻止浏览器缩放
-      if (event.ctrlKey) {
-        if (event.key === "-" || event.key === "+") {
-            event.preventDefault();
-        }
-      }
-    });
-    // 游戏界面的所有状态和位置更新函数
-    let selectedLevel = gameModel.selectedLevel;
-    if (gameModel.gameState === GAME_STATE.PLAYING) {
-      gameController.moveCapoo();
-      gameController.movePotion();
-      gameController.controlMergedWall();
-      gameController.controlElevatingWall();
-      // 判定是否触碰旗帜结束当前关卡
-      if (gameModel.flag[selectedLevel].visible && gameModel.flag[selectedLevel].isNear(
-        gameModel.cat[selectedLevel].x, gameModel.cat[selectedLevel].y,
-        CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)) {
-        window.assets.levelComplete.play();
-        console.log("关卡完成");
-        gameModel.gameState = GAME_STATE.LEVEL_COMPLETE;
-      }
     }
+  });
+    
+  // 游戏界面的所有状态和位置更新函数
+  let selectedLevel = gameModel.selectedLevel;
+  if (gameModel.gameState === GAME_STATE.PLAYING) {
+    gameController.moveCapoo();
+    gameController.movePotion();
+    gameController.controlMergedWall();
+    gameController.controlElevatingWall();
 
-    // 测试猫猫的坐标
-    // let levelIndex = gameModel.selectedLevel;
-    // let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;
-    // let offsetY = gameModel.cat[levelIndex].y - window.innerHeight / 2;
-    // circle(gameModel.cat[gameModel.selectedLevel].x - offsetX, gameModel.cat[gameModel.selectedLevel].y - offsetY, 10);
+    // 判定是否触碰旗帜结束当前关卡
+    if (gameModel.flag[selectedLevel].visible && gameModel.flag[selectedLevel].isNear(
+      gameModel.cat[selectedLevel].x, gameModel.cat[selectedLevel].y,
+      CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)) {
+      window.assets.levelComplete.play();
+      console.log("关卡完成");
+      gameModel.gameState = GAME_STATE.LEVEL_COMPLETE;
+    }
+      
+  }
+
 }
 
 window.keyPressed = function () {

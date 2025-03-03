@@ -20,79 +20,15 @@ export function getDrawPosition(i, levelWidth) {
     return { x: xCoordinate, y: yCoordinate };
 }
 
-export function showEntities(gameModel, assets) {
-    let levelIndex = gameModel.selectedLevel;
-    // let offsetX = (gameModel.player[levelIndex].x - CONSTANT.GAME_WIDTH / 2);
-    // let offsetY = (gameModel.player[levelIndex].y - CONSTANT.GAME_HEIGHT / 2);
-    let levelWidth = gameModel.levelWidth[gameModel.selectedLevel]; // 当前关卡的宽度
-
-    const checkDataLoaded = setInterval(() => {
-        if (gameModel.coll.length > 0) { // 确保数据已经加载
-            let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;
-            let offsetY = gameModel.cat[levelIndex].y - window.innerHeight / 2;
-            //console.log("地图宽度:", levelWidth);
-            //console.log("数据已加载:", gameModel.coll[0]);
-            clearInterval(checkDataLoaded); // 停止轮询
-            image(gameModel.assets.bg, 0, 0, windowWidth, windowHeight * 5 / 4);
-            for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
-                // elevatingWalls[selectedLevel][i].update();
-                showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets, false);
-            } // 机关墙需要显示在碰撞层下面,因此先加载
-            showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets, levelWidth);
-            showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets, levelWidth);
-            showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets, levelWidth);
-            showTerrain(gameModel.water[levelIndex], offsetX, offsetY, assets, levelWidth);
-            showTerrain(gameModel.ice[levelIndex], offsetX, offsetY, assets, levelWidth);
-            showTerrain(gameModel.climb[levelIndex], offsetX, offsetY, assets, levelWidth);
-            showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets, levelWidth);   
-            if(gameModel.merge[levelIndex].visible){
-                showTerrain(gameModel.merge[levelIndex], offsetX, offsetY, assets, levelWidth);      
-            }     
-            for(let i =0; i<gameModel.keysItem[levelIndex].length; i++){
-                if(gameModel.keysItem[levelIndex][i].visible){
-                    showItem(gameModel.keysItem[levelIndex][i], offsetX, offsetY, assets, true);
-                }
-            }
-            for(let i =0; i<gameModel.switches[levelIndex].length; i++){
-            // switches[selectedLevel][i].update();
-                showItem(gameModel.switches[levelIndex][i], offsetX, offsetY, assets, false);
-            }
-            if(gameModel.flag[levelIndex].visible){
-                showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets, true);
-            }
-        //    gameModel.potion.updatePotion(gameModel.potion.x-gameModel.cat[levelIndex].x,gameModel.potion.y-gameModel.cat[levelIndex].y);
+// export function showEntities(gameModel, assets) {
+//     const checkDataLoaded = setInterval(() => {
+//         if (gameModel.coll.length > 0) { // 确保数据已经加载
             
-            //console.log("tag:potion",gameModel.potion.x,gameModel.cat[levelIndex].x,gameModel.potion.y,gameModel.cat[levelIndex].y,PotionX,PotionY);
-            //gameModel.potion.updatePotion(1000,1000);
-            image(gameModel.assets.teachCommand, 0, 0, 1920/5, 1080/5);
-        }
-    }, 1); // 每 10ms 检查一次
+//         }
+//     }, 1); // 每 10ms 检查一次
+// }
 
-    
-
-    // showItem(gameModel.flag[levelIndex], offsetX, offsetY, assets);
-
-    // // 显示钥匙
-    // gameModel.keysItem[levelIndex].forEach((key) => {
-    //     showItem(key, offsetX, offsetY, assets);
-    // });
-
-    // // 显示升降墙
-    // gameModel.elevatingWalls[levelIndex].forEach((wall) => {
-    //     showEntity(wall, offsetX, offsetY, assets);
-    // });
-
-    // // 显示开关
-    // gameModel.switches[levelIndex].forEach((switchItem) => {
-    //     showEntity(switchItem, offsetX, offsetY, assets);
-    // });
-
-    // // 显示旗帜
-
-    
-}
-
-function showTerrain(entity, offsetX, offsetY, assets, levelWidth) {
+export function showTerrain(entity, offsetX, offsetY, assets, levelWidth) {
     if (!entity) {
         console.log("!!!!!noentitey!!!!!");
         return;
@@ -117,7 +53,7 @@ function showTerrain(entity, offsetX, offsetY, assets, levelWidth) {
     }
 }
 
-function showItem(entity, offsetX, offsetY, assets, isAnimated) {
+export function showItem(entity, offsetX, offsetY, assets, isAnimated) {
     if (isAnimated) {
         entity.frameCounter++;
         if (entity.frameCounter % CONSTANT.FRAME_INTERVAL === 0) { 
