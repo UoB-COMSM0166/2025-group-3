@@ -3,7 +3,10 @@
 
 ## Your Game
 
-Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-3/game/)
+<div align="center">
+  <a href="https://uob-comsm0166.github.io/2025-group-3/game/">🎮 Capoo Game Demo 😻</a>
+</div>
+<br>
 
 Your game lives in the [/docs](/docs) folder, and is published using Github pages to the link above.
 
