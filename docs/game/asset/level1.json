@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"C:\/Users\/14787\/Desktop\/level1.json"
+         "target":"level1.json"
         }
     },
  "height":50,

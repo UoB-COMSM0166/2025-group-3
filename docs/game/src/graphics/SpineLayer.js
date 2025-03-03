@@ -66,7 +66,7 @@ function init() {
     camera.position.y = 0;
     camera.position.z = 400;
     scene = new THREE.Scene();
-    renderer = new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000, 0);
     document.body.appendChild(renderer.domElement);
