@@ -2,18 +2,19 @@ import { CONSTANT } from '../core/Utils.js';
 //import { showCapoo/*, CapooX, CapooY*/ } from '../main';
 import {PotionX,PotionY} from "../core/Utils.js";
 
+
 export function getTilePosition(i) {
     i--; // 测试地图导出json后坐标从2开始, 需调整为1
-    let row = Math.floor((i - 1) / 30);
+    let row = Math.floor((i - 1) / 30); // 瓦片png一行30个
     let col = (i - 1) % 30;
     let xCoordinate = col * (CONSTANT.TILE_SIZE + CONSTANT.TILE_MARGIN);
     let yCoordinate = row * (CONSTANT.TILE_SIZE + CONSTANT.TILE_MARGIN);
     return { x: xCoordinate, y: yCoordinate };
 }
 
-export function getDrawPosition(i) {
-    let row = Math.floor(i / 100);
-    let col = i % 100;
+export function getDrawPosition(i, levelWidth) {
+    let row = Math.floor(i / levelWidth); // 100替换为地图宽度
+    let col = i % levelWidth;
     let xCoordinate = col * CONSTANT.TILE_SIZE;
     let yCoordinate = row * CONSTANT.TILE_SIZE;
     return { x: xCoordinate, y: yCoordinate };
@@ -23,12 +24,13 @@ export function showEntities(gameModel, assets) {
     let levelIndex = gameModel.selectedLevel;
     // let offsetX = (gameModel.player[levelIndex].x - CONSTANT.GAME_WIDTH / 2);
     // let offsetY = (gameModel.player[levelIndex].y - CONSTANT.GAME_HEIGHT / 2);
-    
+    let levelWidth = gameModel.levelWidth[gameModel.selectedLevel]; // 当前关卡的宽度
 
     const checkDataLoaded = setInterval(() => {
         if (gameModel.coll.length > 0) { // 确保数据已经加载
             let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;
             let offsetY = gameModel.cat[levelIndex].y - window.innerHeight / 2;
+            console.log("地图宽度:", levelWidth);
             //console.log("数据已加载:", gameModel.coll[0]);
             clearInterval(checkDataLoaded); // 停止轮询
             image(gameModel.assets.bg, 0, 0, windowWidth, windowHeight * 5 / 4);
@@ -36,15 +38,15 @@ export function showEntities(gameModel, assets) {
                 // elevatingWalls[selectedLevel][i].update();
                 showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets, false);
             } // 机关墙需要显示在碰撞层下面,因此先加载
-            showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets);
-            showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets);
-            showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets);
-            showTerrain(gameModel.water[levelIndex], offsetX, offsetY, assets);
-            showTerrain(gameModel.ice[levelIndex], offsetX, offsetY, assets);
-            showTerrain(gameModel.climb[levelIndex], offsetX, offsetY, assets);
-            showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets);   
+            showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets, levelWidth);
+            showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets, levelWidth);
+            showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets, levelWidth);
+            showTerrain(gameModel.water[levelIndex], offsetX, offsetY, assets, levelWidth);
+            showTerrain(gameModel.ice[levelIndex], offsetX, offsetY, assets, levelWidth);
+            showTerrain(gameModel.climb[levelIndex], offsetX, offsetY, assets, levelWidth);
+            showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets, levelWidth);   
             if(gameModel.merge[levelIndex].visible){
-                showTerrain(gameModel.merge[levelIndex], offsetX, offsetY, assets);      
+                showTerrain(gameModel.merge[levelIndex], offsetX, offsetY, assets, levelWidth);      
             }     
             for(let i =0; i<gameModel.keysItem[levelIndex].length; i++){
                 if(gameModel.keysItem[levelIndex][i].visible){
@@ -90,7 +92,7 @@ export function showEntities(gameModel, assets) {
     
 }
 
-function showTerrain(entity, offsetX, offsetY, assets) {
+function showTerrain(entity, offsetX, offsetY, assets, levelWidth) {
     if (!entity) {
         console.log("!!!!!noentitey!!!!!");
         return;
@@ -104,7 +106,7 @@ function showTerrain(entity, offsetX, offsetY, assets) {
             continue;  
         }
         let coord1 = getTilePosition(tileId);
-        let coord2 = getDrawPosition(i, entity.levelIndex);
+        let coord2 = getDrawPosition(i, levelWidth);
         image(
             assets.icon,
             coord2.x - offsetX, coord2.y - offsetY,
