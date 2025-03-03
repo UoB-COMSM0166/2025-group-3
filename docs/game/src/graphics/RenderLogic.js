@@ -30,7 +30,7 @@ export function showEntities(gameModel, assets) {
         if (gameModel.coll.length > 0) { // 确保数据已经加载
             let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;
             let offsetY = gameModel.cat[levelIndex].y - window.innerHeight / 2;
-            console.log("地图宽度:", levelWidth);
+            //console.log("地图宽度:", levelWidth);
             //console.log("数据已加载:", gameModel.coll[0]);
             clearInterval(checkDataLoaded); // 停止轮询
             image(gameModel.assets.bg, 0, 0, windowWidth, windowHeight * 5 / 4);
