@@ -189,10 +189,10 @@ export default class GameController {
             || this.isCollidingWithGround(newX+catW+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右下角
         
         // 真正的顶部碰撞: 新位置碰撞top且新位置上方也碰撞top, 并且角色不在下落状态中
-        let topUp = this.isColliding(newX+catW/3+offSetHalf, newY-catH-offSetFeet -70, selectedLevel, tileSize, levelWidth) // 上方中间两个点
-        || this.isColliding(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet-70, selectedLevel, tileSize, levelWidth) 
-        || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet-70, selectedLevel, tileSize, levelWidth)     //左上角
-        || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet-70, selectedLevel, tileSize, levelWidth); //右上角
+        let topUp = this.isColliding(newX+catW/3+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth) // 上方中间两个点
+        || this.isColliding(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth) 
+        || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth)     //左上角
+        || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth); //右上角
 
         let topReal = top && topUp && this.gameModel.cat[selectedLevel].velocityY <= 0;;
 
