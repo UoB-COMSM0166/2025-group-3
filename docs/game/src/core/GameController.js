@@ -2,6 +2,7 @@ import MapLoader from "./MapLoader";
 import { CONSTANT, Message } from "./Utils";
 import Potion from "../entities/characters/Potion";
 import {setShowBack,setShowPotion,PotionX,PotionY} from "../core/Utils";
+//import { assets } from "../main";
 
 // 用于所有关卡的控制和交互
 
@@ -68,7 +69,8 @@ export default class GameController {
         // 判断猫是否入水(以最下边中心点计算), 重置回出生点
         if(this.inWater(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
             selectedLevel, tileSize, levelWidth)){
-            // 播放死亡音效等
+
+            window.assets.death.play();
 
             let message1 = "Cats dissolve easily in water!"
             this.gameModel.messages.push(new Message(message1,width/2,4*height/5,3000,100,{},"playing"));
@@ -90,7 +92,9 @@ export default class GameController {
             || this.beTraped(this.gameModel.cat[selectedLevel].x+offSetTrapped, this.gameModel.cat[selectedLevel].y-offSetFeet*2, 
                 selectedLevel, tileSize, levelWidth);
         if(beTrapedUp || beTrapedBottom){
-            // 播放死亡音效等
+            
+            window.assets.death.play();
+
             let message1 = "You are trapped!"
             this.gameModel.messages.push(new Message(message1,width/2,4*height/5,3000,100,{},"playing"));
 
@@ -119,6 +123,7 @@ export default class GameController {
                 selectedLevel, tileSize, levelWidth);
         if(catUseSpring){ // 给一个向上的加速度
             //console.log("弹簧床");
+            window.assets.spring.play();
             //this.gameModel.cat[selectedLevel].velocityY = Math.abs(this.gameModel.cat[selectedLevel].velocityY) * 0.2;
             this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength * 2; // 赋予向上的初速度
             this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
@@ -198,6 +203,7 @@ export default class GameController {
 
         //console.log(top + "|"+ topUp + "|"+ topReal + "||" +bottom + "|"+ bottomDown + "|"+ bottomReal);
 
+        //console.log(right + "|"+ left + "||" + topReal + "|"+ bottomReal);
 
         // 处理水平碰撞
         if (!left && !right) { 
@@ -496,7 +502,7 @@ export default class GameController {
         for(let i = 0; i < this.gameModel.keysItem[selectedLevel].length; i++){
             if(this.gameModel.keysItem[selectedLevel][i].visible 
                 && this.gameModel.keysItem[selectedLevel][i].isNear(px,py,CONSTANT.TILE_SIZE,CONSTANT.CAT_WIDTH,CONSTANT.CAT_HEIGHT)){
-                //assets.getDiamondSound.play();//播放音效
+                window.assets.getKey.play();
                 this.gameModel.keysItem[selectedLevel][i].visible = false;
                 this.gameModel.cat[selectedLevel].keyNum++;
                 //console.log("钥匙数量:", this.gameModel.cat[selectedLevel].keyNum);
@@ -533,7 +539,7 @@ export default class GameController {
                     CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)
                 && !this.gameModel.switches[selectedLevel][i].invincible ){
                 //console.log("猫触碰到开关");
-                // 添加音效....
+                window.assets.switch.play();
                 this.gameModel.switches[selectedLevel][i].invincible = true; // 设置无效状态
                 this.gameModel.switches[selectedLevel][i].invincibleTimer = 0;//重置计时器
                 let img = this.gameModel.switches[selectedLevel][i].iniImgIndex;
