@@ -29,19 +29,19 @@ window.preload = function () {
     }
 }
 
-  window.assets.bgm = loadSound("/2025-group-3/game/asset/sounds/background_music.wav",soundLoaded);
+  window.assets.bgm = loadSound("/asset/sounds/background_music.wav",soundLoaded);
 
-  window.assets.splitPotion = loadSound("/2025-group-3/game/asset/sounds/effect_e010_splitPotion.wav",soundLoaded);
-  window.assets.getPotion = loadSound("/2025-group-3/game/asset/sounds/effect_e012_getPotion.wav",soundLoaded);
+  window.assets.splitPotion = loadSound("/asset/sounds/effect_e010_splitPotion.wav",soundLoaded);
+  window.assets.getPotion = loadSound("/asset/sounds/effect_e012_getPotion.wav",soundLoaded);
 
-  window.assets.getKey = loadSound("/2025-group-3/game/asset/sounds/effect_e002_getkey.wav",soundLoaded);
-  window.assets.death = loadSound("/2025-group-3/game/asset/sounds/effect_e014_death.wav",soundLoaded);
-  window.assets.spring = loadSound("/2025-group-3/game/asset/sounds/effect_e016_spring.wav",soundLoaded);
-  window.assets.switch = loadSound("/2025-group-3/game/asset/sounds/effect_e021_switch.wav",soundLoaded);
-  window.assets.levelComplete = loadSound("/2025-group-3/game/asset/sounds/effect_e026_levelComplete.mp3",soundLoaded);
+  window.assets.getKey = loadSound("/asset/sounds/effect_e002_getkey.wav",soundLoaded);
+  window.assets.death = loadSound("/asset/sounds/effect_e014_death.wav",soundLoaded);
+  window.assets.spring = loadSound("/asset/sounds/effect_e016_spring.wav",soundLoaded);
+  window.assets.switch = loadSound("/asset/sounds/effect_e021_switch.wav",soundLoaded);
+  window.assets.levelComplete = loadSound("/asset/sounds/effect_e026_levelComplete.mp3",soundLoaded);
 
-  window.assets.userStartGame = loadSound("/2025-group-3/game/asset/sounds/effect_e017_miaomiaomiao.wav",soundLoaded); 
-  window.assets.userSelectLevel = loadSound("/2025-group-3/game/asset/sounds/effect_e020_miao.wav",soundLoaded);
+  window.assets.userStartGame = loadSound("/asset/sounds/effect_e017_miaomiaomiao.wav",soundLoaded); 
+  window.assets.userSelectLevel = loadSound("/asset/sounds/effect_e020_miao.wav",soundLoaded);
 
   //console.log("Main preload done");
 }

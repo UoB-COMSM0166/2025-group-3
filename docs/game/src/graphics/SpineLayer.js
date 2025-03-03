@@ -9,7 +9,7 @@ import { showPotion,showBack,PotionX, PotionY } from "../core/Utils";
 let scene, camera, renderer; // 场景, 相机, 渲染器
 let canvas; // 画布
 let lastFrameTime = Date.now() / 1000;  // 上一帧时间,用于计算动画的时间增量
-let baseUrl = "/2025-group-3/game/asset/spine/"; 
+let baseUrl = "/asset/spine/"; 
 
 // 4 套 Spine 模型资源（主体、脸部、帽子、背部）
 let atlas;
