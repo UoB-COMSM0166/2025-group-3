@@ -18,7 +18,7 @@ let soundsLoaded = 0; // 用于计数音频个数
 const totalSounds = 10; // !!改成所有音频素材的数量!!
 
 window.preload = function () {
-  console.log("Main preload done");
+  
 
   function soundLoaded() {
     soundsLoaded++;
@@ -42,6 +42,8 @@ window.preload = function () {
 
   window.assets.userStartGame = loadSound("../../asset/sounds/effect_e017_miaomiaomiao.wav",soundLoaded); 
   window.assets.userSelectLevel = loadSound("../../asset/sounds/effect_e020_miao.wav",soundLoaded);
+
+  //console.log("Main preload done");
 }
 
 window.setup = function () {
