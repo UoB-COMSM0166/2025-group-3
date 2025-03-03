@@ -161,13 +161,15 @@ export default class GameController {
 
         let left   = this.isColliding(newX+offSetHalf, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth) // 左边中间两个点
             || this.isColliding(newX+offSetHalf, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth);  // 左上角
+            || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) // 左上角
+            || this.isColliding(newX+offSetHalf, newY-offSetFeet*3/2, selectedLevel, tileSize, levelWidth);  // 左下角向上一点
 
         let right  = this.isColliding(newX+catW+offSetHalf, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth)  // 右边中间两个点
             || this.isColliding(newX+catW+offSetHalf, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右上
+            || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) // 右上
+            || this.isColliding(newX+catW+offSetHalf, newY-offSetFeet*3/2, selectedLevel, tileSize, levelWidth);  //右下角向上一点
 
-        let topOffset = catH/3; // 只用于top的偏移量,相当于加上罐子高度, 因为碰到顶的时候必有罐子在身上
+        let topOffset = catH/5; // 只用于top的偏移量,相当于加上罐子高度, 因为碰到顶的时候必有罐子在身上
         let top    = this.isCollidingWithGround(newX+catW/3+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth) // 上方中间两个点
             || this.isCollidingWithGround(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth) 
             || this.isCollidingWithGround(newX+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth)     //左上角
