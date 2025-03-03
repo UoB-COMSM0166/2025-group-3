@@ -40,6 +40,7 @@ export default class GameModel {
         this.levelWidth = [];
         this.decorate = [];
         this.trap = [];
+        this.water = [];
         this.coll = [];
         this.ground = [];
         this.merge = [];

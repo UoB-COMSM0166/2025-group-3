@@ -49,7 +49,7 @@ export default class GameController {
 
         // 钥匙满时, flag设置为显示
         if(this.gameModel.cat[selectedLevel].keyNum == this.gameModel.keysItem[selectedLevel].length){
-            console.log("旗子显示");
+            //console.log("旗子显示");
             this.gameModel.flag[selectedLevel].visible = true;
         }
 
@@ -76,7 +76,7 @@ export default class GameController {
 
 
         // 判断猫是否入水(以最下边中心点计算), 重置回出生点
-        if(this.inTrap(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
+        if(this.inWater(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
             selectedLevel, tileSize, levelWidth)){
             // 播放死亡音效等
 
@@ -87,6 +87,28 @@ export default class GameController {
             this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
             return;
         }
+
+        
+        // 判断猫是否碰到陷阱(上下边分別检测两个点), 重置回出生点
+        let offSetTrapped = catW/4;
+        let beTrapedUp = this.beTraped(this.gameModel.cat[selectedLevel].x-offSetTrapped, this.gameModel.cat[selectedLevel].y-catH, 
+            selectedLevel, tileSize, levelWidth)
+            ||this.beTraped(this.gameModel.cat[selectedLevel].x+offSetTrapped, this.gameModel.cat[selectedLevel].y-catH, 
+                selectedLevel, tileSize, levelWidth);
+        let beTrapedBottom = this.beTraped(this.gameModel.cat[selectedLevel].x-offSetTrapped, this.gameModel.cat[selectedLevel].y-offSetFeet*2, 
+            selectedLevel, tileSize, levelWidth) 
+            || this.beTraped(this.gameModel.cat[selectedLevel].x+offSetTrapped, this.gameModel.cat[selectedLevel].y-offSetFeet*2, 
+                selectedLevel, tileSize, levelWidth);
+        if(beTrapedUp || beTrapedBottom){
+            // 播放死亡音效等
+            let message1 = "You are trapped!"
+            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,3000,100,{},"playing"));
+
+            this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
+            this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
+            return;
+        }
+
 
         // 计算猫是否处于攀爬墙位置(给予一个offSetClimb的差值, 确保不是在刚碰到攀爬梯子的边缘时就能攀爬)
         let offSetClimb = catW/4;  // 用于攀爬墙的水平偏移量
@@ -106,7 +128,7 @@ export default class GameController {
             || this.canUseSpring(this.gameModel.cat[selectedLevel].x - offSetSpring, this.gameModel.cat[selectedLevel].y-offSetFeet,
                 selectedLevel, tileSize, levelWidth);
         if(catUseSpring){ // 给一个向上的加速度
-            console.log("弹簧床");
+            //console.log("弹簧床");
             //this.gameModel.cat[selectedLevel].velocityY = Math.abs(this.gameModel.cat[selectedLevel].velocityY) * 0.2;
             this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength * 2; // 赋予向上的初速度
             this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
@@ -143,7 +165,7 @@ export default class GameController {
             newY += this.gameModel.cat[selectedLevel].velocityY;
         }
 
-        // 检查猫的四条边界是否碰撞: 每条边取两个点
+        // 检查猫的四条边界是否碰撞: 每条边取至少三个点
         /* 水平方向偏移半个身距(-catW/2), 并且竖直方向偏移一个脚底距离(offSetFeet=-catH/10)
            注意碰撞检测不可以阉割, 因为猫的大小>>图块大小, 减少检测点会导致卡墙里 */
 
@@ -155,10 +177,11 @@ export default class GameController {
             || this.isColliding(newX+catW+offSetHalf, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
             || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右上
 
-        let top    = this.isCollidingWithGround(newX+catW/3+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) // 上方中间两个点
-            || this.isCollidingWithGround(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) 
-            || this.isCollidingWithGround(newX+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth)     //左上角
-            || this.isCollidingWithGround(newX+catW+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth); //右上角
+        let topOffset = catH/3; // 只用于top的偏移量,相当于加上罐子高度, 因为碰到顶的时候必有罐子在身上
+        let top    = this.isCollidingWithGround(newX+catW/3+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth) // 上方中间两个点
+            || this.isCollidingWithGround(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth) 
+            || this.isCollidingWithGround(newX+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth)     //左上角
+            || this.isCollidingWithGround(newX+catW+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth); //右上角
 
         let bottom = this.isCollidingWithGround(newX+catW/3+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth) // 下方中间两个点
             || this.isCollidingWithGround(newX+2*catW/3+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth)
@@ -400,13 +423,25 @@ export default class GameController {
 
 
     // 计算是否碰到水
-    inTrap(px, py, selectedLevel, tileSize, levelWidth){
+    inWater(px, py, selectedLevel, tileSize, levelWidth){
 
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
         // 检测：如果这个格子是水, 返回真
+        return this.gameModel.water[selectedLevel].data[tileIndex] !== 0;
+    }
+
+
+    // 计算是否碰到陷阱
+    beTraped(px, py, selectedLevel, tileSize, levelWidth){
+
+        let col = Math.floor(px / tileSize);
+        let row = Math.floor(py / tileSize);
+        let tileIndex = row * levelWidth[selectedLevel] + col;
+
+        // 检测：如果这个格子是trap, 返回真
         return this.gameModel.trap[selectedLevel].data[tileIndex] !== 0;
     }
 

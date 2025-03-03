@@ -14,7 +14,7 @@ export default class GameView {
 
     // main function of GameView
     render() {
-        console.log('Current game state:', this.gameModel.gameState);
+        //console.log('Current game state:', this.gameModel.gameState);
 
         const stateHandlers = {
             [GAME_STATE.START]: this.drawStartScreen.bind(this),

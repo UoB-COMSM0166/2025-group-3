@@ -39,6 +39,7 @@ export function showEntities(gameModel, assets) {
             showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets);
+            showTerrain(gameModel.water[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.ice[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.climb[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets);   

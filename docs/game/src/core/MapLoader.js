@@ -17,6 +17,7 @@ import Ice from "../entities/terrain/Ice";
 import Merge from "../entities/terrain/Merge";
 import Spring from "../entities/terrain/Spring";
 import Trap from "../entities/terrain/Trap";
+import Water from "../entities/terrain/Water";
 import { CONSTANT } from "./Utils";
 
 
@@ -82,6 +83,7 @@ export default class MapLoader {
          this.gameModel.levelWidth[index] = 0;
          this.gameModel.decorate[index] = []; 
          this.gameModel.trap[index] = [];
+         this.gameModel.water[index] = [];
          this.gameModel.coll[index] = [];
          this.gameModel.merge[index] = [];
          this.gameModel.ice[index] = [];
@@ -100,6 +102,7 @@ export default class MapLoader {
         this.getGround(index);
         this.getDecorate(index);
         this.getTrap(index);
+        this.getWater(index);
         this.getMerge(index);
         this.getIce(index);
         this.getSpring(index);
@@ -144,6 +147,11 @@ export default class MapLoader {
     getTrap(index){
         let Layer = this.levelData[index].layers.find(layer => layer.name === "trap");
         this.gameModel.trap[index] = new Trap(Layer.data, index);
+    }
+
+    getWater(index){
+        let Layer = this.levelData[index].layers.find(layer => layer.name === "water");
+        this.gameModel.water[index] = new Water(Layer.data, index);
     }
 
     getMerge(index){
