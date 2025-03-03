@@ -23,11 +23,12 @@ export function showEntities(gameModel, assets) {
     let levelIndex = gameModel.selectedLevel;
     // let offsetX = (gameModel.player[levelIndex].x - CONSTANT.GAME_WIDTH / 2);
     // let offsetY = (gameModel.player[levelIndex].y - CONSTANT.GAME_HEIGHT / 2);
-    let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;
-    let offsetY = gameModel.cat[levelIndex].y - window.innerHeight / 2;
+    
 
     const checkDataLoaded = setInterval(() => {
         if (gameModel.coll.length > 0) { // 确保数据已经加载
+            let offsetX = gameModel.cat[levelIndex].x - window.innerWidth / 2;
+            let offsetY = gameModel.cat[levelIndex].y - window.innerHeight / 2;
             //console.log("数据已加载:", gameModel.coll[0]);
             clearInterval(checkDataLoaded); // 停止轮询
             image(gameModel.assets.bg, 0, 0, windowWidth, windowHeight * 5 / 4);
@@ -38,6 +39,7 @@ export function showEntities(gameModel, assets) {
             showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets);
+            showTerrain(gameModel.water[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.ice[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.climb[levelIndex], offsetX, offsetY, assets);
             showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets);   
