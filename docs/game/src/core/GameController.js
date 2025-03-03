@@ -220,7 +220,7 @@ export default class GameController {
         let potionW = CONSTANT.POTION_WIDTH;  // 需要定义 POTION_WIDTH
         let potionH = CONSTANT.POTION_HEIGHT; // 需要定义 POTION_HEIGHT
         let offSetHalf = -potionW / 2;
-        let offSetFeet = potionH / 10; 
+        let offSetFeet = potionH / 10-10; //有待商榷
     
         // 水平方向偏移量
         let offSetClimb = potionW / 4;
@@ -248,11 +248,10 @@ export default class GameController {
         } else {
             // 否则正常自由落体
             if(this.gameModel.potion.tanshe)
-            {this.gameModel.potion.velocityY= -30;
+            {this.gameModel.potion.velocityY= -35; //发射初速度
              this.gameModel.potion.tanshe=false;
             }
-            this.gameModel.potion.velocityY= this.gameModel.potion.velocityY+1;
-            this.gameModel.potion.y=this.gameModel.potion.y+this.gameModel.potion.velocityY;
+            
         }
 
         // // 检测是否可以攀爬
@@ -291,35 +290,56 @@ export default class GameController {
         //     newY += this.gameModel.potion.velocityY;
         // }
     
-        // // **碰撞检测**
-        // let left = this.isColliding(newX + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isColliding(newX + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isColliding(newX + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
+        // **碰撞检测**
+        let left = this.isColliding(newX + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
     
-        // let right = this.isColliding(newX + potionW + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isColliding(newX + potionW + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isColliding(newX + potionW + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
+        let right = this.isColliding(newX + potionW + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + potionW + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + potionW + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
     
-        // let bottom = this.isCollidingWithGround(newX + potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isCollidingWithGround(newX + 2 * potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isCollidingWithGround(newX + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-        //     || this.isCollidingWithGround(newX + potionW + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
+        let bottom = this.isCollidingWithGround(newX + potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isCollidingWithGround(newX + 2 * potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isCollidingWithGround(newX + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
+            || this.isCollidingWithGround(newX + potionW + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
     
         // // 水平方向的碰撞处理
         // if (!left && !right) { 
         //     this.gameModel.potion.x = newX;
         // } 
     
-        // // 处理垂直碰撞
-        // if (!bottom) { 
-        //     this.gameModel.potion.y = newY;
-        //     if (!potionCanClimb) { 
-        //         this.gameModel.potion.onGround = false;
-        //     }
-        // } else { 
-        //     this.gameModel.potion.velocityY = 0;
-        //     this.gameModel.potion.onGround = true;
-        // }
+
+
+        // 真正的底部碰撞: 新位置 bottom 且新位置下方也碰撞 bottom, 并且 potion 不在上升状态中
+        let bottomDown = this.isColliding(newX + potionW / 3 + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth) // 下方中间两个点
+        || this.isColliding(newX + 2 * potionW / 3 + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth)
+        || this.isColliding(newX + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth) // 左下角
+        || this.isColliding(newX + potionW + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth);  // 右下角
+
+        let bottomReal = bottom && bottomDown && this.gameModel.potion.velocityY >= 0;
+
+        // 处理水平碰撞
+        if (!left && !right) { 
+        this.gameModel.potion.x = newX; // 无碰撞可移动
+        } 
+
+        // 处理垂直碰撞
+       
+        if (!bottomReal && !this.gameModel.cat[selectedLevel].isMerged) { // 没有上方和下方碰撞时, 竖直方向自由落体
+            this.gameModel.potion.velocityY= this.gameModel.potion.velocityY+1;
+            this.gameModel.potion.y=this.gameModel.potion.y+this.gameModel.potion.velocityY;//重力逻辑，跟底下垂直碰撞有些重合
+        if (!this.gameModel.cat[selectedLevel].isMerged) { // 不在攀爬墙上时, 重力生效
+            this.gameModel.potion.onGround = false; // 空中
+        }
+        } else if (bottomReal) { // 碰到地面
+        if (this.gameModel.potion.velocityY > 0) { // 在下落并且有碰撞地面时, 设置状态为在地上
+            this.gameModel.potion.onGround = true;
+            //this.gameModel.potion.velocityY = -this.gameModel.potion.velocityY * 0.1; // 轻微反弹，而不是完全清零
+        }
+        this.gameModel.potion.velocityY = 0; // 碰到地面时停止竖直向下的速度
+        }
+
     }
     
 
