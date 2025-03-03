@@ -50,7 +50,7 @@
 <meta property="og:url" content="http://localhost:1313/devlog/week-4-game-requirement/">
   <meta property="og:site_name" content="Capoo">
   <meta property="og:title" content="Week 4 - Game Requirement">
-  <meta property="og:description" content="Bugcat Game Requirements 1. Identify Stakeholders Stakeholders are people who have an interest in the game. Possible stakeholders for Bugcat:">
+  <meta property="og:description" content="Capoo Game Requirements 1. Identify Stakeholders Stakeholders are people who have an interest in the game. Possible stakeholders for Capoo:">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -61,7 +61,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="http://localhost:1313/cover.png">
   <meta name="twitter:title" content="Week 4 - Game Requirement">
-  <meta name="twitter:description" content="Bugcat Game Requirements 1. Identify Stakeholders Stakeholders are people who have an interest in the game. Possible stakeholders for Bugcat:">
+  <meta name="twitter:description" content="Capoo Game Requirements 1. Identify Stakeholders Stakeholders are people who have an interest in the game. Possible stakeholders for Capoo:">
 
     
     <script type="application/ld+json">
@@ -286,15 +286,15 @@
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
         <path d="M12 7v5l3 3"></path>
-      </svg>3&nbsp;minutes</span></small>
+      </svg>6&nbsp;minutes</span></small>
 </p>
 
     </div>
   </div>
   <div class="col-md-12 col-lg-9">
-    <h1 id="bugcat-game-requirements">Bugcat Game Requirements</h1>
+    <h1 id="capoo-game-requirements">Capoo Game Requirements</h1>
 <h2 id="1-identify-stakeholders">1. Identify Stakeholders</h2>
-<p>Stakeholders are people who have an interest in the game. Possible stakeholders for <strong>Bugcat</strong>:</p>
+<p>Stakeholders are people who have an interest in the game. Possible stakeholders for <strong>Capoo</strong>:</p>
 <ul>
 <li><strong>Players</strong> – People who play the game.</li>
 <li><strong>Developers</strong> – Team members coding and designing the game.</li>
@@ -306,88 +306,140 @@
 <hr>
 <h2 id="2-assign-stakeholder-roles--write-epics--user-stories">2. Assign Stakeholder Roles &amp; Write Epics &amp; User Stories</h2>
 <p>Each stakeholder has different needs, represented as <strong>epics</strong> and <strong>user stories</strong>.</p>
-<h3 id="epic-gameplay-experience-player"><strong>Epic: Gameplay Experience (Player)</strong></h3>
-<h4 id="user-story-1"><strong>User Story 1:</strong></h4>
-<p><em>As a player, I want Bugcat to have smooth controls so I can move and attack easily.</em></p>
-<h5 id="acceptance-criteria"><strong>Acceptance Criteria:</strong></h5>
+<h3 id="epic-core-gameplay-player">Epic: Core Gameplay (Player)</h3>
+<h4 id="user-story-1">User Story 1:</h4>
+<p><strong>As a player, I want to control my character to move and interact so that I can experience the game world.</strong></p>
+<h5 id="acceptance-criteria">Acceptance Criteria:</h5>
 <ul>
-<li>The game should respond to input within 0.1s.</li>
-<li>Movement and attacks should not lag or stutter.</li>
+<li><strong>Given</strong> the game is running,</li>
+<li><strong>When</strong> I use the keyboard, mouse, or controller,</li>
+<li><strong>Then</strong> the character should be able to walk, run, jump, and interact with the environment.</li>
 </ul>
-<h4 id="user-story-2"><strong>User Story 2:</strong></h4>
-<p><em>As a player, I want to collect items and power-ups to enhance my abilities.</em></p>
-<h5 id="acceptance-criteria-1"><strong>Acceptance Criteria:</strong></h5>
+<h4 id="user-story-2">User Story 2:</h4>
+<p><strong>As a player, I want clear objectives or tasks in the game so that I can progress.</strong></p>
+<h5 id="acceptance-criteria-1">Acceptance Criteria:</h5>
 <ul>
-<li>Items spawn at random locations.</li>
-<li>Picking up a power-up should provide a visible effect and status change.</li>
-</ul>
-<hr>
-<h3 id="epic-game-mechanics-developer"><strong>Epic: Game Mechanics (Developer)</strong></h3>
-<h4 id="user-story-1-1"><strong>User Story 1:</strong></h4>
-<p><em>As a developer, I want a modular codebase so that game mechanics can be easily updated.</em></p>
-<h5 id="acceptance-criteria-2"><strong>Acceptance Criteria:</strong></h5>
-<ul>
-<li>The core mechanics should be in separate classes/modules.</li>
-<li>The game should support adding new mechanics without major code changes.</li>
-</ul>
-<h4 id="user-story-2-1"><strong>User Story 2:</strong></h4>
-<p><em>As a developer, I want a logging system to track errors during gameplay.</em></p>
-<h5 id="acceptance-criteria-3"><strong>Acceptance Criteria:</strong></h5>
-<ul>
-<li>Errors are recorded in a log file.</li>
-<li>The log includes timestamps and error details.</li>
+<li><strong>Given</strong> I open the quest menu,</li>
+<li><strong>When</strong> I check my current task,</li>
+<li><strong>Then</strong> I should see a clear list of tasks, goals, and potential rewards.</li>
 </ul>
 <hr>
-<h3 id="epic-visual-design-artist"><strong>Epic: Visual Design (Artist)</strong></h3>
-<h4 id="user-story-1-2"><strong>User Story 1:</strong></h4>
-<p><em>As an artist, I want Bugcat’s animations to be smooth and responsive.</em></p>
-<h5 id="acceptance-criteria-4"><strong>Acceptance Criteria:</strong></h5>
+<h3 id="epic-exploration--world-interaction-player">Epic: Exploration &amp; World Interaction (Player)</h3>
+<h4 id="user-story-1-1">User Story 1:</h4>
+<p><strong>As a player, I want the game world to be filled with exploration elements so that I can enjoy discovering new content.</strong></p>
+<h5 id="acceptance-criteria-2">Acceptance Criteria:</h5>
 <ul>
-<li>Idle, running, and attack animations should have at least 8 frames each.</li>
-<li>The animations should match the game’s timing.</li>
+<li><strong>Given</strong> I explore different areas,</li>
+<li><strong>When</strong> I enter a new location,</li>
+<li><strong>Then</strong> the area should have unique environmental features, NPCs, and hidden content, including dialogues and interactions with NPCs.</li>
 </ul>
-<h4 id="user-story-2-2"><strong>User Story 2:</strong></h4>
-<p><em>As an artist, I want the UI to be clear and visually appealing.</em></p>
-<h5 id="acceptance-criteria-5"><strong>Acceptance Criteria:</strong></h5>
+<h4 id="user-story-2-1">User Story 2:</h4>
+<p><strong>As a player, I want interactive environments so that my exploration experience feels dynamic.</strong></p>
+<h5 id="acceptance-criteria-3">Acceptance Criteria:</h5>
 <ul>
-<li>Buttons and icons should be clearly visible.</li>
-<li>The color scheme should be consistent across menus.</li>
+<li><strong>Given</strong> I find interactive objects,</li>
+<li><strong>When</strong> I interact with them,</li>
+<li><strong>Then</strong> they should trigger corresponding effects (e.g., opening doors, activating switches, destroying objects).</li>
 </ul>
 <hr>
-<h3 id="epic-game-testing-tester"><strong>Epic: Game Testing (Tester)</strong></h3>
-<h4 id="user-story-1-3"><strong>User Story 1:</strong></h4>
-<p><em>As a tester, I want a bug tracking system to report issues easily.</em></p>
-<h5 id="acceptance-criteria-6"><strong>Acceptance Criteria:</strong></h5>
+<h3 id="epic-economy-system-player">Epic: Economy System (Player)</h3>
+<h4 id="user-story-1-2">User Story 1:</h4>
+<p><strong>As a player, I want to earn in-game currency so that I can purchase items or equipment.</strong></p>
+<h5 id="acceptance-criteria-4">Acceptance Criteria:</h5>
 <ul>
-<li>Players can report bugs in-game or via an external system.</li>
-<li>Developers receive reports in a structured format.</li>
+<li><strong>Given</strong> I complete tasks or defeat enemies,</li>
+<li><strong>When</strong> I collect rewards,</li>
+<li><strong>Then</strong> I should receive currency or valuable items.</li>
 </ul>
-<h4 id="user-story-2-3"><strong>User Story 2:</strong></h4>
-<p><em>As a tester, I want to test different difficulty levels to ensure balance.</em></p>
-<h5 id="acceptance-criteria-7"><strong>Acceptance Criteria:</strong></h5>
+<h4 id="user-story-2-2">User Story 2:</h4>
+<p><strong>As a player, I want to trade items with other players so that I can exchange resources efficiently.</strong></p>
+<h5 id="acceptance-criteria-5">Acceptance Criteria:</h5>
 <ul>
-<li>Difficulty levels should have distinct enemy behavior and spawn rates.</li>
-<li>The game should track win/loss rates for balancing.</li>
+<li><strong>Given</strong> the trading system is enabled,</li>
+<li><strong>When</strong> I initiate a trade with other players,</li>
+<li><strong>Then</strong> I should be able to securely offer and exchange items.</li>
+</ul>
+<hr>
+<h3 id="epic-ui--user-experience-developer">Epic: UI &amp; User Experience (Developer)</h3>
+<h4 id="user-story-1-3">User Story 1:</h4>
+<p><strong>As a developer, I want the game UI to be clear and intuitive so that players have a better experience.</strong></p>
+<h5 id="acceptance-criteria-6">Acceptance Criteria:</h5>
+<ul>
+<li><strong>Given</strong> the game is running,</li>
+<li><strong>When</strong> the player accesses the UI or navigates,</li>
+<li><strong>Then</strong> essential information (e.g., tasks, inventory) should be clearly visible, and the UI should be responsive and user-friendly.</li>
+</ul>
+<h4 id="user-story-2-3">User Story 2:</h4>
+<p><strong>As a developer, I want to provide a proper tutorial to help new players get started quickly.</strong></p>
+<h5 id="acceptance-criteria-7">Acceptance Criteria:</h5>
+<ul>
+<li><strong>Given</strong> a new player starts the game,</li>
+<li><strong>When</strong> they begin playing,</li>
+<li><strong>Then</strong> an interactive tutorial should introduce core mechanics step by step.</li>
+</ul>
+<hr>
+<h3 id="epic-game-mechanics-developer">Epic: Game Mechanics (Developer)</h3>
+<h4 id="user-story-1-4">User Story 1:</h4>
+<p><strong>As a developer, I want the code structure to be modular so that I can easily update game mechanics.</strong></p>
+<h5 id="acceptance-criteria-8">Acceptance Criteria:</h5>
+<ul>
+<li><strong>Given</strong> the game codebase,</li>
+<li><strong>When</strong> I work on a new game mechanic,</li>
+<li><strong>Then</strong> the core mechanics should be encapsulated in independent classes/modules.</li>
+</ul>
+<h4 id="user-story-2-4">User Story 2:</h4>
+<p><strong>As a developer, I want a logging system so that I can track errors in the game process.</strong></p>
+<h5 id="acceptance-criteria-9">Acceptance Criteria:</h5>
+<ul>
+<li><strong>Given</strong> the game is running,</li>
+<li><strong>When</strong> an error occurs,</li>
+<li><strong>Then</strong> the error should be logged in a log file.</li>
 </ul>
 <hr>
 <h2 id="3-choose-one-user-story-and-break-it-down-into-tasks">3. Choose One User Story and Break It Down into Tasks</h2>
-<h3 id="user-story"><strong>User Story:</strong></h3>
-<p><em>As a player, I want to collect items and power-ups to enhance my abilities.</em></p>
-<h4 id="tasks-breakdown"><strong>Tasks Breakdown</strong></h4>
-<ol>
-<li><strong>Design &amp; Concept</strong> – Decide on power-up types and their effects.</li>
-<li><strong>Asset Creation</strong> – Draw power-up icons and animations.</li>
-<li><strong>Code Implementation</strong>
+<h3 id="user-story-1-5"><strong>User Story 1:</strong></h3>
+<p><strong>As a player, I want to control my character to move and interact so that I can experience the game world.</strong></p>
+<h4 id="acceptance-criteria-10"><strong>Acceptance Criteria:</strong></h4>
 <ul>
-<li>Create a power-up class.</li>
-<li>Implement logic for spawning power-ups.</li>
-<li>Implement collision detection with the player.</li>
-<li>Apply power-up effects to the player.</li>
+<li><strong>Given</strong> the game is running,</li>
+<li><strong>When</strong> I use the keyboard, mouse, or controller,</li>
+<li><strong>Then</strong> the character should be able to walk, run, jump, and interact with the environment.</li>
 </ul>
-</li>
-<li><strong>Testing &amp; Balancing</strong> – Ensure power-ups work as intended and are not too overpowered.</li>
-<li><strong>Bug Fixing &amp; Polishing</strong> – Address any issues found during testing.</li>
-</ol>
+<hr>
+<h3 id="tasks-breakdown"><strong>Tasks Breakdown:</strong></h3>
+<h4 id="1-character-movement-system-walking--running">1. <strong>Character Movement System (Walking &amp; Running)</strong></h4>
+<ul>
+<li><strong>Task 1.1:</strong> Implement character movement controls for the keyboard (WASD keys).</li>
+<li><strong>Task 1.2:</strong> Implement character movement controls for the mouse (click-to-move or directional movement).</li>
+<li><strong>Task 1.3:</strong> Implement character movement controls for the controller (analog stick movement).</li>
+<li><strong>Task 1.4:</strong> Set up sprint functionality for running (e.g., holding down a shift key or button).</li>
+</ul>
+<h4 id="2-character-jumping-mechanics">2. <strong>Character Jumping Mechanics</strong></h4>
+<ul>
+<li><strong>Task 2.1:</strong> Implement a jump mechanic when a player presses the jump button (space bar, controller button).</li>
+<li><strong>Task 2.2:</strong> Set jump physics (gravity, height, and duration).</li>
+<li><strong>Task 2.3:</strong> Integrate jump with movement so that jumping while running or walking works smoothly.</li>
+</ul>
+<h4 id="3-interaction-system">3. <strong>Interaction System</strong></h4>
+<ul>
+<li><strong>Task 3.1:</strong> Set up interaction key/button for objects or NPCs (e.g., E key or controller button).</li>
+<li><strong>Task 3.2:</strong> Define interactable objects in the game world (e.g., doors, NPCs, items).</li>
+<li><strong>Task 3.3:</strong> Develop interaction behavior for objects, such as opening doors or talking to NPCs.</li>
+<li><strong>Task 3.4:</strong> Create visual feedback (highlight or prompt) to indicate when an object or NPC is interactable.</li>
+</ul>
+<h4 id="4-character-animation-integration">4. <strong>Character Animation Integration</strong></h4>
+<ul>
+<li><strong>Task 4.1:</strong> Integrate animations for walking, running, and jumping.</li>
+<li><strong>Task 4.2:</strong> Implement animation blending for smooth transitions between actions (e.g., from walking to running).</li>
+<li><strong>Task 4.3:</strong> Link animations with control inputs to ensure seamless character movement.</li>
+</ul>
+<h4 id="5-testing--refinement">5. <strong>Testing &amp; Refinement</strong></h4>
+<ul>
+<li><strong>Task 5.1:</strong> Test the character movement system across all input devices (keyboard, mouse, controller).</li>
+<li><strong>Task 5.2:</strong> Ensure that character movement, jumping, and interaction work without issues.</li>
+<li><strong>Task 5.3:</strong> Conduct player feedback sessions to refine controls and interaction mechanics.</li>
+<li><strong>Task 5.4:</strong> Optimize performance for smooth gameplay, especially for low-end devices.</li>
+</ul>
 <hr>
 <h2 id="4-discuss-with-another-team">4. Discuss with Another Team</h2>
 <p>Compare stakeholders, epics, user stories, and acceptance criteria with another team. Questions to discuss:</p>
@@ -404,6 +456,13 @@
 <li>Makes it easier to track progress.</li>
 <li>Improves communication within the team.</li>
 </ul>
+<hr>
+<h2 id="5-brief-reflection">5. Brief reflection</h2>
+<p>In this project, we gained a deep understanding of how to use Epics, User Stories, and Acceptance Criteria to build requirements. Breaking down the app&rsquo;s features into Epics helped us address player needs while enabling us to quickly adjust to issues in the game.</p>
+<p>We realized that User Stories should be written from the perspective of the end-user, such as players who desire a good gaming experience. Writing clear and concise User Stories not only improved internal communication within the team but also helped us prioritize features effectively.</p>
+<p>Acceptance Criteria played a crucial role in defining the completion standards for features. By establishing specific and testable standards, we ensured that developers, testers, and stakeholders had a shared understanding of the expected behavior. This reduced uncertainty in the requirements and kept us focused on the user.</p>
+<p>In our application scenarios, we recognized the importance of designing core gameplay to ensure smooth operation and a good experience for players. The app must support players&rsquo; exploration and adventures while encouraging social interactions. Additionally, the app needs to ensure fun and usability, designing different game environments based on user preferences.</p>
+<p>This structured requirement analysis approach helped us create a game that is clearly defined and centered around user experience.</p>
 
     </div>
 </div>
