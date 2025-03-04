@@ -71,7 +71,7 @@ window.setup = function () {
 
         loop();  // 在音频加载完后启动 draw()
     }
-  }, 100);
+  }, 1);
 
   noLoop(); // 防止 draw() 在 setup() 完成前运行
     
