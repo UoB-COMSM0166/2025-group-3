@@ -113,14 +113,99 @@ export default class GameView {
         //console.log("tag:potion",gameModel.potion.x,gameModel.cat[levelIndex].x,gameModel.potion.y,gameModel.cat[levelIndex].y,PotionX,PotionY);
         //gameModel.potion.updatePotion(1000,1000);
         image(gameModel.assets.teachCommand, 0, 0, 1920/5, 1080/5);
-        let keyshi = RenderLogic.getTilePosition(429), keikong = RenderLogic.getTilePosition(430);
-        image(
-            assets.icon,
-            window.innerHeight/2, window.innerWidth/2,
-            CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
-            keyshi.x, keyshi.y,
-            CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
-        );
+        let keyshi = RenderLogic.getTilePosition(429), keykong = RenderLogic.getTilePosition(430);
+        if(this.gameModel.cat[levelIndex].keyNum == 0){
+            image(
+                assets.icon,
+                window.innerHeight/10 - 50, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keykong.x, keykong.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+            image(
+                assets.icon,
+                window.innerHeight/10, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keykong.x, keykong.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+            image(
+                assets.icon,
+                window.innerHeight/10 + 50, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keykong.x, keykong.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+        }
+        if(this.gameModel.cat[levelIndex].keyNum == 1){
+            image(
+                assets.icon,
+                window.innerHeight/10 - 50, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keyshi.x, keyshi.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+            image(
+                assets.icon,
+                window.innerHeight/10, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keykong.x, keykong.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+            image(
+                assets.icon,
+                window.innerHeight/10 + 50, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keykong.x, keykong.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+        }
+        if(this.gameModel.cat[levelIndex].keyNum == 2){
+            image(
+                assets.icon,
+                window.innerHeight/10 - 50, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keyshi.x, keyshi.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+            image(
+                assets.icon,
+                window.innerHeight/10, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keyshi.x, keyshi.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+            image(
+                assets.icon,
+                window.innerHeight/10 + 50, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keykong.x, keykong.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+        }
+        if(this.gameModel.cat[levelIndex].keyNum == 3){
+            image(
+                assets.icon,
+                window.innerHeight/10 - 50, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keyshi.x, keyshi.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+            image(
+                assets.icon,
+                window.innerHeight/10, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keyshi.x, keyshi.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+            image(
+                assets.icon,
+                window.innerHeight/10 + 50, window.innerWidth/8,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+                keyshi.x, keyshi.y,
+                CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            );
+        }
 
 
         // 显示所有提示消息
