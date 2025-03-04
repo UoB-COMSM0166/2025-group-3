@@ -141,8 +141,9 @@ export class Message {
       case "playing":
         this.options.textAlign = CENTER;
         this.options.textColor = color(255, 255, 255);
-        this.options.borderColor = color(0, 0, 0)
-        this.options.borderWidth = 10;  
+        this.options.borderColor = color(255, 100, 100)
+        this.options.borderWidth = 40;
+        this.size = 30;  
         break;
 
       case "gameOver":

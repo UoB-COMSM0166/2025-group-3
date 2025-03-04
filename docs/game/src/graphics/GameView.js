@@ -34,16 +34,16 @@ export default class GameView {
     drawStartScreen() {
     //background(173, 216, 230);
     image(this.gameModel.assets.startscreenbg, 0, 0, windowWidth, windowHeight);
-
-    
-        this.enterMessage.show();
-        this.titleMessage.show();
+    this.enterMessage.show();
+    this.titleMessage.show();
     }
 
     drawLevelSelectScreen() {
+        
         //console.log("GameView level gameModel: ");
         //console.log(this.gameModel);
         background(255, 182, 193);
+        image(this.gameModel.assets.startscreenbg, 0, 0, windowWidth, windowHeight);
 
         this.selectMessage.show();
         this.tipMessage.show();
@@ -113,6 +113,14 @@ export default class GameView {
         //console.log("tag:potion",gameModel.potion.x,gameModel.cat[levelIndex].x,gameModel.potion.y,gameModel.cat[levelIndex].y,PotionX,PotionY);
         //gameModel.potion.updatePotion(1000,1000);
         image(gameModel.assets.teachCommand, 0, 0, 1920/5, 1080/5);
+        let keyshi = RenderLogic.getTilePosition(429), keikong = RenderLogic.getTilePosition(430);
+        image(
+            assets.icon,
+            window.innerHeight/2, window.innerWidth/2,
+            CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+            keyshi.x, keyshi.y,
+            CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
+        );
 
 
         // 显示所有提示消息

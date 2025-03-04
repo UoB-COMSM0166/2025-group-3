@@ -38,6 +38,7 @@ export default class MapLoader {
     }
 
     loadGame() {
+        this.gameModel.assets.startscreenbg = loadImage("/asset/startscreenbg.png")
         //loadJSON('../../asset/level1.json', (jsonData) => this.parseJSON(jsonData)); // Use arrow function to bind context
         //loadJSON('../../asset/level2-test.json', (jsonData) => this.parseJSON(jsonData));
 
@@ -49,7 +50,7 @@ export default class MapLoader {
 
         const levels = [
             "/asset/level1.json",
-            "/asset/level2-2.json"
+            "/asset/level2.json"
         ];
         
         // 避免 this.levelIndex 影响所有关卡，每个关卡独立加载
