@@ -32,7 +32,17 @@ export default class GameView {
     }
 
     drawStartScreen() {
-        background(173, 216, 230);
+        //background(173, 216, 230);
+        //image(this.startscreenbg, 0, 0, windowWidth, windowHeight);
+         // 每 100ms 检查一次是否加载成功
+         let checkImageLoaded = setInterval(() => {
+            if (this.startscreenbg) {
+                clearInterval(checkImageLoaded); // 图片加载成功，停止轮询
+                image(this.startscreenbg, 0, 0, windowWidth, windowHeight);
+                console.log("Background image loaded successfully!");
+            }
+        }, 1);
+    
         this.enterMessage.show();
         this.titleMessage.show();
     }
