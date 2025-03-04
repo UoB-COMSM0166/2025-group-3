@@ -23,7 +23,7 @@ export function getDrawPosition(i, levelWidth) {
 // export function showEntities(gameModel, assets) {
 //     const checkDataLoaded = setInterval(() => {
 //         if (gameModel.coll.length > 0) { // 确保数据已经加载
-            
+            /* 这部分内容移动到GameView文件的drawGameScreen方法中 */
 //         }
 //     }, 1); // 每 10ms 检查一次
 // }
