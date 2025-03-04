@@ -191,7 +191,7 @@ export default class GameController {
         || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth)     //左上角
         || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth); //右上角
 
-        let topReal = top && topUp && this.gameModel.cat[selectedLevel].velocityY <= 0;;
+        let topReal = top && topUp && (this.gameModel.cat[selectedLevel].velocityY <= 0 || catCanClimb);
 
         // 真正的底部碰撞: 新位置bottom且新位置下方也碰撞bottom, 并且角色不在上升状态中
         let bottomDown = this.isColliding(newX+catW/3+offSetHalf, newY-offSetFeet+70, selectedLevel, tileSize, levelWidth) // 下方中间两个点
@@ -199,7 +199,7 @@ export default class GameController {
             || this.isColliding(newX+offSetHalf, newY-offSetFeet+70, selectedLevel, tileSize, levelWidth) // 左下角
             || this.isColliding(newX+catW+offSetHalf, newY-offSetFeet+70, selectedLevel, tileSize, levelWidth);  // 右下角
 
-        let bottomReal = bottom && bottomDown && this.gameModel.cat[selectedLevel].velocityY >= 0;
+        let bottomReal = bottom && bottomDown && ( this.gameModel.cat[selectedLevel].velocityY >= 0 || catCanClimb);
 
         //console.log(top + "|"+ topUp + "|"+ topReal + "||" +bottom + "|"+ bottomDown + "|"+ bottomReal);
 
