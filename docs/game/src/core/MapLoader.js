@@ -71,7 +71,6 @@ export default class MapLoader {
         this.gameModel.assets.testcat = loadImage("/asset/testcat.png");
         this.gameModel.assets.bg = loadImage("/asset/backgrounds.png");
         this.gameModel.assets.teachCommand = loadImage("/asset/teachCommand.png");
-        this.gameModel.assets.startscreenbg = loadImage("/asset/startscreenbg.png")
     }
 
     // Load the json file and parse it

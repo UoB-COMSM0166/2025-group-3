@@ -43,6 +43,7 @@ window.preload = function () {
   window.assets.userStartGame = loadSound("/asset/sounds/effect_e017_miaomiaomiao.wav",soundLoaded); 
   window.assets.userSelectLevel = loadSound("/asset/sounds/effect_e020_miao.wav",soundLoaded);
 
+
   //console.log("Main preload done");
 }
 

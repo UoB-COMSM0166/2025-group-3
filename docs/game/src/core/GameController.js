@@ -23,6 +23,7 @@ export default class GameController {
 
     // 读取地图文件到gameModel
     newGame() {
+        this.gameModel.assets.startscreenbg = loadImage("/asset/startscreenbg.png")
         let mapLoader = new MapLoader(this.gameModel, this.gameModel.selectedLevel); 
         mapLoader.loadGame();
         
