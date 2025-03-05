@@ -1,7 +1,9 @@
 # Capoo Quantitative Evaluation Report: Workload and Usability Analysis of Difficulty Levels L1 and L2
 
 **Author**: Shuyin Deng, Jiaxin Fan
+
 **Team Members**: Yibu Ma, Yu Qiu. Peixuan Li, Jiahao Liu, 
+
 **Date**: March 4, 2025
 
 ------
@@ -161,7 +163,7 @@ Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS s
 
 #### L2 NASA TLX
 
-| 维度            | V1   | V2   | V3   | V4   | V5   | V6   | V7   | V8   | V9   | V10  |
+| Dimension       | V1   | V2   | V3   | V4   | V5   | V6   | V7   | V8   | V9   | V10  |
 | --------------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | Mental Demand   | 2    | 3    | 2    | 2    | 1    | 2    | 3    | 3    | 3    | 1    |
 | Physical Demand | 2    | 1    | 3    | 4    | 2    | 4    | 3    | 2    | 4    | 4    |
@@ -172,7 +174,7 @@ Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS s
 
 #### L1 SUS
 
-| 问题                                                     | V1   | V2   | V3   | V4   | V5   | V6   | V7   | V8   | V9   | V10  |
+| Questions                                                | V1   | V2   | V3   | V4   | V5   | V6   | V7   | V8   | V9   | V10  |
 | -------------------------------------------------------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | 1. The system is easy to use.                            | 3    | 3    | 3    | 4    | 2    | 3    | 3    | 3    | 3    | 2    |
 | 2. The system components are well-coordinated.           | 3    | 2    | 2    | 4    | 3    | 4    | 3    | 3    | 3    | 3    |
@@ -185,7 +187,7 @@ Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS s
 
 #### L2 SUS
 
-| 问题                                                     | V1   | V2   | V3   | V4   | V5   | V6   | V7   | V8   | V9   | V10  |
+| Questions                                                | V1   | V2   | V3   | V4   | V5   | V6   | V7   | V8   | V9   | V10  |
 | -------------------------------------------------------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | 1.The system is easy to use.                             | 2    | 2    | 2    | 3    | 1    | 2    | 2    | 2    | 2    | 1    |
 | 2. The system components are well-coordinated.           | 2    | 1    | 1    | 3    | 2    | 3    | 2    | 2    | 2    | 2    |
