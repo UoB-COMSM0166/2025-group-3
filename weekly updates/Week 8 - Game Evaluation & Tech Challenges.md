@@ -92,7 +92,7 @@ NASA TLX is a tool for measuring subjective workload across six dimensions (Hart
 
 - **Figure 1: NASA TLX Dimension Comparison (Radar Chart)**
 
-  ![](C:\Users\moden\Desktop\capoo_tlx_radar_optimized.png)
+ [ ![](C:\Users\moden\Desktop\capoo_tlx_radar_optimized.png)](https://github.com/UoB-COMSM0166/2025-group-3/blob/main/images/NASA%20TLX%20Dimension%20Comparison.png?raw=true)
 
 - **Figure 2: SUS Score Trends (Line Chart)**![](C:\Users\moden\Desktop\capoo_sus_trends_optimized.png)
 
