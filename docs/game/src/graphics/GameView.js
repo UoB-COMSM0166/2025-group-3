@@ -86,7 +86,7 @@ export default class GameView {
         }else if(levelIndex == 1){
             image(gameModel.assets.level2bg, 0, 0, windowWidth, windowHeight * 5 / 4);
         }
-        
+        image(gameModel.assets.level2bg, 0, 0, windowWidth, windowHeight * 5 / 4);
         
         for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
             // elevatingWalls[selectedLevel][i].update();

@@ -71,18 +71,4 @@ export function showItem(entity, offsetX, offsetY, assets, isAnimated) {
         coord.x, coord.y,
         CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE
     );
-
-    // 显示所有提示消息
-        for (let i = 0; i < this.gameModel.messages.length; i++) {
-            this.gameModel.messages[i].show();
-        }
-        // 删除已过期的第一条消息
-        for (let i = this.gameModel.messages.length - 1; i >= 0; i--) {
-            if (this.gameModel.messages[i].isExpired()) {
-                // 延迟删除消息，避免频繁渲染
-                setTimeout(() => {
-                    this.gameModel.messages.splice(i, 1); // 删除消息
-                }, 10);
-            }
-        }
 }
