@@ -10,7 +10,7 @@ export default class GameView {
         this.titleMessage = new Message("Capoo", window.innerWidth / 2, window.innerHeight / 5-50, 10000, 200, {}, "Title"); // 标题消息
         this.enterMessage = new Message("Press ENTER To Start", window.innerWidth / 2, window.innerHeight/1.5, 10000, 50, { scaling: true }, "startScreen"); // 动态变化大小的消息
         this.selectMessage = new Message("Use LEFT/RIGHT To Choose\nPress SPACE To Start", window.innerWidth / 2, window.innerHeight / 5-10, 10000, 50, {}, "levelSelectScreen");
-        this.tipMessage = new Message("Tip：Do you konw:\nA cat always lands with its feet down\nBread always lands on the creamed side", window.innerWidth / 2, window.innerHeight / 1.2, 2400, 30, {changeAlpha: true}, "Tip");
+        this.tipMessage = new Message("Tip：Do you konw:\nA cat always lands with its feet down\nBread always lands on the creamed side", window.innerWidth / 2, window.innerHeight / 1.2, 1500, 30, {changeAlpha: true}, "Tip");
     }
 
     // main function of GameView
@@ -43,7 +43,7 @@ export default class GameView {
         //console.log("GameView level gameModel: ");
         //console.log(this.gameModel);
         background(255, 182, 193);
-        image(this.gameModel.assets.startscreenbg, 0, 0, windowWidth, windowHeight);
+        image(this.gameModel.assets.selectscreenbg, 0, 0, windowWidth, windowHeight);
 
         this.selectMessage.show();
         this.tipMessage.show();
@@ -81,7 +81,13 @@ export default class GameView {
         //console.log("地图宽度:", levelWidth);
         //console.log("数据已加载:", gameModel.coll[0]);
         //clearInterval(checkDataLoaded); // 停止轮询
-        image(gameModel.assets.bg, 0, 0, windowWidth, windowHeight * 5 / 4);
+        if(levelIndex == 0){
+            image(gameModel.assets.level1bg, 0, 0, windowWidth, windowHeight * 5 / 4);
+        }else if(levelIndex == 1){
+            image(gameModel.assets.level2bg, 0, 0, windowWidth, windowHeight * 5 / 4);
+        }
+        
+        
         for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
             // elevatingWalls[selectedLevel][i].update();
             showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets, false);

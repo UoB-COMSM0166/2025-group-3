@@ -38,7 +38,10 @@ export default class MapLoader {
     }
 
     loadGame() {
-        this.gameModel.assets.startscreenbg = loadImage("/asset/startscreenbg.png")
+        this.gameModel.assets.startscreenbg = loadImage("/asset/startscreenbg.png");
+        this.gameModel.assets.selectscreenbg = loadImage("/asset/selectscreenbg.png");
+        this.gameModel.assets.level1bg = loadImage("/asset/level1bg.png");
+        this.gameModel.assets.level2bg = loadImage("/asset/level2bg.png");
         //loadJSON('../../asset/level1.json', (jsonData) => this.parseJSON(jsonData)); // Use arrow function to bind context
         //loadJSON('../../asset/level2-test.json', (jsonData) => this.parseJSON(jsonData));
 

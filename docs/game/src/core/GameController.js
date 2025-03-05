@@ -74,7 +74,7 @@ export default class GameController {
             window.assets.death.play();
 
             let message1 = "Cats dissolve easily in water!"
-            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,3000,100,{},"playing"));
+            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,2000,30,{},"death"));
 
             this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
             this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
@@ -97,7 +97,7 @@ export default class GameController {
             window.assets.death.play();
 
             let message1 = "You are trapped!"
-            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,3000,100,{},"playing"));
+            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,2000,30,{},"death"));
 
             this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
             this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;

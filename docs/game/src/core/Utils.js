@@ -135,14 +135,14 @@ export class Message {
         this.options.textAlign = CENTER;
         this.options.textColor = color(255, 255, 255);
         this.options.borderColor = color(255, 150, 180)
-        this.options.borderWidth = 10;  
+        this.options.borderWidth = 6;  
         break;
 
-      case "playing":
+      case "death":
         this.options.textAlign = CENTER;
-        this.options.textColor = color(255, 255, 255);
-        this.options.borderColor = color(255, 100, 100)
-        this.options.borderWidth = 40;
+        this.options.textColor = color(255, 100, 100);
+        this.options.borderColor = color(255, 255, 255);
+        this.options.borderWidth = 4;
         this.size = 30;  
         break;
 
