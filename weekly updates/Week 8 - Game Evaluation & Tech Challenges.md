@@ -95,12 +95,12 @@ NASA TLX is a tool for measuring subjective workload across six dimensions (Hart
 ![NASA TLX Dimension Comparison](../images/NASA_TLX_Dimension_Comparison.png)
 
 
-- **Figure 2: SUS Score Trends (Line Chart)**
+- **Figure 2: SUS Score Trends**
 
 ![SUS Score Trends](../images/SUS_Score_Trends.png)
 
 
-- **Figure 3: Correlation Between SUS and NASA TLX (Scatter Plot)**
+- **Figure 3: Correlation Between SUS and NASA TLX**
 
 ![Correlation Between SUS and NASA TLX](../images/Correlation_Between_SUS_and_NASA_TLX.png)
 
