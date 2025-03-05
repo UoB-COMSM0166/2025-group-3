@@ -1,7 +1,28 @@
+---
+title: "5 March"
+description: ""
+summary: ""
+date: 2025-03-5T15:44:00+00:00
+lastmod: 2025-03-5T15:44:00+00:00
+draft: false
+weight: 50
+categories: []
+tags: []
+contributors: []
+pinned: false
+homepage: false
+seo:
+  title: "" # custom title (optional)
+  description: "" # custom description (recommended)
+  canonical: "" # custom canonical URL (optional)
+  robots: "" # custom robot tags (optional)
+---
 # **Meeting Minutes**
 
 **Date:** March 5, 2025
- **Location:** Offline Meeting
+
+ **Location:** MVB 2.11
+ 
  **Attendees:** All Group Members
 
 ## **Agenda**
