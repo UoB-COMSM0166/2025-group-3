@@ -1,3 +1,22 @@
+---
+title: "25 February"
+description: ""
+summary: "Meeting minutes, Evaluation"
+date: 2025-02-25T20:20:00+00:00
+lastmod: 2025-02-25T20:20:00+00:00
+draft: false
+weight: 50
+categories: []
+tags: []
+contributors: []
+pinned: false
+homepage: false
+seo:
+  title: "" # custom title (optional)
+  description: "" # custom description (recommended)
+  canonical: "" # custom canonical URL (optional)
+  robots: "" # custom robot tags (optional)
+---
 ### **Meeting Minutes**
 
 **Meeting Date**: February 25, 2025
