@@ -47,9 +47,11 @@ window.preload = function () {
  // window.assets.textFont2 = loadFont("/asset/fonts/GILSANUB.TTF");
   //console.log("Main preload done");
 
-  // 用于开始界面和选关界面的素材, 在gamemodel中加载太慢了
+  // 用于背景素材, 在gamemodel中加载太慢了
   window.assets.startscreenbg = loadImage("/asset/startscreenbg.png");
   window.assets.selectscreenbg = loadImage("/asset/selectscreenbg.png");
+  window.assets.level1bg = loadImage("/asset/bg/Summer8.png");
+  window.assets.level2bg = loadImage("/asset/bg/Summer5.png");
 
   // 用于开始界面和选关界面的移动云朵素材, 必须在preload中加载, 不可以在gamemodel中加载(因为是异步的)
   window.assets.startscreenbg_cloud1 = loadImage("/asset/bg/clouds/ocean-3-3-1.png");

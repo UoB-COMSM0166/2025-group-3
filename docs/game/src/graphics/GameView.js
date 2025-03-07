@@ -37,6 +37,8 @@ export default class GameView {
         ];
     }
 
+
+
     // main function of GameView
     render() {
         //console.log('Current game state:', this.gameModel.gameState);
@@ -54,6 +56,7 @@ export default class GameView {
             console.log("Unknown State");
         }
     }
+
 
 
     drawStartScreen() {
@@ -80,7 +83,6 @@ export default class GameView {
         this.enterMessage.show();
         this.titleMessage.show();
     }
-
 
 
 
@@ -130,6 +132,8 @@ export default class GameView {
         }
     }
 
+
+
     drawGameScreen() {
         // 显示实体
         //RenderLogic.showEntities(this.gameModel, this.assets);
@@ -143,12 +147,12 @@ export default class GameView {
         //console.log("地图宽度:", levelWidth);
         //console.log("数据已加载:", gameModel.coll[0]);
         //clearInterval(checkDataLoaded); // 停止轮询
+
         if(levelIndex == 0){
-            image(gameModel.assets.level1bg, 0, 0, windowWidth, windowHeight * 5 / 4);
+            image(window.assets.level1bg, 0, 0, window.innerWidth, window.innerHeight);
         }else if(levelIndex == 1){
-            image(gameModel.assets.level2bg, 0, 0, windowWidth, windowHeight * 5 / 4);
+            image(window.assets.level2bg, 0, 0, window.innerWidth, window.innerHeight);
         }
-        image(gameModel.assets.level2bg, 0, 0, windowWidth, windowHeight * 5 / 4);
         
         for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
             // elevatingWalls[selectedLevel][i].update();
