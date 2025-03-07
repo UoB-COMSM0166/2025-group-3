@@ -49,8 +49,9 @@ window.preload = function () {
   // 用于背景素材, 在gamemodel中加载太慢了
   window.assets.startscreenbg = loadImage("/asset/startscreenbg.png");
   window.assets.selectscreenbg = loadImage("/asset/selectscreenbg.png");
-  window.assets.level1bg = loadImage("/asset/bg/Summer8.png");
-  window.assets.level2bg = loadImage("/asset/bg/Summer5.png");
+  window.assets.levelCompletebg = loadImage("/asset/bg/Summer6-new.png");
+  window.assets.level1bg = loadImage("/asset/bg/Summer8-new.png");
+  window.assets.level2bg = loadImage("/asset/bg/Summer5-new.png");
 
   // 用于开始界面和选关界面的移动云朵素材, 必须在preload中加载, 不可以在gamemodel中加载(因为是异步的)
   window.assets.startscreenbg_cloud1 = loadImage("/asset/bg/clouds/ocean-3-3-1.png");

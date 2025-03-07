@@ -333,7 +333,7 @@ export default class GameView {
 
             textSize(window.innerWidth/38);
             text("Press any key to return to the game.\nPress ESC to Exit.", 
-                window.innerWidth/2, window.innerHeight/2- window.innerHeight/3.1);
+                window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
             textSize(window.innerWidth/50);
             let dis = window.innerHeight/19;
@@ -354,20 +354,20 @@ export default class GameView {
 
     drawGameOverScreen() {}
 
-    drawLevelCompleteScreen() { // 仅测试, 待修改
+    drawLevelCompleteScreen() {
         let width = window.innerWidth;
         let height = window.innerHeight;
-        background(123, 180, 145);
-        //...这里插入关卡选择背景图片
+
+        image(window.assets.levelCompletebg, 0, 0, width, height);
         textAlign(CENTER, CENTER);
-        textSize(26);
+        textSize(window.innerWidth/25);
         fill(0, 0, 0);
-        strokeWeight(3);
+        strokeWeight(5);
         stroke(255, 255, 255);
-        text("Level Complete!", width/2, height/2 - 50);
-        textSize(20);
-        strokeWeight(2);
-        text("Press ANY KEY for next level", width/2, height/2 +50);
-        text("Press ESC to return to level select", width/2, height/2 +100);
+        text("Level Complete!", width/2, height/2 +80);
+        textSize(window.innerWidth/40);
+        strokeWeight(5);
+        text("Press ANY KEY for next level", width/2, height/2 +200);
+        text("Press ESC to return to level select", width/2, height/2 +250);
     }
 }
