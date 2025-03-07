@@ -43,7 +43,8 @@ window.preload = function () {
   window.assets.userStartGame = loadSound("/asset/sounds/effect_e017_miaomiaomiao.wav",soundLoaded); 
   window.assets.userSelectLevel = loadSound("/asset/sounds/effect_e020_miao.wav",soundLoaded);
 
-
+  window.assets.textFont1 = loadFont("/asset/fonts/MengNaFan.otf");
+ // window.assets.textFont2 = loadFont("/asset/fonts/GILSANUB.TTF");
   //console.log("Main preload done");
 }
 
@@ -61,6 +62,7 @@ window.setup = function () {
         window.assets.userSelectLevel.setVolume(0.4);  
         window.assets.death.setVolume(0.4);
         window.assets.bgm.loop();  // 循环播放
+        textFont(window.assets.textFont1);
 
         gameModel = new GameModel();
         gameController = new GameController(gameModel);
