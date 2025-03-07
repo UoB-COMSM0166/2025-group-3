@@ -46,6 +46,23 @@ window.preload = function () {
   window.assets.textFont1 = loadFont("/asset/fonts/MengNaFan.otf");
  // window.assets.textFont2 = loadFont("/asset/fonts/GILSANUB.TTF");
   //console.log("Main preload done");
+
+  // 用于开始界面和选关界面的素材, 在gamemodel中加载太慢了
+  window.assets.startscreenbg = loadImage("/asset/startscreenbg.png");
+  window.assets.selectscreenbg = loadImage("/asset/selectscreenbg.png");
+
+  // 用于开始界面和选关界面的移动云朵素材, 必须在preload中加载, 不可以在gamemodel中加载(因为是异步的)
+  window.assets.startscreenbg_cloud1 = loadImage("/asset/bg/clouds/ocean-3-3-1.png");
+  window.assets.startscreenbg_cloud2 = loadImage("/asset/bg/clouds/ocean-3-3-2.png");
+  window.assets.startscreenbg_cloud3 = loadImage("/asset/bg/clouds/ocean-3-4.png");
+  window.assets.startscreenbg_cloud4 = loadImage("/asset/bg/clouds/clouds-5-3.png");
+
+ // window.assets.selectscreenbg_cloud1 = loadImage("/asset/bg/clouds/cloud-2-2.png");
+  window.assets.selectscreenbg_cloud2 = loadImage("/asset/bg/clouds/cloud-2-3.png");
+  //window.assets.selectscreenbg_cloud3 = loadImage("/asset/bg/clouds/cloud-2-4.png");
+  window.assets.selectscreenbg_cloud4 = loadImage("/asset/bg/clouds/cloud-7-4-1.png");
+
+
 }
 
 window.setup = function () {

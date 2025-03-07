@@ -11,6 +11,30 @@ export default class GameView {
         this.enterMessage = new Message("Press ENTER To Start", window.innerWidth / 2, window.innerHeight/1.5, 10000, 50, { scaling: true }, "startScreen"); // 动态变化大小的消息
         this.selectMessage = new Message("Use LEFT/RIGHT To Choose\nPress SPACE To Start", window.innerWidth / 2, window.innerHeight / 5-10, 10000, 50, {}, "levelSelectScreen");
         this.tipMessage = new Message("Tip：Do you konw:\nA cat always lands with its feet down\nBread always lands on the creamed side", window.innerWidth / 2, window.innerHeight / 1.2, 1500, 30, {changeAlpha: true}, "Tip");
+    
+        this.startScreenClouds = [ // 初始化开始界面的云朵
+            { img: window.assets.startscreenbg_cloud1, x: 0, y: 560, speed: 1.4, scale: 2 },
+            { img: window.assets.startscreenbg_cloud2, x: 1000, y: 600, speed: 1, scale: 2 },
+            { img: window.assets.startscreenbg_cloud3, x: 900, y: 300, speed: 2.4, scale: 1.7 },
+            { img: window.assets.startscreenbg_cloud2, x: 150, y: 570, speed: 1.3, scale: 2 },
+            { img: window.assets.startscreenbg_cloud1, x: 860, y: 400, speed: 1.7, scale: 2.1 },
+            { img: window.assets.startscreenbg_cloud2, x: 2000, y: 630, speed: 2, scale: 2 },
+            { img: window.assets.startscreenbg_cloud1, x: 1200, y: 210, speed: 2.3, scale: 2.2 },
+            { img: window.assets.startscreenbg_cloud3, x: 700, y: 400, speed: 2.4, scale: 1.8 },
+            { img: window.assets.startscreenbg_cloud4, x: 10, y: 40, speed: 2, scale: 1.2 },
+            { img: window.assets.startscreenbg_cloud4, x: 60, y: 320, speed: 1.6, scale: 1.5 },
+        ];
+
+        this.selectScreenClouds = [ 
+            { img: window.assets.selectscreenbg_cloud4, x: 0, y: 560, speed: 1.4, scale: 1.2 },
+            { img: window.assets.selectscreenbg_cloud4, x: 300, y: 390, speed: 1, scale: 1.1 },
+            { img: window.assets.selectscreenbg_cloud2, x: 20, y: 240, speed: 2, scale: 1.3 },
+            { img: window.assets.selectscreenbg_cloud4, x: 860, y: 500, speed: 1.7, scale: 1 },
+            { img: window.assets.selectscreenbg_cloud2, x: 1000, y: 390, speed: 2.3, scale: 1 },
+            { img: window.assets.selectscreenbg_cloud2, x: 1900, y: 340, speed: 2.1, scale: 1.7 },
+            { img: window.assets.selectscreenbg_cloud4, x: 1400, y: 560, speed: 1.8, scale: 1.6 },
+            { img: window.assets.selectscreenbg_cloud2, x: 700, y: 720, speed: 1.5, scale: 1.3 },
+        ];
     }
 
     // main function of GameView
@@ -31,19 +55,57 @@ export default class GameView {
         }
     }
 
+
     drawStartScreen() {
-    //background(173, 216, 230);
-    image(this.gameModel.assets.startscreenbg, 0, 0, windowWidth, windowHeight);
-    this.enterMessage.show();
-    this.titleMessage.show();
+        
+        //background(173, 216, 230);
+        image(window.assets.startscreenbg, 0, 0, window.innerWidth, window.innerHeight);
+
+        // 绘制和更新云朵
+        for (let cloud of this.startScreenClouds) {
+            if (cloud.img) {  
+                let w = cloud.img.width * cloud.scale; //  按 scale 缩放宽度
+                let h = cloud.img.height * cloud.scale; //  按 scale 缩放高度
+        
+                image(cloud.img, cloud.x, cloud.y, w, h); // 传入缩放后的宽高
+                cloud.x -= cloud.speed; //  让云朵向左移动
+        
+                //  如果云朵完全离开屏幕左侧，就从右侧重新出现
+                if (cloud.x + w < 0) { 
+                    cloud.x = window.innerWidth; // 让它从屏幕右侧重新进入
+                }
+            }
+        }
+
+        this.enterMessage.show();
+        this.titleMessage.show();
     }
+
+
+
 
     drawLevelSelectScreen() {
         
         //console.log("GameView level gameModel: ");
         //console.log(this.gameModel);
         background(255, 182, 193);
-        image(this.gameModel.assets.selectscreenbg, 0, 0, windowWidth, windowHeight);
+        image(window.assets.selectscreenbg, 0, 0, windowWidth, windowHeight);
+
+        // 绘制和更新云朵
+        for (let cloud of this.selectScreenClouds) {
+            if (cloud.img) {  
+                let w = cloud.img.width * cloud.scale; //  按 scale 缩放宽度
+                let h = cloud.img.height * cloud.scale; //  按 scale 缩放高度
+        
+                image(cloud.img, cloud.x, cloud.y, w, h); // 传入缩放后的宽高
+                cloud.x -= cloud.speed; //  让云朵向左移动
+        
+                //  如果云朵完全离开屏幕左侧，就从右侧重新出现
+                if (cloud.x + w < 0) { 
+                    cloud.x = window.innerWidth; // 让它从屏幕右侧重新进入
+                }
+            }
+        }
 
         this.selectMessage.show();
         this.tipMessage.show();
