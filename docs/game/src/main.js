@@ -142,37 +142,53 @@ window.draw = function () {
 }
 
 window.keyPressed = function () {
-    //  if (keyCode === ENTER) {
-    //       showCapoo = !showCapoo;
-    //  }
-    //  if (keyCode === LEFT_ARROW) {
-    //       CapooX -= 100;
-    //  }
-    //   if (keyCode === RIGHT_ARROW) {
-    //       CapooX += 100;
-    //  }
-    //   if (keyCode === UP_ARROW) {
-    //       CapooY -= 100;
-    //   }
-    //   if (keyCode === DOWN_ARROW) {
-    //       CapooY += 100;
-    //   }
-    
+
   if (gameModel.gameState === GAME_STATE.START && keyCode === ENTER) {
       window.assets.userStartGame.play();
       gameModel.gameState = GAME_STATE.LEVEL_SELECT;
   } 
   
   else if (gameModel.gameState === GAME_STATE.LEVEL_SELECT) {
+
       if (keyCode === LEFT_ARROW) {
         gameModel.selectedLevel = Math.max(0, gameModel.selectedLevel - 1);
         console.log("selectedLevel: " + gameModel.selectedLevel);
-      } else if (keyCode === RIGHT_ARROW) {
+      } 
+
+      else if (keyCode === RIGHT_ARROW) {
         gameModel.selectedLevel = Math.min(CONSTANT.LEVEL_LIST.length - 1, gameModel.selectedLevel + 1);
         console.log("selectedLevel: " + gameModel.selectedLevel);
-      } else if (keyCode === 32) {  // Space
+      } 
+
+      else if (keyCode === 32) {  // 按下空格的时候进入该关卡
         gameModel.gameState = GAME_STATE.PLAYING;
-        window.assets.userSelectLevel.play();
+        window.assets.userSelectLevel.play(); // 播放音效
+
+        // 游戏内容重置, 包括人物位置和钥匙数量, 物品的显示也全部重置
+        gameModel.cat[gameModel.selectedLevel].x = gameModel.cat[gameModel.selectedLevel].iniX;
+        gameModel.cat[gameModel.selectedLevel].y = gameModel.cat[gameModel.selectedLevel].iniY;
+        gameModel.cat[gameModel.selectedLevel].keyNum = 0;
+        // 重置钥匙
+        for(let i=0; i<gameModel.keysItem[gameModel.selectedLevel].length; i++){
+          gameModel.keysItem[gameModel.selectedLevel][i].visible = true; 
+        }
+        // 重置机关墙
+        for(let i=0; i<gameModel.elevatingWalls[gameModel.selectedLevel].length; i++){
+          gameModel.elevatingWalls[gameModel.selectedLevel][i].x =
+            gameModel.elevatingWalls[gameModel.selectedLevel][i].iniX; 
+          gameModel.elevatingWalls[gameModel.selectedLevel][i].y =
+            gameModel.elevatingWalls[gameModel.selectedLevel][i].iniY;
+          gameModel.elevatingWalls[gameModel.selectedLevel][i].moving = false;
+          gameModel.elevatingWalls[gameModel.selectedLevel][i].beActivated = false;
+        }
+        // 重置机关
+        for(let i=0; i<gameModel.switches[gameModel.selectedLevel].length; i++){
+          gameModel.switches[gameModel.selectedLevel][i].invincible = false;
+          gameModel.switches[gameModel.selectedLevel][i].beActivated = false;
+          gameModel.switches[gameModel.selectedLevel][i].prevState = false;
+        }
+        // TODO 
+        // 黄油位置重置,以及黄油与猫是否分离的重置(现在默认最开始的时候黄油都在猫身上)
       }
   } 
 
