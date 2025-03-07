@@ -339,15 +339,15 @@ export default class GameView {
             let dis = window.innerHeight/19;
             text("You're a wizard cat.", 
                 window.innerWidth/2, window.innerHeight/2+window.innerHeight/13);
-            text("You can move by pressing the left and right keys.", 
+            text("You can move by pressing 'LEFT' and 'RIGHT'.", 
                 window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis);
             text("You can fly upwards infinitely by pressing SPACE when you have the potion on your back.", 
                 window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*2);
-            text("You can drop the potion by pressing the 'X' key. ", 
+            text("You can drop the potion by pressing 'X'. ", 
                 window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*3);
-            text("You will automatically pick up the jar when it is close to it.", 
+            text("You will automatically pick up the potion when you're close to it.", 
                 window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*4);
-            text("You can climb ladders using the up and down keys.", 
+            text("You can climb ladders using 'UP' and 'DOWN'.", 
                 window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*5);
         }
     }
