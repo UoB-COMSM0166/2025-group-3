@@ -318,9 +318,12 @@ export default class GameView {
 
         // 按esc加载游戏说明页面, 按任意键关闭, 再次按esc退出到选关页面
         if(this.gameModel.showHelp){
-            fill(255, 255, 255, 150); // 半透明
-            noStroke();  // 不显示背景的描边
-            rect(50, 50, window.innerWidth - 100, window.innerHeight - 100); // 四周有空隙
+            fill(255, 255, 255, 170); // 半透明
+            stroke(255); // 白色描边
+            strokeWeight(5);
+            let padding = 50; // 四周留白
+            let cornerRadius = 25;
+            rect(padding, padding, window.innerWidth - 2 * padding, window.innerHeight - 2 * padding, cornerRadius); // 圆角矩形
 
             
             textAlign(CENTER, CENTER); 
