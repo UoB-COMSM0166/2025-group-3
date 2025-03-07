@@ -18,7 +18,6 @@ let soundsLoaded = 0; // 用于计数音频个数
 const totalSounds = 10; // !!改成所有音频素材的数量!!
 
 window.preload = function () {
-  
 
   function soundLoaded() {
     soundsLoaded++;
@@ -27,7 +26,7 @@ window.preload = function () {
         console.log("All sounds loaded! Ready to start the game.");
         window.allSoundsLoaded = true;
     }
-}
+  }
 
   window.assets.bgm = loadSound("/asset/sounds/background_music.wav",soundLoaded);
 
@@ -44,7 +43,7 @@ window.preload = function () {
   window.assets.userSelectLevel = loadSound("/asset/sounds/effect_e020_miao.wav",soundLoaded);
 
   window.assets.textFont1 = loadFont("/asset/fonts/MengNaFan.otf");
- // window.assets.textFont2 = loadFont("/asset/fonts/GILSANUB.TTF");
+  //window.assets.textFont2 = loadFont("/asset/fonts/GILSANUB.TTF");
   //console.log("Main preload done");
 
   // 用于背景素材, 在gamemodel中加载太慢了
@@ -59,7 +58,7 @@ window.preload = function () {
   window.assets.startscreenbg_cloud3 = loadImage("/asset/bg/clouds/ocean-3-4.png");
   window.assets.startscreenbg_cloud4 = loadImage("/asset/bg/clouds/clouds-5-3.png");
 
- // window.assets.selectscreenbg_cloud1 = loadImage("/asset/bg/clouds/cloud-2-2.png");
+  //window.assets.selectscreenbg_cloud1 = loadImage("/asset/bg/clouds/cloud-2-2.png");
   window.assets.selectscreenbg_cloud2 = loadImage("/asset/bg/clouds/cloud-2-3.png");
   //window.assets.selectscreenbg_cloud3 = loadImage("/asset/bg/clouds/cloud-2-4.png");
   window.assets.selectscreenbg_cloud4 = loadImage("/asset/bg/clouds/cloud-7-4-1.png");
@@ -157,10 +156,13 @@ window.keyPressed = function () {
     //   if (keyCode === DOWN_ARROW) {
     //       CapooY += 100;
     //   }
+    
   if (gameModel.gameState === GAME_STATE.START && keyCode === ENTER) {
       window.assets.userStartGame.play();
       gameModel.gameState = GAME_STATE.LEVEL_SELECT;
-  } else if (gameModel.gameState === GAME_STATE.LEVEL_SELECT) {
+  } 
+  
+  else if (gameModel.gameState === GAME_STATE.LEVEL_SELECT) {
       if (keyCode === LEFT_ARROW) {
         gameModel.selectedLevel = Math.max(0, gameModel.selectedLevel - 1);
         console.log("selectedLevel: " + gameModel.selectedLevel);
@@ -171,13 +173,30 @@ window.keyPressed = function () {
         gameModel.gameState = GAME_STATE.PLAYING;
         window.assets.userSelectLevel.play();
       }
-  } else if (gameModel.gameState === GAME_STATE.GAME_OVER && key === 'r') {
+  } 
+
+  else if(gameModel.gameState === GAME_STATE.PLAYING ){
+    gameModel.keys[key] = true;
+    if (keyCode === ESCAPE) { 
+      if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
+          gameModel.showHelp = true;
+          gameModel.keysESC = true; 
+      } else { // 按下两次esc, 退出到选关页面
+          gameModel.showHelp = false;
+          gameModel.keysESC = false;
+          gameModel.gameState = GAME_STATE.LEVEL_SELECT;
+      }
+    }
+    if (gameModel.showHelp && keyCode !== ESCAPE) { // 按下esc之后按下任意键, 返回游戏
+        gameModel.showHelp = false;
+        gameModel.keysESC = false; 
+    }
+  }
+  
+  else if (gameModel.gameState === GAME_STATE.GAME_OVER && key === 'r') {
       gameModel.gameState = GAME_STATE.START;
   }
-  else if(gameModel.gameState === GAME_STATE.PLAYING) {
-      gameModel.keys[key] = true;// record the key pressed
-      //console.log(key + " " + keyCode);//test
-  }
+  
   else if (gameModel.gameState === GAME_STATE.LEVEL_COMPLETE) {
       // ESC -> select level
       if (keyCode === ESCAPE) {

@@ -148,16 +148,33 @@ export default class GameView {
         //console.log("数据已加载:", gameModel.coll[0]);
         //clearInterval(checkDataLoaded); // 停止轮询
 
-        if(levelIndex == 0){
-            image(window.assets.level1bg, 0, 0, window.innerWidth, window.innerHeight);
-        }else if(levelIndex == 1){
-            image(window.assets.level2bg, 0, 0, window.innerWidth, window.innerHeight);
+        // 渲染背景
+        // 视差滚动因子, 值越小, 背景移动越慢
+        // let parallaxFactor = 0.05; 
+        // // 计算背景的偏移量
+        // let bgOffsetX = -(gameModel.cat[levelIndex].x-gameModel.cat[levelIndex].iniX) * parallaxFactor; 
+        // let bgOffsetY = -(gameModel.cat[levelIndex].y-gameModel.cat[levelIndex].iniY) * parallaxFactor;
+        // 设置图片居中对齐
+        imageMode(CENTER);
+        // if (levelIndex == 0) {
+        //     image(window.assets.level1bg, bgOffsetX + window.innerWidth / 2, bgOffsetY + window.innerHeight / 2, window.innerWidth*1.3, window.innerHeight*1.3);
+        // } else if (levelIndex == 1) {
+        //     image(window.assets.level2bg, bgOffsetX + window.innerWidth / 2, bgOffsetY + window.innerHeight / 2, window.innerWidth*1.3*3/2, window.innerHeight*1.3);
+        // }
+        if (levelIndex == 0) {
+            image(window.assets.level1bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
+        } else if (levelIndex == 1) {
+            image(window.assets.level2bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
         }
-        
+        // 恢复默认对齐方式
+        imageMode(CORNER);
+
+        // 加载游戏场景和部件
         for(let i =0; i<gameModel.elevatingWalls[levelIndex].length; i++){
             // elevatingWalls[selectedLevel][i].update();
             showItem(gameModel.elevatingWalls[levelIndex][i], offsetX, offsetY, assets, false);
         } // 机关墙需要显示在碰撞层下面,因此先加载
+
         showTerrain(gameModel.coll[levelIndex], offsetX, offsetY, assets, levelWidth);
         showTerrain(gameModel.decorate[levelIndex], offsetX, offsetY, assets, levelWidth);
         showTerrain(gameModel.trap[levelIndex], offsetX, offsetY, assets, levelWidth);
@@ -165,6 +182,7 @@ export default class GameView {
         showTerrain(gameModel.ice[levelIndex], offsetX, offsetY, assets, levelWidth);
         showTerrain(gameModel.climb[levelIndex], offsetX, offsetY, assets, levelWidth);
         showTerrain(gameModel.spring[levelIndex], offsetX, offsetY, assets, levelWidth);   
+
         if(gameModel.merge[levelIndex].visible){
             showTerrain(gameModel.merge[levelIndex], offsetX, offsetY, assets, levelWidth);      
         }     
@@ -185,6 +203,8 @@ export default class GameView {
         //console.log("tag:potion",gameModel.potion.x,gameModel.cat[levelIndex].x,gameModel.potion.y,gameModel.cat[levelIndex].y,PotionX,PotionY);
         //gameModel.potion.updatePotion(1000,1000);
         image(gameModel.assets.teachCommand, 0, 0, 1920/5, 1080/5);
+
+        // 钥匙数量可视化
         let keyshi = RenderLogic.getTilePosition(429), keykong = RenderLogic.getTilePosition(430);
         if(this.gameModel.cat[levelIndex].keyNum == 0){
             image(
@@ -292,6 +312,40 @@ export default class GameView {
                     this.gameModel.messages.splice(i, 1); // 删除消息
                 }, 10);
             }
+        }
+
+        console.log("keysESC: " + this.gameModel.keysESC);
+
+        // 按esc加载游戏说明页面, 按任意键关闭, 再次按esc退出到选关页面
+        if(this.gameModel.showHelp){
+            fill(255, 255, 255, 150); // 半透明
+            noStroke();  // 不显示背景的描边
+            rect(50, 50, window.innerWidth - 100, window.innerHeight - 100); // 四周有空隙
+
+            
+            textAlign(CENTER, CENTER); 
+            fill(255); // 白色文字
+            stroke(50,110,185);
+            strokeWeight(5); 
+
+            textSize(window.innerWidth/38);
+            text("Press any key to return to the game.\nPress ESC to Exit.", 
+                window.innerWidth/2, window.innerHeight/2- window.innerHeight/3.1);
+
+            textSize(window.innerWidth/50);
+            let dis = window.innerHeight/19;
+            text("You're a wizard cat.", 
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13);
+            text("You can move by pressing the left and right keys.", 
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis);
+            text("You can fly upwards infinitely by pressing SPACE when you have the potion on your back.", 
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*2);
+            text("You can drop the potion by pressing the 'X' key. ", 
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*3);
+            text("You will automatically pick up the jar when it is close to it.", 
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*4);
+            text("You can climb ladders using the up and down keys.", 
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*5);
         }
     }
 
