@@ -10,7 +10,7 @@ export default class GameView {
         this.titleMessage = new Message("Capoo", window.innerWidth / 2, window.innerHeight / 5-50, 10000, 200, {}, "Title"); // 标题消息
         this.enterMessage = new Message("Press ENTER To Start", window.innerWidth / 2, window.innerHeight/1.5, 10000, 50, { scaling: true }, "startScreen"); // 动态变化大小的消息
         this.selectMessage = new Message("Use LEFT/RIGHT To Choose\nPress SPACE To Start", window.innerWidth / 2, window.innerHeight / 5-10, 10000, 50, {}, "levelSelectScreen");
-        this.tipMessage = new Message("Tip：Do you konw:\nA cat always lands with its feet down\nBread always lands on the creamed side", window.innerWidth / 2, window.innerHeight / 1.2, 1500, 30, {changeAlpha: true}, "Tip");
+        this.tipMessage = new Message("Tip：Do you konw:\nA cat always lands with its feet down\nBread always lands on the creamed side", window.innerWidth / 2, window.innerHeight / 1.2, 3000, 30, {changeAlpha: true}, "Tip");
     
         this.startScreenClouds = [ // 初始化开始界面的云朵
             { img: window.assets.startscreenbg_cloud1, x: 0, y: 560, speed: 1.4, scale: 2 },
@@ -202,28 +202,26 @@ export default class GameView {
         
         //console.log("tag:potion",gameModel.potion.x,gameModel.cat[levelIndex].x,gameModel.potion.y,gameModel.cat[levelIndex].y,PotionX,PotionY);
         //gameModel.potion.updatePotion(1000,1000);
-        image(gameModel.assets.teachCommand, 0, 0, 1920/5, 1080/5);
-
         // 钥匙数量可视化
         let keyshi = RenderLogic.getTilePosition(429), keykong = RenderLogic.getTilePosition(430);
         if(this.gameModel.cat[levelIndex].keyNum == 0){
             image(
                 assets.icon,
-                window.innerHeight/10 - 50, window.innerWidth/8,
+                window.innerHeight/10 - 50, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keykong.x, keykong.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
             );
             image(
                 assets.icon,
-                window.innerHeight/10, window.innerWidth/8,
+                window.innerHeight/10, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keykong.x, keykong.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
             );
             image(
                 assets.icon,
-                window.innerHeight/10 + 50, window.innerWidth/8,
+                window.innerHeight/10 + 50, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keykong.x, keykong.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
@@ -232,21 +230,21 @@ export default class GameView {
         if(this.gameModel.cat[levelIndex].keyNum == 1){
             image(
                 assets.icon,
-                window.innerHeight/10 - 50, window.innerWidth/8,
+                window.innerHeight/10 - 50, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keyshi.x, keyshi.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
             );
             image(
                 assets.icon,
-                window.innerHeight/10, window.innerWidth/8,
+                window.innerHeight/10, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keykong.x, keykong.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
             );
             image(
                 assets.icon,
-                window.innerHeight/10 + 50, window.innerWidth/8,
+                window.innerHeight/10 + 50, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keykong.x, keykong.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
@@ -255,21 +253,21 @@ export default class GameView {
         if(this.gameModel.cat[levelIndex].keyNum == 2){
             image(
                 assets.icon,
-                window.innerHeight/10 - 50, window.innerWidth/8,
+                window.innerHeight/10 - 50, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keyshi.x, keyshi.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
             );
             image(
                 assets.icon,
-                window.innerHeight/10, window.innerWidth/8,
+                window.innerHeight/10, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keyshi.x, keyshi.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
             );
             image(
                 assets.icon,
-                window.innerHeight/10 + 50, window.innerWidth/8,
+                window.innerHeight/10 + 50, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keykong.x, keykong.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
@@ -278,21 +276,21 @@ export default class GameView {
         if(this.gameModel.cat[levelIndex].keyNum == 3){
             image(
                 assets.icon,
-                window.innerHeight/10 - 50, window.innerWidth/8,
+                window.innerHeight/10 - 50, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keyshi.x, keyshi.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
             );
             image(
                 assets.icon,
-                window.innerHeight/10, window.innerWidth/8,
+                window.innerHeight/10, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keyshi.x, keyshi.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
             );
             image(
                 assets.icon,
-                window.innerHeight/10 + 50, window.innerWidth/8,
+                window.innerHeight/10 + 50, window.innerWidth/16,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
                 keyshi.x, keyshi.y,
                 CONSTANT.TILE_SIZE, CONSTANT.TILE_SIZE,
@@ -333,22 +331,24 @@ export default class GameView {
 
             textSize(window.innerWidth/38);
             text("Press any key to return to the game.\nPress ESC to Exit.", 
-                window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+                window.innerWidth/2, window.innerHeight/10 - window.innerHeight/3.1);
 
             textSize(window.innerWidth/50);
             let dis = window.innerHeight/19;
             text("You're a wizard cat.", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13);
+                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13);
             text("You can move by pressing 'LEFT' and 'RIGHT'.", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis);
+                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13+dis);
             text("You can fly upwards infinitely by pressing SPACE when you have the potion on your back.", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*2);
+                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13+dis*2);
             text("You can drop the potion by pressing 'X'. ", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*3);
+                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13+dis*3);
             text("You will automatically pick up the potion when you're close to it.", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*4);
+                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13+dis*4);
             text("You can climb ladders using 'UP' and 'DOWN'.", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*5);
+                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13+dis*5);
+
+            image(gameModel.assets.teachCommand, 80, 60, 1920/5, 1080/5);                  
         }
     }
 
@@ -365,7 +365,7 @@ export default class GameView {
         strokeWeight(5);
         stroke(255, 255, 255);
         text("Level Complete!", width/2, height/2 +80);
-        textSize(window.innerWidth/40);
+        textSize(window.innerWidth/160);
         strokeWeight(5);
         text("Press ANY KEY for next level", width/2, height/2 +200);
         text("Press ESC to return to level select", width/2, height/2 +250);
