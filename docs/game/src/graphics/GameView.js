@@ -297,6 +297,13 @@ export default class GameView {
             );
         }
 
+        // 在左上角显示esc打开帮助页面
+        fill(255); // 白色文字
+        stroke(50,110,185);
+        strokeWeight(5); 
+        textSize(window.innerWidth / 38);
+        textAlign(CORNER); 
+        text("ESC - show help", window.innerHeight/20, window.innerWidth/25);
 
         // 显示所有提示消息
         for (let i = 0; i < this.gameModel.messages.length; i++) {
@@ -312,45 +319,114 @@ export default class GameView {
             }
         }
 
-        console.log("keysESC: " + this.gameModel.keysESC);
+        //console.log("keysESC: " + this.gameModel.keysESC);
 
         // 按esc加载游戏说明页面, 按任意键关闭, 再次按esc退出到选关页面
         if(this.gameModel.showHelp){
-            fill(255, 255, 255, 170); // 半透明
-            stroke(255); // 白色描边
-            strokeWeight(5);
-            let padding = 50; // 四周留白
-            let cornerRadius = 25;
-            rect(padding, padding, window.innerWidth - 2 * padding, window.innerHeight - 2 * padding, cornerRadius); // 圆角矩形
-
-            
-            textAlign(CENTER, CENTER); 
-            fill(255); // 白色文字
-            stroke(50,110,185);
-            strokeWeight(5); 
-
-            textSize(window.innerWidth/38);
-            text("Press any key to return to the game.\nPress ESC to Exit.", 
-                window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
-
-            textSize(window.innerWidth/50);
-            let dis = window.innerHeight/19;
-            text("You're a wizard cat.", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13);
-            text("You can move by pressing 'LEFT' and 'RIGHT'.", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis);
-            text("You can fly upwards infinitely by pressing SPACE when you have the potion on your back.", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*2);
-            text("You can drop the potion by pressing 'X'. ", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*3);
-            text("You will automatically pick up the potion when you're close to it.", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*4);
-            text("You can climb ladders using 'UP' and 'DOWN'.", 
-                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*5);
-
-            image(gameModel.assets.teachCommand, 80, 60, 1920/5, 1080/5);                  
+            this.showhelpscreen();
         }
     }
+
+
+    showhelpscreen(){
+        fill(255, 255, 255, 170); // 半透明背景
+        stroke(255); // 白色描边
+        strokeWeight(5);
+        let padding = 50; // 四周留白
+        let cornerRadius = 25;
+        rect(padding, padding, window.innerWidth - 2 * padding, window.innerHeight - 2 * padding, cornerRadius); // 圆角矩形
+        
+        textAlign(CENTER, CENTER); 
+        fill(255); // 白色文字
+        stroke(50,110,185);
+        strokeWeight(5); 
+
+        // textSize(window.innerWidth/38);
+        // text("Press any key to return to the game.\nPress ESC to Exit.", 
+        //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+
+        textSize(window.innerWidth / 38);
+        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+
+        fill(61, 170, 110);  // 绿色
+        stroke(255);
+        text("any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+
+        fill(255);
+        stroke(50,110,185);
+        text("Press          to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
+
+        fill(169, 59, 70); // 红色
+        stroke(255);
+        text("ESC  ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1+ window.innerWidth /24);
+
+        fill(255);
+        stroke(50,110,185);
+
+        // textSize(window.innerWidth/50);
+        // let dis = window.innerHeight/19;
+        // text("You're a wizard cat.", 
+        //     window.innerWidth/2, window.innerHeight/2+window.innerHeight/13);
+        // text("You can move by pressing ⬅️ and ➡️.", 
+        //     window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis);
+        // text("You can fly upwards infinitely by pressing SPACE when you have the potion on your back.", 
+        //     window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*2);
+        // text("You can drop the potion by pressing 'X'. ", 
+        //     window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*3);
+        // text("You will automatically pick up the potion when you're close to it.", 
+        //     window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*4);
+        // text("You can climb ladders 🪜 using ⬆️ and ⬇️.", 
+        //     window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*5);
+
+        //image(window.assets.arrow,);
+        //image(gameModel.assets.teachCommand, 80, 60, 1920/5, 1080/5);       
+        
+        textSize(window.innerWidth / 50);
+        let dis = window.innerHeight / 19;
+        let textX = window.innerWidth / 2;
+        let textY = window.innerHeight / 2 + window.innerHeight / 13;
+
+        textAlign(CENTER, CENTER);
+        fill(255); 
+        stroke(50, 110, 185);
+        strokeWeight(5);
+
+        text("You're a wizard cat.", textX, textY);
+        textY += dis;
+
+        text("You can move by pressing        and        .", textX, textY);
+    
+        textFont("sans-serif");  // 临时切换默认字体，绘制 Emoji
+        text("                                            ⬅️         ➡️", textX, textY+window.innerHeight/100);
+        textFont(window.assets.textFont1); // 切换回自定义字体
+        textY += dis;
+
+        text("You can fly upwards infinitely by pressing               when you have the potion on your back.", textX, textY);
+        fill(43, 177, 235); // 蓝色
+        stroke(255);
+        text("    SPACE", textX, textY);
+        fill(255);
+        stroke(50,110,185);
+        textY += dis;
+
+        text("You can drop the potion by pressing     .", textX, textY);
+        fill(43, 177, 235); // 蓝色
+        stroke(255);
+        text("                                                                X", textX, textY);
+        fill(255);
+        stroke(50,110,185);
+        textY += dis;
+
+        text("You will automatically pick up the potion when you're close to it.", textX, textY);
+        textY += dis;
+
+        text("You can climb ladders        by pressing        and        .", textX, textY);
+        
+        textFont("sans-serif"); // 切换默认字体，绘制 Emoji
+        text("                                   🪜                        ⬆️         ⬇️", textX, textY+window.innerHeight/100);
+        textFont(window.assets.textFont1); // 切换回自定义字体
+    }
+
 
     drawGameOverScreen() {}
 

@@ -64,6 +64,7 @@ window.preload = function () {
   //window.assets.selectscreenbg_cloud3 = loadImage("/asset/bg/clouds/cloud-2-4.png");
   window.assets.selectscreenbg_cloud4 = loadImage("/asset/bg/clouds/cloud-7-4-1.png");
 
+  //window.assets.arrow = loadImage("/asset/up-arrow.png");
 
 }
 
