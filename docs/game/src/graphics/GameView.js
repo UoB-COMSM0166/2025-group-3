@@ -331,22 +331,22 @@ export default class GameView {
 
             textSize(window.innerWidth/38);
             text("Press any key to return to the game.\nPress ESC to Exit.", 
-                window.innerWidth/2, window.innerHeight/10 - window.innerHeight/3.1);
+                window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
             textSize(window.innerWidth/50);
             let dis = window.innerHeight/19;
             text("You're a wizard cat.", 
-                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13);
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13);
             text("You can move by pressing 'LEFT' and 'RIGHT'.", 
-                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13+dis);
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis);
             text("You can fly upwards infinitely by pressing SPACE when you have the potion on your back.", 
-                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13+dis*2);
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*2);
             text("You can drop the potion by pressing 'X'. ", 
-                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13+dis*3);
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*3);
             text("You will automatically pick up the potion when you're close to it.", 
-                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13+dis*4);
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*4);
             text("You can climb ladders using 'UP' and 'DOWN'.", 
-                window.innerWidth/2, window.innerHeight/10+window.innerHeight/13+dis*5);
+                window.innerWidth/2, window.innerHeight/2+window.innerHeight/13+dis*5);
 
             image(gameModel.assets.teachCommand, 80, 60, 1920/5, 1080/5);                  
         }
