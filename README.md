@@ -163,7 +163,12 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 - **Modding support** allows the community to expand the game further.
 
 **🌾 Rebuild, Connect, and Live Your Dream Farm Life!**  
-[Watch Week 3 - PPT Prototype 02 (MP4)](https://github.com/UoB-COMSM0166/2025-group-3/blob/main/weekly%20updates/Week%203%20-%20PPT%20Prototype%2002.mp4)
+<div style="text-align: center;">
+  <strong>Paper Prototype of Stardew Valley</strong>
+</div>
+<div style="text-align: center;">
+  <video src="https://github.com/user-attachments/assets/58f3f51d-4996-4ae9-9c22-3bd4396f7b38" controls width="600"></video>
+</div>
 
 ---
 
@@ -217,7 +222,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 **🐱 Spin, Solve, and Defy Gravity in a Buttered Chaos!**  
 <div style="text-align: center;">
-  <strong>Paper Prototype of Cato Game</strong>
+  <strong>Paper Prototype of Cato </strong>
 </div>
 <div style="text-align: center;">
   <video src="https://github.com/user-attachments/assets/e05b9fda-6a7e-4d59-81bc-7519a4a13db8" controls width="600"></video>
