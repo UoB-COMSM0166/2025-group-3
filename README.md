@@ -354,6 +354,8 @@ This structured requirement analysis approach helped us create a game that is cl
 
 
 ### 5. Heuristic Evaluation
+![图片描述](weekly%20updates/Week%207%20-%20Heuristic%20Evaluation.png)
+
 
 ### 6. Quantitative Evaluation
 
@@ -451,17 +453,17 @@ NASA TLX is a tool for measuring subjective workload across six dimensions (Hart
 
 - **Figure 1: NASA TLX Dimension Comparison**
 
-![NASA TLX Dimension Comparison](../images/NASA_TLX_Dimension_Comparison.png)
+![图片描述](images/NASA_TLX_Dimension_Comparison.png)
 
 
 - **Figure 2: SUS Score Trends**
 
-![SUS Score Trends](../images/SUS_Score_Trends.png)
+![图片描述](images/SUS_Score_Trends.png)
 
 
 - **Figure 3: Correlation Between SUS and NASA TLX**
 
-![Correlation Between SUS and NASA TLX](../images/Correlation_Between_SUS_and_NASA_TLX.png)
+![图片描述](images/Correlation_Between_SUS_and_NASA_TLX.png)
 
 
 ### Statistical Analysis
