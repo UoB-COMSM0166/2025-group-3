@@ -163,9 +163,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 - **Modding support** allows the community to expand the game further.
 
 **🌾 Rebuild, Connect, and Live Your Dream Farm Life!**  
-<div style="text-align: center;">
-  <strong>Paper Prototype of Stardew Valley</strong>
-</div>
+<p align="center"><b>Paper Prototype of Stardew Valley</b></p>
 <div style="text-align: center;">
   <video src="https://github.com/user-attachments/assets/58f3f51d-4996-4ae9-9c22-3bd4396f7b38" controls width="600"></video>
 </div>
@@ -221,9 +219,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 - **Potential modding support** for custom levels.
 
 **🐱 Spin, Solve, and Defy Gravity in a Buttered Chaos!**  
-<div style="text-align: center;">
-  <strong>Paper Prototype of Cato </strong>
-</div>
+<p align="center"><b>Paper Prototype of Cato</b></p>
 <div style="text-align: center;">
   <video src="https://github.com/user-attachments/assets/e05b9fda-6a7e-4d59-81bc-7519a4a13db8" controls width="600"></video>
 </div>
@@ -392,8 +388,13 @@ This structured requirement analysis approach helped us create a game that is cl
 ---
 
 ## 4. Class Diagram
-![Class Diagram](weekly%20updates/Week%205%20-%20Class%20Diagram.png)  
+![Class Diagram](weekly%20updates/Week%205%20-%20Class%20Diagram.png) 
+
+<p align="center"><b>Class Diagram</b></p>
+
 ![Sequence Diagram](weekly%20updates/Week%205%20-%20Sequence%20Diagram.png)
+
+<p align="center"><b>Sequence Diagram</b></p>
 
 ---
 
