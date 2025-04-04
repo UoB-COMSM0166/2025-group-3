@@ -2,6 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/devlog/5-march/</loc>
+    <lastmod>2025-03-05T15:44:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/devlog/week-8-game-evaluation-tech-challenges/</loc>
+    <lastmod>2025-03-04T17:25:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/devlog/25-february/</loc>
+    <lastmod>2025-02-25T20:20:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/devlog/11-february/</loc>
+    <lastmod>2025-02-11T15:44:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>http://localhost:1313/devlog/4-february/</loc>
     <lastmod>2025-02-04T20:20:00+00:00</lastmod>
     <changefreq>monthly</changefreq>

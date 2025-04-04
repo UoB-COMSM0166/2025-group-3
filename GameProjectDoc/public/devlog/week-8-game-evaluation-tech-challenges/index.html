@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preload" href="http://localhost:1313/fonts/vendor/jost/jost-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="http://localhost:1313/fonts/vendor/jost/jost-v4-latin-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="http://localhost:1313/fonts/vendor/jost/jost-v4-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+<script 
+  src="/js/color-mode.f14b3e296de1d0b69e75af684b62a4a912a2cadab04e36123407cd8388204f1d.js"
+  integrity="sha256-8Us&#43;KW3h0Laeda9oS2KkqRKiytqwTjYSNAfNg4ggTx0=">
+</script>
+
+
+<link rel="stylesheet" href="/main.4b723c0c93204c78e83636c0d653dfd187695ffea8212df9038d06ef2a0921185a4c9f5fcfee7c4772306898696c8097a453f7ef105647c20c9da273e35f5618.css" integrity="sha512-S3I8DJMgTHjoNjbA1lPf0YdpX/6oIS35A40G7yoJIRhaTJ9fz&#43;58R3IwaJhpbICXpFP37xBWR8IMnaJz419WGA==" crossorigin="anonymous">
+
+<noscript><style>img.lazyload { display: none; }</style></noscript><base href="http://localhost:1313/devlog/week-8-game-evaluation-tech-challenges/">
+
+  <link rel="canonical" href="http://localhost:1313/devlog/week-8-game-evaluation-tech-challenges/">
+
+
+<title>Week 8 - Game Evaluation Tech Challenges  |  Capoo</title>
+<meta name="description" content="Explore devlogs, documentation and game demo!">
+
+    
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    
+      <link
+        rel="apple-touch-icon"
+        href="/apple-touch-icon.png"
+        sizes="180x180"
+        type="image/png"
+      >
+      <link
+        rel="icon"
+        href="/favicon-192x192.png"
+        sizes="192x192"
+        type="image/png"
+      >
+      <link
+        rel="icon"
+        href="/favicon-512x512.png"
+        sizes="512x512"
+        type="image/png"
+      >
+<link rel="manifest" href="/manifest.webmanifest">
+
+<meta property="og:url" content="http://localhost:1313/devlog/week-8-game-evaluation-tech-challenges/">
+  <meta property="og:site_name" content="Capoo">
+  <meta property="og:title" content="Week 8 - Game Evaluation Tech Challenges">
+  <meta property="og:description" content="Capoo Quantitative Evaluation Report Workload and Usability Analysis of Difficulty Levels L1 and L2
+Abstract This report evaluates the workload and usability of the platformer puzzle game “Capoo” at two difficulty levels (L1 and L2) using NASA TLX and SUS. Ten classmates participated in the test, and data were analyzed using the Wilcoxon signed-rank test. Results indicate that L2 had a slightly higher workload than L1 (28.75 vs 24.58), but the difference was not significant (W = 36, p &gt; 0.05). Similarly, L2 had a lower SUS score than L1 (43.5 vs 45.5), but the difference was also not significant (W = 24, p &gt; 0.05). This suggests that the difficulty variation in Capoo has a limited impact on user experience.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-03-04T17:25:00+00:00">
+    <meta property="article:modified_time" content="2025-03-04T17:25:00+00:00">
+    <meta property="og:image" content="http://localhost:1313/cover.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/cover.png">
+  <meta name="twitter:title" content="Week 8 - Game Evaluation Tech Challenges">
+  <meta name="twitter:description" content="Capoo Quantitative Evaluation Report Workload and Usability Analysis of Difficulty Levels L1 and L2
+Abstract This report evaluates the workload and usability of the platformer puzzle game “Capoo” at two difficulty levels (L1 and L2) using NASA TLX and SUS. Ten classmates participated in the test, and data were analyzed using the Wilcoxon signed-rank test. Results indicate that L2 had a slightly higher workload than L1 (28.75 vs 24.58), but the difference was not significant (W = 36, p &gt; 0.05). Similarly, L2 had a lower SUS score than L1 (43.5 vs 45.5), but the difference was also not significant (W = 24, p &gt; 0.05). This suggests that the difficulty variation in Capoo has a limited impact on user experience.">
+
+    
+    <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Hi! This Is Capoo!",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/blog/",
+       "name": "Dev Log",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "name": "Week 8 Game Evaluation Tech Challenges",
+       "position": 3
+     }
+   ]
+ }
+</script>
+  
+	
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Week 8 - Game Evaluation Tech Challenges",
+      "description": "",
+      "isPartOf": {
+        "@id": "http://localhost:1313/devlog/week-8-game-evaluation-tech-challenges/"
+      },
+      "mainEntityOfPage": {
+        "@id": "http://localhost:1313/devlog/week-8-game-evaluation-tech-challenges/"
+      },
+      "datePublished": "2025-03-04T17:25:00+00:00",
+      "dateModified": "2025-03-04T17:25:00+00:00",
+      "author": {
+        "@type": "Organization",
+        "name": "Thulite",
+        "url": "http://localhost:1313/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Thulite"
+      }
+    }
+  ]
+}
+</script>
+
+
+
+
+
+
+</head>
+
+  
+  <body class="single section blog" data-bs-spy="scroll" data-bs-target="#toc" data-bs-root-margin="0px 0px -60%" data-bs-smooth-scroll="true" tabindex="0">
+    <div class="sticky-top">
+<header class="navbar navbar-expand-lg">
+  <div class="container-lg">
+  
+    <a class="navbar-brand me-auto me-lg-3" href="/">Capoo</a>
+
+    
+    
+    <button type="button" id="searchToggleMobile" class="btn btn-link nav-link mx-2 d-lg-none" aria-label="Search website">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <circle cx="10" cy="10" r="7"></circle>
+        <line x1="21" y1="21" x2="15" y2="15"></line>
+      </svg>
+    </button>
+    
+    
+    <button class="btn btn-link nav-link mx-2 order-3 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavMain" aria-controls="offcanvasNavMain" aria-label="Open main navigation menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <line x1="4" y1="8" x2="20" y2="8"></line>
+        <line x1="4" y1="16" x2="20" y2="16"></line>
+      </svg>
+    </button>
+
+    
+    <div class="offcanvas offcanvas-end h-auto" tabindex="-1" id="offcanvasNavMain" aria-labelledby="offcanvasNavMainLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavMainLabel">Capoo</h5>
+        <button type="button" class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss="offcanvas" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+         </svg>
+        </button>
+      </div>
+      
+      <div class="offcanvas-body d-flex flex-column flex-lg-row justify-content-between">
+        <ul class="navbar-nav flex-grow-1"><li class="nav-item">
+                <a class="nav-link" href="http://localhost:1313/game/">Demo</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:1313/docs/introduction/overview/">Docs</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:1313/blog/">DevLog</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/orgs/UoB-COMSM0166/projects/76/views/1/">Kanban</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:1313/about">About</a>
+              </li>
+            </ul>
+
+        
+        
+        <button type="button" id="searchToggleDesktop" class="btn btn-link nav-link p-2 d-none d-lg-block" aria-label="Search website">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <circle cx="10" cy="10" r="7"></circle>
+            <line x1="21" y1="21" x2="15" y2="15"></line>
+          </svg>
+        </button>
+        
+        
+        
+        <button id="buttonColorMode" class="btn btn-link mx-auto nav-link p-0 ms-lg-2 me-lg-1" type="button" aria-label="Toggle theme">
+          <svg data-bs-theme-value="dark" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+          </svg>
+          <svg data-bs-theme-value="light" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0m-5 0h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+          </svg>
+        </button>
+        
+        <ul id="socialMenu" class="nav mx-auto flex-row order-lg-4">
+          <li class="nav-item">
+              <a class="nav-link social-link" href="https://github.com/UoB-COMSM0166/2025-group-3"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg><small class="ms-2 visually-hidden">GitHub</small></a>
+            </li>
+          </ul>
+        
+        </div>
+    </div>
+
+    
+    </div>
+</header>
+</div>
+
+<div class="modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-md-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 visually-hidden" id="searchModalLabel">Search</h1>
+        <button type="button" class="btn-close visually-hidden" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="search-input flex-grow-1 d-none">
+          <form id="search-form" class="search-form" action="#" method="post" accept-charset="UTF-8" role="search">
+            <label for="query" class="visually-hidden">Search</label>
+            <div class="d-flex">
+              <input type="search" id="query" name="query" class="search-text form-control form-control-lg" placeholder="Search" aria-label="Search" maxlength="128" autocomplete="off">
+              <button type="button" class="btn btn-link text-decoration-none px-0 ms-3 d-md-none" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p class="search-loading status message d-none mt-3 text-center">Loading search index…</p>
+        <p class="search-no-recent message d-none mt-3 text-center">No recent searches</p>
+        <p class="search-no-results message d-none mt-3 text-center">No results for "<strong><span class="query-no-results">Query here</span></strong>"</p>
+        <div id="searchResults" class="search-results"></div>
+        <template>
+          <article class="search-result list-view">
+            <div class="card my-3">
+              <div class="card-body">
+                <header>
+                  <h2 class="h5 title title-submitted mb-0"><a class="stretched-link text-decoration-none text-reset" href="#">Title here</a></h2>
+                  <div class="submitted d-none"><time class="created-date">Date here</time></div>
+                </header>
+                <div class="content">Summary here</div>
+              </div>
+            </div>
+          </article>
+        </template>
+      </div>
+      <div class="modal-footer">
+        <ul class="list-inline me-auto d-none d-md-block">
+          <li class="list-inline-item"><kbd class="me-2"><svg width="15" height="15" aria-label="Enter key" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M12 3.53088v3c0 1-1 2-2 2H4M7 11.53088l-3-3 3-3"></path></g></svg></kbd><span class="DocSearch-Label">to select</span></li>
+          <li class="list-inline-item"><kbd class="me-2"><svg width="15" height="15" aria-label="Arrow down" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M7.5 3.5v8M10.5 8.5l-3 3-3-3"></path></g></svg></kbd><kbd class="me-2"><svg width="15" height="15" aria-label="Arrow up" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M7.5 11.5v-8M10.5 6.5l-3-3-3 3"></path></g></svg></kbd><span class="DocSearch-Label">to navigate</span></li>
+          <li class="list-inline-item"><kbd class="me-2"><svg width="15" height="15" aria-label="Escape key" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956"></path></g></svg></kbd><span class="DocSearch-Label">to close</span></li>
+        </ul>
+        <p class="d-md-none">Search by <a class="text-decoration-none" href="https://github.com/nextapps-de/flexsearch">FlexSearch</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="wrap container-lg" role="document">
+      <div class="content">
+      
+        
+<article>
+<div class="row justify-content-center">
+  <div class="col-md-12 col-lg-10">
+    <div class="blog-header">
+      <h1>Week 8 - Game Evaluation Tech Challenges</h1>
+      <p>
+  <small>March 4, 2025<span class="stretched-link position-relative reading-time text-nowrap" title="Estimated reading time"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+        <path d="M12 7v5l3 3"></path>
+      </svg>6&nbsp;minutes</span></small>
+</p>
+
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-9">
+    <h1 id="capoo-quantitative-evaluation-report">Capoo Quantitative Evaluation Report</h1>
+<blockquote>
+<p>Workload and Usability Analysis of Difficulty Levels L1 and L2</p></blockquote>
+<h2 id="abstract">Abstract</h2>
+<p>This report evaluates the workload and usability of the platformer puzzle game &ldquo;Capoo&rdquo; at two difficulty levels (L1 and L2) using NASA TLX and SUS. Ten classmates participated in the test, and data were analyzed using the Wilcoxon signed-rank test. Results indicate that L2 had a slightly higher workload than L1 (28.75 vs 24.58), but the difference was not significant (W = 36, p &gt; 0.05). Similarly, L2 had a lower SUS score than L1 (43.5 vs 45.5), but the difference was also not significant (W = 24, p &gt; 0.05). This suggests that the difficulty variation in Capoo has a limited impact on user experience.</p>
+<h2 id="introduction">Introduction</h2>
+<h3 id="objective">Objective</h3>
+<p>This report aims to evaluate the user experience of the platformer puzzle game &ldquo;Capoo&rdquo; at low difficulty (L1) and high difficulty (L2) using quantitative methods, comparing workload and usability differences.</p>
+<h3 id="background">Background</h3>
+<p>NASA TLX is a tool for measuring subjective workload across six dimensions (Hart &amp; Staveland, 1988). SUS is a reliable usability assessment tool (Brooke, 1986). This study combines both methods to analyze the impact of Capoo’s difficulty on player experience.</p>
+<h3 id="goals">Goals</h3>
+<ul>
+<li>Quantify the workload (NASA TLX) and usability (SUS) of Capoo at L1 and L2.</li>
+<li>Use statistical tests to determine the significance of differences.</li>
+</ul>
+<h2 id="methodology">Methodology</h2>
+<h3 id="participants">Participants</h3>
+<ul>
+<li><strong>Number</strong>: 10 volunteers.</li>
+<li><strong>Characteristics</strong>: Classmates with no specific gaming experience requirements.</li>
+<li><strong>Selection Method</strong>: Random recruitment.</li>
+</ul>
+<h3 id="experimental-design">Experimental Design</h3>
+<ul>
+<li><strong>Difficulty Levels</strong>: Capoo includes L1 (low difficulty) and L2 (high difficulty).</li>
+<li><strong>Testing Order</strong>:
+<ul>
+<li>5 users played L1 first, then L2.</li>
+<li>5 users played L2 first, then L1.</li>
+<li>This minimizes learning effects.</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-collection">Data Collection</h3>
+<ul>
+<li><strong>Tools</strong>:
+<ul>
+<li>NASA TLX: 6 dimensions (raw scores).</li>
+<li>SUS: 10-question survey.</li>
+</ul>
+</li>
+<li><strong>Procedure</strong>: Each user played one difficulty level and then filled out the NASA TLX and SUS forms, resulting in four scores per participant.</li>
+</ul>
+<h3 id="scoring-method">Scoring Method</h3>
+<ul>
+<li><strong>NASA TLX</strong>: Dimension score = (Rating - 1) × 25, Total score = (∑ Dimension scores) / 6.</li>
+<li><strong>SUS</strong>: Odd-numbered questions = Rating - 1, Even-numbered questions = 5 - Rating, Total score = (∑ Score contributions) × 2.5.</li>
+</ul>
+<h3 id="data-analysis">Data Analysis</h3>
+<ul>
+<li><strong>Tool</strong>: Wilcoxon signed-rank test.</li>
+<li><strong>Online Calculator</strong>: <a href="https://www.statology.org/wilcoxon-signed-rank-test-calculator/">Statology Wilcoxon Test Calculator</a></li>
+<li><strong>Significance Level</strong>: α = 0.05.</li>
+</ul>
+<h2 id="results">Results</h2>
+<h3 id="data-overview">Data Overview</h3>
+<table>
+  <thead>
+      <tr>
+          <th>User ID</th>
+          <th>L1 NASA TLX</th>
+          <th>L2 NASA TLX</th>
+          <th>L1 SUS</th>
+          <th>L2 SUS</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>V1</td>
+          <td>12.5</td>
+          <td>16.67</td>
+          <td>55</td>
+          <td>50</td>
+      </tr>
+      <tr>
+          <td>V2</td>
+          <td>20.83</td>
+          <td>20.83</td>
+          <td>45</td>
+          <td>35</td>
+      </tr>
+      <tr>
+          <td>V3</td>
+          <td>29.17</td>
+          <td>33.33</td>
+          <td>55</td>
+          <td>55</td>
+      </tr>
+      <tr>
+          <td>V4</td>
+          <td>20.83</td>
+          <td>25</td>
+          <td>45</td>
+          <td>42.5</td>
+      </tr>
+      <tr>
+          <td>V5</td>
+          <td>29.17</td>
+          <td>29.17</td>
+          <td>52.5</td>
+          <td>50</td>
+      </tr>
+      <tr>
+          <td>V6</td>
+          <td>37.5</td>
+          <td>41.67</td>
+          <td>37.5</td>
+          <td>40</td>
+      </tr>
+      <tr>
+          <td>V7</td>
+          <td>33.33</td>
+          <td>37.5</td>
+          <td>42.5</td>
+          <td>45</td>
+      </tr>
+      <tr>
+          <td>V8</td>
+          <td>8.33</td>
+          <td>16.67</td>
+          <td>37.5</td>
+          <td>40</td>
+      </tr>
+      <tr>
+          <td>V9</td>
+          <td>37.5</td>
+          <td>45.83</td>
+          <td>35</td>
+          <td>35</td>
+      </tr>
+      <tr>
+          <td>V10</td>
+          <td>16.67</td>
+          <td>20.83</td>
+          <td>55</td>
+          <td>42.5</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li><strong>Averages</strong>:
+<ul>
+<li>L1 NASA TLX: 24.58, L2 NASA TLX: 28.75.</li>
+<li>L1 SUS: 45.5, L2 SUS: 43.5.</li>
+</ul>
+</li>
+</ul>
+<h3 id="statistical-analysis">Statistical Analysis</h3>
+<ul>
+<li><strong>NASA TLX</strong>:
+<ul>
+<li>Wilcoxon test result: W = 36 (n=8, excluding zero values).</li>
+<li>Critical value (n=8, α=0.05): 3.</li>
+<li>Conclusion: W &gt; 3, no significant difference.</li>
+</ul>
+</li>
+<li><strong>SUS</strong>:
+<ul>
+<li>Wilcoxon test result: W = 24 (n=8, excluding zero values).</li>
+<li>Critical value (n=8, α=0.05): 3.</li>
+<li>Conclusion: W &gt; 3, no significant difference.</li>
+</ul>
+</li>
+</ul>
+<h2 id="discussion">Discussion</h2>
+<h3 id="interpretation-of-results">Interpretation of Results</h3>
+<ul>
+<li><strong>Workload</strong>: L2 NASA TLX (28.75) is slightly higher than L1 (24.58), mainly due to increased physical demands (e.g., jumping) and mental effort (e.g., puzzle complexity), but the difference is not significant.</li>
+<li><strong>Usability</strong>: L1 SUS (45.5) is slightly higher than L2 (43.5), suggesting that the increased difficulty of L2 slightly reduced perceived usability, but not significantly.</li>
+</ul>
+<h3 id="comparison-with-expectations">Comparison with Expectations</h3>
+<ul>
+<li>It was expected that L2 would have a higher workload and lower usability. The observed trend aligns with expectations but does not reach statistical significance, possibly due to insufficient difficulty differences.</li>
+</ul>
+<h3 id="design-insights">Design Insights</h3>
+<ul>
+<li>Increase the difficulty of L2 by making jumps and puzzles more challenging to amplify workload differences.</li>
+<li>Optimize L2’s control smoothness (SUS Q1 and Q6 had lower scores) to reduce inconsistencies.</li>
+</ul>
+<h3 id="limitations">Limitations</h3>
+<ul>
+<li>Small sample size (10 participants) limits statistical power.</li>
+<li>The difficulty difference between L1 and L2 may not be significant enough to fully reflect puzzle and platforming challenges.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS score is lower than L1 (43.5 vs 45.5), but neither difference is statistically significant (NASA TLX W = 36, SUS W = 24, p &gt; 0.05). It is recommended to enhance L2’s difficulty and optimize control experience to improve player immersion.</p>
+<h2 id="appendix">Appendix</h2>
+<h3 id="game-design-updates">Game Design Updates</h3>
+<ol>
+<li><strong>Enhance L2 Jumping Difficulty</strong>: Increase platform height and introduce moving obstacles to heighten physical demand.</li>
+<li><strong>Optimize Puzzle Consistency</strong>: Standardize puzzle hint styles to improve SUS Q4 (consistency) scores.</li>
+<li><strong>Implement Dynamic Difficulty Adjustment</strong>: Adjust jumping and puzzle complexity based on player performance.</li>
+</ol>
+<h3 id="raw-data">Raw Data</h3>
+<h4 id="l1-nasa-tlx">L1 NASA TLX</h4>
+<table>
+  <thead>
+      <tr>
+          <th>Dimension</th>
+          <th>V1</th>
+          <th>V2</th>
+          <th>V3</th>
+          <th>V4</th>
+          <th>V5</th>
+          <th>V6</th>
+          <th>V7</th>
+          <th>V8</th>
+          <th>V9</th>
+          <th>V10</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Mental Demand</td>
+          <td>2</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>Physical Demand</td>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+          <td>3</td>
+          <td>2</td>
+          <td>3</td>
+          <td>3</td>
+          <td>1</td>
+          <td>3</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>Temporal Demand</td>
+          <td>1</td>
+          <td>1</td>
+          <td>3</td>
+          <td>2</td>
+          <td>3</td>
+          <td>1</td>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>Performance</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>3</td>
+          <td>3</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>Effort</td>
+          <td>1</td>
+          <td>3</td>
+          <td>1</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>3</td>
+          <td>1</td>
+          <td>3</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>Frustration</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>2</td>
+          <td>1</td>
+          <td>2</td>
+          <td>1</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="l2-nasa-tlx">L2 NASA TLX</h4>
+<table>
+  <thead>
+      <tr>
+          <th>Dimension</th>
+          <th>V1</th>
+          <th>V2</th>
+          <th>V3</th>
+          <th>V4</th>
+          <th>V5</th>
+          <th>V6</th>
+          <th>V7</th>
+          <th>V8</th>
+          <th>V9</th>
+          <th>V10</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Mental Demand</td>
+          <td>2</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>Physical Demand</td>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+          <td>4</td>
+          <td>2</td>
+          <td>4</td>
+          <td>3</td>
+          <td>2</td>
+          <td>4</td>
+          <td>4</td>
+      </tr>
+      <tr>
+          <td>Temporal Demand</td>
+          <td>1</td>
+          <td>1</td>
+          <td>3</td>
+          <td>2</td>
+          <td>3</td>
+          <td>1</td>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>Performance</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>3</td>
+          <td>3</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>Effort</td>
+          <td>2</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>2</td>
+          <td>4</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>Frustration</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>2</td>
+          <td>1</td>
+          <td>2</td>
+          <td>1</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="l1-sus">L1 SUS</h4>
+<table>
+  <thead>
+      <tr>
+          <th>Questions</th>
+          <th>V1</th>
+          <th>V2</th>
+          <th>V3</th>
+          <th>V4</th>
+          <th>V5</th>
+          <th>V6</th>
+          <th>V7</th>
+          <th>V8</th>
+          <th>V9</th>
+          <th>V10</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1. The system is easy to use.</td>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+          <td>4</td>
+          <td>2</td>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>2. The system components are well-coordinated.</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>4</td>
+          <td>3</td>
+          <td>4</td>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>3.Most people can quickly learn to use the system.</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>4</td>
+          <td>3</td>
+          <td>3</td>
+          <td>4</td>
+          <td>2</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>4. The system has too many inconsistencies.</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>3</td>
+          <td>4</td>
+      </tr>
+      <tr>
+          <td>5. Does not require much assistance.</td>
+          <td>3</td>
+          <td>2</td>
+          <td>4</td>
+          <td>2</td>
+          <td>3</td>
+          <td>3</td>
+          <td>4</td>
+          <td>2</td>
+          <td>3</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>6. Encountered many difficulties while using the system.</td>
+          <td>3</td>
+          <td>3</td>
+          <td>2</td>
+          <td>4</td>
+          <td>2</td>
+          <td>4</td>
+          <td>3</td>
+          <td>3</td>
+          <td>4</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>7. Felt confident while using the system.</td>
+          <td>4</td>
+          <td>2</td>
+          <td>3</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>4</td>
+          <td>3</td>
+          <td>2</td>
+          <td>4</td>
+      </tr>
+      <tr>
+          <td>8. Requires learning many things before starting.</td>
+          <td>3</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>4</td>
+          <td>4</td>
+          <td>2</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="l2-sus">L2 SUS</h4>
+<table>
+  <thead>
+      <tr>
+          <th>Questions</th>
+          <th>V1</th>
+          <th>V2</th>
+          <th>V3</th>
+          <th>V4</th>
+          <th>V5</th>
+          <th>V6</th>
+          <th>V7</th>
+          <th>V8</th>
+          <th>V9</th>
+          <th>V10</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1.The system is easy to use.</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>1</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>2. The system components are well-coordinated.</td>
+          <td>2</td>
+          <td>1</td>
+          <td>1</td>
+          <td>3</td>
+          <td>2</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>3. Most people can quickly learn to use the system.</td>
+          <td>2</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>1</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>4. The system has too many inconsistencies.</td>
+          <td>2</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>2</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>5. Does not require much assistance.</td>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+          <td>1</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>1</td>
+          <td>2</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>6. Encountered many difficulties while using the system.</td>
+          <td>2</td>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+          <td>1</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>7. Felt confident while using the system.</td>
+          <td>3</td>
+          <td>1</td>
+          <td>2</td>
+          <td>2</td>
+          <td>1</td>
+          <td>1</td>
+          <td>3</td>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>8. Requires learning many things before starting.</td>
+          <td>2</td>
+          <td>2</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+          <td>1</td>
+      </tr>
+  </tbody>
+</table>
+
+    </div>
+</div>
+</article>
+
+      
+      </div>
+    </div>
+    
+    
+
+    <footer class="footer text-muted">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-lg-8 text-center text-lg-start">
+        <ul class="list-inline">
+          
+        </ul>
+      </div>
+      <div class="col-lg-8 text-center text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item">From <a class="text-muted" href="https://uob-comsm0166.github.io/2025-group-3/about/">UoB-COMSM0166 Group 3</a>. Powered by <a class="text-muted" href="https://thulite.io/">Thulite</a> <a class="text-muted" href="https://getdoks.org/">Doks</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script async
+  src="/js/app.d425f3c365405833b25b64c1f42d49fc79eb5549e615324e8b8e6f9714552f3c.js"
+  integrity="sha256-1CXzw2VAWDOyW2TB9C1J/HnrVUnmFTJOi45vlxRVLzw=">
+</script>
+
+
+
+
+
+<script async
+  src="/js/flexsearch.8350d2f520e131f8552ed57c1eadd05c50eccf0427267781442dd8ddf8fdcdf7.js"
+  integrity="sha256-g1DS9SDhMfhVLtV8Hq3QXFDszwQnJneBRC3Y3fj9zfc=">
+</script>
+<script async
+  src="/js/search-modal.877cece5b6bc789456f89fa1955ccfcd8a5acdb2179e7882e292a6caa49efe68.js"
+  integrity="sha256-h3zs5ba8eJRW&#43;J&#43;hlVzPzYpazbIXnniC4pKmyqSe/mg=">
+</script>
+
+    
+  </body>
+</html>

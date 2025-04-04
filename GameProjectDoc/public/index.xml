@@ -7,8 +7,36 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copyright (c) 2020-2024 Thulite</copyright>
-    <lastBuildDate>Tue, 18 Feb 2025 11:39:50 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Mar 2025 15:44:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>5 March</title>
+      <link>http://localhost:1313/devlog/5-march/</link>
+      <pubDate>Wed, 05 Mar 2025 15:44:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/5-march/</guid>
+      <description>&lt;h1 id=&#34;meeting-minutes&#34;&gt;&lt;strong&gt;Meeting Minutes&lt;/strong&gt;&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Date:&lt;/strong&gt; March 5, 2025&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; MVB 2.11&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Attendees:&lt;/strong&gt; All Group Members&lt;/p&gt;&#xA;&lt;h2 id=&#34;agenda&#34;&gt;&lt;strong&gt;Agenda&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Overview of HCI Evaluation&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Discussion on the fundamental concepts of Human-Computer Interaction (HCI) evaluation and its application in system design.&lt;/li&gt;&#xA;&lt;li&gt;Emphasis on the role of quantitative evaluation in improving user experience.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Today’s Workshop 1&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Introduction to the main objectives of the workshop.&lt;/li&gt;&#xA;&lt;li&gt;Discussion on different evaluation methods and their applicable scenarios.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Today’s Workshop 2&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;In-depth discussion on the use of evaluation tools.&lt;/li&gt;&#xA;&lt;li&gt;Case study analysis or practical exercises.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;System Usability Scale (SUS)&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Understanding the measurement method and scope of SUS.&lt;/li&gt;&#xA;&lt;li&gt;Discussion on the specific application of SUS in this evaluation task.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;NASA Task Load Index (NASA TLX)&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Introduction to the measurement dimensions of NASA TLX (e.g., mental demand, physical demand, time pressure).&lt;/li&gt;&#xA;&lt;li&gt;Discussion on how to use NASA TLX to evaluate user workload.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Homework / Group Tasks&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Clarification of assignments or group tasks following this meeting.&lt;/li&gt;&#xA;&lt;li&gt;Setting task deadlines and scheduling the next meeting.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;action-items&#34;&gt;&lt;strong&gt;Action Items&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Task&lt;/th&gt;&#xA;          &lt;th&gt;Responsible Person&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Research and summarize HCI evaluation methods&lt;/td&gt;&#xA;          &lt;td&gt;Jiaxin Fan&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Complete SUS and NASA TLX questionnaire design&lt;/td&gt;&#xA;          &lt;td&gt;Jiaxin Fan&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Organize data collection and analysis&lt;/td&gt;&#xA;          &lt;td&gt;Shuyin Deng&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Draft the evaluation report&lt;/td&gt;&#xA;          &lt;td&gt;Shuyin Deng&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;meeting-summary&#34;&gt;&lt;strong&gt;Meeting Summary&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Confirmed the methods and tools for quantitative evaluation.&lt;/li&gt;&#xA;&lt;li&gt;Discussed the specific applications of SUS and NASA TLX.&lt;/li&gt;&#xA;&lt;li&gt;Clarified team members’ tasks and schedules.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Week 8 - Game Evaluation Tech Challenges</title>
+      <link>http://localhost:1313/devlog/week-8-game-evaluation-tech-challenges/</link>
+      <pubDate>Tue, 04 Mar 2025 17:25:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/week-8-game-evaluation-tech-challenges/</guid>
+      <description>&lt;h1 id=&#34;capoo-quantitative-evaluation-report&#34;&gt;Capoo Quantitative Evaluation Report&lt;/h1&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Workload and Usability Analysis of Difficulty Levels L1 and L2&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;&#xA;&lt;p&gt;This report evaluates the workload and usability of the platformer puzzle game &amp;ldquo;Capoo&amp;rdquo; at two difficulty levels (L1 and L2) using NASA TLX and SUS. Ten classmates participated in the test, and data were analyzed using the Wilcoxon signed-rank test. Results indicate that L2 had a slightly higher workload than L1 (28.75 vs 24.58), but the difference was not significant (W = 36, p &amp;gt; 0.05). Similarly, L2 had a lower SUS score than L1 (43.5 vs 45.5), but the difference was also not significant (W = 24, p &amp;gt; 0.05). This suggests that the difficulty variation in Capoo has a limited impact on user experience.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>25 February</title>
+      <link>http://localhost:1313/devlog/25-february/</link>
+      <pubDate>Tue, 25 Feb 2025 20:20:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/25-february/</guid>
+      <description>Meeting minutes, Evaluation</description>
+    </item>
+    <item>
+      <title>11 February</title>
+      <link>http://localhost:1313/devlog/11-february/</link>
+      <pubDate>Tue, 11 Feb 2025 15:44:00 +0000</pubDate>
+      <guid>http://localhost:1313/devlog/11-february/</guid>
+      <description>&lt;h1 id=&#34;meeting-minutes&#34;&gt;Meeting Minutes&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Date:&lt;/strong&gt; 11/2/2025&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Time:&lt;/strong&gt; 14:00&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; MVB2.11&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Attendees:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Jiahao Liu, Jiaxin Fan, Peixuan Li, Shuyin Deng, Yibu Ma, Yu Qiu&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Recorder:&lt;/strong&gt; Shuyin Deng&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;agenda&#34;&gt;Agenda&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Review Workshop 5 Tasks&lt;/li&gt;&#xA;&lt;li&gt;Task Distribution &amp;amp; Timeline&lt;/li&gt;&#xA;&lt;li&gt;Code Submission &amp;amp; Version Control&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;task-breakdown--assignment&#34;&gt;Task Breakdown &amp;amp; Assignment&lt;/h2&gt;&#xA;&lt;p&gt;This week, we will complete the &lt;strong&gt;Workshop 5&lt;/strong&gt; tasks, which include game design, and initial implementation.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>4 February</title>
       <link>http://localhost:1313/devlog/4-february/</link>
@@ -50,27 +78,6 @@
       <pubDate>Fri, 17 Jan 2025 16:25:00 +0000</pubDate>
       <guid>http://localhost:1313/devlog/17-january/</guid>
       <description>Meeting minutes, discuss inspirations and meeting schedule</description>
-    </item>
-    <item>
-      <title>Overview</title>
-      <link>http://localhost:1313/docs/introduction/overview/</link>
-      <pubDate>Tue, 18 Feb 2025 11:39:50 +0000</pubDate>
-      <guid>http://localhost:1313/docs/introduction/overview/</guid>
-      <description>&lt;div class=&#34;p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3&#34;&gt;&#xD;&#xA;  under construction&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;br&gt;&#xD;&#xA;The pages in &lt;font style=&#34;font-weight:bold&#34;&gt;introduction&lt;/font&gt; section is references for javascript files, providing description and test methodology.</description>
-    </item>
-    <item>
-      <title>Report</title>
-      <link>http://localhost:1313/docs/report/report/</link>
-      <pubDate>Thu, 07 Sep 2023 16:04:48 +0200</pubDate>
-      <guid>http://localhost:1313/docs/report/report/</guid>
-      <description>&lt;div class=&#34;p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3&#34;&gt;&#xD;&#xA;  under construction&#xD;&#xA;&lt;/div&gt;</description>
-    </item>
-    <item>
-      <title>About Us</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Thu, 07 Sep 2023 16:33:54 +0200</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>&lt;div class=&#34;p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3&#34;&gt;&#xD;&#xA;  under construction&#xD;&#xA;&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>
