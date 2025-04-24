@@ -57,7 +57,28 @@ export default class GameView {
         }
     }
 
-
+    drawLoadingScreen() {
+        background(255);
+        let stripeHeight = 40;
+        stripeOffset += 1;
+        if (stripeOffset >= stripeHeight * colors.length) stripeOffset = 0;
+      
+        // 绘制条纹背景
+        for (let y = -stripeOffset; y < height; y += stripeHeight) {
+          let index = int((y + stripeOffset) / stripeHeight) % colors.length;
+          fill(colors[index]);
+          noStroke();
+          rect(0, y, width, stripeHeight);
+        }
+      
+        // 绘制“Loading...”跳动文字
+        fill(0);
+        for (let i = 0; i < loadingText.length; i++) {
+          let charX = width / 2 - (loadingText.length / 2.0 - i) * 18;
+          let jump = sin(frameCount * 0.15 + letterJump[i]) * 10;
+          text(loadingText[i], charX, height / 2 + jump);
+        }
+      }
 
     drawStartScreen() {
         

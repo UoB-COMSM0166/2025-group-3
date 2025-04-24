@@ -18,6 +18,13 @@ let soundsLoaded = 0; // 用于计数音频个数
 const totalSounds = 10; // !!改成所有音频素材的数量!!
 
 window.preload = function () {
+  gameModel = new GameModel();
+  gameController = new GameController(gameModel);
+  gameView = new GameView(gameModel);
+}
+
+window.setup = function () {
+  createCanvas(window.innerWidth, window.innerHeight);
 
   function soundLoaded() {
     soundsLoaded++;
@@ -66,27 +73,18 @@ window.preload = function () {
 
   //window.assets.arrow = loadImage("/asset/up-arrow.png");
 
-}
-
-window.setup = function () {
-
   // 保证所有音频素材都加载完再开始游戏
   let checkSoundsLoaded = setInterval(() => {
     if (window.allSoundsLoaded) {
         clearInterval(checkSoundsLoaded);
         console.log("All sounds are loaded! Starting game...");
-        // createCanvas(CONSTANT.GAME_WIDTH, CONSTANT.GAME_HEIGHT);
-        createCanvas(window.innerWidth, window.innerHeight);
-
+        
         window.assets.bgm.setVolume(1);  // 设置音量
         window.assets.userSelectLevel.setVolume(0.4);  
         window.assets.death.setVolume(0.4);
         window.assets.bgm.loop();  // 循环播放
         textFont(window.assets.textFont1);
 
-        gameModel = new GameModel();
-        gameController = new GameController(gameModel);
-        gameView = new GameView(gameModel);
         console.log("Main setup done");
         // background(220);
         gameController.newGame(); // 读取地图文件到gameModel
@@ -101,8 +99,29 @@ window.setup = function () {
   
 window.draw = function () {
   // 确保所有音频加载完成后再执行游戏逻辑
-  if (!window.allSoundsLoaded || !gameView) {
-    console.log("Waiting for sounds to load or gameView to initialize...");
+  if (!window.allSoundsLoaded || !gameView) { // 
+    let bgColor = color('#d0f0ff'); // 柔和的天蓝色
+  background(bgColor);
+
+  // 添加一些白色的圆点作为可爱的装饰
+  background('#a7ddf5'); // 柔和的Capoo蓝色
+  noStroke();
+  fill(255); // 白色圆点
+  let spacing = 60; // 每行每列间隔
+  let dotSize = 20;
+  for (let y = 0; y < height + spacing; y += spacing) {
+    for (let x = 0; x < width + spacing; x += spacing) {
+      let offset = (y / spacing) % 2 === 0 ? 0 : spacing / 2; // 实现交错排列（像图里那样）
+      ellipse(x + offset, y, dotSize);
+    }
+  }
+
+  fill('#444');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textFont('Comic Sans MS'); // 可改为更萌字体
+  textSize(32);
+  text("Loading...", width / 2, height / 2 + 60);
     return;
   }
 

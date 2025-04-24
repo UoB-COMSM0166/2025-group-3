@@ -121,7 +121,7 @@ function load(name, scale) {
         // Create a SkeletonJson instance for parsing the .json file.
         let skeletonJson = new spine.SkeletonJson(atlasLoader);
         // Set the scale to apply during parsing, parse the file, and create a new skeleton.
-        skeletonJson.scale = 0.4;
+        skeletonJson.scale = 0.2;
         let skeletonData = skeletonJson.readSkeletonData(
             assetManager.require(skeletonFile)
         );
@@ -137,7 +137,7 @@ function load(name, scale) {
         atlas1 = assetManager1.require(atlasFile1);
         atlasLoader1 = new spine.AtlasAttachmentLoader(atlas1);
         let skeletonJson1 = new spine.SkeletonJson(atlasLoader1);
-        skeletonJson1.scale = 0.4;
+        skeletonJson1.scale = 0.2;
         let skeletonData1 = skeletonJson1.readSkeletonData(
             assetManager1.require(skeletonFile1)
         );
@@ -150,7 +150,7 @@ function load(name, scale) {
         atlas2 = assetManager2.require(atlasFile2);
         atlasLoader2 = new spine.AtlasAttachmentLoader(atlas2);
         let skeletonJson2 = new spine.SkeletonJson(atlasLoader2);
-        skeletonJson2.scale = 0.4;
+        skeletonJson2.scale = 0.2;
         let skeletonData2 = skeletonJson2.readSkeletonData(
             assetManager2.require(skeletonFile2)
         );
