@@ -343,6 +343,10 @@ export default class GameView {
         //console.log("keysESC: " + this.gameModel.keysESC);
 
         // 按esc加载游戏说明页面, 按任意键关闭, 再次按esc退出到选关页面
+        if(this.levelIndex <=1 ){
+            this.gameModel.showHelp = true;
+        }
+        
         if(this.gameModel.showHelp){
             this.showhelpscreen();
         }
