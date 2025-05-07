@@ -16,6 +16,8 @@ seo:
   under construction
 </div>
 
+<img src="group.jpg" alt="photo of group members" />
+
 | Name | Email | Github | Role |
 | -- | -- | -- | -- |
 | Shuyin Deng | ta24493@bristol.ac.uk | @Ruby-sy | Project Manager |
