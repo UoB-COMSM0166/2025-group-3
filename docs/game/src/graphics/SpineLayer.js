@@ -9,7 +9,7 @@ import { showPotion,showBack,PotionX, PotionY } from "../core/Utils";
 let scene, camera, renderer; // 场景, 相机, 渲染器
 let canvas; // 画布
 let lastFrameTime = Date.now() / 1000;  // 上一帧时间,用于计算动画的时间增量
-let baseUrl = "/2025-group-3/game/asset/spine/"; 
+let baseUrl = "/asset/spine/"; 
 
 // 4 套 Spine 模型资源（主体、脸部、帽子、背部）
 let atlas;
@@ -121,7 +121,7 @@ function load(name, scale) {
         // Create a SkeletonJson instance for parsing the .json file.
         let skeletonJson = new spine.SkeletonJson(atlasLoader);
         // Set the scale to apply during parsing, parse the file, and create a new skeleton.
-        skeletonJson.scale = 0.2;
+        skeletonJson.scale = 0.4;
         let skeletonData = skeletonJson.readSkeletonData(
             assetManager.require(skeletonFile)
         );
@@ -137,7 +137,7 @@ function load(name, scale) {
         atlas1 = assetManager1.require(atlasFile1);
         atlasLoader1 = new spine.AtlasAttachmentLoader(atlas1);
         let skeletonJson1 = new spine.SkeletonJson(atlasLoader1);
-        skeletonJson1.scale = 0.2;
+        skeletonJson1.scale = 0.4;
         let skeletonData1 = skeletonJson1.readSkeletonData(
             assetManager1.require(skeletonFile1)
         );
@@ -150,7 +150,7 @@ function load(name, scale) {
         atlas2 = assetManager2.require(atlasFile2);
         atlasLoader2 = new spine.AtlasAttachmentLoader(atlas2);
         let skeletonJson2 = new spine.SkeletonJson(atlasLoader2);
-        skeletonJson2.scale = 0.2;
+        skeletonJson2.scale = 0.4;
         let skeletonData2 = skeletonJson2.readSkeletonData(
             assetManager2.require(skeletonFile2)
         );
@@ -158,12 +158,12 @@ function load(name, scale) {
         skeletonMesh2.state.setAnimation(0, animation2, true);
         scene.add(skeletonMesh2);
 
-        // --------------加载 Capoo 背部(需要分离)-------------
-        // add back
+        // --------------加载 Capoo 罐子(需要分离)-------------
+        // add potion
         atlas3 = assetManager3.require(atlasFile3);
         atlasLoader3 = new spine.AtlasAttachmentLoader(atlas3);
         let skeletonJson3 = new spine.SkeletonJson(atlasLoader3);
-        skeletonJson3.scale = 0.2;
+        skeletonJson3.scale = 0.4;
         let skeletonData3 = skeletonJson3.readSkeletonData(
             assetManager3.require(skeletonFile3)
         );
@@ -171,11 +171,11 @@ function load(name, scale) {
         skeletonMesh3.state.setAnimation(0, animation3, true);
         scene.add(skeletonMesh3);
 
-        //小罐子
+        //另外一个罐子
         atlas4 = assetManager3.require(atlasFile3);
         atlasLoader4 = new spine.AtlasAttachmentLoader(atlas4);
         let skeletonJson4 = new spine.SkeletonJson(atlasLoader4);
-        skeletonJson4.scale = 0.2;
+        skeletonJson4.scale = 0.4;
         let skeletonData4 = skeletonJson4.readSkeletonData(
             assetManager3.require(skeletonFile3)
         );
