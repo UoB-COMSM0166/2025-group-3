@@ -48,6 +48,7 @@ let atlas4;
 let assetManager4;
 let atlasLoader4;
 let skeletonMesh4;
+let scaleYou = 0.2;
 
 
 
@@ -121,7 +122,7 @@ function load(name, scale) {
         // Create a SkeletonJson instance for parsing the .json file.
         let skeletonJson = new spine.SkeletonJson(atlasLoader);
         // Set the scale to apply during parsing, parse the file, and create a new skeleton.
-        skeletonJson.scale = 0.3;
+        skeletonJson.scale =scaleYou;
         let skeletonData = skeletonJson.readSkeletonData(
             assetManager.require(skeletonFile)
         );
@@ -137,7 +138,7 @@ function load(name, scale) {
         atlas1 = assetManager1.require(atlasFile1);
         atlasLoader1 = new spine.AtlasAttachmentLoader(atlas1);
         let skeletonJson1 = new spine.SkeletonJson(atlasLoader1);
-        skeletonJson1.scale = 0.3;
+        skeletonJson1.scale = scaleYou;
         let skeletonData1 = skeletonJson1.readSkeletonData(
             assetManager1.require(skeletonFile1)
         );
@@ -150,7 +151,7 @@ function load(name, scale) {
         atlas2 = assetManager2.require(atlasFile2);
         atlasLoader2 = new spine.AtlasAttachmentLoader(atlas2);
         let skeletonJson2 = new spine.SkeletonJson(atlasLoader2);
-        skeletonJson2.scale = 0.3;
+        skeletonJson2.scale = scaleYou;
         let skeletonData2 = skeletonJson2.readSkeletonData(
             assetManager2.require(skeletonFile2)
         );
@@ -163,7 +164,7 @@ function load(name, scale) {
         atlas3 = assetManager3.require(atlasFile3);
         atlasLoader3 = new spine.AtlasAttachmentLoader(atlas3);
         let skeletonJson3 = new spine.SkeletonJson(atlasLoader3);
-        skeletonJson3.scale = 0.3;
+        skeletonJson3.scale = scaleYou;
         let skeletonData3 = skeletonJson3.readSkeletonData(
             assetManager3.require(skeletonFile3)
         );
@@ -175,7 +176,7 @@ function load(name, scale) {
         atlas4 = assetManager3.require(atlasFile3);
         atlasLoader4 = new spine.AtlasAttachmentLoader(atlas4);
         let skeletonJson4 = new spine.SkeletonJson(atlasLoader4);
-        skeletonJson4.scale = 0.3;
+        skeletonJson4.scale =scaleYou;
         let skeletonData4 = skeletonJson4.readSkeletonData(
             assetManager3.require(skeletonFile3)
         );
