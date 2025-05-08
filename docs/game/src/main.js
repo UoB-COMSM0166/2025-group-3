@@ -25,6 +25,26 @@ window.preload = function () {
 
 window.setup = function () {
   createCanvas(window.innerWidth, window.innerHeight);
+  //scale(0.1);
+
+  // 禁用浏览器缩放
+  document.addEventListener('wheel', function(e) {
+    if (e.ctrlKey) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // 禁用触摸板缩放
+  document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
+  });
+
+  // 禁用键盘缩放
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0')) {
+      e.preventDefault();
+    }
+  });
 
   function soundLoaded() {
     soundsLoaded++;
@@ -261,7 +281,9 @@ window.keyReleased = function() {
 
 // 浏览器窗口大小变化时自适应改变画布大小
 window.windowResized = function () {
-    resizeCanvas(window.innerWidth, window.innerHeight);
+    //resizeCanvas(window.innerWidth, window.innerHeight);
+    const zoomLevel = window.devicePixelRatio;
+    console.log("当前缩放比例:", zoomLevel);
 }
 
 

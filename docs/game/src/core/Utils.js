@@ -4,6 +4,7 @@ export let showBack = true;
 export let PotionX = 0;
 export let PotionY = 0;
 
+
 export const CONSTANT = Object.freeze({
   GAME_WIDTH: 6400,  //windowWidth
   GAME_HEIGHT: 3200,  //windowHeight

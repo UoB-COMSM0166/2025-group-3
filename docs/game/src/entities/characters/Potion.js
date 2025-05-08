@@ -14,6 +14,7 @@ export default class Potion extends AbstractCharacter {
         this.onGround = false; // 是否在地面上
         this.tanshe=true; //弹射起步
         this.onWall=false;
+        this.scale=0.8;
 
       }
 
@@ -23,8 +24,8 @@ export default class Potion extends AbstractCharacter {
     }  
 
     updatePotion(x,y){
-      setPotionX((this.x-x)/2.5);
-      setPotionY((y-this.y)/2.6);
+      setPotionX((this.x-x)*this.scale);
+      setPotionY((y-this.y)*this.scale);
     }
 
     getx(){
