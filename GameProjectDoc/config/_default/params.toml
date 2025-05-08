@@ -123,7 +123,7 @@ mainSections = ["docs", "devlog"]
   [seo.favicons]
     sizes = []
     icon = "favicon.png" # favicon.png (default)
-    svgIcon = "favicon.svg" # favicon.svg (default)
+    # svgIcon = "favicon.svg" # favicon.svg (default)
     maskIcon = "mask-icon.svg" # mask-icon.svg (default)
     maskIconColor = "white" # white (default)
   [seo.schemas]

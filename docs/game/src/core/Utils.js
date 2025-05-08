@@ -66,7 +66,7 @@ export class Message {
       backgroundColor: color(0, 0, 0),
       borderColor: color(255, 255, 255),
       borderWidth: 2,
-      font: "Arial",
+      font: "Comic Sans MS",
       scaling: false,     // 是否应用文字大小变化效果
       changeAlpha: false, // 是否应用渐变
       textPos: "center",  // 文字的位置

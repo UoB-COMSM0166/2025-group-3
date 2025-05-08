@@ -12,9 +12,11 @@ seo:
   robots: "" # custom robot tags (optional)
 ---
 
-<div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+<!-- <div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
   under construction
-</div>
+</div> -->
+
+<img src="../group.jpg" alt="photo of group members" class="rounded shadow" />
 
 | Name | Email | Github | Role |
 | -- | -- | -- | -- |
