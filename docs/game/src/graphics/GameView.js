@@ -10,7 +10,7 @@ export default class GameView {
         this.titleMessage = new Message("Capoo", window.innerWidth / 2, window.innerHeight / 5-50, 10000, 200, {}, "Title"); // 标题消息
         this.enterMessage = new Message("Press ENTER To Start", window.innerWidth / 2, window.innerHeight/1.5, 10000, 50, { scaling: true }, "startScreen"); // 动态变化大小的消息
         this.selectMessage = new Message("Use LEFT/RIGHT To Choose\nPress SPACE To Start", window.innerWidth / 2, window.innerHeight / 5-10, 10000, 50, {}, "levelSelectScreen");
-        this.tipMessage = new Message("Tip：Do you konw:\nA cat always lands with its feet down\nBread always lands on the creamed side", window.innerWidth / 2, window.innerHeight / 1.2, 3000, 30, {changeAlpha: true}, "Tip");
+        this.tipMessage = new Message("Tip: Do you know\na cat always lands with its feet down\nBread always lands on the creamed side", window.innerWidth / 2, window.innerHeight / 1.2, 3000, 30, {changeAlpha: true}, "Tip");
     
         this.startScreenClouds = [ // 初始化开始界面的云朵
             { img: window.assets.startscreenbg_cloud1, x: 0, y: 560, speed: 1.4, scale: 2 },
