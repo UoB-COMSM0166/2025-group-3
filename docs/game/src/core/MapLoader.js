@@ -63,6 +63,7 @@ export default class MapLoader {
             "/asset/level4.json",
             "/asset/level5.json",
             "/asset/level6.json",
+            "/asset/level7.json",
         ];
         
         // 避免 this.levelIndex 影响所有关卡，每个关卡独立加载

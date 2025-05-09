@@ -190,6 +190,12 @@ export default class GameView {
             image(window.assets.level3bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
         }else if (levelIndex == 3){
             image(window.assets.level4bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
+        }else if(levelIndex == 4){
+            image(window.assets.level5bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
+        }else if(levelIndex == 5){
+            image(window.assets.level6bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
+        }else if(levelIndex == 6){
+            image(window.assets.level7bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
         }
         // 恢复默认对齐方式
         imageMode(CORNER);

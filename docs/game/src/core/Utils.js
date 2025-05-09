@@ -10,7 +10,7 @@ export const CONSTANT = Object.freeze({
   GAME_HEIGHT: 3200,  //windowHeight
   TILE_SIZE: 70, //70
   TILE_MARGIN: 0,
-  LEVEL_LIST: [1,2,3,4,5,6],
+  LEVEL_LIST: [1,2,3,4,5,6,7],
   FRAME_INTERVAL: 18,
   CAT_WIDTH: 160,
   CAT_HEIGHT: 112,
@@ -141,7 +141,7 @@ export class Message {
 
       case "death":
         this.options.textAlign = CENTER;
-        this.options.textColor = color(255, 100, 100);
+        this.options.textColor = color(255, 165, 0);
         this.options.borderColor = color(255, 255, 255);
         this.options.borderWidth = 4;
         this.size = 30;  
