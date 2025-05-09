@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as spine from "@esotericsoftware/spine-threejs";
 import { showCapoo/*, CapooX, CapooY*/ } from "../main";
-import { showPotion,showBack,PotionX, PotionY } from "../core/Utils";
+import { showPotion,showBack,PotionX, PotionY,isFacingRight} from "../core/Utils";
 //import { cat } from '../GameModel';
 
 
@@ -193,7 +193,6 @@ function load(name, scale) {
 let lastTime = Date.now();
 function render() {
     // 计算 delta（两帧之间的时间差），用于动画更新
-    // calculate delta time for animation purposes
     let now = Date.now() / 1000;
     let delta = now - lastFrameTime;
     lastFrameTime = now;
@@ -207,27 +206,29 @@ function render() {
     skeletonMesh2.update(delta);
     skeletonMesh3.update(delta);
     skeletonMesh4.update(delta);
-   // skeletonMesh5.update(delta);
 
-    // set the position of Capoo
-    
-    
+    // 设置角色朝向
+    let rootBone = skeletonMesh.skeleton.findBone("root");
+    if (rootBone) {
+        rootBone.rotation = -1; // 设置根骨骼的旋转为0，使角色朝右
+    }
+
     // 更新所有模型的动画状态
     // Synchronize the body_face bone of skeletonMesh1 with skeletonMesh
     let bodyFaceSlot = skeletonMesh.skeleton.findBone("body_face_root");
     let faceBodySlot = skeletonMesh1.skeleton.findBone("root");
-    skeletonMesh1.position.set(bodyFaceSlot.worldX - faceBodySlot.worldX, bodyFaceSlot.worldY - faceBodySlot.worldY, 1); 
+     
 
     let bodyHatSlot = skeletonMesh.skeleton.findBone("hat");
     let hatBodySlot = skeletonMesh2.skeleton.findBone("root");
-    skeletonMesh2.position.set(bodyHatSlot.worldX - hatBodySlot.worldX, bodyHatSlot.worldY - hatBodySlot.worldY, 1); 
+   
 
     let bodyBackSlot = skeletonMesh.skeleton.findBone("back");
     let backBodySlot = skeletonMesh3.skeleton.findBone("root");
-    skeletonMesh3.position.set(bodyBackSlot.worldX - backBodySlot.worldX, bodyBackSlot.worldY - backBodySlot.worldY, -1);
+   
 
     //设置罐子位置
-    skeletonMesh4.position.set(PotionX, PotionY, 0);
+    skeletonMesh4.position.set(PotionX, PotionY, -1);
 
     // render the scene
     if (typeof showCapoo !== "undefined") {
@@ -237,6 +238,34 @@ function render() {
         skeletonMesh3.visible = showBack;
         skeletonMesh4.visible = showPotion;
     }
+    if (typeof isFacingRight !== "undefined" ) {
+        if(isFacingRight){
+        skeletonMesh1.position.set(-(bodyFaceSlot.worldX - faceBodySlot.worldX), (bodyFaceSlot.worldY - faceBodySlot.worldY), 1); 
+        skeletonMesh2.position.set(-(bodyHatSlot.worldX - hatBodySlot.worldX), (bodyHatSlot.worldY - hatBodySlot.worldY), 1); 
+        skeletonMesh3.position.set(-(bodyBackSlot.worldX - backBodySlot.worldX), (bodyBackSlot.worldY - backBodySlot.worldY), -1);
+    
+        //设置罐子位置
+        skeletonMesh4.position.set(PotionX, PotionY, -1);
+        skeletonMesh.scale.x=-1;
+        skeletonMesh1.scale.x=-1;
+        skeletonMesh2.scale.x=-1;
+        skeletonMesh3.scale.x=-1;
+
+        }else{
+            skeletonMesh.scale.x=1;
+            skeletonMesh1.scale.x=1;
+            skeletonMesh2.scale.x=1;
+            skeletonMesh3.scale.x=1;
+ 
+            skeletonMesh1.position.set(bodyFaceSlot.worldX - faceBodySlot.worldX, bodyFaceSlot.worldY - faceBodySlot.worldY, 1);
+            skeletonMesh2.position.set(bodyHatSlot.worldX - hatBodySlot.worldX, bodyHatSlot.worldY - hatBodySlot.worldY, 1); 
+            skeletonMesh3.position.set(bodyBackSlot.worldX - backBodySlot.worldX, bodyBackSlot.worldY - backBodySlot.worldY, -1);
+
+        }
+    }
+    
+    //设置身体比例
+    skeletonMesh.rotation.y = 0;
     //console.log("showCapoo:" + showCapoo);
 
     renderer.render(scene, camera);
