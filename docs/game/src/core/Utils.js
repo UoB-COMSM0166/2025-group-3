@@ -12,7 +12,7 @@ export const CONSTANT = Object.freeze({
   GAME_HEIGHT: 3200,  //windowHeight
   TILE_SIZE: 70, //70
   TILE_MARGIN: 0,
-  LEVEL_LIST: [1,2],
+  LEVEL_LIST: [1,2,3,4,5,6],
   FRAME_INTERVAL: 18,
   CAT_WIDTH: 160,
   CAT_HEIGHT: 112,
