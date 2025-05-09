@@ -3,6 +3,8 @@ export let showPotion = false;
 export let showBack = true;
 export let PotionX = 0;
 export let PotionY = 0;
+export let isFacingRight = true;
+
 
 
 export const CONSTANT = Object.freeze({
@@ -37,6 +39,14 @@ export function setPotionX(value) {
 
 export function setPotionY(value) {
   PotionY = value;
+}
+
+export function setFacingLeft() {
+  isFacingRight = false;
+}
+
+export function setFacingRight() {
+  isFacingRight = true;
 }
 
 // enum of possible game states

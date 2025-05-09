@@ -1,7 +1,7 @@
 import MapLoader from "./MapLoader";
 import { CONSTANT, Message } from "./Utils";
 import Potion from "../entities/characters/Potion";
-import {setShowBack,setShowPotion,PotionX,PotionY} from "../core/Utils";
+import {setShowBack,setShowPotion,PotionX,PotionY,setFacingLeft,setFacingRight} from "../core/Utils";
 //import { assets } from "../main";
 
 // 用于所有关卡的控制和交互
@@ -133,9 +133,11 @@ export default class GameController {
         // 水平移动的按键控制
         if (this.gameModel.keys['ArrowLeft']) {
             newX -= this.gameModel.cat[selectedLevel].speed; 
+            setFacingLeft();
         }
         if (this.gameModel.keys['ArrowRight']) {
             newX += this.gameModel.cat[selectedLevel].speed;
+            setFacingRight();
         }
             
         // 攀爬墙 垂直移动的按键控制
