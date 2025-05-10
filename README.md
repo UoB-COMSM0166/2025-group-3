@@ -498,15 +498,15 @@ Cross-role contributions were encouraged—for example, developers helped with w
 
 ### 6.4 Highlights and Lessons Learned
 
-- Fast Feedback Loops**: In-editor playtests and quick builds allowed us to validate gameplay ideas within hours. This significantly improved iteration speed and creativity.
+- Fast Feedback Loops: In-editor playtests and quick builds allowed us to validate gameplay ideas within hours. This significantly improved iteration speed and creativity.
 
-- Test-Driven Debugging**: Having a dedicated test engineer helped identify issues early, improving overall build stability.
+- Test-Driven Debugging: Having a dedicated test engineer helped identify issues early, improving overall build stability.
 
-- Asynchronous Coordination**: By relying on GitHub comments and Kanban updates, we avoided bottlenecks despite having different schedules.
+- Asynchronous Coordination: By relying on GitHub comments and Kanban updates, we avoided bottlenecks despite having different schedules.
 
-- Merge Conflicts & Overlaps**: Early on, lack of communication led to Git merge conflicts. We solved this by increasing pull request discipline and documenting changes clearly.
+- Merge Conflicts & Overlaps: Early on, lack of communication led to Git merge conflicts. We solved this by increasing pull request discipline and documenting changes clearly.
 
-- Task Estimation Challenges**: Some complex systems (e.g., modular puzzle logic) required more time than expected. We learned to plan buffer time and refine story-point estimation.
+- Task Estimation Challenges: Some complex systems (e.g., modular puzzle logic) required more time than expected. We learned to plan buffer time and refine story-point estimation.
 
 ------
 
