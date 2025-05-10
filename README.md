@@ -278,60 +278,150 @@ Each challenge forced us to adapt and improve our technical approach. From anima
 
 ## 5. Evaluation
 
-### 5.1 Quantitative Evaluation: NASA TLX & SUS  
+### 5.1 Qualitative Evaluation: Heuristic Evaluation  
 
-#### Objectives
+![Heuristic Evaluation](weekly%20updates/Week%207%20-%20Heuristic%20Evaluation.png)
 
-This study aimed to assess:
+### 5.2 Quantitative Evaluation: NASA TLX & SUS  
 
-- How difficulty levels (L1 vs L2) affect player workload using **NASA TLX**.
-- How players perceive the usability of the game using **System Usability Scale (SUS)**.
-- Whether differences in difficulty meaningfully impact experience.
 
-#### Methodology
+### Objective
 
-- **Participants**: 10 university students with varying gaming experience.
-- **Design**: A within-subjects design. Half the participants played L1 first, the other half started with L2 to control for learning effects.
-- **Tools**: NASA TLX form (6 dimensions), SUS questionnaire (10 items).
-- **Analysis**: Wilcoxon signed-rank test for statistical significance.
+This report aims to evaluate the user experience of the platformer puzzle game "Capoo" at low difficulty (L1) and high difficulty (L2) using quantitative methods, comparing workload and usability differences.
 
-#### Results
+### Background
 
-- **NASA TLX Scores** (Average):
-  - L1: 24.58
-  - L2: 28.75
-    → Slight increase in workload for L2, not statistically significant (W = 36, p > 0.05)
-- **SUS Scores** (Average):
-  - L1: 45.5
-  - L2: 43.5
-    → Minor decrease in usability at higher difficulty, also not significant (W = 24, p > 0.05)
+NASA TLX is a tool for measuring subjective workload across six dimensions (Hart & Staveland, 1988). SUS is a reliable usability assessment tool (Brooke, 1986). This study combines both methods to analyze the impact of Capoo’s difficulty on player experience.
 
-#### Interpretation
+### Goals
 
-While L2 presented slightly more physical and mental demands, the differences were not large enough to be statistically significant. The SUS results showed a similar trend, indicating slightly lower satisfaction with L2’s controls, likely due to its increased complexity.
+- Quantify the workload (NASA TLX) and usability (SUS) of Capoo at L1 and L2.
+- Use statistical tests to determine the significance of differences.
 
-#### Design Insights
+------
 
-- Feedback indicated that L2 puzzles could be made more difficult to better differentiate from L1.
-- Some users noted inconsistencies in jump responsiveness at L2, affecting their perception of control.
-- The team implemented smoother jump arcs and clearer visual cues in response.
+## Methodology
 
-### 5.2 Qualitative Evaluation: Heuristic Evaluation  
+### Participants
 
-#### Method
+- **Number**: 10 volunteers.
+- **Characteristics**: Classmates with no specific gaming experience requirements.
+- **Selection Method**: Random recruitment.
 
-The team conducted a heuristic evaluation using Nielsen’s 10 usability principles. Team members and test players identified potential issues while observing gameplay.
+### Experimental Design
 
-#### Findings & Fixes
+- **Difficulty Levels**: Capoo includes L1 (low difficulty) and L2 (high difficulty).
+- **Testing Order**:
+  - 5 users played L1 first, then L2.
+  - 5 users played L2 first, then L1.
+  - This minimizes learning effects.
 
-| Heuristic                               | Issue Identified                             | Improvement Implemented                          |
-| --------------------------------------- | -------------------------------------------- | ------------------------------------------------ |
-| **Visibility of system status**         | Lack of feedback when switches are activated | Added audio and particle feedback                |
-| **Match between system and real world** | Some puzzle interactions unclear             | Added contextual tooltips and icons              |
-| **User control and freedom**            | No way to skip or pause tutorials            | Introduced skip button and pause menu            |
-| **Consistency and standards**           | Inconsistent dialogue layout across NPCs     | Unified text box design and alignment            |
-| **Recognition vs recall**               | Objective reminders missing during gameplay  | Objectives are now pinned in the top-left corner |
-| **Help and documentation**              | Tutorial too text-heavy for beginners        | Replaced with interactive in-game guidance       |
+### Data Collection
+
+- **Tools**:
+  - NASA TLX: 6 dimensions (raw scores).
+  - SUS: 10-question survey.
+- **Procedure**: Each user played one difficulty level and then filled out the NASA TLX and SUS forms, resulting in four scores per participant.
+
+### Scoring Method
+
+- **NASA TLX**: Dimension score = (Rating - 1) × 25, Total score = (∑ Dimension scores) / 6.
+- **SUS**: Odd-numbered questions = Rating - 1, Even-numbered questions = 5 - Rating, Total score = (∑ Score contributions) × 2.5.
+
+### Data Analysis
+
+- **Tool**: Wilcoxon signed-rank test.
+- **Online Calculator**: [Statology Wilcoxon Test Calculator](https://www.statology.org/wilcoxon-signed-rank-test-calculator/)
+- **Significance Level**: α = 0.05.
+
+------
+
+## Results
+
+### Data Overview
+
+| User ID | L1 NASA TLX | L2 NASA TLX | L1 SUS | L2 SUS |
+| ------- | ----------- | ----------- | ------ | ------ |
+| V1      | 12.5        | 16.67       | 55     | 50     |
+| V2      | 20.83       | 20.83       | 45     | 35     |
+| V3      | 29.17       | 33.33       | 55     | 55     |
+| V4      | 20.83       | 25          | 45     | 42.5   |
+| V5      | 29.17       | 29.17       | 52.5   | 50     |
+| V6      | 37.5        | 41.67       | 37.5   | 40     |
+| V7      | 33.33       | 37.5        | 42.5   | 45     |
+| V8      | 8.33        | 16.67       | 37.5   | 40     |
+| V9      | 37.5        | 45.83       | 35     | 35     |
+| V10     | 16.67       | 20.83       | 55     | 42.5   |
+
+- **Averages**: 
+  - L1 NASA TLX: 24.58, L2 NASA TLX: 28.75.
+  - L1 SUS: 45.5, L2 SUS: 43.5.
+
+#### Graphical Representation
+
+- **Figure 1: NASA TLX Dimension Comparison**
+  ![NASA TLX Dimension Comparison](images/NASA_TLX_Dimension_Comparison.png)
+
+
+- **Figure 2: SUS Score Trends**
+
+![SUS Score Trends](images/SUS_Score_Trends.png)
+
+
+- **Figure 3: Correlation Between SUS and NASA TLX**
+
+![Correlation Between SUS and NASA TLX](images/Correlation_Between_SUS_and_NASA_TLX.png)
+
+
+### Statistical Analysis
+
+- **NASA TLX**:
+  - Wilcoxon test result: W = 36 (n=8, excluding zero values).
+  - Critical value (n=8, α=0.05): 3.
+  - Conclusion: W > 3, no significant difference.
+- **SUS**:
+  - Wilcoxon test result: W = 24 (n=8, excluding zero values).
+  - Critical value (n=8, α=0.05): 3.
+  - Conclusion: W > 3, no significant difference.
+
+------
+
+## Discussion
+
+### Interpretation of Results
+
+- **Workload**: L2 NASA TLX (28.75) is slightly higher than L1 (24.58), mainly due to increased physical demands (e.g., jumping) and mental effort (e.g., puzzle complexity), but the difference is not significant.
+- **Usability**: L1 SUS (45.5) is slightly higher than L2 (43.5), suggesting that the increased difficulty of L2 slightly reduced perceived usability, but not significantly.
+
+### Comparison with Expectations
+
+- It was expected that L2 would have a higher workload and lower usability. The observed trend aligns with expectations but does not reach statistical significance, possibly due to insufficient difficulty differences.
+
+### Design Insights
+
+- Increase the difficulty of L2 by making jumps and puzzles more challenging to amplify workload differences.
+- Optimize L2’s control smoothness (SUS Q1 and Q6 had lower scores) to reduce inconsistencies.
+
+### Limitations
+
+- Small sample size (10 participants) limits statistical power.
+- The difficulty difference between L1 and L2 may not be significant enough to fully reflect puzzle and platforming challenges.
+
+------
+
+## Conclusion
+
+Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS score is lower than L1 (43.5 vs 45.5), but neither difference is statistically significant (NASA TLX W = 36, SUS W = 24, p > 0.05). It is recommended to enhance L2’s difficulty and optimize control experience to improve player immersion.
+
+------
+
+## Appendix
+
+### Game Design Updates
+
+1. **Enhance L2 Jumping Difficulty**: Increase platform height and introduce moving obstacles to heighten physical demand.
+2. **Optimize Puzzle Consistency**: Standardize puzzle hint styles to improve SUS Q4 (consistency) scores.
+3. **Implement Dynamic Difficulty Adjustment**: Adjust jumping and puzzle complexity based on player performance.
 
 ### 5.3 Code Testing and Debugging  
 
