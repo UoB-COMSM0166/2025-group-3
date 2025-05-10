@@ -151,6 +151,9 @@ The *Capoo* project adopts an object-oriented approach to structure gameplay log
 ### **3.2 Class Diagram**
 
 Our class diagram provides a structural overview of *Capoo*’s object-oriented architecture. At its core, the system is driven by a **GameModel**, which holds references to key game objects such as platforms, interactable elements, and the player character.
+![Class Diagram](weekly%20updates/Week%205%20-%20Class%20Diagram.png) 
+
+<p align="center"><b>Class Diagram</b></p>
 
 #### Key Components:
 
@@ -175,8 +178,11 @@ This modular structure allows for flexible development and easy modification of 
 ### **3.3 Sequence Diagram**
 
 To represent dynamic gameplay interaction, we created a sequence diagram that models a typical scenario where the player activates a switch that raises a wall and unlocks a key mechanism.
+![Sequence Diagram](weekly%20updates/Week%205%20-%20Sequence%20Diagram.png.png)
 
-#### Scenario Flow (Simplified):
+<p align="center"><b>Sequence Diagram</b></p>
+
+#### Scenario Flow :
 
 1. Player initiates movement using key inputs processed by `GameController`.
 2. `Capoo` updates its position and interacts with terrain using gravity and collision checks (e.g., `canClimb()`, `isNearPix()`).
@@ -639,15 +645,6 @@ Above all, this project gave us our first taste of end-to-end game development i
 
 
 
-
-## 4. Class Diagram
-![Class Diagram](weekly%20updates/Week%205%20-%20Class%20Diagram.png) 
-
-<p align="center"><b>Class Diagram</b></p>
-
-![Sequence Diagram](weekly%20updates/Week%205%20-%20Sequence%20Diagram.png)
-
-<p align="center"><b>Sequence Diagram</b></p>
 
 ---
 
