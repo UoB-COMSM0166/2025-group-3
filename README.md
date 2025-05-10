@@ -102,7 +102,7 @@ Each stakeholder’s expectations were captured using epics and user stories.
 
 ### 2.3 Epics and User Stories
 
-#### **Epic: Core Gameplay (Player)**
+#### Epic: Core Gameplay (Player)
 
 1. **As a casual gamer**, I want Capoo’s controls to be simple and intuitive so that I can jump into the game and start having fun without needing a tutorial.
 2. **As a puzzle lover**, I want the levels in Capoo to offer clever environmental challenges, so I feel rewarded when I figure them out.
@@ -110,7 +110,7 @@ Each stakeholder’s expectations were captured using epics and user stories.
 
 ------
 
-#### **Epic: UI and UX (Developer)**
+#### Epic: UI and UX (Developer)
 
 1. **As a player interested in customization**, I want to choose the difficulty level at the start, so the game fits my skill level and mood.
 2. **As a new player**, I want to be guided by brief tutorials or examples that explain unique mechanics , so I don't feel confused.
@@ -118,7 +118,7 @@ Each stakeholder’s expectations were captured using epics and user stories.
 
 ------
 
-#### **Epic: Developer-Centric **
+#### Epic: Developer-Centric 
 
 **As a member of the development team**, I want to implement a first-in-class app/game that pushes me to learn new skills.
 
