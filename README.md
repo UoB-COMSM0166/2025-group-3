@@ -651,26 +651,6 @@ Above all, this project gave us our first taste of end-to-end game development i
 
 ---
 
-## 5. Heuristic Evaluation
-![Heuristic Evaluation](weekly%20updates/Week%207%20-%20Heuristic%20Evaluation.png)
-
----
-
-
-
-
-
-
-##### Graphical Representation
-- **Figure 1: NASA TLX Dimension Comparison**  
-  ![NASA TLX Dimension Comparison](images/NASA_TLX_Dimension_Comparison.png)
-- **Figure 2: SUS Score Trends**  
-  ![SUS Score Trends](images/SUS_Score_Trends.png)
-- **Figure 3: Correlation Between SUS and NASA TLX**  
-  ![Correlation Between SUS and NASA TLX](images/Correlation_Between_SUS_and_NASA_TLX.png)
-
-
-
 
 ### Introduction
 
