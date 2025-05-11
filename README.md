@@ -226,7 +226,16 @@ The sequence clearly demonstrates the flow of control from player input to game 
 
 ------
 
-### **3.4 Design Considerations**
+### **3.4 State Machine Diagram**
+
+To help us understand the dynamic behaviors and transitions of key game components, we decided to create a state diagram for Capoo. This diagram illustrates the lifecycle of major objects like `GameModel`, `GameController`, `Capoo`, `Wizard`, `Potion`, `ElevatingWalls`, `MapLoader`, `RenderLogic`, `GameView`, and `SpineLayer`. By mapping out their state transitions—such as how `Capoo` moves from `Idle` to `Walking`, or how the `GameModel` transitions from `Running` to `GameOver`—we gained deeper insights into how interactions flow during gameplay.
+
+Moreover, the state diagram served as a blueprint during development, clarifying the conditions required for state changes. For example, the `Potion` object smoothly transitions from `Inactive` to `Active` upon pickup, and eventually to `Used` when consumed. Similarly, `ElevatingWalls` move from `Static` to `Moving` based on triggers, reflecting game mechanics in a visual and structured manner.
+
+This representation was crucial for identifying edge cases, preventing inconsistent states, and ensuring that the game's logic remains synchronized across different modules. Understanding these states early on allowed us to focus on game logic with confidence, supporting our modular design principles and reducing debugging time as new features were added.
+
+
+### **3.5 Design Considerations**
 
 During design and implementation, we faced several technical challenges that led to important design decisions:
 
@@ -236,13 +245,13 @@ During design and implementation, we faced several technical challenges that led
 
 ------
 
-### **3.5 Iterative Development & Diagram Updates**
+### **3.6 Iterative Development & Diagram Updates**
 
 Consistent with agile methodology, our class and sequence diagrams evolved over time. For example, earlier prototypes had more monolithic controller logic, but we later separated `GameController` and `MapLoader` to improve maintainability and testing. Additionally, classes such as `Capoo`, `Potion`, and `ElevatingWalls` saw expanded responsibilities as gameplay mechanics became clearer through playtesting.
 
 ------
 
-### **3.6 Conclusion**
+### **3.7 Conclusion**
 
 The UML models we developed played a crucial role in organizing our design and facilitating communication within the team. By combining a strong object-oriented foundation with agile iteration, we built a flexible and scalable game architecture that can accommodate future features such as multi-character control or extended puzzle mechanics.
 
