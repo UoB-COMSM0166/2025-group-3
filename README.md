@@ -436,7 +436,6 @@ The codebase underwent multiple rounds of testing, including:
 - **Unit Tests**: Written for player controls, puzzle activation, and UI visibility logic.
 - **Integration Tests**: Verified smooth transitions between levels and puzzle dependencies.
 - **Manual Testing**: Developers performed end-to-end playthroughs on both Windows and Android devices.
-- **Performance Profiling**: Used Unity Profiler to monitor memory usage, frame rates, and GC allocations. Issues with memory leaks from pooled particles were identified and resolved.
 
 A comprehensive bug tracker was maintained using GitHub Issues. Over 30 bugs were logged and resolved throughout the testing phase.
 
