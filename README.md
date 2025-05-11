@@ -416,6 +416,8 @@ NASA TLX is a tool for measuring subjective workload across six dimensions (Hart
 
 <div align="center"><strong>Table 3 - Data Overview  </strong></div>
 
+<div align="center">
+  
 | User ID | L1 NASA TLX | L2 NASA TLX | L1 SUS | L2 SUS |
 | ------- | ----------- | ----------- | ------ | ------ |
 | V1      | 12.5        | 16.67       | 55     | 50     |
@@ -428,6 +430,8 @@ NASA TLX is a tool for measuring subjective workload across six dimensions (Hart
 | V8      | 8.33        | 16.67       | 37.5   | 40     |
 | V9      | 37.5        | 45.83       | 35     | 35     |
 | V10     | 16.67       | 20.83       | 55     | 42.5   |
+
+</div>
 
 - **Averages**: 
   - L1 NASA TLX: 24.58, L2 NASA TLX: 28.75.
