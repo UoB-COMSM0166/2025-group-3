@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // 添加一个函数来切换表情
 function changeFacialExpression() {
-  window.currentFaceIndex = (window.currentFaceIndex + 1) % 32;
+  window.currentFaceIndex = (window.currentFaceIndex + 1) % 16;
 }
 
 window.keyPressed = function () {
