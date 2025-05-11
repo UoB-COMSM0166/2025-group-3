@@ -655,7 +655,7 @@ export default class GameView {
         text("You can drop the potion by pressing     .", textX, textY);
         fill(43, 177, 235); // 蓝色
         stroke(255);
-        text("                                                       X", textX, textY);
+        text("                                                       S", textX, textY);
         fill(255);
         stroke(50,110,185);
         textY += dis;
@@ -676,7 +676,7 @@ export default class GameView {
         text("Pot can be made to jump using      and        (except on          ).", textX, textY);
         fill(43, 177, 235); // 蓝色
         stroke(255);
-        text("                                            Q        W                     ICE", textX, textY);
+        text("                                            A        D                     ICE", textX, textY);
      }
 }
 
