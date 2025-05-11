@@ -582,8 +582,8 @@ Each member took on a primary role while remaining flexible to support other tas
 
 | Name        | Role             | Responsibilities                                         |
 | ----------- | ---------------- | -------------------------------------------------------- |
-| Shuyin Deng | Project Manager  |        |
-| Jiaxin Fan  | Technical Writer |   |
+| Shuyin Deng | Project Manager  | handled evaluations/report     |
+| Jiaxin Fan  | Technical Writer | Coordinated project planning/vedio  |
 | Peixuan Li  | Developer        | Early stage prototype / Physics and collision / Main logic implementation         |
 | Yibu Ma     | Developer        | OOP refactor / Spine model integration / Game website |
 | Yu Qiu      | Developer        | Player interaction      |
