@@ -59,7 +59,8 @@ The game draws inspiration from the visual charm of *Capoo Pals* and the whimsic
 
 The ability to separate Capoo from the can using key inputs, enabling the player to control each component independently. This will allow for diverse platforming strategies, increasing gameplay variety and encouraging creative problem-solving.
 
-### Figure 1 - Demonstration of separation
+
+<div align="center"><strong>Figure 1 - Demonstration of separation</strong></div>
 
 <div align="center">
   <img src="images/figure1.gif" alt="Capoo Demo" width="400"/>
@@ -67,7 +68,7 @@ The ability to separate Capoo from the can using key inputs, enabling the player
 
 The game is structured across multiple levels, each of which presents increasing puzzle complexity and map decryption difficulty. This will gradually raise the cognitive challenge, ensuring players remain mentally engaged as they progress through the game.
 
-### Figure 2 - Demonstration of multiple levels
+<div align="center"><strong>Figure 2 - Demonstration of multiple levels</strong></div>
 
  <div align="center">
   <img src="images/figure2.gif" alt="Capoo Demo" width="400"/>
@@ -150,12 +151,13 @@ The team broke down user stories into implementable tasks. For example, the "cor
 
 ### 2.5 Use Case Diagram and Specification
 
+<div align="center"><strong>Figure 3 - Use Case Diagram</strong></div>
+
  ![Use Case Diagram](images/Usecase.jpg) 
 
-<p align="center"><b>Use Case Diagram</b></p>
 
 
-<p align="center"><b>Use Case Specification</b></p>
+<div align="center"><strong>Table 1 - Use Case Specification</strong></div>
 
 |                      | Easy Level                                                                                                                   | Difficult Level                                                                                                                                                         |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -181,9 +183,10 @@ The *Capoo* project adopts an object-oriented approach to structure gameplay log
 ### **3.2 Class Diagram**
 
 Our class diagram provides a structural overview of *Capoo*’s object-oriented architecture. At its core, the system is driven by a **GameModel**, which holds references to key game objects such as platforms, interactable elements, and the player character.
-![Class Diagram](weekly%20updates/Week%205%20-%20Class%20Diagram.png) 
 
-<p align="center"><b>Class Diagram</b></p>
+<div align="center"><strong>Figure 4 - Class Diagram</strong></div>
+
+![Class Diagram](weekly%20updates/Week%205%20-%20Class%20Diagram.png) 
 
 #### Key Components:
 
@@ -208,9 +211,11 @@ This modular structure allows for flexible development and easy modification of 
 ### **3.3 Sequence Diagram**
 
 To represent dynamic gameplay interaction, we created a sequence diagram that models a typical scenario where the player activates a switch that raises a wall and unlocks a key mechanism.
+
+<div align="center"><strong>Figure 5 - Sequence Diagram</strong></div>
+
 ![Sequence Diagram](weekly%20updates/Week%205%20-%20Sequence%20Diagram.png.png)
 
-<p align="center"><b>Sequence Diagram</b></p>
 
 #### Scenario Flow :
 
@@ -231,8 +236,10 @@ The sequence clearly demonstrates the flow of control from player input to game 
 We created a state diagram for *Capoo* to map the lifecycle of key game components like `GameModel`, `Capoo`, `Potion`, and others. The diagram illustrates state transitions—such as `Capoo` moving from `Idle` to `Walking`, or the `GameModel` transitioning to `GameOver`—which helped clarify the conditions for state changes during development.
 
 For instance, the `Potion` transitions from `Inactive` to `Active` upon pickup, and `ElevatingWalls` move from `Static` to `Moving` based on triggers. This visual representation helped identify edge cases, ensure synchronized game logic, and streamline development, ultimately reducing debugging time.
+
+<div align="center"><strong>Figure 6 - state machine diagram</strong></div>
+
 ![machine diagram](images/state%20machine%20diagram.png)
-<p align="center"><b>state machine diagram</b></p>
 
 ------
 
@@ -243,8 +250,10 @@ The **Communication Diagram** for the *Capoo Game* illustrates the interactions 
 The *MapLoader* initializes game levels and parses entity data for the *GameModel*. *Capoo* interacts with objects, triggering events that are reflected in the game state. *SpineLayer* manages character animations, ensuring smooth visuals. Error handling in *GameController* ensures stability during gameplay.
 
 This structure maintains synchronized game states, smooth animations, and consistent feedback to the player.  
+
+<div align="center"><strong>Figure 7 - communication diagram</strong></div>
+
 ![communication diagram](images/communication%20diagram.png)
-<p align="center"><b>communication diagram</b></p>
 
 ------
 
@@ -336,7 +345,9 @@ Each challenge forced us to adapt and improve our technical approach. From anima
 
 ## 5. Evaluation
 
-### 5.1 Qualitative Evaluation: Heuristic Evaluation  
+### 5.1 Qualitative Evaluation
+
+<div align="center"><strong>Table 2 - Heuristic Evaluation  </strong></div>
 
 | Interface     | Issue                                                                                                                                 | Heuristic(s)                          | Frequency (0–4) | Impact (0–4) | Persistence (0–4) | Severity = (F + I + P) / 3 |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|------------------|---------------|---------------------|-----------------------------|
@@ -403,7 +414,7 @@ NASA TLX is a tool for measuring subjective workload across six dimensions (Hart
 
 ## Results
 
-### Data Overview
+<div align="center"><strong>Table 3 - Data Overview  </strong></div>
 
 | User ID | L1 NASA TLX | L2 NASA TLX | L1 SUS | L2 SUS |
 | ------- | ----------- | ----------- | ------ | ------ |
@@ -424,16 +435,17 @@ NASA TLX is a tool for measuring subjective workload across six dimensions (Hart
 
 #### Graphical Representation
 
-- **Figure 1: NASA TLX Dimension Comparison**
+<div align="center"><strong>Figure 8 - NASA TLX Dimension Comparison</strong></div>
+
   ![NASA TLX Dimension Comparison](images/NASA_TLX_Dimension_Comparison.png)
 
 
-- **Figure 2: SUS Score Trends**
+<div align="center"><strong>Figure 9 - SUS Score Trends</strong></div>
 
 ![SUS Score Trends](images/SUS_Score_Trends.png)
 
 
-- **Figure 3: Correlation Between SUS and NASA TLX**
+<div align="center"><strong>Figure 10 - Correlation Between SUS and NASA TLX</strong></div>
 
 ![Correlation Between SUS and NASA TLX](images/Correlation_Between_SUS_and_NASA_TLX.png)
 
@@ -492,7 +504,7 @@ Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS s
 
 We used black-box testing with equivalence partitioning to validate the game. Test cases were designed based on input types and game states, without looking at the internal code. We focused on transitions (e.g. main menu to level select), controls (e.g. movement, jumping), and interactions (e.g. keys, traps, water). Each feature was tested using representative inputs from different equivalence classes to ensure correct behavior.
 
-#### 1. Game State and Scene Testing
+<div align="center"><strong>Table 3 - Game State and Scene Testing  </strong></div>
 
 | ID    | Description                        | Precondition                           | Test Steps                                                   | Expected Result                                              |
 | ----- | ---------------------------------- | -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -503,7 +515,7 @@ We used black-box testing with equivalence partitioning to validate the game. Te
 
 ------
 
-#### 2. Character Movement and Control Testing
+<div align="center"><strong>Table 4 - Character Movement and Control Testing  </strong></div>
 
 | ID    | Description                      | Precondition                                             | Test Steps                                                   | Expected Result                                              |
 | ----- | -------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -516,7 +528,7 @@ We used black-box testing with equivalence partitioning to validate the game. Te
 
 ------
 
-#### 3. Game Mechanics and Interaction Testing
+<div align="center"><strong>Table 5 - Game Mechanics and Interaction Testing  </strong></div>
 
 | ID    | Description                           | Precondition                                                 | Test Steps                                          | Expected Result                                              |
 | ----- | ------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------------ |
@@ -531,7 +543,8 @@ We used black-box testing with equivalence partitioning to validate the game. Te
 
 ------
 
-#### 4. UI and Accessibility Testing
+
+<div align="center"><strong>Table 6 - UI and Accessibility Testing  </strong></div>
 
 | ID    | Description                   | Precondition                    | Test Steps                                                   | Expected Result                                              |
 | ----- | ----------------------------- | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
