@@ -134,9 +134,9 @@ The team broke down user stories into implementable tasks. For example, the "cor
 
 ### 2.5 Use Case Diagram and Specification
 
-> 📌 *Use Case Diagram:*  
-> ![Use Case Diagram](./assets/use-case-diagram.png)  
-> *(Insert diagram showing major player and developer interactions.)*
+ ![Use Case Diagram](images/Usecase.jpg) 
+
+<p align="center"><b>Use Case Diagram</b></p>
 
 ------
 
