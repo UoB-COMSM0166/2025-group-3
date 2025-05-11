@@ -125,6 +125,19 @@ window.setup = function () {
 }
   
 window.draw = function () {
+  // 限制最大帧率为60fps
+  const targetFrameRate = 60;
+  const currentTime = millis();
+  const elapsedTime = currentTime - (window.lastDrawTime || 0);
+  
+  if (elapsedTime < 1000 / targetFrameRate) {
+    // 如果时间间隔太短，跳过这一帧
+    return;
+  }
+  
+  // 记录当前时间为上一次绘制时间
+  window.lastDrawTime = currentTime;
+  
   // 确保所有音频加载完成后再执行游戏逻辑
   if (!window.allSoundsLoaded || !gameView) { // 
     let bgColor = color('#d0f0ff'); // 柔和的天蓝色
@@ -236,6 +249,11 @@ window.keyPressed = function () {
   } 
 
   else if(gameModel.gameState === GAME_STATE.PLAYING ){
+    // 防止方向键和特殊键被重复处理导致卡顿
+    if (gameModel.keys[key] === true) {
+      return;
+    }
+    
     // 设置按键状态，允许多个按键同时生效
     gameModel.keys[key] = true;
     
@@ -276,8 +294,7 @@ window.keyPressed = function () {
 // 松开键盘后停止人物移动
 window.keyReleased = function() {
   if (gameModel.keys[key] !== undefined) {
-    gameModel.keys[key] = false;
-    // 移除延迟删除，直接删除按键状态
+    // 优化：直接删除按键状态，不设置为false
     delete gameModel.keys[key];
   }
 }

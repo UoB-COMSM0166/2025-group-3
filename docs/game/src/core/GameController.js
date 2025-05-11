@@ -76,10 +76,11 @@ export default class GameController {
             let message1 = "Cats dissolve easily in water!"
             this.gameModel.messages.push(new Message(message1,width/2,4*height/5,2000,30,{},"death"));
 
-            this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
-            this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
+            this.reLife();
             return;
         }
+
+
 
         
         // 判断猫是否碰到陷阱(上下边分別检测两个点), 重置回出生点
@@ -99,8 +100,7 @@ export default class GameController {
             let message1 = "You are trapped!"
             this.gameModel.messages.push(new Message(message1,width/2,4*height/5,2000,30,{},"death"));
 
-            this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
-            this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
+            this.reLife();
             return;
         }
 
@@ -632,6 +632,13 @@ export default class GameController {
         else{
             this.gameModel.merge[selectedLevel].visible = false;
         }
+    }
+
+    reLife(){
+        let selectedLevel = this.gameModel.selectedLevel;
+        this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
+        this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
+        this.gameModel.cat[selectedLevel].isMerged = true;
     }
 
     // 猫触碰开关时, 机关墙自动移动
