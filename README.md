@@ -61,9 +61,17 @@ The ability to separate Capoo from the can using key inputs, enabling the player
 
 ### Figure 1 - Demonstration of separation
 
+<div align="center">
+  <img src="images/figure1.gif" alt="Capoo Demo" width="400"/>
+</div>
+
 The game is structured across multiple levels, each of which presents increasing puzzle complexity and map decryption difficulty. This will gradually raise the cognitive challenge, ensuring players remain mentally engaged as they progress through the game.
 
 ### Figure 2 - Demonstration of multiple levels
+
+ <div align="center">
+  <img src="images/figure2.gif" alt="Capoo Demo" width="400"/>
+</div>
 
 Its appeal lies in its distinctive art style, playful animations, and inventive gameplay. The development process followed agile methodologies and user-centered design, incorporating feedback from playtesting and usability evaluations.
 
