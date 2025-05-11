@@ -283,7 +283,7 @@ export default class GameController {
         if (this.gameModel.keys['q'] && this.gameModel.potion.tanshe ) {     
             // 如果能左弹射且按下Q键
             if (this.gameModel.potion.canShootLeft) {
-                this.gameModel.cat[selectedLevel].isMerged = false;
+            this.gameModel.cat[selectedLevel].isMerged = false;
                 this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
                 // 黄油分离时初始位置向上偏移，避免立即碰撞检测
                 this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y - 30;
