@@ -234,6 +234,9 @@ Moreover, the state diagram served as a blueprint during development, clarifying
 
 This representation was crucial for identifying edge cases, preventing inconsistent states, and ensuring that the game's logic remains synchronized across different modules. Understanding these states early on allowed us to focus on game logic with confidence, supporting our modular design principles and reducing debugging time as new features were added.
 
+<p align="center"><b>state machine diagram</b></p>
+
+------
 
 ### **3.5 Design Considerations**
 
