@@ -418,39 +418,35 @@ export default class GameView {
         stroke(50,110,185);
         strokeWeight(5); 
 
-        // textSize(window.innerWidth/38);
-        // text("Press any key to return to the game.\nPress ESC to Exit.", 
-        //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
-
+        // 调整标题位置到更合理的位置
         textSize(window.innerWidth / 38);
-        text("Find three keys and touch the flag to pass.", window.innerWidth/2-20, window.innerHeight/2 - window.innerHeight/3.1-50);
+        text("Find three keys and touch the flag to pass.", window.innerWidth/2, padding + 50);
         fill(255, 255, 153);
         stroke(255);
-        text("3 Keys       Flag  ",window.innerWidth/2-10, window.innerHeight/2 - window.innerHeight/3.1-10)
-
+        text("3 Keys       Flag  ",window.innerWidth/2, padding + 90);
 
         fill(255); // 白色文字
         stroke(50,110,185);
         strokeWeight(5); 
-        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Press                 to return to the game.", window.innerWidth/2, padding + 150);
         fill(61, 170, 110);  // 绿色
         stroke(255);
-        text("   H                           ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("   H                           ", window.innerWidth/2, padding + 150);
 
         fill(255);
         stroke(50,110,185);
-        text("Press             to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
+        text("Press             to Exit.", window.innerWidth/2, padding + 190);
 
         fill(169, 59, 70); // 红色
         stroke(255);
-        text("ESC  ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1+ window.innerWidth /24);
+        text("ESC  ", window.innerWidth/2, padding + 190);
 
         fill(255);
         stroke(50,110,185);
         textSize(window.innerWidth / 50);
         let dis = window.innerHeight / 19;
         let textX = window.innerWidth / 2;
-        let textY = window.innerHeight / 2 + window.innerHeight / 13;
+        let textY = padding + 250;
 
         textAlign(CENTER, CENTER);
         fill(255); 
@@ -480,7 +476,7 @@ export default class GameView {
         text("You can drop the potion by pressing     .", textX, textY);
         fill(43, 177, 235); // 蓝色
         stroke(255);
-        text("                                                       X", textX, textY);
+        text("                                                       S", textX, textY);
         fill(255);
         stroke(50,110,185);
         textY += dis;
@@ -495,6 +491,14 @@ export default class GameView {
         text("                                 Tree                      Up Arrow         Down Arrow", textX, textY);
         textFont(window.assets.textFont1); // 切换回自定义字体
         textY += dis
+
+        // 添加表情切换说明
+        fill(255);
+        stroke(50,110,185);
+        text("Press ANY KEY to change cat's facial expression.", textX, textY);
+        fill(43, 177, 235); // 蓝色
+        stroke(255);
+        text("                        ", textX, textY);
         }
         else if(levelIndex == 2 ){
         fill(255, 255, 255, 170); // 半透明背景

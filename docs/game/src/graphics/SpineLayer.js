@@ -20,6 +20,17 @@ let skeletonFile = "capoo_basic_002.json";
 let atlasFile = "capoo_basic_002.atlas";
 let animation = "run";
 
+// 添加脸部表情列表和当前表情索引
+// 可用的脸部动画列表
+let faceAnimations = [
+    "angry", "annoyed", "basic", "beaten", "blankly", "blissful", "blood", "chew",
+    "confidence", "delighted", "die", "dizzy", "down", "eager", "emoji", "flushed",
+    "full", "happy", "hide_all", "hungry", "kawaii", "like", "pleased", "poo",
+    "sad", "serious", "shy", "sleep", "stunned", "tear", "thrilled", "tired", "upset"
+  ];
+// 使用window.currentFaceIndex代替局部变量
+//export let currentFaceIndex = 0; // 当前表情索引
+
 let atlas1;
 let assetManager1;
 let atlasLoader1;
@@ -212,6 +223,12 @@ function render() {
     if (rootBone) {
         rootBone.rotation = -1; // 设置根骨骼的旋转为0，使角色朝右
     }
+ 
+    // 应用新的表情动画
+    if (skeletonMesh1) {
+        // 应用新的表情动画 - 使用window.currentFaceIndex
+        skeletonMesh1.state.setAnimation(0, faceAnimations[window.currentFaceIndex], true);
+    }
 
     // 更新所有模型的动画状态
     // Synchronize the body_face bone of skeletonMesh1 with skeletonMesh
@@ -240,8 +257,8 @@ function render() {
     }
     if (typeof isFacingRight !== "undefined" ) {
         if(isFacingRight){
-        skeletonMesh1.position.set(-(bodyFaceSlot.worldX - faceBodySlot.worldX), (bodyFaceSlot.worldY - faceBodySlot.worldY), 1); 
-        skeletonMesh2.position.set(-(bodyHatSlot.worldX - hatBodySlot.worldX), (bodyHatSlot.worldY - hatBodySlot.worldY), 1); 
+        skeletonMesh1.position.set(-(bodyFaceSlot.worldX - faceBodySlot.worldX), (bodyFaceSlot.worldY - faceBodySlot.worldY), 8); 
+        skeletonMesh2.position.set(-(bodyHatSlot.worldX - hatBodySlot.worldX), (bodyHatSlot.worldY - hatBodySlot.worldY), 4); 
         skeletonMesh3.position.set(-(bodyBackSlot.worldX - backBodySlot.worldX), (bodyBackSlot.worldY - backBodySlot.worldY), -1);
     
         //设置罐子位置
@@ -249,16 +266,20 @@ function render() {
         skeletonMesh.scale.x=-1;
         skeletonMesh1.scale.x=-1;
         skeletonMesh2.scale.x=-1;
+        // 调大帽子尺寸
+        skeletonMesh2.scale.y=1;
         skeletonMesh3.scale.x=-1;
 
         }else{
             skeletonMesh.scale.x=1;
             skeletonMesh1.scale.x=1;
             skeletonMesh2.scale.x=1;
+            // 调大帽子尺寸
+            skeletonMesh2.scale.y=1;
             skeletonMesh3.scale.x=1;
  
-            skeletonMesh1.position.set(bodyFaceSlot.worldX - faceBodySlot.worldX, bodyFaceSlot.worldY - faceBodySlot.worldY, 1);
-            skeletonMesh2.position.set(bodyHatSlot.worldX - hatBodySlot.worldX, bodyHatSlot.worldY - hatBodySlot.worldY, 1); 
+            skeletonMesh1.position.set(bodyFaceSlot.worldX - faceBodySlot.worldX, bodyFaceSlot.worldY - faceBodySlot.worldY, 8);
+            skeletonMesh2.position.set(bodyHatSlot.worldX - hatBodySlot.worldX, bodyHatSlot.worldY - hatBodySlot.worldY, 4); 
             skeletonMesh3.position.set(bodyBackSlot.worldX - backBodySlot.worldX, bodyBackSlot.worldY - backBodySlot.worldY, -1);
 
         }
@@ -286,5 +307,8 @@ function resize() {
 
     renderer.setSize(w, h);
 }
+
+
+
 
 init();

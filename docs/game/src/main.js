@@ -3,11 +3,14 @@ import GameController from "./core/GameController";
 import GameView from "./graphics/GameView";
 import { CONSTANT, GAME_STATE } from "./core/Utils";
 
+
 // global variables
 let gameModel;
 let gameController;
 let gameView;
 export let showCapoo = true;
+// 添加全局变量用于表情切换
+window.currentFaceIndex = 0;
 
 window.assets = {}; 
 /* window.assets 是全局变量, 用于存储游戏关卡外的图片素材, 和所有的音频素材, 字体素材等
@@ -116,6 +119,9 @@ window.setup = function () {
         console.log("Main setup done");
         // background(220);
         gameController.newGame(); // 读取地图文件到gameModel
+        
+        // 确保游戏一开始就进入说明页面状态
+        gameModel.gameState = GAME_STATE.INSTRUCTION;
 
         loop();  // 在音频加载完后启动 draw()
     }
@@ -204,7 +210,17 @@ document.addEventListener("DOMContentLoaded", function() {
   }, { passive: false });
 });
 
+// 添加一个函数来切换表情
+function changeFacialExpression() {
+  window.currentFaceIndex = (window.currentFaceIndex + 1) % 32;
+}
+
 window.keyPressed = function () {
+  // 任意按键都切换表情
+  if (gameModel.gameState === GAME_STATE.PLAYING) {
+    changeFacialExpression();
+  }
+
   // 游戏开始、选关和完成界面不需要处理重复按键
   if (gameModel.gameState === GAME_STATE.START && keyCode === ENTER) {
       window.assets.userStartGame.play();
@@ -267,14 +283,14 @@ window.keyPressed = function () {
         return;
       }
       
-      // 处理ESC键
+      // 处理ESC键 - 直接退出到选关页面
       if (keyCode === ESCAPE) { 
-        if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
-            gameModel.showHelp = true;
-            gameModel.keysESC = true; 
-        } else {
-            gameModel.showHelp = false; // 按下两次esc, 退出到选关页面
+        if (gameModel.showHelp) {
+            // 如果帮助界面已显示，则隐藏帮助界面
+            gameModel.showHelp = false;
             gameModel.keysESC = false;
+        } else {
+            // 直接退出到选关页面
             gameModel.gameState = GAME_STATE.LEVEL_SELECT;
         }
         return;
