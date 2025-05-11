@@ -257,19 +257,23 @@ window.keyPressed = function () {
     // 设置按键状态，允许多个按键同时生效
     gameModel.keys[key] = true;
     
-    // 处理ESC键
-    if (keyCode === ESCAPE) { 
-      if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
-          gameModel.showHelp = !gameModel.showHelp;
-          gameModel.keysESC = true; 
-      } else { // 按下两次esc, 退出到选关页面
-          gameModel.keysESC = false;
-          gameModel.gameState = GAME_STATE.LEVEL_SELECT;
-      }
+    // 处理H键显示和关闭帮助
+    if (key === 'h' || key === 'H') {
+      gameModel.showHelp = !gameModel.showHelp;
+      return;
     }
-    if (gameModel.showHelp && keyCode !== ESCAPE) {
-        gameModel.showHelp = false;
-        gameModel.keysESC = false; 
+    
+    // 处理ESC键直接退出到选关页面
+    if (keyCode === ESCAPE) { 
+      gameModel.showHelp = false;
+      gameModel.keysESC = false;
+      gameModel.gameState = GAME_STATE.LEVEL_SELECT;
+      return;
+    }
+    
+    // 如果显示帮助界面，阻止其他按键操作游戏
+    if (gameModel.showHelp) {
+      return;
     }
   }
   

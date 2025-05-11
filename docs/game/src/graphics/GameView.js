@@ -355,10 +355,9 @@ export default class GameView {
         //console.log("keysESC: " + this.gameModel.keysESC);
 
         // 按esc加载游戏说明页面, 按任意键关闭, 再次按esc退出到选关页面
-        if(levelIndex <= 3){
-            this.gameModel.showHelp == true;
-        }
-        
+        // if(levelIndex <=3){
+        //     this.gameModel.showHelp = true;
+        // }
         if(this.gameModel.showHelp){
             this.showhelpscreen(levelIndex);
         }
@@ -366,79 +365,137 @@ export default class GameView {
 
 
     showhelpscreen(levelIndex){
-        if(levelIndex == 0){
+        if(levelIndex == 0 && levelIndex ==1){
             fill(255, 255, 255, 170); // 半透明背景
-            stroke(255); // 白色描边
-            strokeWeight(5);
-            let padding = 50; // 四周留白
-            let cornerRadius = 25;
-            rect(padding, padding, window.innerWidth - 2 * padding, window.innerHeight - 2 * padding, cornerRadius); // 圆角矩形
-            
-            textAlign(CENTER, CENTER); 
-            fill(255); // 白色文字
-            stroke(50,110,185);
-            strokeWeight(5); 
+        stroke(255); // 白色描边
+        strokeWeight(5);
+        let padding = 50; // 四周留白
+        let cornerRadius = 25;
+        rect(padding, padding, window.innerWidth - 2 * padding, window.innerHeight - 2 * padding, cornerRadius); // 圆角矩形
+        
+        textAlign(CENTER, CENTER); 
+        fill(255); // 白色文字
+        stroke(50,110,185);
+        strokeWeight(5); 
+
+        // textSize(window.innerWidth/38);
+        // text("Press any key to return to the game.\nPress ESC to Exit.", 
+        //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+
+        textSize(window.innerWidth / 38);
+        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+
+        fill(61, 170, 110);  // 绿色
+        stroke(255);
+        text("   any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+
+        fill(255);
+        stroke(50,110,185);
+        text("Press             to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
+
+        fill(169, 59, 70); // 红色
+        stroke(255);
+        text("ESC  ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1+ window.innerWidth /24);
+
+        fill(255);
+        stroke(50,110,185);
+        textSize(window.innerWidth / 50);
+        let dis = window.innerHeight / 19;
+        let textX = window.innerWidth / 2;
+        let textY = window.innerHeight / 2 + window.innerHeight / 13;
+
+        textAlign(CENTER, CENTER);
+        fill(255); 
+        stroke(50, 110, 185);
+        strokeWeight(5);
+
+        text("You're a wizard cat.", textX, textY);
+        textY += dis;
+
+        text("You can move by pressing                        and                       .", textX, textY);
     
-            // textSize(window.innerWidth/38);
-            // text("Press any key to return to the game.\nPress ESC to Exit.", 
-            //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
-    
-            textSize(window.innerWidth / 38);
-            text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
-    
-            fill(61, 170, 110);  // 绿色
-            stroke(255);
-            text("any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
-    
-            fill(255);
-            stroke(50,110,185);
-            text("Press          to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
-    
-            fill(169, 59, 70); // 红色
-            stroke(255);
-            text("ESC  ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1+ window.innerWidth /24);
-         
-            fill(255);
-            stroke(50,110,185);
-            text("When a cat combines with a can, it becomes Superman\nKeep pressing the space bar to fly", window.innerWidth/2, window.innerHeight/2 + window.innerWidth /24);
-    
+        fill(43, 177, 235); // 蓝色
+        stroke(255);
+        text("                                       Right Arrow          Left Arrow", textX, textY);
+        textY += dis;
+
+        fill(255);
+        stroke(50,110,185);
+        text("You can fly upwards infinitely by pressing               when you have the potion on your back.", textX, textY);
+        fill(43, 177, 235); // 蓝色
+        stroke(255);
+        text("    SPACE", textX, textY);
+        fill(255);
+        stroke(50,110,185);
+        textY += dis;
+
+        text("You can drop the potion by pressing     .", textX, textY);
+        fill(43, 177, 235); // 蓝色
+        stroke(255);
+        text("                                                       X", textX, textY);
+        fill(255);
+        stroke(50,110,185);
+        textY += dis;
+
+        text("You will automatically pick up the potion when you're close to it.", textX, textY);
+        textY += dis;
+
+        text("You can climb ladders            by pressing                 and                      .", textX, textY);
+        
+        fill(60, 179, 113); // 绿色
+        stroke(255);
+        text("                                 Tree                      Up Arrow         Down Arrow", textX, textY);
+        textFont(window.assets.textFont1); // 切换回自定义字体
+        textY += dis
         }
-        else if(levelIndex == 1 ){
-            fill(255, 255, 255, 170); // 半透明背景
-            stroke(255); // 白色描边
-            strokeWeight(5);
-            let padding = 50; // 四周留白
-            let cornerRadius = 25;
-            rect(padding, padding, window.innerWidth - 2 * padding, window.innerHeight - 2 * padding, cornerRadius); // 圆角矩形
-            
-            textAlign(CENTER, CENTER); 
-            fill(255); // 白色文字
-            stroke(50,110,185);
-            strokeWeight(5); 
-    
-            // textSize(window.innerWidth/38);
-            // text("Press any key to return to the game.\nPress ESC to Exit.", 
-            //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
-    
-            textSize(window.innerWidth / 38);
-            text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
-    
-            fill(61, 170, 110);  // 绿色
-            stroke(255);
-            text("any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
-    
-            fill(255);
-            stroke(50,110,185);
-            text("Press          to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
-    
-            fill(169, 59, 70); // 红色
-            stroke(255);
-            text("ESC  ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1+ window.innerWidth /24);
-         
-            fill(255);
-            stroke(50,110,185);
-            text("When a cat combines with a can, it becomes Superman\nKeep pressing the space bar to fly", window.innerWidth/2, window.innerHeight/2 + window.innerWidth /24);
-    
+        else if(levelIndex == 2 ){
+        fill(255, 255, 255, 170); // 半透明背景
+        stroke(255); // 白色描边
+        strokeWeight(5);
+        let padding = 50; // 四周留白
+        let cornerRadius = 25;
+        rect(padding, padding, window.innerWidth - 2 * padding, window.innerHeight - 2 * padding, cornerRadius); // 圆角矩形
+        
+        textAlign(CENTER, CENTER); 
+        fill(255); // 白色文字
+        stroke(50,110,185);
+        strokeWeight(5); 
+
+        // textSize(window.innerWidth/38);
+        // text("Press any key to return to the game.\nPress ESC to Exit.", 
+        //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+
+        textSize(window.innerWidth / 38);
+        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+
+        fill(61, 170, 110);  // 绿色
+        stroke(255);
+        text("   any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+
+        fill(255);
+        stroke(50,110,185);
+        text("Press             to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
+
+        fill(169, 59, 70); // 红色
+        stroke(255);
+        text("ESC  ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1+ window.innerWidth /24);
+
+        fill(255);
+        stroke(50,110,185);
+        textSize(window.innerWidth / 50);
+        let dis = window.innerHeight / 19;
+        let textX = window.innerWidth / 2;
+        let textY = window.innerHeight / 2 + window.innerHeight / 13;
+
+        textAlign(CENTER, CENTER);
+        fill(255); 
+        stroke(50, 110, 185);
+        strokeWeight(5);
+
+        text("         will disappear when you drop the pot.", textX, textY);
+        fill(169, 59, 70); // 红色
+        stroke(255);
+        text(" ! Wall", textX/1.6, textY);
         }
         else{
         fill(255, 255, 255, 170); // 半透明背景
@@ -462,11 +519,11 @@ export default class GameView {
 
         fill(61, 170, 110);  // 绿色
         stroke(255);
-        text("any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("   any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(255);
         stroke(50,110,185);
-        text("Press          to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
+        text("Press             to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
 
         fill(169, 59, 70); // 红色
         stroke(255);
@@ -506,13 +563,15 @@ export default class GameView {
         text("You're a wizard cat.", textX, textY);
         textY += dis;
 
-        text("You can move by pressing        and        .", textX, textY);
+        text("You can move by pressing                        and                       .", textX, textY);
     
-        textFont("sans-serif");  // 临时切换默认字体，绘制 Emoji
-        text("                                                     ⬅️         ➡️", textX, textY+window.innerHeight/100);
-        textFont(window.assets.textFont1); // 切换回自定义字体
+        fill(43, 177, 235); // 蓝色
+        stroke(255);
+        text("                                       Right Arrow          Left Arrow", textX, textY);
         textY += dis;
 
+        fill(255);
+        stroke(50,110,185);
         text("You can fly upwards infinitely by pressing               when you have the potion on your back.", textX, textY);
         fill(43, 177, 235); // 蓝色
         stroke(255);
@@ -524,7 +583,7 @@ export default class GameView {
         text("You can drop the potion by pressing     .", textX, textY);
         fill(43, 177, 235); // 蓝色
         stroke(255);
-        text("                                                                X", textX, textY);
+        text("                                                       X", textX, textY);
         fill(255);
         stroke(50,110,185);
         textY += dis;
@@ -532,11 +591,20 @@ export default class GameView {
         text("You will automatically pick up the potion when you're close to it.", textX, textY);
         textY += dis;
 
-        text("You can climb ladders        by pressing        and        .", textX, textY);
+        text("You can climb ladders            by pressing                 and                      .", textX, textY);
         
-        textFont("sans-serif"); // 切换默认字体，绘制 Emoji
-        text("                                   🪜                                 ⬆️         ⬇️", textX, textY+window.innerHeight/100);
+        fill(60, 179, 113); // 绿色
+        stroke(255);
+        text("                                 Tree                      Up Arrow         Down Arrow", textX, textY);
         textFont(window.assets.textFont1); // 切换回自定义字体
+        textY += dis
+
+        fill(255);
+        stroke(50,110,185);
+        text("Pot can be made to jump using      and        (except on          ).", textX, textY);
+        fill(43, 177, 235); // 蓝色
+        stroke(255);
+        text("                                            Q        W                     ICE", textX, textY);
      }
 }
 

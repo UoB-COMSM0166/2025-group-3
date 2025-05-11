@@ -43,8 +43,17 @@ export default class GameController {
         let offSetHalf = -catW/2; /* 猫实际坐标在猫图像正下方, 但是猫显示坐标在猫左侧半个身距处
                                     因此所有计算都向左偏移半个身距(-catW/2) */
         let offSetFeet = catH/10; /* 用于猫纵坐标的脚底距离偏移 */
-
+        let isOnIce=false;
         /* ------------------和所有对象层的交互----------------- */
+
+        // 检查是否按下R键重置位置
+        if (this.gameModel.keys['r'] || this.gameModel.keys['R']) {
+            window.assets.death.play();
+            let message1 = "Restarting level...";
+            this.gameModel.messages.push(new Message(message1, width/2, 4*height/5, 2000, 30, {}, "restart"));
+            this.reLife();
+            return;
+        }
 
         // 检查是否碰到钥匙
         this.getkey(this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y, selectedLevel); 
@@ -81,6 +90,11 @@ export default class GameController {
         }
 
 
+        // 判断猫是否在冰上
+        if(this.beIced(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
+            selectedLevel, tileSize, levelWidth)){
+            isOnIce=true;
+        }
 
         
         // 判断猫是否碰到陷阱(上下边分別检测两个点), 重置回出生点
@@ -152,9 +166,14 @@ export default class GameController {
         }
 
         // 合体时按空格可以持续向上飞
-        if(this.gameModel.keys[" "] && this.gameModel.cat[selectedLevel].isMerged){
+        if(this.gameModel.keys[" "] && this.gameModel.cat[selectedLevel].isMerged && !isOnIce){
             this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength; // 赋予向上的初速度
             this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
+        }
+
+        if(this.gameModel.keys[" "] && this.gameModel.cat[selectedLevel].isMerged && isOnIce){
+            let message1 = "Ice! You can't jump!"
+            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,2000,30,{},"No Jump"));
         }
 
         // 不在攀爬墙上时需要施加重力, 确保向下落下
@@ -255,7 +274,7 @@ export default class GameController {
         if(!this.gameModel.cat[selectedLevel].isMerged && 
            this.inWater(this.gameModel.potion.x, this.gameModel.potion.y, selectedLevel, tileSize, levelWidth)){
             window.assets.death.play();
-            let message = "罐子不能碰水！";
+            let message = "No water with my pot！";
             this.gameModel.messages.push(new Message(message, width/2, 4*height/5, 2000, 30, {}, "death"));
             this.reLife();
             return;
@@ -276,7 +295,7 @@ export default class GameController {
      
 
         if(this.gameModel.cat[selectedLevel].isMerged 
-            && (this.gameModel.keys['X']||this.gameModel.keys['x'])){
+            && (this.gameModel.keys['s']||this.gameModel.keys['S'])){
                 console.log("分离");
                 this.gameModel.cat[selectedLevel].isMerged = false;
 
@@ -291,7 +310,7 @@ export default class GameController {
         }
 
 
-        if (this.gameModel.keys['q'] && this.gameModel.potion.tanshe ) {     
+        if ((this.gameModel.keys['A']||this.gameModel.keys['a']) && this.gameModel.potion.tanshe ) {     
             // 如果能左弹射且按下Q键
             if (this.gameModel.potion.canShootLeft) {
                 // 检查弹射起始位置
@@ -318,7 +337,7 @@ export default class GameController {
             }
         }
 
-        if (this.gameModel.keys['w'] && this.gameModel.potion.tanshe ) {
+        if ((this.gameModel.keys['D']||this.gameModel.keys['d']) && this.gameModel.potion.tanshe ) {
             // 如果能右弹射且按下W键
             if (this.gameModel.potion.canShootRight) {
                 // 检查弹射起始位置
@@ -601,6 +620,16 @@ export default class GameController {
 
         // 检测：如果这个格子是水, 返回真
         return this.gameModel.water[selectedLevel].data[tileIndex] !== 0;
+    }
+
+    beIced(px, py, selectedLevel, tileSize, levelWidth){
+
+        let col = Math.floor(px / tileSize);
+        let row = Math.floor(py / tileSize);
+        let tileIndex = row * levelWidth[selectedLevel] + col;
+
+        // 检测：如果这个格子是冰, 返回真
+        return this.gameModel.ice[selectedLevel].data[tileIndex] !== 0;
     }
 
 
