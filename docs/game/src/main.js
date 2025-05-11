@@ -185,28 +185,24 @@ window.draw = function () {
 }
 
 window.keyPressed = function () {
-
+  // 移除按键冲突检测，允许多个按键同时生效
   if (gameModel.gameState === GAME_STATE.START && keyCode === ENTER) {
       window.assets.userStartGame.play();
       gameModel.gameState = GAME_STATE.LEVEL_SELECT;
-  } 
+  }
   
   else if (gameModel.gameState === GAME_STATE.LEVEL_SELECT) {
-
       if (keyCode === LEFT_ARROW) {
         gameModel.selectedLevel = Math.max(0, gameModel.selectedLevel - 1);
         console.log("selectedLevel: " + gameModel.selectedLevel);
       } 
-
       else if (keyCode === RIGHT_ARROW) {
         gameModel.selectedLevel = Math.min(CONSTANT.LEVEL_LIST.length - 1, gameModel.selectedLevel + 1);
         console.log("selectedLevel: " + gameModel.selectedLevel);
       } 
-
       else if (keyCode === 32) {  // 按下空格的时候进入该关卡
         gameModel.gameState = GAME_STATE.PLAYING;
-        window.assets.userSelectLevel.play(); // 播放音效
-
+        window.assets.userSelectLevel.play();
         // 游戏内容重置, 包括人物位置和钥匙数量, 物品的显示也全部重置
         gameModel.cat[gameModel.selectedLevel].x = gameModel.cat[gameModel.selectedLevel].iniX;
         gameModel.cat[gameModel.selectedLevel].y = gameModel.cat[gameModel.selectedLevel].iniY;
@@ -236,18 +232,21 @@ window.keyPressed = function () {
   } 
 
   else if(gameModel.gameState === GAME_STATE.PLAYING ){
+    // 设置按键状态，允许多个按键同时生效
     gameModel.keys[key] = true;
+    
+    // 处理ESC键
     if (keyCode === ESCAPE) { 
-      if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
+      if (!gameModel.showHelp) {
           gameModel.showHelp = true;
           gameModel.keysESC = true; 
-      } else { // 按下两次esc, 退出到选关页面
+      } else {
           gameModel.showHelp = false;
           gameModel.keysESC = false;
           gameModel.gameState = GAME_STATE.LEVEL_SELECT;
       }
     }
-    if (gameModel.showHelp && keyCode !== ESCAPE) { // 按下esc之后按下任意键, 返回游戏
+    if (gameModel.showHelp && keyCode !== ESCAPE) {
         gameModel.showHelp = false;
         gameModel.keysESC = false; 
     }
@@ -258,16 +257,14 @@ window.keyPressed = function () {
   }
   
   else if (gameModel.gameState === GAME_STATE.LEVEL_COMPLETE) {
-      // ESC -> select level
       if (keyCode === ESCAPE) {
           gameModel.gameState = GAME_STATE.LEVEL_SELECT;
       } else {
-        // next level
           if (gameModel.selectedLevel < CONSTANT.LEVEL_LIST.length - 1) {
               gameModel.selectedLevel++;
               gameModel.gameState = GAME_STATE.PLAYING;
           } else {
-              gameModel.gameState = GAME_STATE.LEVEL_SELECT; // the last level -> select level
+              gameModel.gameState = GAME_STATE.LEVEL_SELECT;
           }
       }
   }
@@ -277,6 +274,8 @@ window.keyPressed = function () {
 window.keyReleased = function() {
   if (gameModel.keys[key] !== undefined) {
     gameModel.keys[key] = false;
+    // 移除延迟删除，直接删除按键状态
+    delete gameModel.keys[key];
   }
 }
 // window.mousePressed = function () {}

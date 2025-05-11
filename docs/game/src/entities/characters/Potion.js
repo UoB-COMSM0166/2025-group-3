@@ -15,24 +15,14 @@ export default class Potion extends AbstractCharacter {
         this.tanshe=true; //弹射起步
         this.onWall=false;
         this.scale=0.8;
+        this.canShootLeft = true; // 初始化为可以向左弹射
+        this.canShootRight = true; // 初始化为可以向右弹射
+    }
 
-      }
-
-    setPotionPosition(x,y){
-      this.x=x;
-      this.y=y;
-    }  
 
     updatePotion(x,y){
-      setPotionX((this.x-x)*this.scale);
-      setPotionY((y-this.y)*this.scale);
+      setPotionX((this.x-x)*this.scale+10);
+      setPotionY((y-this.y)*this.scale+10);
     }
 
-    getx(){
-      return PotionX;
-    }
-
-    gety(){
-      return PotionY;
-    }
 }
