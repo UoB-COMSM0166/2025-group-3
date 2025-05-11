@@ -231,7 +231,6 @@ The sequence clearly demonstrates the flow of control from player input to game 
 We created a state diagram for *Capoo* to map the lifecycle of key game components like `GameModel`, `Capoo`, `Potion`, and others. The diagram illustrates state transitions—such as `Capoo` moving from `Idle` to `Walking`, or the `GameModel` transitioning to `GameOver`—which helped clarify the conditions for state changes during development.
 
 For instance, the `Potion` transitions from `Inactive` to `Active` upon pickup, and `ElevatingWalls` move from `Static` to `Moving` based on triggers. This visual representation helped identify edge cases, ensure synchronized game logic, and streamline development, ultimately reducing debugging time.
-images/state machine diagram.png
 ![machine diagram](images/state%20machine%20diagram.png)
 <p align="center"><b>state machine diagram</b></p>
 
@@ -244,9 +243,8 @@ The **Communication Diagram** for the *Capoo Game* illustrates the interactions 
 The *MapLoader* initializes game levels and parses entity data for the *GameModel*. *Capoo* interacts with objects, triggering events that are reflected in the game state. *SpineLayer* manages character animations, ensuring smooth visuals. Error handling in *GameController* ensures stability during gameplay.
 
 This structure maintains synchronized game states, smooth animations, and consistent feedback to the player.  
-images/communication diagram.png
 ![communication diagram](images/communication%20diagram.png)
-<p align="center"><b>state communication diagram</b></p>
+<p align="center"><b>communication diagram</b></p>
 
 ------
 
