@@ -217,7 +217,7 @@ window.keyPressed = function () {
         gameModel.selectedLevel = Math.min(CONSTANT.LEVEL_LIST.length - 1, gameModel.selectedLevel + 1);
         console.log("selectedLevel: " + gameModel.selectedLevel);
       } 
-      else if (keyCode === 32) {  // 按下空格的时候进入该关卡
+      else if (keyCode === ENTER) {  // 按下空格的时候进入该关卡
         gameModel.gameState = GAME_STATE.PLAYING;
         window.assets.userSelectLevel.play();
         // 游戏内容重置, 包括人物位置和钥匙数量, 物品的显示也全部重置
