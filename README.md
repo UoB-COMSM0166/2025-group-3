@@ -233,7 +233,11 @@ To help us understand the dynamic behaviors and transitions of key game componen
 Moreover, the state diagram served as a blueprint during development, clarifying the conditions required for state changes. For example, the `Potion` object smoothly transitions from `Inactive` to `Active` upon pickup, and eventually to `Used` when consumed. Similarly, `ElevatingWalls` move from `Static` to `Moving` based on triggers, reflecting game mechanics in a visual and structured manner.
 
 This representation was crucial for identifying edge cases, preventing inconsistent states, and ensuring that the game's logic remains synchronized across different modules. Understanding these states early on allowed us to focus on game logic with confidence, supporting our modular design principles and reducing debugging time as new features were added.
+images/state machine diagram.png
+![machine diagram](images/state%20machine%20diagram.png)
+<p align="center"><b>state machine diagram</b></p>
 
+------
 
 ### **3.5 Design Considerations**
 
