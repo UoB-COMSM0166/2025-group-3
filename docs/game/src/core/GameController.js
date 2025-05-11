@@ -2,7 +2,9 @@ import MapLoader from "./MapLoader";
 import { CONSTANT, Message } from "./Utils";
 import Potion from "../entities/characters/Potion";
 import {setShowBack,setShowPotion,PotionX,PotionY,setFacingLeft,setFacingRight} from "../core/Utils";
+//import { currentFaceIndex } from "../graphics/SpineLayer";
 //import { assets } from "../main";
+
 
 // 用于所有关卡的控制和交互
 

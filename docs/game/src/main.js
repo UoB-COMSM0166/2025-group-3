@@ -3,11 +3,14 @@ import GameController from "./core/GameController";
 import GameView from "./graphics/GameView";
 import { CONSTANT, GAME_STATE } from "./core/Utils";
 
+
 // global variables
 let gameModel;
 let gameController;
 let gameView;
 export let showCapoo = true;
+// 添加全局变量用于表情切换
+window.currentFaceIndex = 0;
 
 window.assets = {}; 
 /* window.assets 是全局变量, 用于存储游戏关卡外的图片素材, 和所有的音频素材, 字体素材等
@@ -85,6 +88,8 @@ window.setup = function () {
   window.assets.level6bg = loadImage("/asset/bg/night1.png");
   window.assets.level7bg = loadImage("/asset/bg/ocean4.png");
   window.assets.level8bg = loadImage("/asset/bg/Summer7.png");
+  window.assets.completed = loadImage("/asset/bg/completed.png");
+  window.assets.instructionbg = loadImage("/asset/bg/instructionbg.png");
   window.assets.title = loadImage("/asset/title.png");
 
   // 用于开始界面和选关界面的移动云朵素材, 必须在preload中加载, 不可以在gamemodel中加载(因为是异步的)
@@ -116,6 +121,9 @@ window.setup = function () {
         console.log("Main setup done");
         // background(220);
         gameController.newGame(); // 读取地图文件到gameModel
+        
+        // 确保游戏一开始就进入说明页面状态
+        gameModel.gameState = GAME_STATE.INSTRUCTION;
 
         loop();  // 在音频加载完后启动 draw()
     }
@@ -204,7 +212,17 @@ document.addEventListener("DOMContentLoaded", function() {
   }, { passive: false });
 });
 
+// 添加一个函数来切换表情
+function changeFacialExpression() {
+  window.currentFaceIndex = (window.currentFaceIndex + 1) % 32;
+}
+
 window.keyPressed = function () {
+  // 任意按键都切换表情
+  if (gameModel.gameState === GAME_STATE.PLAYING) {
+    changeFacialExpression();
+  }
+
   // 游戏开始、选关和完成界面不需要处理重复按键
   if (gameModel.gameState === GAME_STATE.START && keyCode === ENTER) {
       window.assets.userStartGame.play();
@@ -267,20 +285,20 @@ window.keyPressed = function () {
         return;
       }
       
-      // 处理ESC键
+      // 处理ESC键 - 直接退出到选关页面
       if (keyCode === ESCAPE) { 
-        if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
-            gameModel.showHelp = true;
-            gameModel.keysESC = true; 
-        } else {
-            gameModel.showHelp = false; // 按下两次esc, 退出到选关页面
+        if (gameModel.showHelp) {
+            // 如果帮助界面已显示，则隐藏帮助界面
+            gameModel.showHelp = false;
             gameModel.keysESC = false;
+        } else {
+            // 直接退出到选关页面
             gameModel.gameState = GAME_STATE.LEVEL_SELECT;
         }
         return;
       }
     }
-    
+
     // 如果显示帮助界面，阻止其他按键操作游戏
     if (gameModel.showHelp) {
       return;
@@ -293,15 +311,31 @@ window.keyPressed = function () {
   
   else if (gameModel.gameState === GAME_STATE.LEVEL_COMPLETE) {
       if (keyCode === ESCAPE) {
+        if(gameModel.selectedLevel === CONSTANT.LEVEL_LIST.length - 1){
+           gameModel.gameState = GAME_STATE.ALLCOMPLETED;
+           }
+    else{
           gameModel.gameState = GAME_STATE.LEVEL_SELECT;
+        }
       } else {
-          if (gameModel.selectedLevel < CONSTANT.LEVEL_LIST.length - 1) {
+        if(gameModel.selectedLevel === CONSTANT.LEVEL_LIST.length - 1){
+           gameModel.gameState = GAME_STATE.ALLCOMPLETED;
+           }
+          else if (gameModel.selectedLevel < CONSTANT.LEVEL_LIST.length - 1) {
               gameModel.selectedLevel++;
               gameModel.gameState = GAME_STATE.PLAYING;
           } else {
               gameModel.gameState = GAME_STATE.LEVEL_SELECT;
           }
       }
+  }
+  else if (gameModel.gameState === GAME_STATE.ALLCOMPLETED){
+    if(keyCode === ESCAPE){
+      gameModel.gameState = GAME_STATE.START;
+    }
+    else{
+      gameModel.gameState = GAME_STATE.START;
+    }
   }
 }
 
