@@ -55,7 +55,15 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 The game draws inspiration from the visual charm of *Capoo Pals* and the whimsical absurdity of *Cato*, aiming to deliver a humorous yet polished experience that balances casual accessibility with cognitive engagement.
 
-*Capoo* introduces unique mechanics, such as the ability to separate Capoo from the can using key inputs, allowing for diverse platforming strategies. The game is structured across multiple levels, each representing increasing puzzle complexity and map decryption difficulty.
+*Capoo* introduces two unique mechanics:
+
+The ability to separate Capoo from the can using key inputs, enabling the player to control each component independently. This will allow for diverse platforming strategies, increasing gameplay variety and encouraging creative problem-solving.
+
+### Figure 1 - Demonstration of separation
+
+The game is structured across multiple levels, each of which presents increasing puzzle complexity and map decryption difficulty. This will gradually raise the cognitive challenge, ensuring players remain mentally engaged as they progress through the game.
+
+### Figure 2 - Demonstration of multiple levels
 
 Its appeal lies in its distinctive art style, playful animations, and inventive gameplay. The development process followed agile methodologies and user-centered design, incorporating feedback from playtesting and usability evaluations.
 
@@ -67,9 +75,9 @@ This report documents the game's development, including requirement analysis, de
 
 ### 2.1 Ideation Process
 
-At the start of the ideation process, our team proposed two game directions based on existing titles. One was inspired by *Stardew Valley*, focusing on an RPG-like two-player game with storyline progression, environmental interaction, and boss fights. The other was based on *Cato*, featuring physics-based platforming puzzles and humorous mechanics involving a cat and a can.
+Our team's original idea was based on Stardew Valley, As the ideation process progresses, our team proposed two new game directions based on existing titles. One was inspired by the charming character design of *Capoo Pals*, using its playful style to create a two-player adventure with lighthearted storytelling, interactive environments, and humorous boss fights.The other was based on *Cato*, featuring physics-based platforming puzzles and humorous mechanics involving a cat and a can.
 
-To evaluate both ideas, we created simple paper prototypes during class. For the *Stardew Valley*-inspired concept, we mapped out character movement, basic dialogue trees, and interaction zones. For the *Cato*-style game, we sketched out how the two controllable characters (Capoo and the can) could move independently, interact with physics objects, and solve platforming puzzles cooperatively.
+We created simple paper prototypes to evaluate the original idea during class. For the *Stardew Valley*-inspired concept, we mapped out character movement, basic dialogue trees, and interaction zones. For the *Cato*-style game, we sketched out how the two controllable characters (Capoo and the can) could move independently, interact with physics objects, and solve platforming puzzles cooperatively.
 
 
 <p align="center"><b>Paper Prototype of Stardew Valley</b></p>
@@ -85,7 +93,7 @@ To evaluate both ideas, we created simple paper prototypes during class. For the
 
 During discussion, we compared the scope, technical difficulty, and uniqueness of both ideas. The *Stardew Valley* concept was rich in narrative potential but required a large amount of content creation, scripting, and world-building, which exceeded the time and resource constraints of our project. In contrast, the *Cato*-like game offered a clear mechanical focus, allowed for creative level design within a manageable scope, and aligned well with our team's strengths in puzzle and physics-based gameplay design.
 
-As a result, we unanimously chose to develop a game inspired by *Cato*, aiming to replicate its humorous tone and distinctive mechanics while introducing our own puzzle challenges and platforming dynamics through the characters Capoo and the can.
+As a result, we unanimously chose to develop a game inspired by *Cato*, aiming to replicate its humorous tone and distinctive mechanics while introducing our own puzzle challenges and platforming dynamics through the characters Capoo and the can.In addition,we were also attracted by the cute characters in *Capoo Pals* and introduced them into the game,adding visual beauty and fun.
 
 ### 2.2 Stakeholder Identification
 
@@ -134,9 +142,9 @@ The team broke down user stories into implementable tasks. For example, the "cor
 
 ### 2.5 Use Case Diagram and Specification
 
-> 📌 *Use Case Diagram:*  
-> ![Use Case Diagram](./assets/use-case-diagram.png)  
-> *(Insert diagram showing major player and developer interactions.)*
+ ![Use Case Diagram](images/Usecase.jpg) 
+
+<p align="center"><b>Use Case Diagram</b></p>
 
 ------
 
@@ -436,7 +444,6 @@ The codebase underwent multiple rounds of testing, including:
 - **Unit Tests**: Written for player controls, puzzle activation, and UI visibility logic.
 - **Integration Tests**: Verified smooth transitions between levels and puzzle dependencies.
 - **Manual Testing**: Developers performed end-to-end playthroughs on both Windows and Android devices.
-- **Performance Profiling**: Used Unity Profiler to monitor memory usage, frame rates, and GC allocations. Issues with memory leaks from pooled particles were identified and resolved.
 
 A comprehensive bug tracker was maintained using GitHub Issues. Over 30 bugs were logged and resolved throughout the testing phase.
 
@@ -489,12 +496,12 @@ Each member took on a primary role while remaining flexible to support other tas
 
 | Name        | Role             | Responsibilities                                         |
 | ----------- | ---------------- | -------------------------------------------------------- |
-| Shuyin Deng | Project Manager  | Planning, sprint leadership, requirement modeling        |
-| Jiaxin Fan  | Technical Writer | Documentation, evaluations (NASA TLX & SUS), reporting   |
-| Peixuan Li  | Developer        | Puzzle system, interaction logic, modular design         |
-| Yibu Ma     | Developer        | UI system, animation integration, user experience tuning |
-| Yu Qiu      | Developer        | Game logic, input handling, Unity build & debugging      |
-| Jiahao Liu  | Test Engineer    | Heuristic evaluation, manual testing, bug tracking       |
+| Shuyin Deng | Project Manager  |        |
+| Jiaxin Fan  | Technical Writer |   |
+| Peixuan Li  | Developer        | Early stage prototype / Physics and collision / Main logic implementation         |
+| Yibu Ma     | Developer        | OOP refactor / Spine model integration / Game website |
+| Yu Qiu      | Developer        | Player interaction      |
+| Jiahao Liu  | Test Engineer    | UI & Map design / Testing       |
 
 
 

@@ -125,6 +125,19 @@ window.setup = function () {
 }
   
 window.draw = function () {
+  // 限制最大帧率为60fps
+  const targetFrameRate = 60;
+  const currentTime = millis();
+  const elapsedTime = currentTime - (window.lastDrawTime || 0);
+  
+  if (elapsedTime < 1000 / targetFrameRate) {
+    // 如果时间间隔太短，跳过这一帧
+    return;
+  }
+  
+  // 记录当前时间为上一次绘制时间
+  window.lastDrawTime = currentTime;
+  
   // 确保所有音频加载完成后再执行游戏逻辑
   if (!window.allSoundsLoaded || !gameView) { // 
     let bgColor = color('#d0f0ff'); // 柔和的天蓝色
@@ -189,28 +202,24 @@ window.draw = function () {
 }
 
 window.keyPressed = function () {
-
+  // 移除按键冲突检测，允许多个按键同时生效
   if (gameModel.gameState === GAME_STATE.START && keyCode === ENTER) {
       window.assets.userStartGame.play();
       gameModel.gameState = GAME_STATE.LEVEL_SELECT;
-  } 
+  }
   
   else if (gameModel.gameState === GAME_STATE.LEVEL_SELECT) {
-
       if (keyCode === LEFT_ARROW) {
         gameModel.selectedLevel = Math.max(0, gameModel.selectedLevel - 1);
         console.log("selectedLevel: " + gameModel.selectedLevel);
       } 
-
       else if (keyCode === RIGHT_ARROW) {
         gameModel.selectedLevel = Math.min(CONSTANT.LEVEL_LIST.length - 1, gameModel.selectedLevel + 1);
         console.log("selectedLevel: " + gameModel.selectedLevel);
       } 
-
       else if (keyCode === 32) {  // 按下空格的时候进入该关卡
         gameModel.gameState = GAME_STATE.PLAYING;
-        window.assets.userSelectLevel.play(); // 播放音效
-
+        window.assets.userSelectLevel.play();
         // 游戏内容重置, 包括人物位置和钥匙数量, 物品的显示也全部重置
         gameModel.cat[gameModel.selectedLevel].x = gameModel.cat[gameModel.selectedLevel].iniX;
         gameModel.cat[gameModel.selectedLevel].y = gameModel.cat[gameModel.selectedLevel].iniY;
@@ -240,7 +249,15 @@ window.keyPressed = function () {
   } 
 
   else if(gameModel.gameState === GAME_STATE.PLAYING ){
+    // 防止方向键和特殊键被重复处理导致卡顿
+    if (gameModel.keys[key] === true) {
+      return;
+    }
+    
+    // 设置按键状态，允许多个按键同时生效
     gameModel.keys[key] = true;
+    
+    // 处理ESC键
     if (keyCode === ESCAPE) { 
       if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
           gameModel.showHelp = true;
@@ -251,7 +268,7 @@ window.keyPressed = function () {
           gameModel.gameState = GAME_STATE.LEVEL_SELECT;
       }
     }
-    if (gameModel.showHelp && keyCode !== ESCAPE) { // 按下esc之后按下任意键, 返回游戏
+    if (gameModel.showHelp && keyCode !== ESCAPE) {
         gameModel.showHelp = false;
         gameModel.keysESC = false; 
     }
@@ -262,16 +279,14 @@ window.keyPressed = function () {
   }
   
   else if (gameModel.gameState === GAME_STATE.LEVEL_COMPLETE) {
-      // ESC -> select level
       if (keyCode === ESCAPE) {
           gameModel.gameState = GAME_STATE.LEVEL_SELECT;
       } else {
-        // next level
           if (gameModel.selectedLevel < CONSTANT.LEVEL_LIST.length - 1) {
               gameModel.selectedLevel++;
               gameModel.gameState = GAME_STATE.PLAYING;
           } else {
-              gameModel.gameState = GAME_STATE.LEVEL_SELECT; // the last level -> select level
+              gameModel.gameState = GAME_STATE.LEVEL_SELECT;
           }
       }
   }
@@ -280,7 +295,8 @@ window.keyPressed = function () {
 // 松开键盘后停止人物移动
 window.keyReleased = function() {
   if (gameModel.keys[key] !== undefined) {
-    gameModel.keys[key] = false;
+    // 优化：直接删除按键状态，不设置为false
+    delete gameModel.keys[key];
   }
 }
 // window.mousePressed = function () {}

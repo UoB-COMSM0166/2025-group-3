@@ -49,7 +49,7 @@
 <meta property="og:url" content="http://localhost:1313/docs/report/report/">
   <meta property="og:site_name" content="Capoo">
   <meta property="og:title" content="Report">
-  <meta property="og:description" content="under construction">
+  <meta property="og:description" content="Table of Contents Introduction Requirements Design Implementation Evaluation Process Sustainability, Ethics and Accessibility Conclusion Individual Contributions 1. Introduction Capoo is a 2D puzzle-platformer that combines lighthearted gameplay with thoughtful level design. Players control Capoo, a quirky blue cat-bug hybrid, as they navigate a series of levels featuring interactive environments, platforming challenges, and environmental puzzles.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -60,7 +60,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="http://localhost:1313/cover.png">
   <meta name="twitter:title" content="Report">
-  <meta name="twitter:description" content="under construction">
+  <meta name="twitter:description" content="Table of Contents Introduction Requirements Design Implementation Evaluation Process Sustainability, Ethics and Accessibility Conclusion Individual Contributions 1. Introduction Capoo is a 2D puzzle-platformer that combines lighthearted gameplay with thoughtful level design. Players control Capoo, a quirky blue cat-bug hybrid, as they navigate a series of levels featuring interactive environments, platforming challenges, and environmental puzzles.">
 
     
     
@@ -349,7 +349,99 @@
 		
 		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
 			<div class="page-links">
-  
+  <h3>On this page</h3>
+    <nav id="toc">
+  <ul>
+    <li><a href="#table-of-contents">Table of Contents</a></li>
+    <li><a href="#1-introduction">1. Introduction</a></li>
+    <li><a href="#2-requirements">2. Requirements</a>
+      <ul>
+        <li><a href="#21-ideation-process">2.1 Ideation Process</a></li>
+        <li><a href="#22-stakeholder-identification">2.2 Stakeholder Identification</a></li>
+        <li><a href="#23-epics-and-user-stories">2.3 Epics and User Stories</a></li>
+        <li><a href="#24-detailed-task-breakdown">2.4 Detailed Task Breakdown</a></li>
+        <li><a href="#25-use-case-diagram-and-specification">2.5 Use Case Diagram and Specification</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-design"><strong>3. Design</strong></a>
+      <ul>
+        <li><a href="#31-overview"><strong>3.1 Overview</strong></a></li>
+        <li><a href="#32-class-diagram"><strong>3.2 Class Diagram</strong></a></li>
+        <li><a href="#33-sequence-diagram"><strong>3.3 Sequence Diagram</strong></a></li>
+        <li><a href="#34-design-considerations"><strong>3.4 Design Considerations</strong></a></li>
+        <li><a href="#35-iterative-development--diagram-updates"><strong>3.5 Iterative Development &amp; Diagram Updates</strong></a></li>
+        <li><a href="#36-conclusion"><strong>3.6 Conclusion</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#4-implementation--challenges"><strong>4. Implementation &amp; Challenges</strong></a>
+      <ul>
+        <li><a href="#challenge-1-spine-model-integration"><strong>Challenge 1: Spine Model Integration</strong></a></li>
+        <li><a href="#challenge-2-object-oriented-programming-refactor"><strong>Challenge 2: Object-Oriented Programming Refactor</strong></a></li>
+        <li><a href="#challenge-3-physics-and-collision-bugs"><strong>Challenge 3: Physics and Collision Bugs</strong></a></li>
+        <li><a href="#conclusion"><strong>Conclusion</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#5-evaluation">5. Evaluation</a>
+      <ul>
+        <li><a href="#51-qualitative-evaluation-heuristic-evaluation">5.1 Qualitative Evaluation: Heuristic Evaluation</a></li>
+        <li><a href="#52-quantitative-evaluation-nasa-tlx--sus">5.2 Quantitative Evaluation: NASA TLX &amp; SUS</a></li>
+        <li><a href="#objective">Objective</a></li>
+        <li><a href="#background">Background</a></li>
+        <li><a href="#goals">Goals</a></li>
+      </ul>
+    </li>
+    <li><a href="#methodology">Methodology</a>
+      <ul>
+        <li><a href="#participants">Participants</a></li>
+        <li><a href="#experimental-design">Experimental Design</a></li>
+        <li><a href="#data-collection">Data Collection</a></li>
+        <li><a href="#scoring-method">Scoring Method</a></li>
+        <li><a href="#data-analysis">Data Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#results">Results</a>
+      <ul>
+        <li><a href="#data-overview">Data Overview</a></li>
+        <li><a href="#statistical-analysis">Statistical Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#discussion">Discussion</a>
+      <ul>
+        <li><a href="#interpretation-of-results">Interpretation of Results</a></li>
+        <li><a href="#comparison-with-expectations">Comparison with Expectations</a></li>
+        <li><a href="#design-insights">Design Insights</a></li>
+        <li><a href="#limitations">Limitations</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion-1">Conclusion</a></li>
+    <li><a href="#appendix">Appendix</a>
+      <ul>
+        <li><a href="#game-design-updates">Game Design Updates</a></li>
+        <li><a href="#53-code-testing-and-debugging">5.3 Code Testing and Debugging</a></li>
+        <li><a href="#54-summary">5.4 Summary</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-process">6. Process</a>
+      <ul>
+        <li><a href="#61-teamwork-and-agile-practices">6.1 Teamwork and Agile Practices</a></li>
+        <li><a href="#62-collaboration-tools-and-workflow">6.2 Collaboration Tools and Workflow</a></li>
+        <li><a href="#63-role-distribution">6.3 Role Distribution</a></li>
+        <li><a href="#64-highlights-and-lessons-learned">6.4 Highlights and Lessons Learned</a></li>
+        <li><a href="#65-reflection-and-future-plans">6.5 Reflection and Future Plans</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-sustainability-ethics-and-accessibility">7. Sustainability, Ethics and Accessibility</a>
+      <ul>
+        <li><a href="#71-environmental-sustainability">7.1 Environmental Sustainability</a></li>
+        <li><a href="#72-social-and-ethical-impact">7.2 Social and Ethical Impact</a></li>
+        <li><a href="#73-accessibility-considerations">7.3 Accessibility Considerations</a></li>
+        <li><a href="#74-sustainability-oriented-requirements">7.4 Sustainability-Oriented Requirements</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-conclusion">8. Conclusion</a></li>
+    <li><a href="#9-individual-contributions">9. Individual Contributions</a></li>
+  </ul>
+</nav>
 </div>
 
 		</nav>
@@ -358,11 +450,706 @@
 			<h1>Report</h1>
 			
 			<nav class="toc-mobile d-xl-none" aria-label="Quaternary navigation">
-				
+				<details>
+    <summary>On this page</summary>
+    <div class="page-links">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#table-of-contents">Table of Contents</a></li>
+    <li><a href="#1-introduction">1. Introduction</a></li>
+    <li><a href="#2-requirements">2. Requirements</a>
+      <ul>
+        <li><a href="#21-ideation-process">2.1 Ideation Process</a></li>
+        <li><a href="#22-stakeholder-identification">2.2 Stakeholder Identification</a></li>
+        <li><a href="#23-epics-and-user-stories">2.3 Epics and User Stories</a></li>
+        <li><a href="#24-detailed-task-breakdown">2.4 Detailed Task Breakdown</a></li>
+        <li><a href="#25-use-case-diagram-and-specification">2.5 Use Case Diagram and Specification</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-design"><strong>3. Design</strong></a>
+      <ul>
+        <li><a href="#31-overview"><strong>3.1 Overview</strong></a></li>
+        <li><a href="#32-class-diagram"><strong>3.2 Class Diagram</strong></a></li>
+        <li><a href="#33-sequence-diagram"><strong>3.3 Sequence Diagram</strong></a></li>
+        <li><a href="#34-design-considerations"><strong>3.4 Design Considerations</strong></a></li>
+        <li><a href="#35-iterative-development--diagram-updates"><strong>3.5 Iterative Development &amp; Diagram Updates</strong></a></li>
+        <li><a href="#36-conclusion"><strong>3.6 Conclusion</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#4-implementation--challenges"><strong>4. Implementation &amp; Challenges</strong></a>
+      <ul>
+        <li><a href="#challenge-1-spine-model-integration"><strong>Challenge 1: Spine Model Integration</strong></a></li>
+        <li><a href="#challenge-2-object-oriented-programming-refactor"><strong>Challenge 2: Object-Oriented Programming Refactor</strong></a></li>
+        <li><a href="#challenge-3-physics-and-collision-bugs"><strong>Challenge 3: Physics and Collision Bugs</strong></a></li>
+        <li><a href="#conclusion"><strong>Conclusion</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#5-evaluation">5. Evaluation</a>
+      <ul>
+        <li><a href="#51-qualitative-evaluation-heuristic-evaluation">5.1 Qualitative Evaluation: Heuristic Evaluation</a></li>
+        <li><a href="#52-quantitative-evaluation-nasa-tlx--sus">5.2 Quantitative Evaluation: NASA TLX &amp; SUS</a></li>
+        <li><a href="#objective">Objective</a></li>
+        <li><a href="#background">Background</a></li>
+        <li><a href="#goals">Goals</a></li>
+      </ul>
+    </li>
+    <li><a href="#methodology">Methodology</a>
+      <ul>
+        <li><a href="#participants">Participants</a></li>
+        <li><a href="#experimental-design">Experimental Design</a></li>
+        <li><a href="#data-collection">Data Collection</a></li>
+        <li><a href="#scoring-method">Scoring Method</a></li>
+        <li><a href="#data-analysis">Data Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#results">Results</a>
+      <ul>
+        <li><a href="#data-overview">Data Overview</a></li>
+        <li><a href="#statistical-analysis">Statistical Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#discussion">Discussion</a>
+      <ul>
+        <li><a href="#interpretation-of-results">Interpretation of Results</a></li>
+        <li><a href="#comparison-with-expectations">Comparison with Expectations</a></li>
+        <li><a href="#design-insights">Design Insights</a></li>
+        <li><a href="#limitations">Limitations</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion-1">Conclusion</a></li>
+    <li><a href="#appendix">Appendix</a>
+      <ul>
+        <li><a href="#game-design-updates">Game Design Updates</a></li>
+        <li><a href="#53-code-testing-and-debugging">5.3 Code Testing and Debugging</a></li>
+        <li><a href="#54-summary">5.4 Summary</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-process">6. Process</a>
+      <ul>
+        <li><a href="#61-teamwork-and-agile-practices">6.1 Teamwork and Agile Practices</a></li>
+        <li><a href="#62-collaboration-tools-and-workflow">6.2 Collaboration Tools and Workflow</a></li>
+        <li><a href="#63-role-distribution">6.3 Role Distribution</a></li>
+        <li><a href="#64-highlights-and-lessons-learned">6.4 Highlights and Lessons Learned</a></li>
+        <li><a href="#65-reflection-and-future-plans">6.5 Reflection and Future Plans</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-sustainability-ethics-and-accessibility">7. Sustainability, Ethics and Accessibility</a>
+      <ul>
+        <li><a href="#71-environmental-sustainability">7.1 Environmental Sustainability</a></li>
+        <li><a href="#72-social-and-ethical-impact">7.2 Social and Ethical Impact</a></li>
+        <li><a href="#73-accessibility-considerations">7.3 Accessibility Considerations</a></li>
+        <li><a href="#74-sustainability-oriented-requirements">7.4 Sustainability-Oriented Requirements</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-conclusion">8. Conclusion</a></li>
+    <li><a href="#9-individual-contributions">9. Individual Contributions</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+
 			</nav>
-			<div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-  under construction
+			<h2 id="table-of-contents">Table of Contents<a href="#table-of-contents" class="anchor" aria-hidden="true">#</a> </h2>
+<ol>
+<li><a href="#1-introduction">Introduction</a></li>
+<li><a href="#2-requirements">Requirements</a></li>
+<li><a href="#3-design">Design</a></li>
+<li><a href="#4-implementation">Implementation</a></li>
+<li><a href="#5-evaluation">Evaluation</a></li>
+<li><a href="#6-process">Process</a></li>
+<li><a href="#7-sustainability-ethics-and-accessibility">Sustainability, Ethics and Accessibility</a></li>
+<li><a href="#8-conclusion">Conclusion</a></li>
+<li><a href="#9-individual-contributions">Individual Contributions</a></li>
+</ol>
+<hr>
+<h2 id="1-introduction">1. Introduction<a href="#1-introduction" class="anchor" aria-hidden="true">#</a> </h2>
+<p><em>Capoo</em> is a 2D puzzle-platformer that combines lighthearted gameplay with thoughtful level design. Players control Capoo, a quirky blue cat-bug hybrid, as they navigate a series of levels featuring interactive environments, platforming challenges, and environmental puzzles.</p>
+<p>The game draws inspiration from the visual charm of <em>Capoo Pals</em> and the whimsical absurdity of <em>Cato</em>, aiming to deliver a humorous yet polished experience that balances casual accessibility with cognitive engagement.</p>
+<p><em>Capoo</em> introduces unique mechanics, such as the ability to separate Capoo from the can using key inputs, allowing for diverse platforming strategies. The game is structured across multiple levels, each representing increasing puzzle complexity and map decryption difficulty.</p>
+<p>Its appeal lies in its distinctive art style, playful animations, and inventive gameplay. The development process followed agile methodologies and user-centered design, incorporating feedback from playtesting and usability evaluations.</p>
+<p>This report documents the game&rsquo;s development, including requirement analysis, design, implementation, evaluation, team workflow, and sustainability aspects, highlighting key decisions, challenges, and insights gained throughout the project.</p>
+<hr>
+<h2 id="2-requirements">2. Requirements<a href="#2-requirements" class="anchor" aria-hidden="true">#</a> </h2>
+<h3 id="21-ideation-process">2.1 Ideation Process<a href="#21-ideation-process" class="anchor" aria-hidden="true">#</a> </h3>
+<p>At the start of the ideation process, our team proposed two game directions based on existing titles. One was inspired by <em>Stardew Valley</em>, focusing on an RPG-like two-player game with storyline progression, environmental interaction, and boss fights. The other was based on <em>Cato</em>, featuring physics-based platforming puzzles and humorous mechanics involving a cat and a can.</p>
+<p>To evaluate both ideas, we created simple paper prototypes during class. For the <em>Stardew Valley</em>-inspired concept, we mapped out character movement, basic dialogue trees, and interaction zones. For the <em>Cato</em>-style game, we sketched out how the two controllable characters (Capoo and the can) could move independently, interact with physics objects, and solve platforming puzzles cooperatively.</p>
+<p align="center"><b>Paper Prototype of Stardew Valley</b></p>
+<div style="text-align: center;">
+  <video src="https://github.com/user-attachments/assets/58f3f51d-4996-4ae9-9c22-3bd4396f7b38" controls width="600"></video>
 </div>
+<p align="center"><b>Paper Prototype of Cato</b></p>
+<div style="text-align: center;">
+  <video src="https://github.com/user-attachments/assets/e05b9fda-6a7e-4d59-81bc-7519a4a13db8" controls width="600"></video>
+</div>
+<p>During discussion, we compared the scope, technical difficulty, and uniqueness of both ideas. The <em>Stardew Valley</em> concept was rich in narrative potential but required a large amount of content creation, scripting, and world-building, which exceeded the time and resource constraints of our project. In contrast, the <em>Cato</em>-like game offered a clear mechanical focus, allowed for creative level design within a manageable scope, and aligned well with our team&rsquo;s strengths in puzzle and physics-based gameplay design.</p>
+<p>As a result, we unanimously chose to develop a game inspired by <em>Cato</em>, aiming to replicate its humorous tone and distinctive mechanics while introducing our own puzzle challenges and platforming dynamics through the characters Capoo and the can.</p>
+<h3 id="22-stakeholder-identification">2.2 Stakeholder Identification<a href="#22-stakeholder-identification" class="anchor" aria-hidden="true">#</a> </h3>
+<p>The main stakeholders for <em>Capoo</em> were:</p>
+<ul>
+<li><strong>Players</strong>: End-users who play the game and provide feedback.</li>
+<li><strong>Developers</strong>: Team members implementing game logic and features.</li>
+<li><strong>Designers</strong>: Responsible for crafting puzzles, UI, and character behaviors.</li>
+<li><strong>Artists</strong>: Create visual assets, animations, and icons.</li>
+<li><strong>Test Engineers</strong>: Validate usability, performance, and stability.</li>
+<li><strong>Publishers</strong>: Potential distributors or promoters of the final game.</li>
+</ul>
+<p>Each stakeholder’s expectations were captured using epics and user stories.</p>
+<h3 id="23-epics-and-user-stories">2.3 Epics and User Stories<a href="#23-epics-and-user-stories" class="anchor" aria-hidden="true">#</a> </h3>
+<h4 id="epic-core-gameplay-player">Epic: Core Gameplay (Player)<a href="#epic-core-gameplay-player" class="anchor" aria-hidden="true">#</a> </h4>
+<ol>
+<li><strong>As a casual gamer</strong>, I want Capoo’s controls to be simple and intuitive so that I can jump into the game and start having fun without needing a tutorial.</li>
+<li><strong>As a puzzle lover</strong>, I want the levels in Capoo to offer clever environmental challenges, so I feel rewarded when I figure them out.</li>
+<li><strong>As a curious player</strong>, I want a lighthearted story or backstory for Capoo, so I can feel more connected to the game world.</li>
+</ol>
+<hr>
+<h4 id="epic-ui-and-ux-developer">Epic: UI and UX (Developer)<a href="#epic-ui-and-ux-developer" class="anchor" aria-hidden="true">#</a> </h4>
+<ol>
+<li><strong>As a player interested in customization</strong>, I want to choose the difficulty level at the start, so the game fits my skill level and mood.</li>
+<li><strong>As a new player</strong>, I want to be guided by brief tutorials or examples that explain unique mechanics , so I don&rsquo;t feel confused.</li>
+<li><strong>As a visually impaired player</strong>, I want color-coded elements to also include shape or pattern-based distinctions, so I can still solve puzzles if I can&rsquo;t distinguish certain colors.</li>
+</ol>
+<hr>
+<h4 id="epic-developer-centric">Epic: Developer-Centric<a href="#epic-developer-centric" class="anchor" aria-hidden="true">#</a> </h4>
+<p><strong>As a member of the development team</strong>, I want to implement a first-in-class app/game that pushes me to learn new skills.</p>
+<h3 id="24-detailed-task-breakdown">2.4 Detailed Task Breakdown<a href="#24-detailed-task-breakdown" class="anchor" aria-hidden="true">#</a> </h3>
+<p>The team broke down user stories into implementable tasks. For example, the &ldquo;core movement&rdquo; story led to:</p>
+<ol>
+<li><strong>Movement System</strong>: Implement character locomotion with keyboard/controller.</li>
+<li><strong>Jumping Mechanic</strong>: Design jump arc, gravity, and mid-air control.</li>
+<li><strong>Interaction System</strong>: Detect interactable objects (e.g., switches, NPCs).</li>
+<li><strong>Animation Integration</strong>: Connect animations to movement states.</li>
+<li><strong>Playtesting and Feedback</strong>: Gather usability feedback to adjust control responsiveness.</li>
+</ol>
+<h3 id="25-use-case-diagram-and-specification">2.5 Use Case Diagram and Specification<a href="#25-use-case-diagram-and-specification" class="anchor" aria-hidden="true">#</a> </h3>
+<img src="../Usecase.jpg" class="rounded shadow" />
+<p align="center"><b>Use Case Diagram</b></p>
+<hr>
+<h2 id="3-design"><strong>3. Design</strong><a href="#3-design" class="anchor" aria-hidden="true">#</a> </h2>
+<h3 id="31-overview"><strong>3.1 Overview</strong><a href="#31-overview" class="anchor" aria-hidden="true">#</a> </h3>
+<p>The <em>Capoo</em> project adopts an object-oriented approach to structure gameplay logic, data flow, and visual presentation. To facilitate collaborative development and modularity, we designed our architecture around clear abstractions and used UML diagrams to model our system’s behavior and structure. In particular, we utilised a <strong>Class Diagram</strong> to represent core entities and their relationships, and a <strong>Sequence Diagram</strong> to model runtime interactions, especially in puzzle-related events such as switch activation and character interaction.</p>
+<hr>
+<h3 id="32-class-diagram"><strong>3.2 Class Diagram</strong><a href="#32-class-diagram" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Our class diagram provides a structural overview of <em>Capoo</em>’s object-oriented architecture. At its core, the system is driven by a <strong>GameModel</strong>, which holds references to key game objects such as platforms, interactable elements, and the player character.
+<img src="../Class_Diagram.png" class="rounded shadow" /></p>
+<p align="center"><b>Class Diagram</b></p>
+<h4 id="key-components">Key Components:<a href="#key-components" class="anchor" aria-hidden="true">#</a> </h4>
+<ul>
+<li><strong>GameModel</strong>: Serves as the central container for game state and level data. It stores all terrain, interactive elements (e.g., <code>Switches</code>, <code>Keys</code>, <code>ElevatingWalls</code>), and references to the <code>Capoo</code> character.</li>
+<li><strong>Capoo</strong>: Inherits from <code>AbstractCharacter</code>, encapsulating properties such as position, speed, and state (e.g., <code>facingRight</code>, <code>isGrounded</code>). It is the player-controlled entity responsible for interacting with puzzles and moving across terrain.</li>
+<li><strong>Terrain &amp; Environment</strong>: Classes such as <code>Ground</code>, <code>Trap</code>, <code>Spring</code>, <code>Water</code>, and <code>Climb</code> inherit from <code>AbstractTerrain</code>. These are used to render the static environment and define different gameplay zones with unique physical effects.</li>
+<li><strong>Interactables</strong>:
+<ul>
+<li><code>Switches</code>: Can be triggered by the player or other entities. Linked to actions such as activating <code>ElevatingWalls</code>.</li>
+<li><code>Keystem</code>: Represents collectible or logic-triggering items that influence puzzle conditions.</li>
+<li><code>Flag</code>: Represents level goals or checkpoints.</li>
+<li><code>Potion</code>, <code>Wizard</code>: Dynamic game objects that can be interacted with or triggered conditionally.</li>
+</ul>
+</li>
+<li><strong>GameController</strong>: Controls the game loop logic including player input, game reset, and interactions. Interfaces directly with the <code>GameModel</code> and processes collision and event updates.</li>
+<li><strong>MapLoader</strong>: Responsible for loading and parsing level data into structured game objects.</li>
+<li><strong>UI and Rendering</strong>:
+<ul>
+<li><code>GameView</code>: Renders the visual interface by referencing <code>GameModel</code>.</li>
+<li><code>RenderLogic</code>, <code>SplineLayer</code>, and <code>Cloud</code>: Manage background animations and UI transitions, powered by the THREE.js rendering engine.</li>
+</ul>
+</li>
+</ul>
+<p>This modular structure allows for flexible development and easy modification of individual game systems.</p>
+<hr>
+<h3 id="33-sequence-diagram"><strong>3.3 Sequence Diagram</strong><a href="#33-sequence-diagram" class="anchor" aria-hidden="true">#</a> </h3>
+<p>To represent dynamic gameplay interaction, we created a sequence diagram that models a typical scenario where the player activates a switch that raises a wall and unlocks a key mechanism.
+<img src="../Sequence_Diagram2.png" class="rounded shadow" /></p>
+<p align="center"><b>Sequence Diagram</b></p>
+<h4 id="scenario-flow-">Scenario Flow :<a href="#scenario-flow-" class="anchor" aria-hidden="true">#</a> </h4>
+<ol>
+<li>Player initiates movement using key inputs processed by <code>GameController</code>.</li>
+<li><code>Capoo</code> updates its position and interacts with terrain using gravity and collision checks (e.g., <code>canClimb()</code>, <code>isNearPix()</code>).</li>
+<li>A collision with a <code>Potion</code> or <code>Switches</code> object is detected:
+<ul>
+<li>For <code>Potion</code>: updates Capoo’s velocity and position.</li>
+<li>For <code>Switch</code>: triggers wall movement (<code>ElevatingWalls</code>) via <code>setTarget()</code> and <code>updateWallPosition()</code>.</li>
+</ul>
+</li>
+<li>The game logic updates the visual state (<code>GameView.drawGameScreen()</code>), and the camera updates its position via <code>RenderLogic</code>.</li>
+<li>Additional UI feedback is managed via the <code>Message</code> class and <code>Utils.showPotion()</code> method.</li>
+</ol>
+<p>The sequence clearly demonstrates the flow of control from player input to game logic and rendering, emphasizing how interactions cascade through the system.</p>
+<hr>
+<h3 id="34-design-considerations"><strong>3.4 Design Considerations</strong><a href="#34-design-considerations" class="anchor" aria-hidden="true">#</a> </h3>
+<p>During design and implementation, we faced several technical challenges that led to important design decisions:</p>
+<ul>
+<li><strong>Modularity vs. Integration</strong>: While we abstracted base classes such as <code>AbstractEntity</code>, <code>AbstractTerrain</code>, and <code>AbstractItem</code> to promote reusability, we needed to balance this with the tight integration required for real-time gameplay response.</li>
+<li><strong>Rendering Separation</strong>: By offloading animation and background logic into <code>RenderLogic</code> and <code>SplineLayer</code>, we ensured a separation of concerns between game logic and rendering, improving maintainability and scalability.</li>
+<li><strong>Puzzle System Scalability</strong>: Elements like <code>Switches</code> and <code>ElevatingWalls</code> were designed to be easily extendable by assigning ID-based triggers, supporting more complex puzzles in future levels.</li>
+</ul>
+<hr>
+<h3 id="35-iterative-development--diagram-updates"><strong>3.5 Iterative Development &amp; Diagram Updates</strong><a href="#35-iterative-development--diagram-updates" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Consistent with agile methodology, our class and sequence diagrams evolved over time. For example, earlier prototypes had more monolithic controller logic, but we later separated <code>GameController</code> and <code>MapLoader</code> to improve maintainability and testing. Additionally, classes such as <code>Capoo</code>, <code>Potion</code>, and <code>ElevatingWalls</code> saw expanded responsibilities as gameplay mechanics became clearer through playtesting.</p>
+<hr>
+<h3 id="36-conclusion"><strong>3.6 Conclusion</strong><a href="#36-conclusion" class="anchor" aria-hidden="true">#</a> </h3>
+<p>The UML models we developed played a crucial role in organizing our design and facilitating communication within the team. By combining a strong object-oriented foundation with agile iteration, we built a flexible and scalable game architecture that can accommodate future features such as multi-character control or extended puzzle mechanics.</p>
+<h2 id="4-implementation--challenges"><strong>4. Implementation &amp; Challenges</strong><a href="#4-implementation--challenges" class="anchor" aria-hidden="true">#</a> </h2>
+<p>During the implementation of <em>Capoo</em>, we encountered several technical and architectural challenges that significantly influenced how we structured our codebase and implemented gameplay mechanics. These challenges not only tested our ability to adapt existing libraries but also reinforced the importance of good software engineering practices such as object-oriented design, modularization, and debugging of physics simulations.</p>
+<p>We summarize our major challenges below:</p>
+<hr>
+<h3 id="challenge-1-spine-model-integration"><strong>Challenge 1: Spine Model Integration</strong><a href="#challenge-1-spine-model-integration" class="anchor" aria-hidden="true">#</a> </h3>
+<p>One of our key design goals was to bring the personality of Capoo to life through expressive animation. To achieve this, we used the <strong>Spine animation model</strong> from <em>Capoo Pals</em>. However, <em>p5.js</em>, our main framework for game logic, does not natively support Spine.</p>
+<p>To solve this, we adopted a hybrid rendering solution:</p>
+<ul>
+<li>We integrated <strong>Three.js</strong> specifically to render the Spine character model.</li>
+<li>The game logic, UI, and gameplay rendering remained within the <strong>p5.js</strong> environment.</li>
+</ul>
+<p>This introduced complexity in synchronising game state between the two rendering contexts. For example, the Capoo model&rsquo;s facing direction, animation state, and position had to be manually updated based on logic handled by <code>GameModel</code> and <code>Capoo</code> classes in p5.js. Despite the complexity, this approach allowed us to maintain p5.js’s simplicity while leveraging Three.js’s flexibility for skeletal animation.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong> This integration allowed us to retain the charming animation style of Capoo, but required careful coordination between libraries and update loops to ensure smooth rendering.</p></blockquote>
+<hr>
+<h3 id="challenge-2-object-oriented-programming-refactor"><strong>Challenge 2: Object-Oriented Programming Refactor</strong><a href="#challenge-2-object-oriented-programming-refactor" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Our initial prototype was built in a <strong>script-style format</strong>, where all logic was spread across multiple JavaScript files attached directly to the HTML. This led to <strong>tight coupling</strong>, poor reusability, and difficulties in managing the growing complexity of the game logic.</p>
+<p>To improve code structure and maintainability, we undertook a <strong>full refactor using OOP principles</strong>:</p>
+<ul>
+<li>We created clear class hierarchies (<code>AbstractEntity</code>, <code>AbstractTerrain</code>, <code>Capoo</code>, <code>Switch</code>, <code>Potion</code>, etc.).</li>
+<li>We used <strong>encapsulation</strong> to hide internal state and expose only necessary interfaces (e.g., <code>update()</code>, <code>collide()</code>, <code>move()</code>).</li>
+<li>We applied <strong>inheritance</strong> to create polymorphic behaviors (e.g., all terrain elements inherit from <code>AbstractTerrain</code>).</li>
+<li>We transitioned to <strong>ES6 modules</strong>, enabling better file separation and dependency management.</li>
+</ul>
+<p>This refactor took nearly a full sprint but paid off by enabling cleaner logic separation, reusable systems, and better collaboration across the team.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong> Refactoring for OOP was essential for scalability, especially with multiple types of interactive elements and physics objects sharing behavior.</p></blockquote>
+<hr>
+<h3 id="challenge-3-physics-and-collision-bugs"><strong>Challenge 3: Physics and Collision Bugs</strong><a href="#challenge-3-physics-and-collision-bugs" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Implementing reliable <strong>physics interactions and collision detection</strong> was another significant hurdle. Early in development, we encountered several issues:</p>
+<ul>
+<li>Capoo would <strong>clip through terrain or platforms</strong>, especially at corners.</li>
+<li>The character could get <strong>stuck to walls</strong>, due to overlapping bounding boxes and imprecise collision checks.</li>
+<li>Inconsistent jump mechanics, caused by timing issues with <code>isGrounded</code> detection and terrain state updates.</li>
+</ul>
+<p>To address this, we implemented:</p>
+<ul>
+<li>A more precise <strong>tile-based collision system</strong>, where each entity checks collisions using adjusted hitboxes relative to its position and sprite dimensions.</li>
+<li>Logical state flags (e.g., <code>onGround</code>, <code>canJump</code>) to <strong>control character state transitions</strong> and avoid unintended behaviors.</li>
+<li>Frame-wise correction in <code>update()</code> methods to prevent multi-frame glitches caused by high speed or overlapping collisions.</li>
+</ul>
+<p>After multiple rounds of debugging and playtesting, we were able to achieve consistent and stable interactions, with Capoo responding correctly to terrain, jump inputs, and puzzle objects like <code>Switches</code> and <code>Potion</code>.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong> Stable and responsive physics is critical in a puzzle-platformer. Careful tuning of hitboxes and state logic was necessary to ensure playability and fairness.</p></blockquote>
+<hr>
+<h3 id="conclusion"><strong>Conclusion</strong><a href="#conclusion" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Each challenge forced us to adapt and improve our technical approach. From animation system integration, to architecture refactoring, to gameplay responsiveness, these implementation problems guided the evolution of <em>Capoo</em> and shaped its final experience. Despite early difficulties, they ultimately contributed to a more stable, engaging, and maintainable game.</p>
+<hr>
+<h2 id="5-evaluation">5. Evaluation<a href="#5-evaluation" class="anchor" aria-hidden="true">#</a> </h2>
+<h3 id="51-qualitative-evaluation-heuristic-evaluation">5.1 Qualitative Evaluation: Heuristic Evaluation<a href="#51-qualitative-evaluation-heuristic-evaluation" class="anchor" aria-hidden="true">#</a> </h3>
+<img src="../Heuristic_Evaluation.png" class="rounded shadow" />
+<h3 id="52-quantitative-evaluation-nasa-tlx--sus">5.2 Quantitative Evaluation: NASA TLX &amp; SUS<a href="#52-quantitative-evaluation-nasa-tlx--sus" class="anchor" aria-hidden="true">#</a> </h3>
+<h3 id="objective">Objective<a href="#objective" class="anchor" aria-hidden="true">#</a> </h3>
+<p>This report aims to evaluate the user experience of the platformer puzzle game &ldquo;Capoo&rdquo; at low difficulty (L1) and high difficulty (L2) using quantitative methods, comparing workload and usability differences.</p>
+<h3 id="background">Background<a href="#background" class="anchor" aria-hidden="true">#</a> </h3>
+<p>NASA TLX is a tool for measuring subjective workload across six dimensions (Hart &amp; Staveland, 1988). SUS is a reliable usability assessment tool (Brooke, 1986). This study combines both methods to analyze the impact of Capoo’s difficulty on player experience.</p>
+<h3 id="goals">Goals<a href="#goals" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li>Quantify the workload (NASA TLX) and usability (SUS) of Capoo at L1 and L2.</li>
+<li>Use statistical tests to determine the significance of differences.</li>
+</ul>
+<hr>
+<h2 id="methodology">Methodology<a href="#methodology" class="anchor" aria-hidden="true">#</a> </h2>
+<h3 id="participants">Participants<a href="#participants" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li><strong>Number</strong>: 10 volunteers.</li>
+<li><strong>Characteristics</strong>: Classmates with no specific gaming experience requirements.</li>
+<li><strong>Selection Method</strong>: Random recruitment.</li>
+</ul>
+<h3 id="experimental-design">Experimental Design<a href="#experimental-design" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li><strong>Difficulty Levels</strong>: Capoo includes L1 (low difficulty) and L2 (high difficulty).</li>
+<li><strong>Testing Order</strong>:
+<ul>
+<li>5 users played L1 first, then L2.</li>
+<li>5 users played L2 first, then L1.</li>
+<li>This minimizes learning effects.</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-collection">Data Collection<a href="#data-collection" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li><strong>Tools</strong>:
+<ul>
+<li>NASA TLX: 6 dimensions (raw scores).</li>
+<li>SUS: 10-question survey.</li>
+</ul>
+</li>
+<li><strong>Procedure</strong>: Each user played one difficulty level and then filled out the NASA TLX and SUS forms, resulting in four scores per participant.</li>
+</ul>
+<h3 id="scoring-method">Scoring Method<a href="#scoring-method" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li><strong>NASA TLX</strong>: Dimension score = (Rating - 1) × 25, Total score = (∑ Dimension scores) / 6.</li>
+<li><strong>SUS</strong>: Odd-numbered questions = Rating - 1, Even-numbered questions = 5 - Rating, Total score = (∑ Score contributions) × 2.5.</li>
+</ul>
+<h3 id="data-analysis">Data Analysis<a href="#data-analysis" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li><strong>Tool</strong>: Wilcoxon signed-rank test.</li>
+<li><strong>Online Calculator</strong>: <a href="https://www.statology.org/wilcoxon-signed-rank-test-calculator/">Statology Wilcoxon Test Calculator</a></li>
+<li><strong>Significance Level</strong>: α = 0.05.</li>
+</ul>
+<hr>
+<h2 id="results">Results<a href="#results" class="anchor" aria-hidden="true">#</a> </h2>
+<h3 id="data-overview">Data Overview<a href="#data-overview" class="anchor" aria-hidden="true">#</a> </h3>
+<table>
+  <thead>
+      <tr>
+          <th>User ID</th>
+          <th>L1 NASA TLX</th>
+          <th>L2 NASA TLX</th>
+          <th>L1 SUS</th>
+          <th>L2 SUS</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>V1</td>
+          <td>12.5</td>
+          <td>16.67</td>
+          <td>55</td>
+          <td>50</td>
+      </tr>
+      <tr>
+          <td>V2</td>
+          <td>20.83</td>
+          <td>20.83</td>
+          <td>45</td>
+          <td>35</td>
+      </tr>
+      <tr>
+          <td>V3</td>
+          <td>29.17</td>
+          <td>33.33</td>
+          <td>55</td>
+          <td>55</td>
+      </tr>
+      <tr>
+          <td>V4</td>
+          <td>20.83</td>
+          <td>25</td>
+          <td>45</td>
+          <td>42.5</td>
+      </tr>
+      <tr>
+          <td>V5</td>
+          <td>29.17</td>
+          <td>29.17</td>
+          <td>52.5</td>
+          <td>50</td>
+      </tr>
+      <tr>
+          <td>V6</td>
+          <td>37.5</td>
+          <td>41.67</td>
+          <td>37.5</td>
+          <td>40</td>
+      </tr>
+      <tr>
+          <td>V7</td>
+          <td>33.33</td>
+          <td>37.5</td>
+          <td>42.5</td>
+          <td>45</td>
+      </tr>
+      <tr>
+          <td>V8</td>
+          <td>8.33</td>
+          <td>16.67</td>
+          <td>37.5</td>
+          <td>40</td>
+      </tr>
+      <tr>
+          <td>V9</td>
+          <td>37.5</td>
+          <td>45.83</td>
+          <td>35</td>
+          <td>35</td>
+      </tr>
+      <tr>
+          <td>V10</td>
+          <td>16.67</td>
+          <td>20.83</td>
+          <td>55</td>
+          <td>42.5</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li><strong>Averages</strong>:
+<ul>
+<li>L1 NASA TLX: 24.58, L2 NASA TLX: 28.75.</li>
+<li>L1 SUS: 45.5, L2 SUS: 43.5.</li>
+</ul>
+</li>
+</ul>
+<h4 id="graphical-representation">Graphical Representation<a href="#graphical-representation" class="anchor" aria-hidden="true">#</a> </h4>
+<ul>
+<li>
+<p><strong>Figure 1: NASA TLX Dimension Comparison</strong>
+<img src="../NASA_TLX_Dimension_Comparison.jpg" class="rounded shadow" /></p>
+</li>
+<li>
+<p><strong>Figure 2: SUS Score Trends</strong>
+<img src="../SUS_Score_Trends.jpg" class="rounded shadow" /></p>
+</li>
+<li>
+<p><strong>Figure 3: Correlation Between SUS and NASA TLX</strong>
+<img src="../Correlation_Between_SUS_and_NASA_TLX.jpg" class="rounded shadow" /></p>
+</li>
+</ul>
+<h3 id="statistical-analysis">Statistical Analysis<a href="#statistical-analysis" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li><strong>NASA TLX</strong>:
+<ul>
+<li>Wilcoxon test result: W = 36 (n=8, excluding zero values).</li>
+<li>Critical value (n=8, α=0.05): 3.</li>
+<li>Conclusion: W &gt; 3, no significant difference.</li>
+</ul>
+</li>
+<li><strong>SUS</strong>:
+<ul>
+<li>Wilcoxon test result: W = 24 (n=8, excluding zero values).</li>
+<li>Critical value (n=8, α=0.05): 3.</li>
+<li>Conclusion: W &gt; 3, no significant difference.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="discussion">Discussion<a href="#discussion" class="anchor" aria-hidden="true">#</a> </h2>
+<h3 id="interpretation-of-results">Interpretation of Results<a href="#interpretation-of-results" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li><strong>Workload</strong>: L2 NASA TLX (28.75) is slightly higher than L1 (24.58), mainly due to increased physical demands (e.g., jumping) and mental effort (e.g., puzzle complexity), but the difference is not significant.</li>
+<li><strong>Usability</strong>: L1 SUS (45.5) is slightly higher than L2 (43.5), suggesting that the increased difficulty of L2 slightly reduced perceived usability, but not significantly.</li>
+</ul>
+<h3 id="comparison-with-expectations">Comparison with Expectations<a href="#comparison-with-expectations" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li>It was expected that L2 would have a higher workload and lower usability. The observed trend aligns with expectations but does not reach statistical significance, possibly due to insufficient difficulty differences.</li>
+</ul>
+<h3 id="design-insights">Design Insights<a href="#design-insights" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li>Increase the difficulty of L2 by making jumps and puzzles more challenging to amplify workload differences.</li>
+<li>Optimize L2’s control smoothness (SUS Q1 and Q6 had lower scores) to reduce inconsistencies.</li>
+</ul>
+<h3 id="limitations">Limitations<a href="#limitations" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li>Small sample size (10 participants) limits statistical power.</li>
+<li>The difficulty difference between L1 and L2 may not be significant enough to fully reflect puzzle and platforming challenges.</li>
+</ul>
+<hr>
+<h2 id="conclusion-1">Conclusion<a href="#conclusion-1" class="anchor" aria-hidden="true">#</a> </h2>
+<p>Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS score is lower than L1 (43.5 vs 45.5), but neither difference is statistically significant (NASA TLX W = 36, SUS W = 24, p &gt; 0.05). It is recommended to enhance L2’s difficulty and optimize control experience to improve player immersion.</p>
+<hr>
+<h2 id="appendix">Appendix<a href="#appendix" class="anchor" aria-hidden="true">#</a> </h2>
+<h3 id="game-design-updates">Game Design Updates<a href="#game-design-updates" class="anchor" aria-hidden="true">#</a> </h3>
+<ol>
+<li><strong>Enhance L2 Jumping Difficulty</strong>: Increase platform height and introduce moving obstacles to heighten physical demand.</li>
+<li><strong>Optimize Puzzle Consistency</strong>: Standardize puzzle hint styles to improve SUS Q4 (consistency) scores.</li>
+<li><strong>Implement Dynamic Difficulty Adjustment</strong>: Adjust jumping and puzzle complexity based on player performance.</li>
+</ol>
+<h3 id="53-code-testing-and-debugging">5.3 Code Testing and Debugging<a href="#53-code-testing-and-debugging" class="anchor" aria-hidden="true">#</a> </h3>
+<p>The codebase underwent multiple rounds of testing, including:</p>
+<ul>
+<li><strong>Unit Tests</strong>: Written for player controls, puzzle activation, and UI visibility logic.</li>
+<li><strong>Integration Tests</strong>: Verified smooth transitions between levels and puzzle dependencies.</li>
+<li><strong>Manual Testing</strong>: Developers performed end-to-end playthroughs on both Windows and Android devices.</li>
+</ul>
+<p>A comprehensive bug tracker was maintained using GitHub Issues. Over 30 bugs were logged and resolved throughout the testing phase.</p>
+<h3 id="54-summary">5.4 Summary<a href="#54-summary" class="anchor" aria-hidden="true">#</a> </h3>
+<p>The evaluation process confirmed that <em>Capoo</em> is easy to use and cognitively manageable for casual players, even as difficulty increases. While workload and usability metrics did not show significant shifts, qualitative feedback provided actionable insights for polishing level design and improving onboarding. Heuristic evaluation revealed critical UI flaws that were successfully addressed. Ongoing testing ensured stability, performance, and a better user experience across devices.</p>
+<hr>
+<h2 id="6-process">6. Process<a href="#6-process" class="anchor" aria-hidden="true">#</a> </h2>
+<p>The development of <em>Capoo</em> adopted an agile methodology, allowing us to iterate quickly, validate ideas early, and adjust to challenges throughout the project. As a six-member team with diverse skillsets, we collaborated effectively using well-defined roles, flexible planning, and regular communication. This section outlines our workflow, tools, collaboration strategies, and reflections on key outcomes.</p>
+<hr>
+<h3 id="61-teamwork-and-agile-practices">6.1 Teamwork and Agile Practices<a href="#61-teamwork-and-agile-practices" class="anchor" aria-hidden="true">#</a> </h3>
+<p>At the start, our requirements were still evolving. Agile’s incremental development cycle suited our needs perfectly, allowing us to break the project into small, manageable units. Each sprint focused on delivering working features—such as camera movement, physics logic, or puzzle modules—that were tested and refined immediately.</p>
+<p>We followed core Agile practices:</p>
+<ul>
+<li><strong>Weekly sprint planning</strong> to define scope and distribute tasks.</li>
+<li><strong>Asynchronous stand-ups</strong> on Microsoft Teams to check progress.</li>
+<li><strong>Sprint reviews</strong> with playable builds shared for feedback.</li>
+<li><strong>Retrospectives</strong> every Friday to reflect on pain points and improvements.</li>
+</ul>
+<p>Rather than striving for perfection upfront, we emphasized continuous improvement. Working code was prioritized in each sprint, enabling us to gather regular feedback from teammates and testers. This helped identify issues like unclear UI or imbalanced difficulty early, which we could adjust in subsequent iterations.</p>
+<hr>
+<h3 id="62-collaboration-tools-and-workflow">6.2 Collaboration Tools and Workflow<a href="#62-collaboration-tools-and-workflow" class="anchor" aria-hidden="true">#</a> </h3>
+<p>We used a focused set of tools to streamline collaboration:</p>
+<ul>
+<li><strong>GitHub Kanban Board</strong>: Task tracking with columns for “To Do,” “In Progress,” “In Review,” and “Done.” This visual workflow kept everyone aligned and made progress transparent.</li>
+<li><strong>P5.js</strong>: The core development engine, used for implementing physics, UI, and gameplay.</li>
+<li><strong>Git + GitHub</strong>: Version control with feature branches, pull requests, and code reviews.</li>
+<li><strong>Visual Studio Code</strong>: Shared development environment across the team.</li>
+<li><strong>Microsoft Teams</strong>: Central platform for discussion, stand-ups, and file sharing.</li>
+<li><strong>Google Forms + Excel</strong>: Evaluation data collection and analysis (NASA TLX, SUS).</li>
+<li><strong>Miro</strong>: Used during early ideation for wireframes and stakeholder modeling.</li>
+</ul>
+<p>During development, we maintained stable code by enforcing pull request reviews and consistent branch naming. Members created feature branches, submitted pull requests after testing, and waited for peer review before merging. This process reduced bugs and ensured everyone stayed aware of changes.</p>
+<hr>
+<h3 id="63-role-distribution">6.3 Role Distribution<a href="#63-role-distribution" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Each member took on a primary role while remaining flexible to support other tasks as needed:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Responsibilities</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Shuyin Deng</td>
+          <td>Project Manager</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Jiaxin Fan</td>
+          <td>Technical Writer</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Peixuan Li</td>
+          <td>Developer</td>
+          <td>Early stage prototype / Physics and collision / Main logic implementation</td>
+      </tr>
+      <tr>
+          <td>Yibu Ma</td>
+          <td>Developer</td>
+          <td>OOP refactor / Spine model integration / Game website</td>
+      </tr>
+      <tr>
+          <td>Yu Qiu</td>
+          <td>Developer</td>
+          <td>Player interaction</td>
+      </tr>
+      <tr>
+          <td>Jiahao Liu</td>
+          <td>Test Engineer</td>
+          <td>UI &amp; Map design / Testing</td>
+      </tr>
+  </tbody>
+</table>
+<p>Cross-role contributions were encouraged—for example, developers helped with writing and testing, while testers participated in prototype evaluations and level design discussions.</p>
+<hr>
+<h3 id="64-highlights-and-lessons-learned">6.4 Highlights and Lessons Learned<a href="#64-highlights-and-lessons-learned" class="anchor" aria-hidden="true">#</a> </h3>
+<ul>
+<li>
+<p>Fast Feedback Loops: In-editor playtests and quick builds allowed us to validate gameplay ideas within hours. This significantly improved iteration speed and creativity.</p>
+</li>
+<li>
+<p>Test-Driven Debugging: Having a dedicated test engineer helped identify issues early, improving overall build stability.</p>
+</li>
+<li>
+<p>Asynchronous Coordination: By relying on GitHub comments and Kanban updates, we avoided bottlenecks despite having different schedules.</p>
+</li>
+<li>
+<p>Merge Conflicts &amp; Overlaps: Early on, lack of communication led to Git merge conflicts. We solved this by increasing pull request discipline and documenting changes clearly.</p>
+</li>
+<li>
+<p>Task Estimation Challenges: Some complex systems (e.g., modular puzzle logic) required more time than expected. We learned to plan buffer time and refine story-point estimation.</p>
+</li>
+</ul>
+<hr>
+<h3 id="65-reflection-and-future-plans">6.5 Reflection and Future Plans<a href="#65-reflection-and-future-plans" class="anchor" aria-hidden="true">#</a> </h3>
+<p>The agile workflow enabled us to adapt quickly as we learned more about the game’s needs. We found that maintaining working features at all times, writing clean and commented code, and using a consistent branching model allowed for a sustainable and efficient development pace.</p>
+<h2 id="7-sustainability-ethics-and-accessibility">7. Sustainability, Ethics and Accessibility<a href="#7-sustainability-ethics-and-accessibility" class="anchor" aria-hidden="true">#</a> </h2>
+<h3 id="71-environmental-sustainability">7.1 Environmental Sustainability<a href="#71-environmental-sustainability" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Although <em>Capoo</em> is a lightweight 2D game, we made conscious decisions to minimize its environmental footprint. We optimized asset sizes, limited unnecessary visual effects, and avoided resource-heavy rendering techniques. By choosing <strong>p5.js</strong>—a browser-based and lightweight JavaScript library—we ensured that the game runs efficiently on low-spec hardware, reducing the energy cost required to render and interact with the game.</p>
+<p>The game is hosted on <strong>GitHub Pages</strong>, a static hosting platform that reduces server overhead compared to dynamically hosted environments. While we did not measure energy use directly, our decisions were informed by a preference for minimalist design and efficient execution.</p>
+<blockquote>
+<p><strong>Reflection</strong>: Future iterations could further reduce environmental impact by compressing image assets, optimizing animations, and exploring green hosting options for game deployment.</p></blockquote>
+<hr>
+<h3 id="72-social-and-ethical-impact">7.2 Social and Ethical Impact<a href="#72-social-and-ethical-impact" class="anchor" aria-hidden="true">#</a> </h3>
+<p><em>Capoo</em> was designed to be accessible and enjoyable for a broad range of casual players. The game&rsquo;s humorous tone, simple controls, and low cognitive demands make it approachable for players with varying levels of experience. Difficulty levels (L1 and L2) are included to cater to different preferences and skill levels.</p>
+<p>The visual theme—centered around a whimsical character solving puzzles in a non-violent world—was deliberately chosen to promote <strong>positive, non-aggressive play</strong>. No enemies or combat mechanics are involved, and puzzle solutions are based on logic, timing, and creative thinking, aligning with ethical principles of inclusive and peaceful gameplay.</p>
+<p>The development process also followed ethical software practices, including:</p>
+<ul>
+<li><strong>Original asset use or fair-use adaptation</strong>.</li>
+<li>Respect for contributors’ time and fair role distribution.</li>
+<li>Transparent task tracking via GitHub for accountability.</li>
+</ul>
+<blockquote>
+<p><strong>Reflection</strong>: While the game promotes positive interaction, more diverse character options and narrative depth could better represent varied social backgrounds in future expansions.</p></blockquote>
+<hr>
+<h3 id="73-accessibility-considerations">7.3 Accessibility Considerations<a href="#73-accessibility-considerations" class="anchor" aria-hidden="true">#</a> </h3>
+<p>We made several design choices to improve accessibility:</p>
+<ul>
+<li><strong>Color-independent puzzle elements</strong>: Visual indicators such as shape and motion complement color cues to aid colorblind players.</li>
+<li><strong>Simple controls</strong>: All game mechanics are operated through standard keyboard inputs with minimal complexity.</li>
+<li><strong>Tutorial and difficulty settings</strong>: An optional tutorial and adjustable difficulty settings help new or casual players ease into the game.</li>
+<li><strong>Responsiveness across platforms</strong>: As a browser game, <em>Capoo</em> is accessible across Windows, macOS, and mobile browsers without installation.</li>
+</ul>
+<blockquote>
+<p><strong>Reflection</strong>: While the game accommodates casual play and basic visual limitations, it lacks full accessibility features such as screen reader support. In future versions, we aim to add audio cues to improve inclusiveness.</p></blockquote>
+<hr>
+<h3 id="74-sustainability-oriented-requirements">7.4 Sustainability-Oriented Requirements<a href="#74-sustainability-oriented-requirements" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Our project team used the <strong>Sustainability Awareness Framework (SusAF)</strong> to guide decisions across environmental, social, and technical dimensions. The following are sample user stories reflecting our sustainability mindset:</p>
+<p><strong>Environmental Requirements</strong></p>
+<ul>
+<li><em>As a developer</em>, I want to reduce asset size and rendering load so that the game uses less GPU power.</li>
+<li><em>As a maintainer</em>, I want to reuse code components to minimize redundancy and improve efficiency.</li>
+</ul>
+<p><strong>Social Requirements</strong></p>
+<ul>
+<li><em>As a new player</em>, I want an easy mode with guided controls so that I can learn the game comfortably.</li>
+<li><em>As a colorblind user</em>, I want non-color-based cues to help me navigate puzzles.</li>
+</ul>
+<p><strong>Technical Requirements</strong></p>
+<ul>
+<li><em>As a developer</em>, I want modular systems for puzzle logic so that I can extend levels without major code rewrites.</li>
+<li><em>As a tester</em>, I want the game to run in a browser so it can be tested on different devices easily.</li>
+</ul>
+<hr>
+<p>This section concludes our discussion on how <em>Capoo</em> was built with sustainability and accessibility in mind, while acknowledging future improvements that can be made in hosting efficiency, inclusive design, and social representation.</p>
+<hr>
+<h2 id="8-conclusion">8. Conclusion<a href="#8-conclusion" class="anchor" aria-hidden="true">#</a> </h2>
+<p>The development of <em>Capoo</em> was a rewarding yet technically demanding experience that significantly strengthened our software engineering and collaboration skills. Building a physics-based puzzle-platformer with charming visuals and modular design required us to navigate a range of challenges—from integrating Spine animations with p5.js to implementing precise, bug-free collision mechanics.</p>
+<p>One of the defining features of our development journey was the decision to refactor our early procedural code into a fully object-oriented system. While time-consuming, this refactor paid off by making our codebase more scalable and maintainable, which proved essential as new gameplay elements like potions, switches, and modular puzzles were introduced. The class and sequence diagrams helped the entire team—regardless of their background—understand system structure and dependencies, enabling more efficient implementation and debugging.</p>
+<p>Agile methodology also played a critical role in the success of this project. Through regular sprint planning, retrospectives, and asynchronous updates, we maintained a clear development pace while remaining flexible enough to respond to technical hurdles and player feedback. For example, early usability testing revealed that tutorial screens were confusing and some levels lacked clear feedback cues. By integrating heuristic evaluations and SUS/NASA TLX assessments into our workflow, we systematically addressed these issues, improving both clarity and user engagement.</p>
+<p>Despite our progress, there are areas we could have improved. Early integration between Three.js and p5.js lacked a clearly defined communication layer, which caused synchronization issues in animations and input feedback. Additionally, adopting more rigorous unit testing earlier in the project—especially for collision detection and interaction systems—could have saved time debugging later. We also encountered minor setbacks with Git merge conflicts, which highlighted the importance of consistent communication and clearer task allocation.</p>
+<p>Looking ahead, we see multiple opportunities to extend <em>Capoo</em>. These include designing additional levels with dynamic puzzle mechanics, implementing audio cues for accessibility, and eventually creating a mobile-optimized version. The game’s architecture already supports modularity, which will make future expansion feasible without major rewrites.</p>
+<p>Above all, this project gave us our first taste of end-to-end game development in a team setting. Each member brought their strengths—whether in coding, design, testing, or coordination—and learned to adapt to new responsibilities. <em>Capoo</em> is not just a game, but the culmination of our collaborative problem-solving, technical growth, and commitment to delivering a creative and enjoyable experience.</p>
+<h2 id="9-individual-contributions">9. Individual Contributions<a href="#9-individual-contributions" class="anchor" aria-hidden="true">#</a> </h2>
+<table>
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Contributions</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Shuyin Deng</strong></td>
+          <td>Project Manager</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td><strong>Jiaxin Fan</strong></td>
+          <td>Technical Writer</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td><strong>Peixuan Li</strong></td>
+          <td>Developer</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td><strong>Yibu Ma</strong></td>
+          <td>Developer</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td><strong>Yu Qiu</strong></td>
+          <td>Developer</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td><strong>Jiahao Liu</strong></td>
+          <td>Test Engineer</td>
+          <td>1</td>
+      </tr>
+  </tbody>
+</table>
 
 			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
 				</div>
