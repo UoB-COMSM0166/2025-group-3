@@ -112,7 +112,7 @@ The team broke down user stories into implementable tasks. For example, the "cor
 
 ### 2.5 Use Case Diagram and Specification
 
-<img src="../Usecase.jpg" class="rounded shadow" />
+<img src="../../../Usecase.jpg" class="rounded shadow" />
 
 <p align="center"><b>Use Case Diagram</b></p>
 
@@ -129,7 +129,7 @@ The *Capoo* project adopts an object-oriented approach to structure gameplay log
 ### **3.2 Class Diagram**
 
 Our class diagram provides a structural overview of *Capoo*’s object-oriented architecture. At its core, the system is driven by a **GameModel**, which holds references to key game objects such as platforms, interactable elements, and the player character.
-<img src="../Class_Diagram.png" class="rounded shadow" />
+<img src="../../../Class_Diagram.png" class="rounded shadow" />
 
 
 <p align="center"><b>Class Diagram</b></p>
@@ -157,7 +157,7 @@ This modular structure allows for flexible development and easy modification of 
 ### **3.3 Sequence Diagram**
 
 To represent dynamic gameplay interaction, we created a sequence diagram that models a typical scenario where the player activates a switch that raises a wall and unlocks a key mechanism.
-<img src="../Sequence_Diagram2.png" class="rounded shadow" />
+<img src="../../../Sequence_Diagram2.png" class="rounded shadow" />
 
 <p align="center"><b>Sequence Diagram</b></p>
 
@@ -265,7 +265,7 @@ Each challenge forced us to adapt and improve our technical approach. From anima
 
 ### 5.1 Qualitative Evaluation: Heuristic Evaluation
 
-<img src="../Heuristic_Evaluation.png" class="rounded shadow" />
+<img src="../../../Heuristic_Evaluation.png" class="rounded shadow" />
 
 ### 5.2 Quantitative Evaluation: NASA TLX & SUS
 
@@ -345,15 +345,15 @@ NASA TLX is a tool for measuring subjective workload across six dimensions (Hart
 #### Graphical Representation
 
 - **Figure 1: NASA TLX Dimension Comparison**
-<img src="../NASA_TLX_Dimension_Comparison.jpg" class="rounded shadow" />
+<img src="../../../NASA_TLX_Dimension_Comparison.jpg" class="rounded shadow" />
 
 
 - **Figure 2: SUS Score Trends**
-<img src="../SUS_Score_Trends.jpg" class="rounded shadow" />
+<img src="../../../SUS_Score_Trends.jpg" class="rounded shadow" />
 
 
 - **Figure 3: Correlation Between SUS and NASA TLX**
-<img src="../Correlation_Between_SUS_and_NASA_TLX.jpg" class="rounded shadow" />
+<img src="../../../Correlation_Between_SUS_and_NASA_TLX.jpg" class="rounded shadow" />
 
 
 ### Statistical Analysis

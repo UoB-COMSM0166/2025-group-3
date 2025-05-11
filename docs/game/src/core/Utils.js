@@ -56,6 +56,7 @@ export const GAME_STATE = Object.freeze({
   PLAYING: "playing",
   LEVEL_COMPLETE: "levelComplete",
   GAME_OVER: "game_over",
+  ALLCOMPLETED:"all_completed",
 });
 
 

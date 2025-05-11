@@ -61,9 +61,17 @@ The ability to separate Capoo from the can using key inputs, enabling the player
 
 ### Figure 1 - Demonstration of separation
 
+<div align="center">
+  <img src="images/figure1.gif" alt="Capoo Demo" width="400"/>
+</div>
+
 The game is structured across multiple levels, each of which presents increasing puzzle complexity and map decryption difficulty. This will gradually raise the cognitive challenge, ensuring players remain mentally engaged as they progress through the game.
 
 ### Figure 2 - Demonstration of multiple levels
+
+ <div align="center">
+  <img src="images/figure2.gif" alt="Capoo Demo" width="400"/>
+</div>
 
 Its appeal lies in its distinctive art style, playful animations, and inventive gameplay. The development process followed agile methodologies and user-centered design, incorporating feedback from playtesting and usability evaluations.
 
@@ -146,6 +154,20 @@ The team broke down user stories into implementable tasks. For example, the "cor
 
 <p align="center"><b>Use Case Diagram</b></p>
 
+
+<p align="center"><b>Use Case Specification</b></p>
+
+|                      | Easy Level                                                                                                                   | Difficult Level                                                                                                                                                         |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Description**      | An introductory level where Capoo does not need to separate from the can, controlled via keyboard (WASD).                    | A more advanced level where Capoo can separate from the can to perform more complex actions, including tougher puzzles and platforming, controlled via keyboard (WASD). |
+| **Basic Flow**       | **Goal**: Learn basic operations, complete simple platforming and puzzle interactions, and finish the level without failing. | **Goal**: Use learned mechanics to solve more complex puzzles, avoid hazards, and reach the finish flag.                                                                |
+| **Step One**         | Player controls Capoo using the keyboard. Pressing S allows Capoo to separate or merge with the can.                         | Player controls Capoo using the keyboard. Pressing S allows Capoo to separate or merge with the can.                                                                    |
+| **Step Two**         | Find the key to open the gate.                                                                                               | Find the key to open the gate.                                                                                                                                          |
+| **Alternative Flow** | Challenge: Capoo falls off platforms, fails to trigger mechanisms, or cannot solve the puzzle.                               | Challenge: Capoo falls off platforms, fails to trigger mechanisms, or cannot solve the puzzle.                                                                          |
+| **Step One**         | Capoo touches water, traps, or mistimes a jump, and gets reset to the start point.                                           | Capoo touches water, traps, or mistimes a jump, and gets reset to the start point.                                                                                      |
+| **Step Two**         | Player can press `H` to bring up a tutorial.                                                                                 | No tutorial available; puzzle elements must be figured out, and mechanisms will not activate if solved incorrectly.                                                     |
+
+
 ------
 
 ## **3. Design**
@@ -204,7 +226,29 @@ The sequence clearly demonstrates the flow of control from player input to game 
 
 ------
 
-### **3.4 Design Considerations**
+### **3.4 State Machine Diagram**
+
+We created a state diagram for *Capoo* to map the lifecycle of key game components like `GameModel`, `Capoo`, `Potion`, and others. The diagram illustrates state transitions—such as `Capoo` moving from `Idle` to `Walking`, or the `GameModel` transitioning to `GameOver`—which helped clarify the conditions for state changes during development.
+
+For instance, the `Potion` transitions from `Inactive` to `Active` upon pickup, and `ElevatingWalls` move from `Static` to `Moving` based on triggers. This visual representation helped identify edge cases, ensure synchronized game logic, and streamline development, ultimately reducing debugging time.
+![machine diagram](images/state%20machine%20diagram.png)
+<p align="center"><b>state machine diagram</b></p>
+
+------
+
+### **3.5 Communication Diagram**
+
+The **Communication Diagram** for the *Capoo Game* illustrates the interactions between key components. The **Player** sends inputs to the *GameController*, which processes them and updates the *GameModel*. This triggers changes in entities like *Capoo*, *Potion*, *KeyItem*, *Flag*, and *ElevatingWalls*. These updates are rendered by *RenderLogic* and displayed in the *GameView*.
+
+The *MapLoader* initializes game levels and parses entity data for the *GameModel*. *Capoo* interacts with objects, triggering events that are reflected in the game state. *SpineLayer* manages character animations, ensuring smooth visuals. Error handling in *GameController* ensures stability during gameplay.
+
+This structure maintains synchronized game states, smooth animations, and consistent feedback to the player.  
+![communication diagram](images/communication%20diagram.png)
+<p align="center"><b>communication diagram</b></p>
+
+------
+
+### **3.6 Design Considerations**
 
 During design and implementation, we faced several technical challenges that led to important design decisions:
 
@@ -214,13 +258,13 @@ During design and implementation, we faced several technical challenges that led
 
 ------
 
-### **3.5 Iterative Development & Diagram Updates**
+### **3.7 Iterative Development & Diagram Updates**
 
 Consistent with agile methodology, our class and sequence diagrams evolved over time. For example, earlier prototypes had more monolithic controller logic, but we later separated `GameController` and `MapLoader` to improve maintainability and testing. Additionally, classes such as `Capoo`, `Potion`, and `ElevatingWalls` saw expanded responsibilities as gameplay mechanics became clearer through playtesting.
 
 ------
 
-### **3.6 Conclusion**
+### **3.8 Conclusion**
 
 The UML models we developed played a crucial role in organizing our design and facilitating communication within the team. By combining a strong object-oriented foundation with agile iteration, we built a flexible and scalable game architecture that can accommodate future features such as multi-character control or extended puzzle mechanics.
 
@@ -294,7 +338,14 @@ Each challenge forced us to adapt and improve our technical approach. From anima
 
 ### 5.1 Qualitative Evaluation: Heuristic Evaluation  
 
-![Heuristic Evaluation](weekly%20updates/Week%207%20-%20Heuristic%20Evaluation.png)
+| Interface     | Issue                                                                                                                                 | Heuristic(s)                          | Frequency (0–4) | Impact (0–4) | Persistence (0–4) | Severity = (F + I + P) / 3 |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|------------------|---------------|---------------------|-----------------------------|
+| Game UI       | The color contrast is not distinct, making it difficult for players to see clearly.                                                   | Aesthetic and minimalist design        | 3                | 2             | 3                   | (3 + 2 + 3) / 3 = 2.67       |
+| Game Rules    | Players think they can step on monsters and do not understand the function of the mushroom, making the game rules unclear.            | Help and documentation                 | 4                | 3             | 4                   | (4 + 3 + 4) / 3 = 3.67       |
+| Controls      | Using the space key for jumping does not align with user habits and is not easy to operate.                                           | Flexibility and efficiency of use      | 3                | 2             | 3                   | (3 + 2 + 3) / 3 = 2.67       |
+| Game Objects  | Players believe that brown is a toxic color and touching it will cause them to lose health.                                           | Consistency and standards              | 2                | 2             | 3                   | (2 + 2 + 3) / 3 = 2.33       |
+| Exit Option   | There is no clear exit option.                                                                                                         | User control and freedom               | 3                | 3             | 4                   | (3 + 3 + 4) / 3 = 3.33       |
+
 
 ### 5.2 Quantitative Evaluation: NASA TLX & SUS  
 
@@ -439,13 +490,57 @@ Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS s
 
 ### 5.3 Code Testing and Debugging  
 
-The codebase underwent multiple rounds of testing, including:
+We used black-box testing with equivalence partitioning to validate the game. Test cases were designed based on input types and game states, without looking at the internal code. We focused on transitions (e.g. main menu to level select), controls (e.g. movement, jumping), and interactions (e.g. keys, traps, water). Each feature was tested using representative inputs from different equivalence classes to ensure correct behavior.
 
-- **Unit Tests**: Written for player controls, puzzle activation, and UI visibility logic.
-- **Integration Tests**: Verified smooth transitions between levels and puzzle dependencies.
-- **Manual Testing**: Developers performed end-to-end playthroughs on both Windows and Android devices.
+#### 1. Game State and Scene Testing
 
-A comprehensive bug tracker was maintained using GitHub Issues. Over 30 bugs were logged and resolved throughout the testing phase.
+| ID    | Description                        | Precondition                           | Test Steps                                                   | Expected Result                                              |
+| ----- | ---------------------------------- | -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TC-01 | Game Launch and Main Menu Test     | Launch the game                        | 1. Start the game2. Observe the main menu                    | - Game resources load correctly- "Capoo" title appears on the main menu- "Press ENTER To Start" prompt is shown- Background and cloud animation display properly |
+| TC-02 | Transition from Main to Level Menu | Game is at the main menu               | 1. Press ENTER on the main menu                              | - Game state changes from START to LEVEL_SELECT- Level selection screen displays correctly- "Use LEFT/RIGHT To Choose Press SPACE To Start" prompt appears- All level options are visible, with the current one highlighted |
+| TC-03 | Level Selection Functionality      | Game is at level selection screen      | 1. Press LEFT arrow key2. Press RIGHT arrow key3. Observe changes | - LEFT arrow decreases selected level index (unless at first level)- RIGHT arrow increases selected level index (unless at last level)- Selected level is highlighted |
+| TC-04 | Level Loading Function             | At level selection, one level selected | 1. Press SPACE                                               | - Game state changes from LEVEL_SELECT to PLAYING- Selected level loads and displays correctly- Character appears at initial position- Level background, terrain, and items are displayed correctly |
+
+------
+
+#### 2. Character Movement and Control Testing
+
+| ID    | Description                      | Precondition                                             | Test Steps                                                   | Expected Result                                              |
+| ----- | -------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TC-05 | Basic Character Movement         | Game is in PLAYING state, character on ground            | 1. Press LEFT2. Release LEFT3. Press RIGHT4. Release RIGHT   | - Character moves left and faces left when LEFT key is pressed- Character moves right and faces right when RIGHT key is pressed- Character stops moving when key is released |
+| TC-06 | Flying When Merged with Potion   | Game is in PLAYING state, character merged with potion   | 1. Press SPACE2. Hold SPACE3. Release SPACE                  | - Character flies upward when SPACE is pressed- Keeps flying while SPACE is held- Falls when SPACE is released |
+| TC-07 | Separation from Potion           | Game is in PLAYING state, character merged with potion   | 1. Press S                                                   | - Character separates from potion- Potion pops upward- Merge wall disappears (merge layer invisible) |
+| TC-08 | Potion Ejection After Separation | Game is in PLAYING state, potion and character separated | 1. Ensure potion is landed or stuck to wall2. Press A to test left ejection3. Press D for right | - Potion can be ejected from ground/wall- A triggers left-upward ejection- D triggers right-upward ejection- Potion has proper initial velocity and gravity scaling |
+| TC-09 | Climbing Feature                 | Game is in PLAYING state, near climbable wall            | 1. Move character near wall2. Press UP3. Press DOWN          | - Wall is detected as climbable- UP moves character upward- DOWN moves character downward- Gravity doesn't apply while climbing |
+| TC-10 | Automatic Remerge with Potion    | Game is in PLAYING state, potion and character separated | 1. Move character close to potion                            | - Potion automatically merges when close- Potion appears on back- Merge wall becomes visible again |
+
+------
+
+#### 3. Game Mechanics and Interaction Testing
+
+| ID    | Description                           | Precondition                                                 | Test Steps                                          | Expected Result                                              |
+| ----- | ------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------------ |
+| TC-11 | Spring Mechanism                      | Game is in PLAYING state, level contains spring bed          | 1. Move character onto spring bed                   | - Character gains upward speed- Bounce height exceeds regular jump- Spring sound plays |
+| TC-12 | Collecting Keys                       | Game is in PLAYING state, level contains visible key         | 1. Move character to contact key                    | - Key disappears on contact- Key count increases- UI updates- Key collection sound plays |
+| TC-13 | Level Completion                      | Game is in PLAYING state, all keys collected                 | 1. Move character to touch the flag                 | - State changes to LEVEL_COMPLETE- Completion screen shows- "Level Complete!" and continuation options appear- Completion sound plays |
+| TC-14 | Switch and Mechanism Wall Interaction | Game is in PLAYING state, level contains switch and wall     | 1. Touch switch2. Observe wall3. Touch switch again | - Switch changes state- Wall moves to target- Pressing again returns wall to original- Switch sound plays |
+| TC-15 | Water Hazard                          | Game is in PLAYING state, level contains water area          | 1. Lead character into water                        | - Character dies- Message "Cats dissolve easily in water!" shown- Respawn at starting point- Death sound plays |
+| TC-16 | Trap Hazard                           | Game is in PLAYING state, level contains traps               | 1. Lead character into trap                         | - Character dies- Message "You are trapped!" shown- Respawn at starting point- Death sound plays |
+| TC-17 | Potion Falling into Water             | Game is in PLAYING state, potion and character separated, level has water | 1. Make potion fall into water                      | - Game resets- Message "No water with my pot!" shown- Character and potion respawn and remerge- Death sound plays |
+| TC-18 | Ice Surface Limitation                | Game is in PLAYING state, level contains ice surface         | 1. Move character onto ice2. Attempt to jump        | - Jumping is disabled- Message "Ice! You can't jump!" shown  |
+
+------
+
+#### 4. UI and Accessibility Testing
+
+| ID    | Description                   | Precondition                    | Test Steps                                                   | Expected Result                                              |
+| ----- | ----------------------------- | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TC-19 | Help Interface                | Game is in PLAYING state        | 1. Press H to show help2. Press any key to close             | - H key shows help overlay with game controls- Any key hides help and returns to game |
+| TC-20 | Level Reset                   | Game is in PLAYING state        | 1. Press R                                                   | - Character resets to start- All keys reset- Switches and walls reset- Message "Restarting level..." shown- Death sound plays |
+| TC-21 | Return to Level Selection     | Game is in PLAYING state        | 1. Press ESC                                                 | - State changes to LEVEL_SELECT- Character and level state saved- Level selection screen shown |
+| TC-22 | Post-Level Completion Options | Game is in LEVEL_COMPLETE state | 1. Press any key (except ESC) to continue2. Press ESC after completion | - If not last level, any key starts next level- If last level, any key returns to selection- ESC returns to selection in all cases |
+
+
 
 ### 5.4 Summary  
 
@@ -496,12 +591,12 @@ Each member took on a primary role while remaining flexible to support other tas
 
 | Name        | Role             | Responsibilities                                         |
 | ----------- | ---------------- | -------------------------------------------------------- |
-| Shuyin Deng | Project Manager  |        |
-| Jiaxin Fan  | Technical Writer |   |
-| Peixuan Li  | Developer        | Early stage prototype / Physics and collision / Main logic implementation         |
-| Yibu Ma     | Developer        | OOP refactor / Spine model integration / Game website |
-| Yu Qiu      | Developer        | Player interaction      |
-| Jiahao Liu  | Test Engineer    | UI & Map design / Testing       |
+| Shuyin Deng | Project Manager  | Report / Tracking project progress / Task allocation     |
+| Jiaxin Fan  | Technical Writer | Coordinated project planning/vedio  |
+| Peixuan Li  | Developer        | Early stage prototype / Physics and collision / Main logic implementation          |
+| Yibu Ma     | Developer        | OOP refactor / Spine model integration / Documentation website  |
+| Yu Qiu      | Developer        | Player Interaction / Performance Optimization / Main logic implementation      |
+| Jiahao Liu  | Test Engineer    | UI design / Map design / Testing       |
 
 
 
