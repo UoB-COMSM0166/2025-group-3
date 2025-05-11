@@ -190,6 +190,14 @@ export default class GameView {
             image(window.assets.level3bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
         }else if (levelIndex == 3){
             image(window.assets.level4bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
+        }else if(levelIndex == 4){
+            image(window.assets.level5bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
+        }else if(levelIndex == 5){
+            image(window.assets.level6bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
+        }else if(levelIndex == 6){
+            image(window.assets.level7bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
+        }else if(levelIndex == 7){
+            image(window.assets.level8bg, window.innerWidth / 2, window.innerHeight / 2, window.innerWidth, window.innerHeight);
         }
         // 恢复默认对齐方式
         imageMode(CORNER);
@@ -347,16 +355,18 @@ export default class GameView {
         //console.log("keysESC: " + this.gameModel.keysESC);
 
         // 按esc加载游戏说明页面, 按任意键关闭, 再次按esc退出到选关页面
-
+        if(levelIndex <= 3){
+            this.gameModel.showHelp == true;
+        }
         
         if(this.gameModel.showHelp){
-            this.showhelpscreen(1);
+            this.showhelpscreen(levelIndex);
         }
     }
 
 
     showhelpscreen(levelIndex){
-        if(levelIndex=1){
+        if(levelIndex == 0){
             fill(255, 255, 255, 170); // 半透明背景
             stroke(255); // 白色描边
             strokeWeight(5);
@@ -387,6 +397,48 @@ export default class GameView {
             fill(169, 59, 70); // 红色
             stroke(255);
             text("ESC  ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1+ window.innerWidth /24);
+         
+            fill(255);
+            stroke(50,110,185);
+            text("When a cat combines with a can, it becomes Superman\nKeep pressing the space bar to fly", window.innerWidth/2, window.innerHeight/2 + window.innerWidth /24);
+    
+        }
+        else if(levelIndex == 1 ){
+            fill(255, 255, 255, 170); // 半透明背景
+            stroke(255); // 白色描边
+            strokeWeight(5);
+            let padding = 50; // 四周留白
+            let cornerRadius = 25;
+            rect(padding, padding, window.innerWidth - 2 * padding, window.innerHeight - 2 * padding, cornerRadius); // 圆角矩形
+            
+            textAlign(CENTER, CENTER); 
+            fill(255); // 白色文字
+            stroke(50,110,185);
+            strokeWeight(5); 
+    
+            // textSize(window.innerWidth/38);
+            // text("Press any key to return to the game.\nPress ESC to Exit.", 
+            //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+    
+            textSize(window.innerWidth / 38);
+            text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+    
+            fill(61, 170, 110);  // 绿色
+            stroke(255);
+            text("any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+    
+            fill(255);
+            stroke(50,110,185);
+            text("Press          to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
+    
+            fill(169, 59, 70); // 红色
+            stroke(255);
+            text("ESC  ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1+ window.innerWidth /24);
+         
+            fill(255);
+            stroke(50,110,185);
+            text("When a cat combines with a can, it becomes Superman\nKeep pressing the space bar to fly", window.innerWidth/2, window.innerHeight/2 + window.innerWidth /24);
+    
         }
         else{
         fill(255, 255, 255, 170); // 半透明背景
@@ -457,7 +509,7 @@ export default class GameView {
         text("You can move by pressing        and        .", textX, textY);
     
         textFont("sans-serif");  // 临时切换默认字体，绘制 Emoji
-        text("                                            ⬅️         ➡️", textX, textY+window.innerHeight/100);
+        text("                                                     ⬅️         ➡️", textX, textY+window.innerHeight/100);
         textFont(window.assets.textFont1); // 切换回自定义字体
         textY += dis;
 
@@ -483,7 +535,7 @@ export default class GameView {
         text("You can climb ladders        by pressing        and        .", textX, textY);
         
         textFont("sans-serif"); // 切换默认字体，绘制 Emoji
-        text("                                   🪜                        ⬆️         ⬇️", textX, textY+window.innerHeight/100);
+        text("                                   🪜                                 ⬆️         ⬇️", textX, textY+window.innerHeight/100);
         textFont(window.assets.textFont1); // 切换回自定义字体
      }
 }

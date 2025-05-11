@@ -51,21 +51,41 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ## 1. Introduction
 
-*Capoo* is a 2D puzzle-platformer game that blends casual accessibility with strategically designed challenges. Developed by a six-member student team, the game features Capoo, a quirky blue cat-bug hybrid, as the main character. Players must navigate through levels filled with interactive objects, environmental puzzles, and platforming elements.
+*Capoo* is a 2D puzzle-platformer that combines lighthearted gameplay with thoughtful level design. Players control Capoo, a quirky blue cat-bug hybrid, as they navigate a series of levels featuring interactive environments, platforming challenges, and environmental puzzles.
 
-The core inspiration for *Capoo* stems from two sources: the relaxing yet open-ended mechanics of *Stardew Valley*, and the physics-driven, meme-based absurdity of *Cato*. From these references, the team set out to create a humorous but polished experience, emphasizing both ease of play and cognitive stimulation.
+The game draws inspiration from the visual charm of *Capoo Pals* and the whimsical absurdity of *Cato*, aiming to deliver a humorous yet polished experience that balances casual accessibility with cognitive engagement.
 
-Capoo stands out through its charming art style, whimsical animations, and novel mechanics—particularly the dynamic interactions with environmental objects and adjustable difficulty levels. Furthermore, the development process applied agile practices and user-centered design principles, integrating feedback from playtesting and usability evaluation throughout the project.
+*Capoo* introduces unique mechanics, such as the ability to separate Capoo from the can using key inputs, allowing for diverse platforming strategies. The game is structured across multiple levels, each representing increasing puzzle complexity and map decryption difficulty.
 
-The goal of this report is to detail the development journey of *Capoo*, covering requirements engineering, system design, implementation, evaluation, team process, and sustainability considerations. It aims to document the technical and creative decisions made, the challenges encountered, and the lessons learned during development.
+Its appeal lies in its distinctive art style, playful animations, and inventive gameplay. The development process followed agile methodologies and user-centered design, incorporating feedback from playtesting and usability evaluations.
 
----
+This report documents the game's development, including requirement analysis, design, implementation, evaluation, team workflow, and sustainability aspects, highlighting key decisions, challenges, and insights gained throughout the project.
+
+------
 
 ## 2. Requirements
 
 ### 2.1 Ideation Process
 
-The initial ideation phase involved a collaborative exploration of successful indie games across various genres. Through group discussion and voting, the team shortlisted two influential titles: *Stardew Valley* and *Cato*. *Stardew Valley* inspired the idea of open-ended exploration and a charming aesthetic, while *Cato* introduced an absurd physics-driven puzzle mechanic with humor. After evaluating each idea’s feasibility, originality, and potential technical complexity, the team chose to develop a 2D puzzle-platformer based on Capoo, a cat-bug mascot popular for its humorous expressions and meme status. The choice allowed for creative level design, whimsical animation, and the use of Unity's physics engine to support challenging gameplay.
+At the start of the ideation process, our team proposed two game directions based on existing titles. One was inspired by *Stardew Valley*, focusing on an RPG-like two-player game with storyline progression, environmental interaction, and boss fights. The other was based on *Cato*, featuring physics-based platforming puzzles and humorous mechanics involving a cat and a can.
+
+To evaluate both ideas, we created simple paper prototypes during class. For the *Stardew Valley*-inspired concept, we mapped out character movement, basic dialogue trees, and interaction zones. For the *Cato*-style game, we sketched out how the two controllable characters (Capoo and the can) could move independently, interact with physics objects, and solve platforming puzzles cooperatively.
+
+
+<p align="center"><b>Paper Prototype of Stardew Valley</b></p>
+<div style="text-align: center;">
+  <video src="https://github.com/user-attachments/assets/58f3f51d-4996-4ae9-9c22-3bd4396f7b38" controls width="600"></video>
+</div>
+
+
+<p align="center"><b>Paper Prototype of Cato</b></p>
+<div style="text-align: center;">
+  <video src="https://github.com/user-attachments/assets/e05b9fda-6a7e-4d59-81bc-7519a4a13db8" controls width="600"></video>
+</div>
+
+During discussion, we compared the scope, technical difficulty, and uniqueness of both ideas. The *Stardew Valley* concept was rich in narrative potential but required a large amount of content creation, scripting, and world-building, which exceeded the time and resource constraints of our project. In contrast, the *Cato*-like game offered a clear mechanical focus, allowed for creative level design within a manageable scope, and aligned well with our team's strengths in puzzle and physics-based gameplay design.
+
+As a result, we unanimously chose to develop a game inspired by *Cato*, aiming to replicate its humorous tone and distinctive mechanics while introducing our own puzzle challenges and platforming dynamics through the characters Capoo and the can.
 
 ### 2.2 Stakeholder Identification
 
@@ -82,38 +102,25 @@ Each stakeholder’s expectations were captured using epics and user stories.
 
 ### 2.3 Epics and User Stories
 
-The following epics were developed, each with sample user stories and acceptance criteria:
+#### Epic: Core Gameplay (Player)
 
-#### **Epic: Core Gameplay (Player)**
+1. **As a casual gamer**, I want Capoo’s controls to be simple and intuitive so that I can jump into the game and start having fun without needing a tutorial.
+2. **As a puzzle lover**, I want the levels in Capoo to offer clever environmental challenges, so I feel rewarded when I figure them out.
+3. **As a curious player**, I want a lighthearted story or backstory for Capoo, so I can feel more connected to the game world.
 
-- *As a player, I want to control my character so I can explore the game world.*
-   **Acceptance Criteria**: Character responds to input with walking, jumping, and interacting.
-- *As a player, I want to be presented with clear objectives.*
-   **Acceptance Criteria**: Tasks are displayed in a quest menu and update as the player progresses.
+------
 
-#### **Epic: Exploration and World Interaction (Player)**
+#### Epic: UI and UX (Developer)
 
-- *As a player, I want each level to contain unique visuals and interactive elements.*
-   **Acceptance Criteria**: Levels contain switchable items, dialogue triggers, and exploration rewards.
+1. **As a player interested in customization**, I want to choose the difficulty level at the start, so the game fits my skill level and mood.
+2. **As a new player**, I want to be guided by brief tutorials or examples that explain unique mechanics , so I don't feel confused.
+3. **As a visually impaired player**, I want color-coded elements to also include shape or pattern-based distinctions, so I can still solve puzzles if I can't distinguish certain colors.
 
-#### **Epic: UI and UX (Developer)**
+------
 
-- *As a developer, I want the UI to be intuitive so that players can understand controls quickly.*
-   **Acceptance Criteria**: A responsive HUD displays player status and goals; tutorial popups guide new players.
-- *As a developer, I want to include an interactive tutorial.*
-   **Acceptance Criteria**: Tutorial teaches movement, jumping, and puzzle interaction through guided actions.
+#### Epic: Developer-Centric 
 
-#### **Epic: Game Mechanics (Developer)**
-
-- *As a developer, I want modular code so that gameplay systems can be easily updated.*
-   **Acceptance Criteria**: Movement, physics, and interaction logic are isolated in separate scripts or classes.
-
-#### **Epic: Accessibility and Time Management (Player)**
-
-- *As a player, I want to receive a reminder after playing for 30 minutes.*
-   **Acceptance Criteria**: Notification appears at the 30-minute mark, encouraging breaks.
-- *As a player, I want to set a daily playtime limit.*
-   **Acceptance Criteria**: Game allows players to configure a daily session cap in settings.
+**As a member of the development team**, I want to implement a first-in-class app/game that pushes me to learn new skills.
 
 ### 2.4 Detailed Task Breakdown
 
@@ -131,219 +138,299 @@ The team broke down user stories into implementable tasks. For example, the "cor
 > ![Use Case Diagram](./assets/use-case-diagram.png)  
 > *(Insert diagram showing major player and developer interactions.)*
 
-### 2.6 Cross-Team Comparison & Reflection
+------
 
-The team engaged in cross-team discussions to compare stakeholder analysis, epics, and story quality. This provided valuable insight into how other teams defined player needs and structured tasks. It highlighted the need to include accessibility considerations and encouraged clearer, more measurable acceptance criteria.
+## **3. Design**
 
-### 2.7 Summary
+### **3.1 Overview**
 
-The requirement phase helped the team define a development roadmap rooted in real player needs. Agile methods, including task breakdown and iterative reviews, supported prioritization and flexible response to feedback. The stories and use cases ensured the game’s functionality aligned with user expectations while accounting for sustainability, accessibility, and replayability.
-
----
-
-## 3. Design
-
-### 3.1 System Architecture
-
-The architecture of *Capoo* is modular and layered, following separation of concerns to support scalability and maintainability. The game was developed using the Unity engine, leveraging its built-in physics and animation systems. The architecture is divided into four primary layers:
-
-- **Input Layer**: Manages player input from keyboard, mouse, or controller.
-- **Logic Layer**: Handles core gameplay logic, including movement, interaction, puzzles, and physics triggers.
-- **UI Layer**: Manages HUD, dialogue boxes, menus, and tutorial overlays.
-- **Rendering Layer**: Coordinates animation, transitions, and sprite display.
-
-This structure enables parallel development and unit testing. Game logic and UI code were decoupled using events and observers, enabling modular feature updates without introducing side effects.
-
-### 3.2 Class Diagram
-
-> 📌 *Class Diagram:*  
-> ![Class Diagram](./assets/class-diagram.png)  
-> *(Uploaded image: f9e1970c-8789-4314-be3c-bcbe713d75e8.png)*
-
-### 3.3 Sequence Diagram
-
-> 📌 *Sequence Diagram:*  
-> ![Sequence Diagram](./assets/sequence-diagram.png)  
-> *(Insert diagram showing player input and game object interactions.)*
-
-### 3.4 Behavior Design and Game Flow
-
-The behavior model of *Capoo* focuses on reactive gameplay: players act, and the world responds. Puzzle elements are designed around spatial reasoning and trigger-based logic. A typical level flow includes:
-
-1. **Start**: Player spawns at a checkpoint.
-2. **Exploration**: Player investigates the environment, collecting hints.
-3. **Interaction**: Player activates mechanisms, moves platforms, or talks to NPCs.
-4. **Completion**: Upon solving the puzzle or reaching the goal, the next level is unlocked.
-
-Special attention was given to how puzzles scale with difficulty. Levels at difficulty L2 introduce timing constraints and more complex dependencies between puzzle elements, as reflected in the Evaluation chapter.
-
-### 3.5 UI & UX Design
-
-Capoo’s user interface was designed for clarity and minimalism. It includes:
-
-- **Status Area**: Displays current objective, remaining lives (if any), and tips.
-- **Dialogue Box**: Positioned at the bottom, triggered by proximity to NPCs.
-- **Menu System**: Allows pause, settings adjustment, and tutorial replay.
-
-UI behavior was modeled as a finite state machine (FSM), transitioning between states like `Idle`, `Dialog`, `Paused`, and `ActivePlay`. This simplified state handling and minimized unexpected UI bugs.
-
-### 3.6 Visual & Audio Assets
-
-Although not the focus of this report, the visual style follows a hand-drawn, cartoon aesthetic inspired by the original Capoo character. Audio cues were added for jumping, puzzle completion, and menu transitions. All assets were optimized to maintain low loading times and mobile performance.
-
-### 3.7 Design Reflection
-
-The design phase enabled the team to formalize implementation plans and reduce risks early on. UML models made internal communication more efficient and ensured consistent implementation. By separating rendering from logic, and structuring puzzle elements around abstract interfaces, the game remained flexible for feature additions.
-
----
-
-## 4. Implementation
-
-The implementation of *Capoo* was carried out using Unity and C#, focusing on delivering a playable, polished 2D puzzle-platformer experience. The team adopted an iterative development cycle, using GitHub Projects and weekly Kanban boards to manage sprints. Implementation centered around several core modules: player movement, puzzle mechanics, and interaction systems. Three major technical challenges arose during development: physics handling for platforming, scalable puzzle architecture, and input system generalization.
+The *Capoo* project adopts an object-oriented approach to structure gameplay logic, data flow, and visual presentation. To facilitate collaborative development and modularity, we designed our architecture around clear abstractions and used UML diagrams to model our system’s behavior and structure. In particular, we utilised a **Class Diagram** to represent core entities and their relationships, and a **Sequence Diagram** to model runtime interactions, especially in puzzle-related events such as switch activation and character interaction.
 
 ------
 
-### 4.1 Core Systems and Modules
+### **3.2 Class Diagram**
 
-#### A. **Player Movement and Physics**
+Our class diagram provides a structural overview of *Capoo*’s object-oriented architecture. At its core, the system is driven by a **GameModel**, which holds references to key game objects such as platforms, interactable elements, and the player character.
+![Class Diagram](weekly%20updates/Week%205%20-%20Class%20Diagram.png) 
 
-The `PlayerController` script manages character movement, jump mechanics, and collision with terrain. Unity's Rigidbody2D and BoxCollider2D components were used to simulate realistic motion and platforming interactions. Jump buffering and coyote time were implemented to improve responsiveness:
+<p align="center"><b>Class Diagram</b></p>
 
-- **Jump Buffering**: Allows jump input to be temporarily stored when pressing the jump button just before landing.
-- **Coyote Time**: Lets the player jump a few milliseconds after stepping off a platform, improving playability.
+#### Key Components:
 
-To reduce jitter and ensure smooth transitions between idle, walk, and jump states, an Animator Controller was integrated with conditions mapped to movement state variables.
+- **GameModel**: Serves as the central container for game state and level data. It stores all terrain, interactive elements (e.g., `Switches`, `Keys`, `ElevatingWalls`), and references to the `Capoo` character.
+- **Capoo**: Inherits from `AbstractCharacter`, encapsulating properties such as position, speed, and state (e.g., `facingRight`, `isGrounded`). It is the player-controlled entity responsible for interacting with puzzles and moving across terrain.
+- **Terrain & Environment**: Classes such as `Ground`, `Trap`, `Spring`, `Water`, and `Climb` inherit from `AbstractTerrain`. These are used to render the static environment and define different gameplay zones with unique physical effects.
+- **Interactables**:
+  - `Switches`: Can be triggered by the player or other entities. Linked to actions such as activating `ElevatingWalls`.
+  - `Keystem`: Represents collectible or logic-triggering items that influence puzzle conditions.
+  - `Flag`: Represents level goals or checkpoints.
+  - `Potion`, `Wizard`: Dynamic game objects that can be interacted with or triggered conditionally.
+- **GameController**: Controls the game loop logic including player input, game reset, and interactions. Interfaces directly with the `GameModel` and processes collision and event updates.
+- **MapLoader**: Responsible for loading and parsing level data into structured game objects.
+- **UI and Rendering**:
+  - `GameView`: Renders the visual interface by referencing `GameModel`.
+  - `RenderLogic`, `SplineLayer`, and `Cloud`: Manage background animations and UI transitions, powered by the THREE.js rendering engine.
 
-#### B. **Puzzle Interaction System**
-
-The puzzle system was built around a modular `PuzzleObject` superclass, extended by concrete implementations such as `Switch`, `Door`, and `PlatformTrigger`. All objects implement a shared `IInteractable` interface with an `Activate()` method. Puzzle chains were managed via Unity Events or direct references.
-
-For example:
-
-- A switch triggers a door if `isLinked` is true.
-- Some puzzles require simultaneous activation of multiple levers.
-- States are stored using a `PuzzleStateManager` to allow resets and save points.
-
-This design allowed flexibility in puzzle design and encouraged experimentation during level creation.
-
-#### C. **UI and Tutorial System**
-
-Unity UI (uGUI) was used to build the in-game interface. The `UIManager` dynamically updates objectives and tutorial messages. An interactive tutorial was built into the first level and designed to teach the player through experience rather than text. Context-sensitive tips appear when the player encounters new mechanics.
+This modular structure allows for flexible development and easy modification of individual game systems.
 
 ------
 
-### 4.2 Major Development Challenges
+### **3.3 Sequence Diagram**
 
-#### 1. **Physics and Collision Bugs**
+To represent dynamic gameplay interaction, we created a sequence diagram that models a typical scenario where the player activates a switch that raises a wall and unlocks a key mechanism.
+![Sequence Diagram](weekly%20updates/Week%205%20-%20Sequence%20Diagram.png.png)
 
-A major challenge was ensuring stable physics-based interactions. Unity's built-in 2D physics system occasionally caused the character to stick to walls or clip through platforms. The team addressed this by:
+<p align="center"><b>Sequence Diagram</b></p>
 
-- Refining collider shapes and edge colliders for platforms.
-- Applying drag and velocity capping to limit out-of-control motion.
-- Using raycasting for grounded checks instead of relying solely on physics events.
+#### Scenario Flow :
 
-#### 2. **Scalable Puzzle Logic**
+1. Player initiates movement using key inputs processed by `GameController`.
+2. `Capoo` updates its position and interacts with terrain using gravity and collision checks (e.g., `canClimb()`, `isNearPix()`).
+3. A collision with a `Potion` or `Switches` object is detected:
+   - For `Potion`: updates Capoo’s velocity and position.
+   - For `Switch`: triggers wall movement (`ElevatingWalls`) via `setTarget()` and `updateWallPosition()`.
+4. The game logic updates the visual state (`GameView.drawGameScreen()`), and the camera updates its position via `RenderLogic`.
+5. Additional UI feedback is managed via the `Message` class and `Utils.showPotion()` method.
 
-Initially, puzzle logic was hardcoded for specific levels. This approach quickly became unsustainable. To resolve this, the team introduced:
-
-- An event-based linking system where puzzle components broadcast actions (`OnActivate`, `OnDeactivate`) that can be listened to by any number of other objects.
-- ScriptableObjects to define reusable puzzle configurations.
-- Visual indicators to debug link status during development.
-
-This modular architecture improved level editor productivity and reduced bugs.
-
-#### 3. **Cross-Platform Input Abstraction**
-
-Capoo was designed to be compatible with keyboard, controller, and (optionally) mobile input. To unify input handling:
-
-- Unity’s new Input System was adopted over the legacy system.
-- A centralized `InputManager` class mapped actions (`Move`, `Jump`, `Interact`) to physical inputs across devices.
-- UI elements were responsive to input device changes (e.g., icons switching from keyboard to gamepad).
-
-This enhanced accessibility and made future device support easier.
+The sequence clearly demonstrates the flow of control from player input to game logic and rendering, emphasizing how interactions cascade through the system.
 
 ------
 
-### 4.3 Asset Integration and Optimization
+### **3.4 Design Considerations**
 
-To maintain performance, all visual assets were compressed and sprites were packed using Unity's Sprite Atlas system. Audio was compressed using Vorbis and normalized to avoid distortion. Background assets were layered using parallax scrolling to enhance depth without impacting frame rate.
+During design and implementation, we faced several technical challenges that led to important design decisions:
 
-Object pooling was used for repeated elements such as particle effects, preventing excessive instantiation and memory churn during runtime.
-
-------
-
-### 4.4 Testing and Debugging Tools
-
-In-editor debug tools included:
-
-- **Hitbox Visualizer**: Overlays hitboxes and interaction zones.
-- **Puzzle State Viewer**: Displays active/inactive states for all puzzle components.
-- **Performance Monitor**: Tracks frame rate and memory usage on test devices.
-
-Unit tests were written for critical scripts like `PlayerController` and `PuzzleObject`. Manual QA was conducted throughout development, with playtest feedback incorporated into the puzzle refinement loop.
+- **Modularity vs. Integration**: While we abstracted base classes such as `AbstractEntity`, `AbstractTerrain`, and `AbstractItem` to promote reusability, we needed to balance this with the tight integration required for real-time gameplay response.
+- **Rendering Separation**: By offloading animation and background logic into `RenderLogic` and `SplineLayer`, we ensured a separation of concerns between game logic and rendering, improving maintainability and scalability.
+- **Puzzle System Scalability**: Elements like `Switches` and `ElevatingWalls` were designed to be easily extendable by assigning ID-based triggers, supporting more complex puzzles in future levels.
 
 ------
 
-### 4.5 Summary
+### **3.5 Iterative Development & Diagram Updates**
 
-Capoo’s implementation required thoughtful design and refactoring to address performance, flexibility, and stability. By modularizing game systems and investing early in reusable architecture, the team reduced long-term technical debt and supported feature expansion. Challenges in physics, puzzle logic, and input abstraction were overcome through a mix of Unity tooling and custom code solutions.
+Consistent with agile methodology, our class and sequence diagrams evolved over time. For example, earlier prototypes had more monolithic controller logic, but we later separated `GameController` and `MapLoader` to improve maintainability and testing. Additionally, classes such as `Capoo`, `Potion`, and `ElevatingWalls` saw expanded responsibilities as gameplay mechanics became clearer through playtesting.
 
----
+------
+
+### **3.6 Conclusion**
+
+The UML models we developed played a crucial role in organizing our design and facilitating communication within the team. By combining a strong object-oriented foundation with agile iteration, we built a flexible and scalable game architecture that can accommodate future features such as multi-character control or extended puzzle mechanics.
+
+## **4. Implementation & Challenges**
+
+During the implementation of *Capoo*, we encountered several technical and architectural challenges that significantly influenced how we structured our codebase and implemented gameplay mechanics. These challenges not only tested our ability to adapt existing libraries but also reinforced the importance of good software engineering practices such as object-oriented design, modularization, and debugging of physics simulations.
+
+We summarize our major challenges below:
+
+------
+
+### **Challenge 1: Spine Model Integration**
+
+One of our key design goals was to bring the personality of Capoo to life through expressive animation. To achieve this, we used the **Spine animation model** from *Capoo Pals*. However, *p5.js*, our main framework for game logic, does not natively support Spine.
+
+To solve this, we adopted a hybrid rendering solution:
+
+- We integrated **Three.js** specifically to render the Spine character model.
+- The game logic, UI, and gameplay rendering remained within the **p5.js** environment.
+
+This introduced complexity in synchronising game state between the two rendering contexts. For example, the Capoo model's facing direction, animation state, and position had to be manually updated based on logic handled by `GameModel` and `Capoo` classes in p5.js. Despite the complexity, this approach allowed us to maintain p5.js’s simplicity while leveraging Three.js’s flexibility for skeletal animation.
+
+> **Key Takeaway:** This integration allowed us to retain the charming animation style of Capoo, but required careful coordination between libraries and update loops to ensure smooth rendering.
+
+------
+
+### **Challenge 2: Object-Oriented Programming Refactor**
+
+Our initial prototype was built in a **script-style format**, where all logic was spread across multiple JavaScript files attached directly to the HTML. This led to **tight coupling**, poor reusability, and difficulties in managing the growing complexity of the game logic.
+
+To improve code structure and maintainability, we undertook a **full refactor using OOP principles**:
+
+- We created clear class hierarchies (`AbstractEntity`, `AbstractTerrain`, `Capoo`, `Switch`, `Potion`, etc.).
+- We used **encapsulation** to hide internal state and expose only necessary interfaces (e.g., `update()`, `collide()`, `move()`).
+- We applied **inheritance** to create polymorphic behaviors (e.g., all terrain elements inherit from `AbstractTerrain`).
+- We transitioned to **ES6 modules**, enabling better file separation and dependency management.
+
+This refactor took nearly a full sprint but paid off by enabling cleaner logic separation, reusable systems, and better collaboration across the team.
+
+> **Key Takeaway:** Refactoring for OOP was essential for scalability, especially with multiple types of interactive elements and physics objects sharing behavior.
+
+------
+
+### **Challenge 3: Physics and Collision Bugs**
+
+Implementing reliable **physics interactions and collision detection** was another significant hurdle. Early in development, we encountered several issues:
+
+- Capoo would **clip through terrain or platforms**, especially at corners.
+- The character could get **stuck to walls**, due to overlapping bounding boxes and imprecise collision checks.
+- Inconsistent jump mechanics, caused by timing issues with `isGrounded` detection and terrain state updates.
+
+To address this, we implemented:
+
+- A more precise **tile-based collision system**, where each entity checks collisions using adjusted hitboxes relative to its position and sprite dimensions.
+- Logical state flags (e.g., `onGround`, `canJump`) to **control character state transitions** and avoid unintended behaviors.
+- Frame-wise correction in `update()` methods to prevent multi-frame glitches caused by high speed or overlapping collisions.
+
+After multiple rounds of debugging and playtesting, we were able to achieve consistent and stable interactions, with Capoo responding correctly to terrain, jump inputs, and puzzle objects like `Switches` and `Potion`.
+
+> **Key Takeaway:** Stable and responsive physics is critical in a puzzle-platformer. Careful tuning of hitboxes and state logic was necessary to ensure playability and fairness.
+
+------
+
+### **Conclusion**
+
+Each challenge forced us to adapt and improve our technical approach. From animation system integration, to architecture refactoring, to gameplay responsiveness, these implementation problems guided the evolution of *Capoo* and shaped its final experience. Despite early difficulties, they ultimately contributed to a more stable, engaging, and maintainable game.
+
+------
 
 ## 5. Evaluation
 
-### 5.1 Quantitative Evaluation: NASA TLX & SUS  
-#### Objectives
+### 5.1 Qualitative Evaluation: Heuristic Evaluation  
 
-This study aimed to assess:
+![Heuristic Evaluation](weekly%20updates/Week%207%20-%20Heuristic%20Evaluation.png)
 
-- How difficulty levels (L1 vs L2) affect player workload using **NASA TLX**.
-- How players perceive the usability of the game using **System Usability Scale (SUS)**.
-- Whether differences in difficulty meaningfully impact experience.
+### 5.2 Quantitative Evaluation: NASA TLX & SUS  
 
-#### Methodology
 
-- **Participants**: 10 university students with varying gaming experience.
-- **Design**: A within-subjects design. Half the participants played L1 first, the other half started with L2 to control for learning effects.
-- **Tools**: NASA TLX form (6 dimensions), SUS questionnaire (10 items).
-- **Analysis**: Wilcoxon signed-rank test for statistical significance.
+### Objective
 
-#### Results
+This report aims to evaluate the user experience of the platformer puzzle game "Capoo" at low difficulty (L1) and high difficulty (L2) using quantitative methods, comparing workload and usability differences.
 
-- **NASA TLX Scores** (Average):
-  - L1: 24.58
-  - L2: 28.75
-     → Slight increase in workload for L2, not statistically significant (W = 36, p > 0.05)
-- **SUS Scores** (Average):
-  - L1: 45.5
-  - L2: 43.5
-     → Minor decrease in usability at higher difficulty, also not significant (W = 24, p > 0.05)
+### Background
 
-#### Interpretation
+NASA TLX is a tool for measuring subjective workload across six dimensions (Hart & Staveland, 1988). SUS is a reliable usability assessment tool (Brooke, 1986). This study combines both methods to analyze the impact of Capoo’s difficulty on player experience.
 
-While L2 presented slightly more physical and mental demands, the differences were not large enough to be statistically significant. The SUS results showed a similar trend, indicating slightly lower satisfaction with L2’s controls, likely due to its increased complexity.
+### Goals
 
-#### Design Insights
+- Quantify the workload (NASA TLX) and usability (SUS) of Capoo at L1 and L2.
+- Use statistical tests to determine the significance of differences.
 
-- Feedback indicated that L2 puzzles could be made more difficult to better differentiate from L1.
-- Some users noted inconsistencies in jump responsiveness at L2, affecting their perception of control.
-- The team implemented smoother jump arcs and clearer visual cues in response.
-### 5.2 Qualitative Evaluation: Heuristic Evaluation  
-#### Method
+------
 
-The team conducted a heuristic evaluation using Nielsen’s 10 usability principles. Team members and test players identified potential issues while observing gameplay.
+## Methodology
 
-#### Findings & Fixes
+### Participants
 
-| Heuristic                               | Issue Identified                             | Improvement Implemented                          |
-| --------------------------------------- | -------------------------------------------- | ------------------------------------------------ |
-| **Visibility of system status**         | Lack of feedback when switches are activated | Added audio and particle feedback                |
-| **Match between system and real world** | Some puzzle interactions unclear             | Added contextual tooltips and icons              |
-| **User control and freedom**            | No way to skip or pause tutorials            | Introduced skip button and pause menu            |
-| **Consistency and standards**           | Inconsistent dialogue layout across NPCs     | Unified text box design and alignment            |
-| **Recognition vs recall**               | Objective reminders missing during gameplay  | Objectives are now pinned in the top-left corner |
-| **Help and documentation**              | Tutorial too text-heavy for beginners        | Replaced with interactive in-game guidance       |
+- **Number**: 10 volunteers.
+- **Characteristics**: Classmates with no specific gaming experience requirements.
+- **Selection Method**: Random recruitment.
+
+### Experimental Design
+
+- **Difficulty Levels**: Capoo includes L1 (low difficulty) and L2 (high difficulty).
+- **Testing Order**:
+  - 5 users played L1 first, then L2.
+  - 5 users played L2 first, then L1.
+  - This minimizes learning effects.
+
+### Data Collection
+
+- **Tools**:
+  - NASA TLX: 6 dimensions (raw scores).
+  - SUS: 10-question survey.
+- **Procedure**: Each user played one difficulty level and then filled out the NASA TLX and SUS forms, resulting in four scores per participant.
+
+### Scoring Method
+
+- **NASA TLX**: Dimension score = (Rating - 1) × 25, Total score = (∑ Dimension scores) / 6.
+- **SUS**: Odd-numbered questions = Rating - 1, Even-numbered questions = 5 - Rating, Total score = (∑ Score contributions) × 2.5.
+
+### Data Analysis
+
+- **Tool**: Wilcoxon signed-rank test.
+- **Online Calculator**: [Statology Wilcoxon Test Calculator](https://www.statology.org/wilcoxon-signed-rank-test-calculator/)
+- **Significance Level**: α = 0.05.
+
+------
+
+## Results
+
+### Data Overview
+
+| User ID | L1 NASA TLX | L2 NASA TLX | L1 SUS | L2 SUS |
+| ------- | ----------- | ----------- | ------ | ------ |
+| V1      | 12.5        | 16.67       | 55     | 50     |
+| V2      | 20.83       | 20.83       | 45     | 35     |
+| V3      | 29.17       | 33.33       | 55     | 55     |
+| V4      | 20.83       | 25          | 45     | 42.5   |
+| V5      | 29.17       | 29.17       | 52.5   | 50     |
+| V6      | 37.5        | 41.67       | 37.5   | 40     |
+| V7      | 33.33       | 37.5        | 42.5   | 45     |
+| V8      | 8.33        | 16.67       | 37.5   | 40     |
+| V9      | 37.5        | 45.83       | 35     | 35     |
+| V10     | 16.67       | 20.83       | 55     | 42.5   |
+
+- **Averages**: 
+  - L1 NASA TLX: 24.58, L2 NASA TLX: 28.75.
+  - L1 SUS: 45.5, L2 SUS: 43.5.
+
+#### Graphical Representation
+
+- **Figure 1: NASA TLX Dimension Comparison**
+  ![NASA TLX Dimension Comparison](images/NASA_TLX_Dimension_Comparison.png)
+
+
+- **Figure 2: SUS Score Trends**
+
+![SUS Score Trends](images/SUS_Score_Trends.png)
+
+
+- **Figure 3: Correlation Between SUS and NASA TLX**
+
+![Correlation Between SUS and NASA TLX](images/Correlation_Between_SUS_and_NASA_TLX.png)
+
+
+### Statistical Analysis
+
+- **NASA TLX**:
+  - Wilcoxon test result: W = 36 (n=8, excluding zero values).
+  - Critical value (n=8, α=0.05): 3.
+  - Conclusion: W > 3, no significant difference.
+- **SUS**:
+  - Wilcoxon test result: W = 24 (n=8, excluding zero values).
+  - Critical value (n=8, α=0.05): 3.
+  - Conclusion: W > 3, no significant difference.
+
+------
+
+## Discussion
+
+### Interpretation of Results
+
+- **Workload**: L2 NASA TLX (28.75) is slightly higher than L1 (24.58), mainly due to increased physical demands (e.g., jumping) and mental effort (e.g., puzzle complexity), but the difference is not significant.
+- **Usability**: L1 SUS (45.5) is slightly higher than L2 (43.5), suggesting that the increased difficulty of L2 slightly reduced perceived usability, but not significantly.
+
+### Comparison with Expectations
+
+- It was expected that L2 would have a higher workload and lower usability. The observed trend aligns with expectations but does not reach statistical significance, possibly due to insufficient difficulty differences.
+
+### Design Insights
+
+- Increase the difficulty of L2 by making jumps and puzzles more challenging to amplify workload differences.
+- Optimize L2’s control smoothness (SUS Q1 and Q6 had lower scores) to reduce inconsistencies.
+
+### Limitations
+
+- Small sample size (10 participants) limits statistical power.
+- The difficulty difference between L1 and L2 may not be significant enough to fully reflect puzzle and platforming challenges.
+
+------
+
+## Conclusion
+
+Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS score is lower than L1 (43.5 vs 45.5), but neither difference is statistically significant (NASA TLX W = 36, SUS W = 24, p > 0.05). It is recommended to enhance L2’s difficulty and optimize control experience to improve player immersion.
+
+------
+
+## Appendix
+
+### Game Design Updates
+
+1. **Enhance L2 Jumping Difficulty**: Increase platform height and introduce moving obstacles to heighten physical demand.
+2. **Optimize Puzzle Consistency**: Standardize puzzle hint styles to improve SUS Q4 (consistency) scores.
+3. **Implement Dynamic Difficulty Adjustment**: Adjust jumping and puzzle complexity based on player performance.
+
 ### 5.3 Code Testing and Debugging  
+
 The codebase underwent multiple rounds of testing, including:
 
 - **Unit Tests**: Written for player controls, puzzle activation, and UI visibility logic.
@@ -352,242 +439,177 @@ The codebase underwent multiple rounds of testing, including:
 - **Performance Profiling**: Used Unity Profiler to monitor memory usage, frame rates, and GC allocations. Issues with memory leaks from pooled particles were identified and resolved.
 
 A comprehensive bug tracker was maintained using GitHub Issues. Over 30 bugs were logged and resolved throughout the testing phase.
+
 ### 5.4 Summary  
+
 The evaluation process confirmed that *Capoo* is easy to use and cognitively manageable for casual players, even as difficulty increases. While workload and usability metrics did not show significant shifts, qualitative feedback provided actionable insights for polishing level design and improving onboarding. Heuristic evaluation revealed critical UI flaws that were successfully addressed. Ongoing testing ensured stability, performance, and a better user experience across devices.
 
----
+------
 
 ## 6. Process
 
-The development of *Capoo* followed an agile, team-based approach over the course of several weeks. As a six-member team, we divided roles clearly and used regular communication and planning tools to ensure steady progress. This section outlines our team structure, workflow, collaboration tools, and reflections on what worked well—and what could have been improved.
+The development of *Capoo* adopted an agile methodology, allowing us to iterate quickly, validate ideas early, and adjust to challenges throughout the project. As a six-member team with diverse skillsets, we collaborated effectively using well-defined roles, flexible planning, and regular communication. This section outlines our workflow, tools, collaboration strategies, and reflections on key outcomes.
 
 ------
 
-### 6.1 Team Roles and Responsibilities
+### 6.1 Teamwork and Agile Practices
 
-Each member took on a primary role while contributing flexibly across areas:
+At the start, our requirements were still evolving. Agile’s incremental development cycle suited our needs perfectly, allowing us to break the project into small, manageable units. Each sprint focused on delivering working features—such as camera movement, physics logic, or puzzle modules—that were tested and refined immediately.
 
-| Name        | Role             | Responsibilities                                       |
-| ----------- | ---------------- | ------------------------------------------------------ |
-| Shuyin Deng | Project Manager  | Planning, sprint leadership, requirement modeling      |
-| Jiaxin Fan  | Technical Writer | Documentation, evaluations (NASA TLX & SUS), reporting |
-| Peixuan Li  | Developer        | Puzzle system implementation, player interaction       |
-| Yibu Ma     | Developer        | UI systems, animation integration                      |
-| Yu Qiu      | Developer        | Game logic, input handling, Unity build                |
-| Jiahao Liu  | Test Engineer    | Manual testing, bug tracking, heuristic evaluation     |
+We followed core Agile practices:
 
+- **Weekly sprint planning** to define scope and distribute tasks.
+- **Asynchronous stand-ups** on Microsoft Teams to check progress.
+- **Sprint reviews** with playable builds shared for feedback.
+- **Retrospectives** every Friday to reflect on pain points and improvements.
 
-
-We operated as a cross-functional team, where developers often paired up or reviewed each other’s code, and testers provided early usability feedback.
+Rather than striving for perfection upfront, we emphasized continuous improvement. Working code was prioritized in each sprint, enabling us to gather regular feedback from teammates and testers. This helped identify issues like unclear UI or imbalanced difficulty early, which we could adjust in subsequent iterations.
 
 ------
 
-### 6.2 Workflow and Agile Planning
+### 6.2 Collaboration Tools and Workflow
 
-We structured development into **weekly sprints**, starting with requirement elaboration and ending with feature completion and testing. Our agile process included:
+We used a focused set of tools to streamline collaboration:
 
-- **Sprint Planning**: Weekly meetings to review goals and assign tasks
-- **Daily Stand-ups**: Conducted asynchronously via Microsoft Teams
-- **Sprint Reviews**: Shared demo builds with the group for feedback
-- **Retrospectives**: Reflected on issues and improvements each Friday
+- **GitHub Kanban Board**: Task tracking with columns for “To Do,” “In Progress,” “In Review,” and “Done.” This visual workflow kept everyone aligned and made progress transparent.
+- **P5.js**: The core development engine, used for implementing physics, UI, and gameplay.
+- **Git + GitHub**: Version control with feature branches, pull requests, and code reviews.
+- **Visual Studio Code**: Shared development environment across the team.
+- **Microsoft Teams**: Central platform for discussion, stand-ups, and file sharing.
+- **Google Forms + Excel**: Evaluation data collection and analysis (NASA TLX, SUS).
+- **Miro**: Used during early ideation for wireframes and stakeholder modeling.
 
-Tasks were managed via a shared [GitHub Kanban board](https://github.com/orgs/UoB-COMSM0166/projects/76), with labeled columns for “To Do”, “In Progress”, “In Review”, and “Done”. Issues and pull requests were linked to stories from the requirements phase to maintain traceability.
-
-------
-
-### 6.3 Tools and Platforms
-
-We used a combination of development, communication, and collaboration tools:
-
-- **Unity**: Core game engine (C#), physics simulation, and UI design
-- **Git & GitHub**: Version control, issue tracking, Kanban board
-- **Visual Studio Code**: Primary IDE for all scripting
-- **Miro**: Brainstorming and wireframe sketching during ideation
-- **Microsoft Teams**: Daily communication, file sharing, announcements
-- **Google Forms & Excel**: Data collection and analysis for evaluations
-
-All members were onboarded with Git early on, and we established branch naming conventions and code review practices to ensure stability.
+During development, we maintained stable code by enforcing pull request reviews and consistent branch naming. Members created feature branches, submitted pull requests after testing, and waited for peer review before merging. This process reduced bugs and ensured everyone stayed aware of changes.
 
 ------
 
-### 6.4 Collaboration Highlights
+### 6.3 Role Distribution
 
-- **Shared Ownership**: Even though individual roles existed, everyone participated in at least one other area (e.g., writing, testing, or asset design).
-- **Asynchronous Work**: With varying schedules, we relied on documentation and GitHub updates to maintain visibility across tasks.
-- **Fast Feedback Loops**: By using in-editor playtests and quick builds, we validated ideas within hours, not days.
-- **Cross-Team Comparison**: Midway through development, we discussed stakeholder modeling and epic design with another group, helping us refine our approach to user stories and acceptance criteria.
+Each member took on a primary role while remaining flexible to support other tasks as needed:
 
-------
+| Name        | Role             | Responsibilities                                         |
+| ----------- | ---------------- | -------------------------------------------------------- |
+| Shuyin Deng | Project Manager  |        |
+| Jiaxin Fan  | Technical Writer |   |
+| Peixuan Li  | Developer        | Early stage prototype / Physics and collision / Main logic implementation         |
+| Yibu Ma     | Developer        | OOP refactor / Spine model integration / Game website |
+| Yu Qiu      | Developer        | Player interaction      |
+| Jiahao Liu  | Test Engineer    | UI & Map design / Testing       |
 
-### 6.5 Challenges and Improvements
 
-#### ❌ Communication Delays
 
-- Some confusion arose when Git commits overlapped or features conflicted due to asynchronous workflows. We resolved this by increasing pull request discipline and documenting merge decisions.
-
-#### ❌ Task Estimation
-
-- Certain tasks (like implementing modular puzzle logic) took longer than expected. Future projects would benefit from assigning buffer time in sprints.
-
-#### ✅ Effective Debugging
-
-- The creation of custom Unity editor tools (e.g., puzzle link viewer) dramatically improved debugging efficiency and made collaboration more effective.
-
-#### ✅ Test-Driven Fixes
-
-- Having a dedicated test engineer meant bugs were often caught within hours, keeping build quality high.
+Cross-role contributions were encouraged—for example, developers helped with writing and testing, while testers participated in prototype evaluations and level design discussions.
 
 ------
 
-### 6.6 Reflection
+### 6.4 Highlights and Lessons Learned
 
-The team grew significantly in terms of both technical and collaborative maturity. We learned that agile methods are only effective when paired with accountability and openness. Our structured communication and shared commitment allowed us to respond quickly to issues and polish our game beyond initial expectations.
+- Fast Feedback Loops: In-editor playtests and quick builds allowed us to validate gameplay ideas within hours. This significantly improved iteration speed and creativity.
 
-While there were occasional coordination issues, we ultimately built a stable game that was fun, visually engaging, and user-centered. The project offered valuable experience in translating user stories into code and in working as a professional team within a real-world development cycle.
+- Test-Driven Debugging: Having a dedicated test engineer helped identify issues early, improving overall build stability.
+
+- Asynchronous Coordination: By relying on GitHub comments and Kanban updates, we avoided bottlenecks despite having different schedules.
+
+- Merge Conflicts & Overlaps: Early on, lack of communication led to Git merge conflicts. We solved this by increasing pull request discipline and documenting changes clearly.
+
+- Task Estimation Challenges: Some complex systems (e.g., modular puzzle logic) required more time than expected. We learned to plan buffer time and refine story-point estimation.
+
+------
+
+### 6.5 Reflection and Future Plans
+
+The agile workflow enabled us to adapt quickly as we learned more about the game’s needs. We found that maintaining working features at all times, writing clean and commented code, and using a consistent branching model allowed for a sustainable and efficient development pace.
 
 ## 7. Sustainability, Ethics and Accessibility
 
-As digital games become increasingly embedded in daily life, game developers have a responsibility to design experiences that are not only entertaining but also sustainable, inclusive, and ethically sound. To evaluate *Capoo* from these perspectives, we applied the **Sustainability Awareness Framework (SusAF)**, which considers the impact of software systems across five key dimensions: **Individual, Social, Environmental, Economic, and Technical**. Additionally, we reflected on issues of **accessibility** and **ethical design** throughout development.
+### 7.1 Environmental Sustainability
+
+Although *Capoo* is a lightweight 2D game, we made conscious decisions to minimize its environmental footprint. We optimized asset sizes, limited unnecessary visual effects, and avoided resource-heavy rendering techniques. By choosing **p5.js**—a browser-based and lightweight JavaScript library—we ensured that the game runs efficiently on low-spec hardware, reducing the energy cost required to render and interact with the game.
+
+The game is hosted on **GitHub Pages**, a static hosting platform that reduces server overhead compared to dynamically hosted environments. While we did not measure energy use directly, our decisions were informed by a preference for minimalist design and efficient execution.
+
+> **Reflection**: Future iterations could further reduce environmental impact by compressing image assets, optimizing animations, and exploring green hosting options for game deployment.
 
 ------
 
-### 7.1 Individual Sustainability
+### 7.2 Social and Ethical Impact
 
-*Capoo* is designed as a casual puzzle-platformer, promoting problem-solving and spatial reasoning. While the game supports cognitive development, it also presents risks of overuse.
+*Capoo* was designed to be accessible and enjoyable for a broad range of casual players. The game's humorous tone, simple controls, and low cognitive demands make it approachable for players with varying levels of experience. Difficulty levels (L1 and L2) are included to cater to different preferences and skill levels.
 
-- ✅ *Benefit*: Encourages logical thinking and attention through non-violent puzzles.
-- ⚠️ *Risk*: Excessive gameplay could disrupt real-world responsibilities.
+The visual theme—centered around a whimsical character solving puzzles in a non-violent world—was deliberately chosen to promote **positive, non-aggressive play**. No enemies or combat mechanics are involved, and puzzle solutions are based on logic, timing, and creative thinking, aligning with ethical principles of inclusive and peaceful gameplay.
 
-**Actions Taken**:
+The development process also followed ethical software practices, including:
 
-- Implemented a **gameplay reminder** after 30 minutes.
-- Planned a **time-limit setting** allowing players to manage their screen time.
+- **Original asset use or fair-use adaptation**.
+- Respect for contributors’ time and fair role distribution.
+- Transparent task tracking via GitHub for accountability.
 
-**User Story Example**:
- *As a player, I want to receive a reminder after 30 minutes of gameplay so I can manage my leisure time responsibly.*
-
-------
-
-### 7.2 Social Sustainability and Accessibility
-
-Initially, *Capoo* was a single-player experience without social features. However, we recognized opportunities to build community and improve accessibility.
-
-- ✅ *Opportunity*: Foster community via achievement sharing or co-op levels.
-- ⚠️ *Risk*: Without inclusive design, the game may exclude players with visual impairments or language barriers.
-
-**Actions Taken**:
-
-- Proposed adding **colorblind modes** and **high-contrast UI settings**.
-- Began integrating **multi-language support** for future builds.
-- Designed **visual prompts** for all interactions (not relying solely on color).
-
-**User Story Example**:
- *As a colorblind user, I want to switch to high-contrast mode so I can clearly identify puzzle elements.*
+> **Reflection**: While the game promotes positive interaction, more diverse character options and narrative depth could better represent varied social backgrounds in future expansions.
 
 ------
 
-### 7.3 Environmental Sustainability
+### 7.3 Accessibility Considerations
 
-While *Capoo* is relatively lightweight, resource efficiency on mobile platforms remains important for reducing energy consumption and device strain.
+We made several design choices to improve accessibility:
 
-- ✅ *Opportunity*: Lowering energy use prolongs battery life and reduces carbon footprint.
-- ⚠️ *Risk*: Unoptimized rendering and idle processes can increase power usage unnecessarily.
+- **Color-independent puzzle elements**: Visual indicators such as shape and motion complement color cues to aid colorblind players.
+- **Simple controls**: All game mechanics are operated through standard keyboard inputs with minimal complexity.
+- **Tutorial and difficulty settings**: An optional tutorial and adjustable difficulty settings help new or casual players ease into the game.
+- **Responsiveness across platforms**: As a browser game, *Capoo* is accessible across Windows, macOS, and mobile browsers without installation.
 
-**Actions Taken**:
-
-- Introduced a **power-saving mode** with reduced frame rates and particle effects.
-- Paused all background logic when the game is minimized or inactive.
-- Compressed textures and used **on-demand asset loading** to minimize memory load.
-
-**User Story Example**:
- *As an environmentally conscious user, I want the game to enter power-saving mode to extend battery life.*
+> **Reflection**: While the game accommodates casual play and basic visual limitations, it lacks full accessibility features such as screen reader support. In future versions, we aim to add audio cues to improve inclusiveness.
 
 ------
 
-### 7.4 Economic Sustainability
+### 7.4 Sustainability-Oriented Requirements
 
-The game follows a **free-to-play model**, supported by optional cosmetic purchases and reward-based video ads.
+Our project team used the **Sustainability Awareness Framework (SusAF)** to guide decisions across environmental, social, and technical dimensions. The following are sample user stories reflecting our sustainability mindset:
 
-- ✅ *Benefit*: Accessible to all users without upfront payment.
-- ⚠️ *Risk*: Excessive ads or “pay-to-win” models may alienate players or feel exploitative.
+**Environmental Requirements**
 
-**Actions Taken**:
+- *As a developer*, I want to reduce asset size and rendering load so that the game uses less GPU power.
+- *As a maintainer*, I want to reuse code components to minimize redundancy and improve efficiency.
 
-- Restricted in-app purchases to **cosmetic items** only (e.g., skins).
-- Included **optional reward ads**, such as extra hints or bonus currency.
-- Added a **“Support the Developer”** donation button to promote ethical monetization.
+**Social Requirements**
 
-**User Story Example**:
- *As a non-paying player, I want in-game rewards to be unlocked through skill or effort, not purchases.*
+- *As a new player*, I want an easy mode with guided controls so that I can learn the game comfortably.
+- *As a colorblind user*, I want non-color-based cues to help me navigate puzzles.
 
-------
+**Technical Requirements**
 
-### 7.5 Technical Sustainability
-
-Technical decisions affect the game's long-term maintainability, portability, and ability to evolve.
-
-- ✅ *Benefit*: Modular architecture supports updates and device compatibility.
-- ⚠️ *Risk*: Poor code practices may increase future maintenance costs.
-
-**Actions Taken**:
-
-- Employed **modular code structure** for game logic and puzzle systems.
-- Ensured the game runs on **low-end Android devices** by limiting memory use and draw calls.
-- Used open-source libraries with permissive licenses to reduce technical debt.
-
-**User Story Example**:
- *As a user with a low-end phone, I want the game to run smoothly without lag or overheating.*
+- *As a developer*, I want modular systems for puzzle logic so that I can extend levels without major code rewrites.
+- *As a tester*, I want the game to run in a browser so it can be tested on different devices easily.
 
 ------
 
-### 7.6 Ethical Considerations
-
-Ethical design was a consistent theme during development:
-
-- **No loot boxes** or gambling-like mechanics.
-- **Data Privacy**: No user tracking, personal data collection, or analytics services.
-- **Inclusive Themes**: Avoided violent content; focused on humor and exploration.
-- **Transparent Monetization**: Users are never forced to watch ads or make purchases to progress.
-
-------
-
-### 7.7 Summary
-
-Our analysis using SusAF revealed both strengths and areas for improvement in *Capoo*’s sustainability profile. We implemented meaningful changes to support responsible use, enhance accessibility, and minimize energy consumption. Economic and ethical concerns were addressed through non-intrusive monetization. Going forward, we plan to integrate feedback-based difficulty adjustments, enhance localization, and further reduce runtime footprint to make *Capoo* an inclusive, sustainable, and enjoyable experience for a broad audience.
+This section concludes our discussion on how *Capoo* was built with sustainability and accessibility in mind, while acknowledging future improvements that can be made in hosting efficiency, inclusive design, and social representation.
 
 ------
 
 ## 8. Conclusion
 
-The development of *Capoo* has been a rewarding and enlightening experience, both technically and creatively. Over the course of the project, our team successfully designed and implemented a functional 2D puzzle-platformer that combines intuitive controls, charming aesthetics, and moderately challenging gameplay. Through structured planning, collaborative problem-solving, and iterative feedback, we transformed a simple concept into a complete and playable game.
+The development of *Capoo* was a rewarding yet technically demanding experience that significantly strengthened our software engineering and collaboration skills. Building a physics-based puzzle-platformer with charming visuals and modular design required us to navigate a range of challenges—from integrating Spine animations with p5.js to implementing precise, bug-free collision mechanics.
 
-From a technical standpoint, we learned to architect a modular system in Unity, design scalable puzzle mechanics, and manage cross-platform input in a clean, reusable manner. Our implementation of player movement, interactive environments, and real-time feedback systems improved significantly through user testing. We encountered and overcame complex issues such as physics stability, performance optimization, and UI inconsistencies.
+One of the defining features of our development journey was the decision to refactor our early procedural code into a fully object-oriented system. While time-consuming, this refactor paid off by making our codebase more scalable and maintainable, which proved essential as new gameplay elements like potions, switches, and modular puzzles were introduced. The class and sequence diagrams helped the entire team—regardless of their background—understand system structure and dependencies, enabling more efficient implementation and debugging.
 
-Equally important was the experience of working as a collaborative software development team. Using agile methodologies like sprint planning and Kanban tracking, we developed not only the game but also professional project management skills. Team members communicated effectively across disciplines, respecting diverse perspectives and supporting each other in challenging phases.
+Agile methodology also played a critical role in the success of this project. Through regular sprint planning, retrospectives, and asynchronous updates, we maintained a clear development pace while remaining flexible enough to respond to technical hurdles and player feedback. For example, early usability testing revealed that tutorial screens were confusing and some levels lacked clear feedback cues. By integrating heuristic evaluations and SUS/NASA TLX assessments into our workflow, we systematically addressed these issues, improving both clarity and user engagement.
 
-Evaluation efforts, including quantitative (NASA TLX and SUS) and qualitative (heuristic) methods, provided valuable insights into the user experience. These findings guided improvements in puzzle design, level difficulty, and accessibility—reinforcing our commitment to player-centered development.
+Despite our progress, there are areas we could have improved. Early integration between Three.js and p5.js lacked a clearly defined communication layer, which caused synchronization issues in animations and input feedback. Additionally, adopting more rigorous unit testing earlier in the project—especially for collision detection and interaction systems—could have saved time debugging later. We also encountered minor setbacks with Git merge conflicts, which highlighted the importance of consistent communication and clearer task allocation.
 
-While we are proud of the final result, some limitations remain. Time constraints limited the implementation of multiplayer or community features. Additionally, localization support is still in its early stages, and monetization systems are basic. In future iterations, we hope to expand the game with cooperative modes, additional levels, a level editor, and deeper accessibility options.
+Looking ahead, we see multiple opportunities to extend *Capoo*. These include designing additional levels with dynamic puzzle mechanics, implementing audio cues for accessibility, and eventually creating a mobile-optimized version. The game’s architecture already supports modularity, which will make future expansion feasible without major rewrites.
 
-Ultimately, *Capoo* reflects our collective growth as developers and designers. It stands as a playful, sustainable, and inclusive game prototype—one that we believe delivers both fun and meaningful value to its players. The project has not only strengthened our technical abilities but also deepened our understanding of responsible, user-focused game design.
+Above all, this project gave us our first taste of end-to-end game development in a team setting. Each member brought their strengths—whether in coding, design, testing, or coordination—and learned to adapt to new responsibilities. *Capoo* is not just a game, but the culmination of our collaborative problem-solving, technical growth, and commitment to delivering a creative and enjoyable experience.
 
 ## 9. Individual Contributions
 
-The following table outlines the key contributions made by each team member throughout the development of *Capoo*. While each member had a primary role, all team members collaborated across disciplines when needed. Tasks were shared fairly, and final contributions were approximately balanced across the group.
-
-| Name            | Role             | Key Contributions                                            |
-| --------------- | ---------------- | ------------------------------------------------------------ |
-| **Shuyin Deng** | Project Manager  |  |
-| **Jiaxin Fan**  | Technical Writer |  |
-| **Peixuan Li**  | Developer        |  |
-| **Yibu Ma**     | Developer        | |
-| **Yu Qiu**      | Developer        |  |
-| **Jiahao Liu**  | Test Engineer    |  |
-
-
-
-All team members participated in sprint reviews, design discussions, and Git-based version control. Collaboration was smooth and respectful, and each member contributed significantly to the project’s success.
----
+| Name            | Role             |  Contributions |
+| --------------- | ---------------- | ----------------- |
+| **Shuyin Deng** | Project Manager  | 1                 |
+| **Jiaxin Fan**  | Technical Writer | 1                 |
+| **Peixuan Li**  | Developer        | 1                 |
+| **Yibu Ma**     | Developer        | 1                 |
+| **Yu Qiu**      | Developer        | 1                 |
+| **Jiahao Liu**  | Test Engineer    | 1                 |
 
 
 
@@ -617,51 +639,14 @@ All team members participated in sprint reviews, design discussions, and Git-bas
 
 
 
-**🌾 Rebuild, Connect, and Live Your Dream Farm Life!**  
-<p align="center"><b>Paper Prototype of Stardew Valley</b></p>
-<div style="text-align: center;">
-  <video src="https://github.com/user-attachments/assets/58f3f51d-4996-4ae9-9c22-3bd4396f7b38" controls width="600"></video>
-</div>
 
-
-**🐱 Spin, Solve, and Defy Gravity in a Buttered Chaos!**  
-<p align="center"><b>Paper Prototype of Cato</b></p>
-<div style="text-align: center;">
-  <video src="https://github.com/user-attachments/assets/e05b9fda-6a7e-4d59-81bc-7519a4a13db8" controls width="600"></video>
-</div>
-
-
-
-## 4. Class Diagram
-![Class Diagram](weekly%20updates/Week%205%20-%20Class%20Diagram.png) 
-
-<p align="center"><b>Class Diagram</b></p>
-
-![Sequence Diagram](weekly%20updates/Week%205%20-%20Sequence%20Diagram.png)
-
-<p align="center"><b>Sequence Diagram</b></p>
-
----
-
-## 5. Heuristic Evaluation
-![Heuristic Evaluation](weekly%20updates/Week%207%20-%20Heuristic%20Evaluation.png)
-
----
 
 
 
 
 
 
-##### Graphical Representation
-- **Figure 1: NASA TLX Dimension Comparison**  
-  ![NASA TLX Dimension Comparison](images/NASA_TLX_Dimension_Comparison.png)
-- **Figure 2: SUS Score Trends**  
-  ![SUS Score Trends](images/SUS_Score_Trends.png)
-- **Figure 3: Correlation Between SUS and NASA TLX**  
-  ![Correlation Between SUS and NASA TLX](images/Correlation_Between_SUS_and_NASA_TLX.png)
-
-
+---
 
 
 ### Introduction

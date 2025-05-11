@@ -55,46 +55,50 @@ window.setup = function () {
     }
   }
 
-  window.assets.bgm = loadSound("/asset/sounds/background_music.wav",soundLoaded);
+  window.assets.bgm = loadSound("/2025-group-3/game/asset/sounds/background_music.wav",soundLoaded);
 
-  window.assets.splitPotion = loadSound("/asset/sounds/effect_e010_splitPotion.wav",soundLoaded);
-  window.assets.getPotion = loadSound("/asset/sounds/effect_e012_getPotion.wav",soundLoaded);
+  window.assets.splitPotion = loadSound("/2025-group-3/game/asset/sounds/effect_e010_splitPotion.wav",soundLoaded);
+  window.assets.getPotion = loadSound("/2025-group-3/game/asset/sounds/effect_e012_getPotion.wav",soundLoaded);
 
-  window.assets.getKey = loadSound("/asset/sounds/effect_e002_getkey.wav",soundLoaded);
-  window.assets.death = loadSound("/asset/sounds/effect_e014_death.wav",soundLoaded);
-  window.assets.spring = loadSound("/asset/sounds/effect_e016_spring.wav",soundLoaded);
-  window.assets.switch = loadSound("/asset/sounds/effect_e021_switch.wav",soundLoaded);
-  window.assets.levelComplete = loadSound("/asset/sounds/effect_e026_levelComplete.mp3",soundLoaded);
+  window.assets.getKey = loadSound("/2025-group-3/game/asset/sounds/effect_e002_getkey.wav",soundLoaded);
+  window.assets.death = loadSound("/2025-group-3/game/asset/sounds/effect_e014_death.wav",soundLoaded);
+  window.assets.spring = loadSound("/2025-group-3/game/asset/sounds/effect_e016_spring.wav",soundLoaded);
+  window.assets.switch = loadSound("/2025-group-3/game/asset/sounds/effect_e021_switch.wav",soundLoaded);
+  window.assets.levelComplete = loadSound("/2025-group-3/game/asset/sounds/effect_e026_levelComplete.mp3",soundLoaded);
 
-  window.assets.userStartGame = loadSound("/asset/sounds/effect_e017_miaomiaomiao.wav",soundLoaded); 
-  window.assets.userSelectLevel = loadSound("/asset/sounds/effect_e020_miao.wav",soundLoaded);
+  window.assets.userStartGame = loadSound("/2025-group-3/game/asset/sounds/effect_e017_miaomiaomiao.wav",soundLoaded); 
+  window.assets.userSelectLevel = loadSound("/2025-group-3/game/asset/sounds/effect_e020_miao.wav",soundLoaded);
 
-  window.assets.textFont1 = loadFont("/asset/fonts/comic.ttf");
-  //window.assets.textFont2 = loadFont("/asset/fonts/GILSANUB.TTF");
+  window.assets.textFont1 = loadFont("/2025-group-3/game/asset/fonts/comic.ttf");
+  //window.assets.textFont2 = loadFont("/2025-group-3/game/asset/fonts/GILSANUB.TTF");
   //console.log("Main preload done");
 
   // 用于背景素材, 在gamemodel中加载太慢了
-  window.assets.startscreenbg = loadImage("/asset/startscreenbg.png");
-  window.assets.selectscreenbg = loadImage("/asset/selectscreenbg.png");
-  window.assets.levelCompletebg = loadImage("/asset/bg/Summer6-new.png");
-  window.assets.level1bg = loadImage("/asset/bg/Summer8-new.png");
-  window.assets.level2bg = loadImage("/asset/bg/Summer5-new.png");
-  window.assets.level3bg = loadImage("/asset/bg/Summer3.png");
-  window.assets.level4bg = loadImage("/asset/bg/nature3.png");
+  window.assets.startscreenbg = loadImage("/2025-group-3/game/asset/startscreenbg.png");
+  window.assets.selectscreenbg = loadImage("/2025-group-3/game/asset/selectscreenbg.png");
+  window.assets.levelCompletebg = loadImage("/2025-group-3/game/asset/bg/Summer6-new.png");
+  window.assets.level1bg = loadImage("/2025-group-3/game/asset/bg/Summer8-new.png");
+  window.assets.level2bg = loadImage("/2025-group-3/game/asset/bg/Summer5-new.png");
+  window.assets.level3bg = loadImage("/2025-group-3/game/asset/bg/Summer3.png");
+  window.assets.level4bg = loadImage("/2025-group-3/game/asset/bg/nature3.png");
+  window.assets.level5bg = loadImage("/2025-group-3/game/asset/bg/ocean2.png");
+  window.assets.level6bg = loadImage("/2025-group-3/game/asset/bg/night1.png");
+  window.assets.level7bg = loadImage("/2025-group-3/game/asset/bg/ocean4.png");
+  window.assets.level8bg = loadImage("/2025-group-3/game/asset/bg/Summer7.png");
 
   // 用于开始界面和选关界面的移动云朵素材, 必须在preload中加载, 不可以在gamemodel中加载(因为是异步的)
-  window.assets.startscreenbg_cloud1 = loadImage("/asset/bg/clouds/ocean-3-3-1.png");
-  window.assets.startscreenbg_cloud2 = loadImage("/asset/bg/clouds/ocean-3-3-2.png");
-  window.assets.startscreenbg_cloud3 = loadImage("/asset/bg/clouds/ocean-3-4.png");
-  window.assets.startscreenbg_cloud4 = loadImage("/asset/bg/clouds/clouds-5-3.png");
+  window.assets.startscreenbg_cloud1 = loadImage("/2025-group-3/game/asset/bg/clouds/ocean-3-3-1.png");
+  window.assets.startscreenbg_cloud2 = loadImage("/2025-group-3/game/asset/bg/clouds/ocean-3-3-2.png");
+  window.assets.startscreenbg_cloud3 = loadImage("/2025-group-3/game/asset/bg/clouds/ocean-3-4.png");
+  window.assets.startscreenbg_cloud4 = loadImage("/2025-group-3/game/asset/bg/clouds/clouds-5-3.png");
 
-  //window.assets.selectscreenbg_cloud1 = loadImage("/asset/bg/clouds/cloud-2-2.png");
-  window.assets.selectscreenbg_cloud2 = loadImage("/asset/bg/clouds/cloud-2-3.png");
+  //window.assets.selectscreenbg_cloud1 = loadImage("/2025-group-3/game/asset/bg/clouds/cloud-2-2.png");
+  window.assets.selectscreenbg_cloud2 = loadImage("/2025-group-3/game/asset/bg/clouds/cloud-2-3.png");
 
-  //window.assets.selectscreenbg_cloud3 = loadImage("/asset/bg/clouds/cloud-2-4.png");
-  window.assets.selectscreenbg_cloud4 = loadImage("/asset/bg/clouds/cloud-7-4-1.png");
+  //window.assets.selectscreenbg_cloud3 = loadImage("/2025-group-3/game/asset/bg/clouds/cloud-2-4.png");
+  window.assets.selectscreenbg_cloud4 = loadImage("/2025-group-3/game/asset/bg/clouds/cloud-7-4-1.png");
 
-  //window.assets.arrow = loadImage("/asset/up-arrow.png");
+  //window.assets.arrow = loadImage("/2025-group-3/game/asset/up-arrow.png");
 
   // 保证所有音频素材都加载完再开始游戏
   let checkSoundsLoaded = setInterval(() => {
@@ -237,11 +241,10 @@ window.keyPressed = function () {
     
     // 处理ESC键
     if (keyCode === ESCAPE) { 
-      if (!gameModel.showHelp) {
-          gameModel.showHelp = true;
+      if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
+          gameModel.showHelp = !gameModel.showHelp;
           gameModel.keysESC = true; 
-      } else {
-          gameModel.showHelp = false;
+      } else { // 按下两次esc, 退出到选关页面
           gameModel.keysESC = false;
           gameModel.gameState = GAME_STATE.LEVEL_SELECT;
       }
