@@ -190,7 +190,7 @@ window.draw = function () {
       gameModel.cat[selectedLevel].x, gameModel.cat[selectedLevel].y,
       CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)) {
       window.assets.levelComplete.play();
-      // 移除console.log减少内存占用
+      
       gameModel.gameState = GAME_STATE.LEVEL_COMPLETE;
     }
   }
@@ -270,6 +270,11 @@ window.keyPressed = function () {
           gameModel.switches[gameModel.selectedLevel][i].invincible = false;
           gameModel.switches[gameModel.selectedLevel][i].beActivated = false;
           gameModel.switches[gameModel.selectedLevel][i].prevState = false;
+        }
+        
+        // 如果是前三关，自动显示帮助界面
+        if (gameModel.selectedLevel <= 2) {
+          gameModel.showHelp = true;
         }
       }
   } 
