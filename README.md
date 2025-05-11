@@ -154,6 +154,20 @@ The team broke down user stories into implementable tasks. For example, the "cor
 
 <p align="center"><b>Use Case Diagram</b></p>
 
+
+<p align="center"><b>Use Case Specification</b></p>
+
+|                      | Easy Level                                                                                                                   | Difficult Level                                                                                                                                                         |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Description**      | An introductory level where Capoo does not need to separate from the can, controlled via keyboard (WASD).                    | A more advanced level where Capoo can separate from the can to perform more complex actions, including tougher puzzles and platforming, controlled via keyboard (WASD). |
+| **Basic Flow**       | **Goal**: Learn basic operations, complete simple platforming and puzzle interactions, and finish the level without failing. | **Goal**: Use learned mechanics to solve more complex puzzles, avoid hazards, and reach the finish flag.                                                                |
+| **Step One**         | Player controls Capoo using the keyboard. Pressing S allows Capoo to separate or merge with the can.                         | Player controls Capoo using the keyboard. Pressing S allows Capoo to separate or merge with the can.                                                                    |
+| **Step Two**         | Find the key to open the gate.                                                                                               | Find the key to open the gate.                                                                                                                                          |
+| **Alternative Flow** | Challenge: Capoo falls off platforms, fails to trigger mechanisms, or cannot solve the puzzle.                               | Challenge: Capoo falls off platforms, fails to trigger mechanisms, or cannot solve the puzzle.                                                                          |
+| **Step One**         | Capoo touches water, traps, or mistimes a jump, and gets reset to the start point.                                           | Capoo touches water, traps, or mistimes a jump, and gets reset to the start point.                                                                                      |
+| **Step Two**         | Player can press `H` to bring up a tutorial.                                                                                 | No tutorial available; puzzle elements must be figured out, and mechanisms will not activate if solved incorrectly.                                                     |
+
+
 ------
 
 ## **3. Design**
