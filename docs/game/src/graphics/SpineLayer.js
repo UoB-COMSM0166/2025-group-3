@@ -23,10 +23,10 @@ let animation = "run";
 // 添加脸部表情列表和当前表情索引
 // 可用的脸部动画列表
 let faceAnimations = [
-    "angry", "annoyed", "basic", "beaten", "blankly", "blissful", "blood", "chew",
-    "confidence", "delighted", "die", "dizzy", "down", "eager", "emoji", "flushed",
-    "full", "happy", "hide_all", "hungry", "kawaii", "like", "pleased", "poo",
-    "sad", "serious", "shy", "sleep", "stunned", "tear", "thrilled", "tired", "upset"
+    "basic", "blankly", "blissful", "chew",
+    "confidence", "delighted", "eager", "emoji",
+    "happy", "kawaii", "like", "pleased", "poo",
+    "serious", "shy", "sleep" 
   ];
 // 使用window.currentFaceIndex代替局部变量
 //export let currentFaceIndex = 0; // 当前表情索引
