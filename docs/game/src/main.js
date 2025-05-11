@@ -243,9 +243,10 @@ window.keyPressed = function () {
     gameModel.keys[key] = true;
     if (keyCode === ESCAPE) { 
       if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
-          gameModel.showHelp = !gameModel.showHelp;
+          gameModel.showHelp = true;
           gameModel.keysESC = true; 
-      } else { // 按下两次esc, 退出到选关页面
+      } else {
+          gameModel.showHelp = false // 按下两次esc, 退出到选关页面
           gameModel.keysESC = false;
           gameModel.gameState = GAME_STATE.LEVEL_SELECT;
       }

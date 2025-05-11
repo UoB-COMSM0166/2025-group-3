@@ -59,7 +59,7 @@ export default class GameModel {
         this.offsetY = 0;  
         this.keys = {}; //keys pressed by keyboard
         this.keysESC = false; // 记录是否按下过ESC
-        this.showHelp = true;
+        this.showHelp = false;
         this.messages = []; 
 
         this.potion; // 用于存储黄油对象
