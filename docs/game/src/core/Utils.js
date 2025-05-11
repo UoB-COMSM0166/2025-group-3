@@ -3,6 +3,8 @@ export let showPotion = false;
 export let showBack = true;
 export let PotionX = 0;
 export let PotionY = 0;
+export let isFacingRight = true;
+
 
 
 export const CONSTANT = Object.freeze({
@@ -10,10 +12,10 @@ export const CONSTANT = Object.freeze({
   GAME_HEIGHT: 3200,  //windowHeight
   TILE_SIZE: 70, //70
   TILE_MARGIN: 0,
-  LEVEL_LIST: [1,2],
+  LEVEL_LIST: [1,2,3,4,5,6,7,8],
   FRAME_INTERVAL: 18,
-  CAT_WIDTH: 160,
-  CAT_HEIGHT: 112,
+  CAT_WIDTH: 80,
+  CAT_HEIGHT: 70,
   POTION_WIDTH: 20,
   POTION_HEIGHT: 20
 });
@@ -37,6 +39,14 @@ export function setPotionX(value) {
 
 export function setPotionY(value) {
   PotionY = value;
+}
+
+export function setFacingLeft() {
+  isFacingRight = false;
+}
+
+export function setFacingRight() {
+  isFacingRight = true;
 }
 
 // enum of possible game states
@@ -141,7 +151,7 @@ export class Message {
 
       case "death":
         this.options.textAlign = CENTER;
-        this.options.textColor = color(255, 100, 100);
+        this.options.textColor = color(255, 165, 0);
         this.options.borderColor = color(255, 255, 255);
         this.options.borderWidth = 4;
         this.size = 30;  

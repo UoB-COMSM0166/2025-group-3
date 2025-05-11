@@ -79,6 +79,12 @@ window.setup = function () {
   window.assets.levelCompletebg = loadImage("/asset/bg/Summer6-new.png");
   window.assets.level1bg = loadImage("/asset/bg/Summer8-new.png");
   window.assets.level2bg = loadImage("/asset/bg/Summer5-new.png");
+  window.assets.level3bg = loadImage("/asset/bg/Summer3.png");
+  window.assets.level4bg = loadImage("/asset/bg/nature3.png");
+  window.assets.level5bg = loadImage("/asset/bg/ocean2.png");
+  window.assets.level6bg = loadImage("/asset/bg/night1.png");
+  window.assets.level7bg = loadImage("/asset/bg/ocean4.png");
+  window.assets.level8bg = loadImage("/asset/bg/Summer7.png");
 
   // 用于开始界面和选关界面的移动云朵素材, 必须在preload中加载, 不可以在gamemodel中加载(因为是异步的)
   window.assets.startscreenbg_cloud1 = loadImage("/asset/bg/clouds/ocean-3-3-1.png");
@@ -88,6 +94,7 @@ window.setup = function () {
 
   //window.assets.selectscreenbg_cloud1 = loadImage("/asset/bg/clouds/cloud-2-2.png");
   window.assets.selectscreenbg_cloud2 = loadImage("/asset/bg/clouds/cloud-2-3.png");
+
   //window.assets.selectscreenbg_cloud3 = loadImage("/asset/bg/clouds/cloud-2-4.png");
   window.assets.selectscreenbg_cloud4 = loadImage("/asset/bg/clouds/cloud-7-4-1.png");
 
@@ -236,10 +243,9 @@ window.keyPressed = function () {
     gameModel.keys[key] = true;
     if (keyCode === ESCAPE) { 
       if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
-          gameModel.showHelp = true;
+          gameModel.showHelp = !gameModel.showHelp;
           gameModel.keysESC = true; 
       } else { // 按下两次esc, 退出到选关页面
-          gameModel.showHelp = false;
           gameModel.keysESC = false;
           gameModel.gameState = GAME_STATE.LEVEL_SELECT;
       }
