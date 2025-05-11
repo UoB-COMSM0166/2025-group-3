@@ -61,9 +61,17 @@ The ability to separate Capoo from the can using key inputs, enabling the player
 
 ### Figure 1 - Demonstration of separation
 
+<div align="center">
+  <img src="images/figure1.gif" alt="Capoo Demo" width="400"/>
+</div>
+
 The game is structured across multiple levels, each of which presents increasing puzzle complexity and map decryption difficulty. This will gradually raise the cognitive challenge, ensuring players remain mentally engaged as they progress through the game.
 
 ### Figure 2 - Demonstration of multiple levels
+
+ <div align="center">
+  <img src="images/figure2.gif" alt="Capoo Demo" width="400"/>
+</div>
 
 Its appeal lies in its distinctive art style, playful animations, and inventive gameplay. The development process followed agile methodologies and user-centered design, incorporating feedback from playtesting and usability evaluations.
 
@@ -146,6 +154,20 @@ The team broke down user stories into implementable tasks. For example, the "cor
 
 <p align="center"><b>Use Case Diagram</b></p>
 
+
+<p align="center"><b>Use Case Specification</b></p>
+
+|                      | Easy Level                                                                                                                   | Difficult Level                                                                                                                                                         |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Description**      | An introductory level where Capoo does not need to separate from the can, controlled via keyboard (WASD).                    | A more advanced level where Capoo can separate from the can to perform more complex actions, including tougher puzzles and platforming, controlled via keyboard (WASD). |
+| **Basic Flow**       | **Goal**: Learn basic operations, complete simple platforming and puzzle interactions, and finish the level without failing. | **Goal**: Use learned mechanics to solve more complex puzzles, avoid hazards, and reach the finish flag.                                                                |
+| **Step One**         | Player controls Capoo using the keyboard. Pressing S allows Capoo to separate or merge with the can.                         | Player controls Capoo using the keyboard. Pressing S allows Capoo to separate or merge with the can.                                                                    |
+| **Step Two**         | Find the key to open the gate.                                                                                               | Find the key to open the gate.                                                                                                                                          |
+| **Alternative Flow** | Challenge: Capoo falls off platforms, fails to trigger mechanisms, or cannot solve the puzzle.                               | Challenge: Capoo falls off platforms, fails to trigger mechanisms, or cannot solve the puzzle.                                                                          |
+| **Step One**         | Capoo touches water, traps, or mistimes a jump, and gets reset to the start point.                                           | Capoo touches water, traps, or mistimes a jump, and gets reset to the start point.                                                                                      |
+| **Step Two**         | Player can press `H` to bring up a tutorial.                                                                                 | No tutorial available; puzzle elements must be figured out, and mechanisms will not activate if solved incorrectly.                                                     |
+
+
 ------
 
 ## **3. Design**
@@ -204,7 +226,16 @@ The sequence clearly demonstrates the flow of control from player input to game 
 
 ------
 
-### **3.4 Design Considerations**
+### **3.4 State Machine Diagram**
+
+To help us understand the dynamic behaviors and transitions of key game components, we decided to create a state diagram for Capoo. This diagram illustrates the lifecycle of major objects like `GameModel`, `GameController`, `Capoo`, `Wizard`, `Potion`, `ElevatingWalls`, `MapLoader`, `RenderLogic`, `GameView`, and `SpineLayer`. By mapping out their state transitions—such as how `Capoo` moves from `Idle` to `Walking`, or how the `GameModel` transitions from `Running` to `GameOver`—we gained deeper insights into how interactions flow during gameplay.
+
+Moreover, the state diagram served as a blueprint during development, clarifying the conditions required for state changes. For example, the `Potion` object smoothly transitions from `Inactive` to `Active` upon pickup, and eventually to `Used` when consumed. Similarly, `ElevatingWalls` move from `Static` to `Moving` based on triggers, reflecting game mechanics in a visual and structured manner.
+
+This representation was crucial for identifying edge cases, preventing inconsistent states, and ensuring that the game's logic remains synchronized across different modules. Understanding these states early on allowed us to focus on game logic with confidence, supporting our modular design principles and reducing debugging time as new features were added.
+
+
+### **3.5 Design Considerations**
 
 During design and implementation, we faced several technical challenges that led to important design decisions:
 
@@ -214,13 +245,13 @@ During design and implementation, we faced several technical challenges that led
 
 ------
 
-### **3.5 Iterative Development & Diagram Updates**
+### **3.6 Iterative Development & Diagram Updates**
 
 Consistent with agile methodology, our class and sequence diagrams evolved over time. For example, earlier prototypes had more monolithic controller logic, but we later separated `GameController` and `MapLoader` to improve maintainability and testing. Additionally, classes such as `Capoo`, `Potion`, and `ElevatingWalls` saw expanded responsibilities as gameplay mechanics became clearer through playtesting.
 
 ------
 
-### **3.6 Conclusion**
+### **3.7 Conclusion**
 
 The UML models we developed played a crucial role in organizing our design and facilitating communication within the team. By combining a strong object-oriented foundation with agile iteration, we built a flexible and scalable game architecture that can accommodate future features such as multi-character control or extended puzzle mechanics.
 
@@ -294,7 +325,14 @@ Each challenge forced us to adapt and improve our technical approach. From anima
 
 ### 5.1 Qualitative Evaluation: Heuristic Evaluation  
 
-![Heuristic Evaluation](weekly%20updates/Week%207%20-%20Heuristic%20Evaluation.png)
+| Interface     | Issue                                                                                                                                 | Heuristic(s)                          | Frequency (0–4) | Impact (0–4) | Persistence (0–4) | Severity = (F + I + P) / 3 |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|------------------|---------------|---------------------|-----------------------------|
+| Game UI       | The color contrast is not distinct, making it difficult for players to see clearly.                                                   | Aesthetic and minimalist design        | 3                | 2             | 3                   | (3 + 2 + 3) / 3 = 2.67       |
+| Game Rules    | Players think they can step on monsters and do not understand the function of the mushroom, making the game rules unclear.            | Help and documentation                 | 4                | 3             | 4                   | (4 + 3 + 4) / 3 = 3.67       |
+| Controls      | Using the space key for jumping does not align with user habits and is not easy to operate.                                           | Flexibility and efficiency of use      | 3                | 2             | 3                   | (3 + 2 + 3) / 3 = 2.67       |
+| Game Objects  | Players believe that brown is a toxic color and touching it will cause them to lose health.                                           | Consistency and standards              | 2                | 2             | 3                   | (2 + 2 + 3) / 3 = 2.33       |
+| Exit Option   | There is no clear exit option.                                                                                                         | User control and freedom               | 3                | 3             | 4                   | (3 + 3 + 4) / 3 = 3.33       |
+
 
 ### 5.2 Quantitative Evaluation: NASA TLX & SUS  
 
