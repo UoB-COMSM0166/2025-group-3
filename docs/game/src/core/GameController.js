@@ -43,7 +43,7 @@ export default class GameController {
         let offSetHalf = -catW/2; /* 猫实际坐标在猫图像正下方, 但是猫显示坐标在猫左侧半个身距处
                                     因此所有计算都向左偏移半个身距(-catW/2) */
         let offSetFeet = catH/10; /* 用于猫纵坐标的脚底距离偏移 */
-        let isOnIce=false;
+        
         /* ------------------和所有对象层的交互----------------- */
 
         // 检查是否按下R键重置位置
@@ -90,11 +90,7 @@ export default class GameController {
         }
 
 
-        // 判断猫是否在冰上
-        if(this.beIced(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
-            selectedLevel, tileSize, levelWidth)){
-            isOnIce=true;
-        }
+        
 
         
         // 判断猫是否碰到陷阱(上下边分別检测两个点), 重置回出生点
@@ -156,7 +152,6 @@ export default class GameController {
             
         // 攀爬墙 垂直移动的按键控制
         if(catCanClimb){
-            console.log("可以攀爬");
             if (this.gameModel.keys['ArrowUp']) {
                 newY -= this.gameModel.cat[selectedLevel].speed;
             }
@@ -166,15 +161,12 @@ export default class GameController {
         }
 
         // 合体时按空格可以持续向上飞
-        if(this.gameModel.keys[" "] && this.gameModel.cat[selectedLevel].isMerged && !isOnIce){
+        if(this.gameModel.keys[" "] && this.gameModel.cat[selectedLevel].isMerged){
             this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength; // 赋予向上的初速度
             this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
         }
 
-        if(this.gameModel.keys[" "] && this.gameModel.cat[selectedLevel].isMerged && isOnIce){
-            let message1 = "Ice! You can't jump!"
-            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,2000,30,{},"No Jump"));
-        }
+        
 
         // 不在攀爬墙上时需要施加重力, 确保向下落下
         if(!catCanClimb){
@@ -264,11 +256,11 @@ export default class GameController {
         let potionH = CONSTANT.POTION_HEIGHT; // 需要定义 POTION_HEIGHT
         let offSetHalf = -potionW / 2;
         let offSetFeet = potionH / 2; 
+        let isOnIce=false;
     
         // 水平方向偏移量
         let offSetClimb = potionW / 4;
         this.gameModel.potion.updatePotion(this.gameModel.cat[selectedLevel].x,this.gameModel.cat[selectedLevel].y);
-        console.log("showshow",this.gameModel.cat[selectedLevel].x,this.gameModel.cat[selectedLevel].y);
         
         // 判断罐子是否碰到水，如果碰到水则重置生命
         if(!this.gameModel.cat[selectedLevel].isMerged && 
@@ -279,13 +271,26 @@ export default class GameController {
             this.reLife();
             return;
         }
+
+        // 判断猫是否在冰上
+        if(this.beIced(this.gameModel.potion.x, this.gameModel.potion.y+offSetFeet, 
+            selectedLevel, tileSize, levelWidth) && !this.gameModel.cat[selectedLevel].isMerged){
+            isOnIce=true;
+        }else{
+            isOnIce=false;
+        }
+
+
+        if((this.gameModel.keys["a"] || this.gameModel.keys["d"]) && !this.gameModel.cat[selectedLevel].isMerged && isOnIce){
+            let message1 = "Ice! Pot can't jump!"
+            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,2000,30,{},"No Jump"));
+        }
         
         //检测是否可以合体
         if(Math.abs(newX-this.gameModel.cat[selectedLevel].x)<100 && Math.abs(newY-this.gameModel.cat[selectedLevel].y)<100 && this.gameModel.flagp>50){
             this.gameModel.cat[selectedLevel].isMerged = true;
             setShowBack(true);
             setShowPotion(false);
-            console.log("showshow",this.gameModel.cat[selectedLevel].isMerged,PotionX,PotionY);
             this.gameModel.flagp=0;
         }
         
@@ -296,7 +301,6 @@ export default class GameController {
 
         if(this.gameModel.cat[selectedLevel].isMerged 
             && (this.gameModel.keys['s']||this.gameModel.keys['S'])){
-                console.log("分离");
                 this.gameModel.cat[selectedLevel].isMerged = false;
 
                 // 修改spinelayer, 猫和黄油分开渲染
@@ -304,14 +308,15 @@ export default class GameController {
                 // 黄油分离时初始位置向上偏移，避免立即碰撞检测
                 this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
                 // 给黄油一个向上的初速度
-                this.gameModel.potion.velocityY = -15;
+                this.gameModel.potion.velocityY = -10;
+                this.gameModel.potion.speed =0; // 减小水平初速度
                 setShowBack(false);
                 setShowPotion(true); 
         }
 
 
-        if ((this.gameModel.keys['A']||this.gameModel.keys['a']) && this.gameModel.potion.tanshe ) {     
-            // 如果能左弹射且按下Q键
+        if ((this.gameModel.keys['A']||this.gameModel.keys['a']) && this.gameModel.potion.tanshe && !isOnIce && !this.gameModel.cat[selectedLevel].isMerged ) {     
+            // 如果能左弹射且按下a键
             if (this.gameModel.potion.canShootLeft) {
                 // 检查弹射起始位置
                 if (this.gameModel.cat[selectedLevel].isMerged) {
@@ -337,8 +342,8 @@ export default class GameController {
             }
         }
 
-        if ((this.gameModel.keys['D']||this.gameModel.keys['d']) && this.gameModel.potion.tanshe ) {
-            // 如果能右弹射且按下W键
+        if ((this.gameModel.keys['D']||this.gameModel.keys['d']) && this.gameModel.potion.tanshe && !isOnIce && !this.gameModel.cat[selectedLevel].isMerged) {
+            // 如果能右弹射且按下d键
             if (this.gameModel.potion.canShootRight) {
                 // 检查弹射起始位置
                 if (this.gameModel.cat[selectedLevel].isMerged) {
@@ -363,8 +368,6 @@ export default class GameController {
                 this.gameModel.potion.wallFrameCount = 0; // 重置墙上帧计数
             }
         }
-        console.log("mykey",this.gameModel.keys);
-
 
         if (this.gameModel.cat[selectedLevel].isMerged) {
             // 如果结合，面包跟随猫的位置
@@ -413,7 +416,6 @@ export default class GameController {
                 this.gameModel.potion.canShootRight = !rightCollision; // 右边有墙就不能向右弹射
                 
                 this.gameModel.potion.tanshe = true; // 在墙上可以弹射
-                console.log("墙上碰撞: 左=" + leftCollision + ", 右=" + rightCollision);
             }
             
             // 检查是否在地面上
@@ -436,7 +438,6 @@ export default class GameController {
                 }
                 
                 this.gameModel.potion.tanshe = true; // 可以弹射
-                console.log("地面碰撞: 底部=" + bottomCollision);
             } else {
                 this.gameModel.potion.onGround = false;
             }
@@ -468,9 +469,6 @@ export default class GameController {
                     let accelerationFactor = 0.05 + (this.gameModel.potion.wallFrameCount - 10) / 300;
                     this.gameModel.potion.velocityY += accelerationFactor;
                 }
-                
-                console.log("墙上下滑: 帧数=" + this.gameModel.potion.wallFrameCount + 
-                            ", 速度=" + this.gameModel.potion.velocityY.toFixed(2));
             }
             
             // 尝试移动到新位置
@@ -514,7 +512,6 @@ export default class GameController {
                 this.gameModel.potion.canShootRight = !wouldCollideRightX; // 右边有墙就不能向右弹射
                 
                 this.gameModel.potion.tanshe = true; // 在墙上可以弹射
-                console.log("水平碰撞，开始下滑");
             } else {
                 // 否则执行水平移动
                 this.gameModel.potion.x = testX;
@@ -534,23 +531,14 @@ export default class GameController {
                     this.gameModel.potion.speed = 0; // 落地时水平速度也清零
                     this.gameModel.potion.wallFrameCount = 0; // 重置墙上帧计数
                     
-                    console.log("碰到地面，所有速度清零");
                 } else if (wouldCollideTopY) {
                     // 顶部碰撞时将velocityY设为0
                     this.gameModel.potion.velocityY = 0;
                 }
-                console.log("垂直碰撞阻止");
             } else {
                 // 否则执行垂直移动
                 this.gameModel.potion.y = testY;
             }
-            
-            console.log("Potion状态: 地面=" + this.gameModel.potion.onGround + 
-                        ", 墙=" + this.gameModel.potion.onWall + 
-                        ", 可弹射=" + this.gameModel.potion.tanshe +
-                        ", 左弹=" + this.gameModel.potion.canShootLeft +
-                        ", 右弹=" + this.gameModel.potion.canShootRight +
-                        ", 速度Y=" + this.gameModel.potion.velocityY);
         }
     }
     
@@ -567,11 +555,10 @@ export default class GameController {
         let isColliding = this.gameModel.coll[selectedLevel].data[tileIndex] !== 0;
         
         // 合体墙检测
-         let collWithMergedWall = false;
+        let collWithMergedWall = false;
         let hasMergedWall = this.gameModel.merge[selectedLevel].data[tileIndex] !== 0;
         let mergeWallvisible = this.gameModel.merge[selectedLevel].visible;
         if(hasMergedWall && mergeWallvisible){
-            console.log("碰到合体墙");
             collWithMergedWall = true;
         }
 
@@ -597,7 +584,6 @@ export default class GameController {
         let hasMergedWall = this.gameModel.merge[selectedLevel].data[tileIndex] !== 0;
         let mergeWallvisible = this.gameModel.merge[selectedLevel].visible;
         if(hasMergedWall && mergeWallvisible){
-            console.log("碰到合体墙");
             collWithMergedWall = true;
         }
         // 机关墙检测
@@ -716,7 +702,6 @@ export default class GameController {
                     this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y, 
                     CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)
                 && !this.gameModel.switches[selectedLevel][i].invincible ){
-                //console.log("猫触碰到开关");
                 window.assets.switch.play();
                 this.gameModel.switches[selectedLevel][i].invincible = true; // 设置无效状态
                 this.gameModel.switches[selectedLevel][i].invincibleTimer = 0;//重置计时器
@@ -731,13 +716,9 @@ export default class GameController {
             }
             // 开关状态切换时, 通知机关墙块移动
             if(this.gameModel.switches[selectedLevel][i].prevState !== this.gameModel.switches[selectedLevel][i].beActivated){
-                //console.log("开关状态切换, 机关墙移动");
                 for(let j=0; j<this.gameModel.elevatingWalls[selectedLevel].length; j++){
                     if(this.gameModel.elevatingWalls[selectedLevel][j].id === this.gameModel.switches[selectedLevel][i].id){
                         this.gameModel.elevatingWalls[selectedLevel][j].move();
-                        //console.log("机关墙应该在移动");
-                        console.log( this.gameModel.elevatingWalls[selectedLevel][j].range);
-                        console.log( this.gameModel.elevatingWalls[selectedLevel][j].pixelRange);
                     }
                 }
             }
@@ -754,10 +735,7 @@ export default class GameController {
                 this.gameModel.switches[selectedLevel][i].invincible = false;
                 this.gameModel.switches[selectedLevel][i].invincibleTimer = 0;
             }
-        
         }
-
-        
     }
 
 
