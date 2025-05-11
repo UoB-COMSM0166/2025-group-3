@@ -250,6 +250,17 @@ export default class GameController {
         let offSetClimb = potionW / 4;
         this.gameModel.potion.updatePotion(this.gameModel.cat[selectedLevel].x,this.gameModel.cat[selectedLevel].y);
         console.log("showshow",this.gameModel.cat[selectedLevel].x,this.gameModel.cat[selectedLevel].y);
+        
+        // 判断罐子是否碰到水，如果碰到水则重置生命
+        if(!this.gameModel.cat[selectedLevel].isMerged && 
+           this.inWater(this.gameModel.potion.x, this.gameModel.potion.y, selectedLevel, tileSize, levelWidth)){
+            window.assets.death.play();
+            let message = "罐子不能碰水！";
+            this.gameModel.messages.push(new Message(message, width/2, 4*height/5, 2000, 30, {}, "death"));
+            this.reLife();
+            return;
+        }
+        
         //检测是否可以合体
         if(Math.abs(newX-this.gameModel.cat[selectedLevel].x)<100 && Math.abs(newY-this.gameModel.cat[selectedLevel].y)<100 && this.gameModel.flagp>50){
             this.gameModel.cat[selectedLevel].isMerged = true;
@@ -283,13 +294,20 @@ export default class GameController {
         if (this.gameModel.keys['q'] && this.gameModel.potion.tanshe ) {     
             // 如果能左弹射且按下Q键
             if (this.gameModel.potion.canShootLeft) {
-            this.gameModel.cat[selectedLevel].isMerged = false;
-                this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
-                // 黄油分离时初始位置向上偏移，避免立即碰撞检测
-                this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y - 30;
-                setShowBack(false);
-                setShowPotion(true); 
-           
+                // 检查弹射起始位置
+                if (this.gameModel.cat[selectedLevel].isMerged) {
+                    // 合体状态：从猫的位置弹射
+                    this.gameModel.cat[selectedLevel].isMerged = false;
+                    this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
+                    this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y - 30;
+                    setShowBack(false);
+                    setShowPotion(true);
+                } else {
+                    // 分离状态：从potion当前位置弹射，保持当前位置不变
+                    // 不需要修改potion的位置
+                }
+                
+                // 设置速度和状态变量
                 this.gameModel.potion.speed = -10; // 减小水平初速度
                 this.gameModel.potion.velocityY = -15; // 减小竖直初速度
                 this.gameModel.potion.gravityScale = 0.4; // 大幅降低重力比例
@@ -303,13 +321,20 @@ export default class GameController {
         if (this.gameModel.keys['w'] && this.gameModel.potion.tanshe ) {
             // 如果能右弹射且按下W键
             if (this.gameModel.potion.canShootRight) {
-                 this.gameModel.cat[selectedLevel].isMerged = false;
-                this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
-                // 黄油分离时初始位置向上偏移，避免立即碰撞检测
-                this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y - 30;
-                setShowBack(false);
-                setShowPotion(true); 
-               
+                // 检查弹射起始位置
+                if (this.gameModel.cat[selectedLevel].isMerged) {
+                    // 合体状态：从猫的位置弹射
+                    this.gameModel.cat[selectedLevel].isMerged = false;
+                    this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
+                    this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y - 30;
+                    setShowBack(false);
+                    setShowPotion(true);
+                } else {
+                    // 分离状态：从potion当前位置弹射，保持当前位置不变
+                    // 不需要修改potion的位置
+                }
+                
+                // 设置速度和状态变量
                 this.gameModel.potion.speed = 10; // 减小水平初速度
                 this.gameModel.potion.velocityY = -15; // 减小竖直初速度
                 this.gameModel.potion.gravityScale = 0.4; // 大幅降低重力比例
@@ -382,9 +407,14 @@ export default class GameController {
                 }
                 this.gameModel.potion.velocityY = 0;
                 
-                // 在地上时，可以向两个方向弹射
-                this.gameModel.potion.canShootLeft = true;
-                this.gameModel.potion.canShootRight = true;
+                // 只有在不靠墙的情况下，地面才能重设弹射方向
+                // 保留墙壁碰撞的限制优先级
+                if (!leftCollision) {
+                    this.gameModel.potion.canShootLeft = true;
+                }
+                if (!rightCollision) {
+                    this.gameModel.potion.canShootRight = true;
+                }
                 
                 this.gameModel.potion.tanshe = true; // 可以弹射
                 console.log("地面碰撞: 底部=" + bottomCollision);
@@ -477,7 +507,7 @@ export default class GameController {
                 if (wouldCollideBottomY) {
                     // 如果是底部碰撞，设置地面状态
                     this.gameModel.potion.onGround = true;
-                    this.gameModel.potion.onWall = false; // 接触地面时重置墙上状态
+                    //this.gameModel.potion.onWall = false; // 接触地面时重置墙上状态
                     this.gameModel.potion.canShootLeft = true;
                     this.gameModel.potion.canShootRight = true;
                     this.gameModel.potion.tanshe = true;
