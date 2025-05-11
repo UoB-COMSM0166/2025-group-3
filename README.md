@@ -481,13 +481,57 @@ Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS s
 
 ### 5.3 Code Testing and Debugging  
 
-The codebase underwent multiple rounds of testing, including:
+We used black-box testing with equivalence partitioning to validate the game. Test cases were designed based on input types and game states, without looking at the internal code. We focused on transitions (e.g. main menu to level select), controls (e.g. movement, jumping), and interactions (e.g. keys, traps, water). Each feature was tested using representative inputs from different equivalence classes to ensure correct behavior.
 
-- **Unit Tests**: Written for player controls, puzzle activation, and UI visibility logic.
-- **Integration Tests**: Verified smooth transitions between levels and puzzle dependencies.
-- **Manual Testing**: Developers performed end-to-end playthroughs on both Windows and Android devices.
+#### 1. Game State and Scene Testing
 
-A comprehensive bug tracker was maintained using GitHub Issues. Over 30 bugs were logged and resolved throughout the testing phase.
+| ID    | Description                        | Precondition                           | Test Steps                                                   | Expected Result                                              |
+| ----- | ---------------------------------- | -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TC-01 | Game Launch and Main Menu Test     | Launch the game                        | 1. Start the game2. Observe the main menu                    | - Game resources load correctly- "Capoo" title appears on the main menu- "Press ENTER To Start" prompt is shown- Background and cloud animation display properly |
+| TC-02 | Transition from Main to Level Menu | Game is at the main menu               | 1. Press ENTER on the main menu                              | - Game state changes from START to LEVEL_SELECT- Level selection screen displays correctly- "Use LEFT/RIGHT To Choose Press SPACE To Start" prompt appears- All level options are visible, with the current one highlighted |
+| TC-03 | Level Selection Functionality      | Game is at level selection screen      | 1. Press LEFT arrow key2. Press RIGHT arrow key3. Observe changes | - LEFT arrow decreases selected level index (unless at first level)- RIGHT arrow increases selected level index (unless at last level)- Selected level is highlighted |
+| TC-04 | Level Loading Function             | At level selection, one level selected | 1. Press SPACE                                               | - Game state changes from LEVEL_SELECT to PLAYING- Selected level loads and displays correctly- Character appears at initial position- Level background, terrain, and items are displayed correctly |
+
+------
+
+#### 2. Character Movement and Control Testing
+
+| ID    | Description                      | Precondition                                             | Test Steps                                                   | Expected Result                                              |
+| ----- | -------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TC-05 | Basic Character Movement         | Game is in PLAYING state, character on ground            | 1. Press LEFT2. Release LEFT3. Press RIGHT4. Release RIGHT   | - Character moves left and faces left when LEFT key is pressed- Character moves right and faces right when RIGHT key is pressed- Character stops moving when key is released |
+| TC-06 | Flying When Merged with Potion   | Game is in PLAYING state, character merged with potion   | 1. Press SPACE2. Hold SPACE3. Release SPACE                  | - Character flies upward when SPACE is pressed- Keeps flying while SPACE is held- Falls when SPACE is released |
+| TC-07 | Separation from Potion           | Game is in PLAYING state, character merged with potion   | 1. Press S                                                   | - Character separates from potion- Potion pops upward- Merge wall disappears (merge layer invisible) |
+| TC-08 | Potion Ejection After Separation | Game is in PLAYING state, potion and character separated | 1. Ensure potion is landed or stuck to wall2. Press A to test left ejection3. Press D for right | - Potion can be ejected from ground/wall- A triggers left-upward ejection- D triggers right-upward ejection- Potion has proper initial velocity and gravity scaling |
+| TC-09 | Climbing Feature                 | Game is in PLAYING state, near climbable wall            | 1. Move character near wall2. Press UP3. Press DOWN          | - Wall is detected as climbable- UP moves character upward- DOWN moves character downward- Gravity doesn't apply while climbing |
+| TC-10 | Automatic Remerge with Potion    | Game is in PLAYING state, potion and character separated | 1. Move character close to potion                            | - Potion automatically merges when close- Potion appears on back- Merge wall becomes visible again |
+
+------
+
+#### 3. Game Mechanics and Interaction Testing
+
+| ID    | Description                           | Precondition                                                 | Test Steps                                          | Expected Result                                              |
+| ----- | ------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------------ |
+| TC-11 | Spring Mechanism                      | Game is in PLAYING state, level contains spring bed          | 1. Move character onto spring bed                   | - Character gains upward speed- Bounce height exceeds regular jump- Spring sound plays |
+| TC-12 | Collecting Keys                       | Game is in PLAYING state, level contains visible key         | 1. Move character to contact key                    | - Key disappears on contact- Key count increases- UI updates- Key collection sound plays |
+| TC-13 | Level Completion                      | Game is in PLAYING state, all keys collected                 | 1. Move character to touch the flag                 | - State changes to LEVEL_COMPLETE- Completion screen shows- "Level Complete!" and continuation options appear- Completion sound plays |
+| TC-14 | Switch and Mechanism Wall Interaction | Game is in PLAYING state, level contains switch and wall     | 1. Touch switch2. Observe wall3. Touch switch again | - Switch changes state- Wall moves to target- Pressing again returns wall to original- Switch sound plays |
+| TC-15 | Water Hazard                          | Game is in PLAYING state, level contains water area          | 1. Lead character into water                        | - Character dies- Message "Cats dissolve easily in water!" shown- Respawn at starting point- Death sound plays |
+| TC-16 | Trap Hazard                           | Game is in PLAYING state, level contains traps               | 1. Lead character into trap                         | - Character dies- Message "You are trapped!" shown- Respawn at starting point- Death sound plays |
+| TC-17 | Potion Falling into Water             | Game is in PLAYING state, potion and character separated, level has water | 1. Make potion fall into water                      | - Game resets- Message "No water with my pot!" shown- Character and potion respawn and remerge- Death sound plays |
+| TC-18 | Ice Surface Limitation                | Game is in PLAYING state, level contains ice surface         | 1. Move character onto ice2. Attempt to jump        | - Jumping is disabled- Message "Ice! You can't jump!" shown  |
+
+------
+
+#### 4. UI and Accessibility Testing
+
+| ID    | Description                   | Precondition                    | Test Steps                                                   | Expected Result                                              |
+| ----- | ----------------------------- | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TC-19 | Help Interface                | Game is in PLAYING state        | 1. Press H to show help2. Press any key to close             | - H key shows help overlay with game controls- Any key hides help and returns to game |
+| TC-20 | Level Reset                   | Game is in PLAYING state        | 1. Press R                                                   | - Character resets to start- All keys reset- Switches and walls reset- Message "Restarting level..." shown- Death sound plays |
+| TC-21 | Return to Level Selection     | Game is in PLAYING state        | 1. Press ESC                                                 | - State changes to LEVEL_SELECT- Character and level state saved- Level selection screen shown |
+| TC-22 | Post-Level Completion Options | Game is in LEVEL_COMPLETE state | 1. Press any key (except ESC) to continue2. Press ESC after completion | - If not last level, any key starts next level- If last level, any key returns to selection- ESC returns to selection in all cases |
+
+
 
 ### 5.4 Summary  
 
