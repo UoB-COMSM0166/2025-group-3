@@ -295,6 +295,7 @@ export default class GameController {
                 this.gameModel.potion.gravityScale = 0.4; // 大幅降低重力比例
                 this.gameModel.potion.tanshe = false; // 禁用弹射状态直到下次碰撞
                 this.gameModel.potion.onWall = false; // 弹射时重置墙上状态
+                this.gameModel.potion.onGround = false; // 弹射时重置地面状态
                 this.gameModel.potion.wallFrameCount = 0; // 重置墙上帧计数
             }
         }
@@ -314,6 +315,7 @@ export default class GameController {
                 this.gameModel.potion.gravityScale = 0.4; // 大幅降低重力比例
                 this.gameModel.potion.tanshe = false; // 禁用弹射状态直到下次碰撞
                 this.gameModel.potion.onWall = false; // 弹射时重置墙上状态
+                this.gameModel.potion.onGround = false; // 弹射时重置地面状态
                 this.gameModel.potion.wallFrameCount = 0; // 重置墙上帧计数
             }
         }
@@ -325,6 +327,10 @@ export default class GameController {
             this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
             this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y-30;
             this.gameModel.potion.tanshe = true; // 在猫身上时可以弹射
+            
+            // 合体状态下，可以向两个方向弹射
+            this.gameModel.potion.canShootLeft = true;
+            this.gameModel.potion.canShootRight = true;
         } 
         else {
             // 简化的碰撞检测函数
