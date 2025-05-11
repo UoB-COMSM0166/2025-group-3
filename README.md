@@ -489,12 +489,12 @@ Each member took on a primary role while remaining flexible to support other tas
 
 | Name        | Role             | Responsibilities                                         |
 | ----------- | ---------------- | -------------------------------------------------------- |
-| Shuyin Deng | Project Manager  | Planning, sprint leadership, requirement modeling        |
-| Jiaxin Fan  | Technical Writer | Documentation, evaluations (NASA TLX & SUS), reporting   |
-| Peixuan Li  | Developer        | Puzzle system, interaction logic, modular design         |
-| Yibu Ma     | Developer        | UI system, animation integration, user experience tuning |
-| Yu Qiu      | Developer        | Game logic, input handling, Unity build & debugging      |
-| Jiahao Liu  | Test Engineer    | Heuristic evaluation, manual testing, bug tracking       |
+| Shuyin Deng | Project Manager  |        |
+| Jiaxin Fan  | Technical Writer |   |
+| Peixuan Li  | Developer        | Early stage prototype / Physics and collision / Main logic implementation         |
+| Yibu Ma     | Developer        | OOP refactor / Spine model integration / Game website |
+| Yu Qiu      | Developer        | Player interaction      |
+| Jiahao Liu  | Test Engineer    | UI & Map design / Testing       |
 
 
 
