@@ -11,7 +11,10 @@ export default class GameView {
         this.enterMessage = new Message("Press ENTER To Start", window.innerWidth / 2, window.innerHeight/1.5, 10000, 50, { scaling: true }, "startScreen"); // 动态变化大小的消息
         this.selectMessage = new Message("Use LEFT/RIGHT To Choose\nPress SPACE To Start", window.innerWidth / 2, window.innerHeight / 5-10, 10000, 50, {}, "levelSelectScreen");
         this.tipMessage = new Message("Tip: Do you know\na cat always lands with its feet down\nBread always lands on the creamed side", window.innerWidth / 2, window.innerHeight / 1.2, 3000, 30, {changeAlpha: true}, "Tip");
-    
+        this.instructionTitle = new Message("Game Instructions", window.innerWidth / 2, window.innerHeight / 3, 10000, 60, {}, "Title");
+        this.instructionMessage = new Message("You are a cute cat!\nCollect all three keys to make the flag appear.\nReach the flag to complete the level.", window.innerWidth / 2, window.innerHeight / 2 + 50, 10000, 40, {}, "Tip");
+        this.instructionContinue = new Message("Press ENTER to continue", window.innerWidth / 2, window.innerHeight / 1.2 + 50, 10000, 30, { scaling: true }, "startScreen");
+
         this.startScreenClouds = [ // 初始化开始界面的云朵
             { img: window.assets.startscreenbg_cloud1, x: 0, y: 560, speed: 1.4, scale: 2 },
             { img: window.assets.startscreenbg_cloud2, x: 1000, y: 600, speed: 1, scale: 2 },
@@ -45,6 +48,7 @@ export default class GameView {
 
         const stateHandlers = {
             [GAME_STATE.START]: this.drawStartScreen.bind(this),
+            [GAME_STATE.INSTRUCTION]: this.drawInstructionScreen.bind(this),
             [GAME_STATE.LEVEL_SELECT]: this.drawLevelSelectScreen.bind(this),
             [GAME_STATE.PLAYING]: this.drawGameScreen.bind(this),
             [GAME_STATE.LEVEL_COMPLETE]: this.drawLevelCompleteScreen.bind(this),
@@ -71,7 +75,7 @@ export default class GameView {
           rect(0, y, width, stripeHeight);
         }
       
-        // 绘制“Loading...”跳动文字
+        // 绘制"Loading..."跳动文字
         fill(0);
         for (let i = 0; i < loadingText.length; i++) {
           let charX = width / 2 - (loadingText.length / 2.0 - i) * 18;
@@ -102,10 +106,49 @@ export default class GameView {
         }
 
         this.enterMessage.show();
-        this.titleMessage.show();
+        image(window.assets.title, window.innerWidth / 4+50, window.innerHeight/50,800,300);
+        //this.titleMessage.show();
     }
 
-
+    // 新增游戏说明界面的渲染方法
+    drawInstructionScreen() {
+        // 使用和开始界面相同的背景
+        image(window.assets.startscreenbg, 0, 0, window.innerWidth, window.innerHeight);
+        
+        // 绘制和更新云朵
+        for (let cloud of this.startScreenClouds) {
+            if (cloud.img) {  
+                let w = cloud.img.width * cloud.scale;
+                let h = cloud.img.height * cloud.scale;
+                
+                image(cloud.img, cloud.x, cloud.y, w, h);
+                cloud.x -= cloud.speed;
+                
+                if (cloud.x + w < 0) { 
+                    cloud.x = window.innerWidth;
+                }
+            }
+        }
+        
+        // 显示游戏说明界面的消息
+        this.instructionTitle.show();
+        this.instructionMessage.show();
+        this.instructionContinue.show();
+        
+        // 绘制一个可爱的猫和钥匙图标
+        if (this.assets.catRight && this.assets.key) {
+            let catSize = 150;
+            let keySize = 60;
+            
+            // 绘制猫咪在左侧
+            image(this.assets.catRight, window.innerWidth / 4, window.innerHeight / 2 + 100, catSize, catSize * 0.6);
+            
+            // 绘制3个钥匙在右侧
+            for (let i = 0; i < 3; i++) {
+                image(this.assets.key, window.innerWidth * 3/4 - keySize + i * keySize, window.innerHeight / 2 + 100, keySize, keySize);
+            }
+        }
+    }
 
     drawLevelSelectScreen() {
         
@@ -336,28 +379,25 @@ export default class GameView {
         strokeWeight(5); 
         textSize(window.innerWidth / 38);
         textAlign(CORNER); 
-        text("ESC - show help", window.innerHeight/20, window.innerWidth/25);
+        text("ESC - Exit", window.innerHeight/20, window.innerWidth/25+10);
+        text("H - Help",window.innerHeight/20, window.innerWidth/60)
 
         // 显示所有提示消息
         for (let i = 0; i < this.gameModel.messages.length; i++) {
             this.gameModel.messages[i].show();
         }
-        // 删除已过期的第一条消息
-        for (let i = this.gameModel.messages.length - 1; i >= 0; i--) {
-            if (this.gameModel.messages[i].isExpired()) {
-                // 延迟删除消息，避免频繁渲染
-                setTimeout(() => {
-                    this.gameModel.messages.splice(i, 1); // 删除消息
-                }, 10);
-            }
+        
+        // 优化：一次性删除所有过期消息，不使用setTimeout
+        if (this.gameModel.messages.length > 0) {
+            this.gameModel.messages = this.gameModel.messages.filter(message => !message.isExpired());
         }
 
-        //console.log("keysESC: " + this.gameModel.keysESC);
+        // 限制消息队列最大长度，防止内存泄漏
+        const MAX_MESSAGES = 10;
+        if (this.gameModel.messages.length > MAX_MESSAGES) {
+            this.gameModel.messages = this.gameModel.messages.slice(-MAX_MESSAGES);
+        }
 
-        // 按esc加载游戏说明页面, 按任意键关闭, 再次按esc退出到选关页面
-        // if(levelIndex <=3){
-        //     this.gameModel.showHelp = true;
-        // }
         if(this.gameModel.showHelp){
             this.showhelpscreen(levelIndex);
         }
@@ -366,7 +406,7 @@ export default class GameView {
 
     showhelpscreen(levelIndex){
         if(levelIndex == 0 && levelIndex ==1){
-            fill(255, 255, 255, 170); // 半透明背景
+        fill(255, 255, 255, 170); // 半透明背景
         stroke(255); // 白色描边
         strokeWeight(5);
         let padding = 50; // 四周留白
@@ -383,11 +423,19 @@ export default class GameView {
         //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         textSize(window.innerWidth / 38);
-        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Find three keys and touch the flag to pass.", window.innerWidth/2-20, window.innerHeight/2 - window.innerHeight/3.1-50);
+        fill(255, 255, 153);
+        stroke(255);
+        text("3 Keys       Flag  ",window.innerWidth/2-10, window.innerHeight/2 - window.innerHeight/3.1-10)
 
+
+        fill(255); // 白色文字
+        stroke(50,110,185);
+        strokeWeight(5); 
+        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
         fill(61, 170, 110);  // 绿色
         stroke(255);
-        text("   any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("   H                           ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(255);
         stroke(50,110,185);
@@ -464,17 +512,25 @@ export default class GameView {
         // textSize(window.innerWidth/38);
         // text("Press any key to return to the game.\nPress ESC to Exit.", 
         //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Find              and touch the           to pass.", window.innerWidth/2-20, window.innerHeight/2 - window.innerHeight/3.1-60);
+        fill(255, 223, 0);
+        stroke(255);
+        text("                       3 Keys                          Flag  ",window.innerWidth/2-200, window.innerHeight/2 - window.innerHeight/3.1-60)
 
+
+        fill(255); // 白色文字
+        stroke(50,110,185);
+        strokeWeight(5); 
         textSize(window.innerWidth / 38);
-        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Press         to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(61, 170, 110);  // 绿色
         stroke(255);
-        text("   any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("   H                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(255);
         stroke(50,110,185);
-        text("Press             to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
+        text("Press            to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
 
         fill(169, 59, 70); // 红色
         stroke(255);
@@ -482,7 +538,6 @@ export default class GameView {
 
         fill(255);
         stroke(50,110,185);
-        textSize(window.innerWidth / 50);
         let dis = window.innerHeight / 19;
         let textX = window.innerWidth / 2;
         let textY = window.innerHeight / 2 + window.innerHeight / 13;
@@ -492,7 +547,7 @@ export default class GameView {
         stroke(50, 110, 185);
         strokeWeight(5);
 
-        text("         will disappear when you drop the pot.", textX, textY);
+        text("                        will disappear when you drop the pot.", textX, textY);
         fill(169, 59, 70); // 红色
         stroke(255);
         text(" ! Wall", textX/1.6, textY);
@@ -513,17 +568,25 @@ export default class GameView {
         // textSize(window.innerWidth/38);
         // text("Press any key to return to the game.\nPress ESC to Exit.", 
         //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Find              and touch the           to pass.", window.innerWidth/2-20, window.innerHeight/2 - window.innerHeight/3.1-60);
+        fill(255, 223, 0);
+        stroke(255);
+        text("                       3 Keys                          Flag  ",window.innerWidth/2-200, window.innerHeight/2 - window.innerHeight/3.1-60)
 
+
+        fill(255); // 白色文字
+        stroke(50,110,185);
+        strokeWeight(5); 
         textSize(window.innerWidth / 38);
-        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Press         to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(61, 170, 110);  // 绿色
         stroke(255);
-        text("   any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("   H                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(255);
         stroke(50,110,185);
-        text("Press             to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
+        text("Press            to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
 
         fill(169, 59, 70); // 红色
         stroke(255);

@@ -52,10 +52,12 @@ export function setFacingRight() {
 // enum of possible game states
 export const GAME_STATE = Object.freeze({
   START: "start",
+  INSTRUCTION: "instruction",
   LEVEL_SELECT: "levelSelect",
   PLAYING: "playing",
   LEVEL_COMPLETE: "levelComplete",
   GAME_OVER: "game_over",
+  ALLCOMPLETED:"all_completed",
 });
 
 

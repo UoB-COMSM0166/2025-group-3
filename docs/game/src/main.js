@@ -85,6 +85,7 @@ window.setup = function () {
   window.assets.level6bg = loadImage("/asset/bg/night1.png");
   window.assets.level7bg = loadImage("/asset/bg/ocean4.png");
   window.assets.level8bg = loadImage("/asset/bg/Summer7.png");
+  window.assets.title = loadImage("/asset/title.png");
 
   // 用于开始界面和选关界面的移动云朵素材, 必须在preload中加载, 不可以在gamemodel中加载(因为是异步的)
   window.assets.startscreenbg_cloud1 = loadImage("/asset/bg/clouds/ocean-3-3-1.png");
@@ -139,47 +140,34 @@ window.draw = function () {
   window.lastDrawTime = currentTime;
   
   // 确保所有音频加载完成后再执行游戏逻辑
-  if (!window.allSoundsLoaded || !gameView) { // 
+  if (!window.allSoundsLoaded || !gameView) { 
     let bgColor = color('#d0f0ff'); // 柔和的天蓝色
-  background(bgColor);
+    background(bgColor);
 
-  // 添加一些白色的圆点作为可爱的装饰
-  background('#a7ddf5'); // 柔和的Capoo蓝色
-  noStroke();
-  fill(255); // 白色圆点
-  let spacing = 60; // 每行每列间隔
-  let dotSize = 20;
-  for (let y = 0; y < height + spacing; y += spacing) {
-    for (let x = 0; x < width + spacing; x += spacing) {
-      let offset = (y / spacing) % 2 === 0 ? 0 : spacing / 2; // 实现交错排列（像图里那样）
-      ellipse(x + offset, y, dotSize);
+    // 添加一些白色的圆点作为可爱的装饰
+    background('#a7ddf5'); // 柔和的Capoo蓝色
+    noStroke();
+    fill(255); // 白色圆点
+    let spacing = 60; // 每行每列间隔
+    let dotSize = 20;
+    for (let y = 0; y < height + spacing; y += spacing) {
+      for (let x = 0; x < width + spacing; x += spacing) {
+        let offset = (y / spacing) % 2 === 0 ? 0 : spacing / 2; // 实现交错排列（像图里那样）
+        ellipse(x + offset, y, dotSize);
+      }
     }
-  }
 
-  fill('#444');
-  noStroke();
-  textAlign(CENTER, CENTER);
-  textFont('Comic Sans MS'); // 可改为更萌字体
-  textSize(32);
-  text("Loading...", width / 2, height / 2 + 60);
+    fill('#444');
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textFont('Comic Sans MS'); // 可改为更萌字体
+    textSize(32);
+    text("Loading...", width / 2, height / 2 + 60);
     return;
   }
 
   gameView.render();
-  // 阻止默认按键行为
-  window.addEventListener("keydown", function(event) {
-    let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
-    if (keysToPrevent.includes(event.key)) {
-        event.preventDefault();
-    }
-    // 阻止浏览器缩放
-    if (event.ctrlKey) {
-      if (event.key === "-" || event.key === "+") {
-          event.preventDefault();
-      }
-    }
-  });
-    
+  
   // 游戏界面的所有状态和位置更新函数
   let selectedLevel = gameModel.selectedLevel;
   if (gameModel.gameState === GAME_STATE.PLAYING) {
@@ -193,19 +181,40 @@ window.draw = function () {
       gameModel.cat[selectedLevel].x, gameModel.cat[selectedLevel].y,
       CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)) {
       window.assets.levelComplete.play();
-      console.log("关卡完成");
+      // 移除console.log减少内存占用
       gameModel.gameState = GAME_STATE.LEVEL_COMPLETE;
     }
-      
   }
-
 }
 
+// 只在初始化时设置一次键盘事件监听器，防止重复添加
+document.addEventListener("DOMContentLoaded", function() {
+  // 阻止默认按键行为
+  window.addEventListener("keydown", function(event) {
+    let keysToPrevent = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; // 只阻止这些按键
+    if (keysToPrevent.includes(event.key)) {
+        event.preventDefault();
+    }
+    // 阻止浏览器缩放
+    if (event.ctrlKey) {
+      if (event.key === "-" || event.key === "+") {
+          event.preventDefault();
+      }
+    }
+  }, { passive: false });
+});
+
 window.keyPressed = function () {
-  // 移除按键冲突检测，允许多个按键同时生效
+  // 游戏开始、选关和完成界面不需要处理重复按键
   if (gameModel.gameState === GAME_STATE.START && keyCode === ENTER) {
       window.assets.userStartGame.play();
+      gameModel.gameState = GAME_STATE.INSTRUCTION; // 从START状态改为先进入INSTRUCTION状态
+  }
+  
+  else if (gameModel.gameState === GAME_STATE.INSTRUCTION && keyCode === ENTER) {
+      // 从游戏说明界面按回车进入选关界面
       gameModel.gameState = GAME_STATE.LEVEL_SELECT;
+      window.assets.userSelectLevel.play();
   }
   
   else if (gameModel.gameState === GAME_STATE.LEVEL_SELECT) {
@@ -217,7 +226,7 @@ window.keyPressed = function () {
         gameModel.selectedLevel = Math.min(CONSTANT.LEVEL_LIST.length - 1, gameModel.selectedLevel + 1);
         console.log("selectedLevel: " + gameModel.selectedLevel);
       } 
-      else if (keyCode === 32) {  // 按下空格的时候进入该关卡
+      else if (keyCode === ENTER) {  // 按下空格的时候进入该关卡
         gameModel.gameState = GAME_STATE.PLAYING;
         window.assets.userSelectLevel.play();
         // 游戏内容重置, 包括人物位置和钥匙数量, 物品的显示也全部重置
@@ -243,32 +252,33 @@ window.keyPressed = function () {
           gameModel.switches[gameModel.selectedLevel][i].beActivated = false;
           gameModel.switches[gameModel.selectedLevel][i].prevState = false;
         }
-        // TODO 
-        // 黄油位置重置,以及黄油与猫是否分离的重置(现在默认最开始的时候黄油都在猫身上)
       }
   } 
 
-  else if(gameModel.gameState === GAME_STATE.PLAYING ){
-    // 防止方向键和特殊键被重复处理导致卡顿
-    if (gameModel.keys[key] === true) {
-      return;
-    }
-    
-    // 设置按键状态，允许多个按键同时生效
-    gameModel.keys[key] = true;
-    
-    // 处理H键显示和关闭帮助
-    if (key === 'h' || key === 'H') {
-      gameModel.showHelp = !gameModel.showHelp;
-      return;
-    }
-    
-    // 处理ESC键直接退出到选关页面
-    if (keyCode === ESCAPE) { 
-      gameModel.showHelp = false;
-      gameModel.keysESC = false;
-      gameModel.gameState = GAME_STATE.LEVEL_SELECT;
-      return;
+  else if(gameModel.gameState === GAME_STATE.PLAYING){
+    // 只处理按键按下事件，不处理长按期间的重复触发
+    if (!gameModel.keys[key]) {
+      // 设置按键状态
+      gameModel.keys[key] = true;
+      
+      // 这些按键只在刚按下时触发一次的操作
+      if(key === 'h' || key === 'H'){
+        gameModel.showHelp = !gameModel.showHelp;
+        return;
+      }
+      
+      // 处理ESC键
+      if (keyCode === ESCAPE) { 
+        if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
+            gameModel.showHelp = true;
+            gameModel.keysESC = true; 
+        } else {
+            gameModel.showHelp = false; // 按下两次esc, 退出到选关页面
+            gameModel.keysESC = false;
+            gameModel.gameState = GAME_STATE.LEVEL_SELECT;
+        }
+        return;
+      }
     }
     
     // 如果显示帮助界面，阻止其他按键操作游戏

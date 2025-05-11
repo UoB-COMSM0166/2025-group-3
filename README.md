@@ -59,7 +59,8 @@ The game draws inspiration from the visual charm of *Capoo Pals* and the whimsic
 
 The ability to separate Capoo from the can using key inputs, enabling the player to control each component independently. This will allow for diverse platforming strategies, increasing gameplay variety and encouraging creative problem-solving.
 
-### Figure 1 - Demonstration of separation
+
+<div align="center"><strong>Figure 1 - Demonstration of separation</strong></div>
 
 <div align="center">
   <img src="images/figure1.gif" alt="Capoo Demo" width="400"/>
@@ -67,7 +68,7 @@ The ability to separate Capoo from the can using key inputs, enabling the player
 
 The game is structured across multiple levels, each of which presents increasing puzzle complexity and map decryption difficulty. This will gradually raise the cognitive challenge, ensuring players remain mentally engaged as they progress through the game.
 
-### Figure 2 - Demonstration of multiple levels
+<div align="center"><strong>Figure 2 - Demonstration of multiple levels</strong></div>
 
  <div align="center">
   <img src="images/figure2.gif" alt="Capoo Demo" width="400"/>
@@ -150,12 +151,13 @@ The team broke down user stories into implementable tasks. For example, the "cor
 
 ### 2.5 Use Case Diagram and Specification
 
+<div align="center"><strong>Figure 3 - Use Case Diagram</strong></div>
+
  ![Use Case Diagram](images/Usecase.jpg) 
 
-<p align="center"><b>Use Case Diagram</b></p>
 
 
-<p align="center"><b>Use Case Specification</b></p>
+<div align="center"><strong>Table 1 - Use Case Specification</strong></div>
 
 |                      | Easy Level                                                                                                                   | Difficult Level                                                                                                                                                         |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -181,9 +183,10 @@ The *Capoo* project adopts an object-oriented approach to structure gameplay log
 ### **3.2 Class Diagram**
 
 Our class diagram provides a structural overview of *Capoo*’s object-oriented architecture. At its core, the system is driven by a **GameModel**, which holds references to key game objects such as platforms, interactable elements, and the player character.
-![Class Diagram](weekly%20updates/Week%205%20-%20Class%20Diagram.png) 
 
-<p align="center"><b>Class Diagram</b></p>
+<div align="center"><strong>Figure 4 - Class Diagram</strong></div>
+
+![Class Diagram](weekly%20updates/Week%205%20-%20Class%20Diagram.png) 
 
 #### Key Components:
 
@@ -208,9 +211,11 @@ This modular structure allows for flexible development and easy modification of 
 ### **3.3 Sequence Diagram**
 
 To represent dynamic gameplay interaction, we created a sequence diagram that models a typical scenario where the player activates a switch that raises a wall and unlocks a key mechanism.
+
+<div align="center"><strong>Figure 5 - Sequence Diagram</strong></div>
+
 ![Sequence Diagram](weekly%20updates/Week%205%20-%20Sequence%20Diagram.png.png)
 
-<p align="center"><b>Sequence Diagram</b></p>
 
 #### Scenario Flow :
 
@@ -228,18 +233,31 @@ The sequence clearly demonstrates the flow of control from player input to game 
 
 ### **3.4 State Machine Diagram**
 
-To help us understand the dynamic behaviors and transitions of key game components, we decided to create a state diagram for Capoo. This diagram illustrates the lifecycle of major objects like `GameModel`, `GameController`, `Capoo`, `Wizard`, `Potion`, `ElevatingWalls`, `MapLoader`, `RenderLogic`, `GameView`, and `SpineLayer`. By mapping out their state transitions—such as how `Capoo` moves from `Idle` to `Walking`, or how the `GameModel` transitions from `Running` to `GameOver`—we gained deeper insights into how interactions flow during gameplay.
+We created a state diagram for *Capoo* to map the lifecycle of key game components like `GameModel`, `Capoo`, `Potion`, and others. The diagram illustrates state transitions—such as `Capoo` moving from `Idle` to `Walking`, or the `GameModel` transitioning to `GameOver`—which helped clarify the conditions for state changes during development.
 
-Moreover, the state diagram served as a blueprint during development, clarifying the conditions required for state changes. For example, the `Potion` object smoothly transitions from `Inactive` to `Active` upon pickup, and eventually to `Used` when consumed. Similarly, `ElevatingWalls` move from `Static` to `Moving` based on triggers, reflecting game mechanics in a visual and structured manner.
+For instance, the `Potion` transitions from `Inactive` to `Active` upon pickup, and `ElevatingWalls` move from `Static` to `Moving` based on triggers. This visual representation helped identify edge cases, ensure synchronized game logic, and streamline development, ultimately reducing debugging time.
 
-This representation was crucial for identifying edge cases, preventing inconsistent states, and ensuring that the game's logic remains synchronized across different modules. Understanding these states early on allowed us to focus on game logic with confidence, supporting our modular design principles and reducing debugging time as new features were added.
-images/state machine diagram.png
+<div align="center"><strong>Figure 6 - state machine diagram</strong></div>
+
 ![machine diagram](images/state%20machine%20diagram.png)
-<p align="center"><b>state machine diagram</b></p>
 
 ------
 
-### **3.5 Design Considerations**
+### **3.5 Communication Diagram**
+
+The **Communication Diagram** for the *Capoo Game* illustrates the interactions between key components. The **Player** sends inputs to the *GameController*, which processes them and updates the *GameModel*. This triggers changes in entities like *Capoo*, *Potion*, *KeyItem*, *Flag*, and *ElevatingWalls*. These updates are rendered by *RenderLogic* and displayed in the *GameView*.
+
+The *MapLoader* initializes game levels and parses entity data for the *GameModel*. *Capoo* interacts with objects, triggering events that are reflected in the game state. *SpineLayer* manages character animations, ensuring smooth visuals. Error handling in *GameController* ensures stability during gameplay.
+
+This structure maintains synchronized game states, smooth animations, and consistent feedback to the player.  
+
+<div align="center"><strong>Figure 7 - communication diagram</strong></div>
+
+![communication diagram](images/communication%20diagram.png)
+
+------
+
+### **3.6 Design Considerations**
 
 During design and implementation, we faced several technical challenges that led to important design decisions:
 
@@ -249,13 +267,13 @@ During design and implementation, we faced several technical challenges that led
 
 ------
 
-### **3.6 Iterative Development & Diagram Updates**
+### **3.7 Iterative Development & Diagram Updates**
 
 Consistent with agile methodology, our class and sequence diagrams evolved over time. For example, earlier prototypes had more monolithic controller logic, but we later separated `GameController` and `MapLoader` to improve maintainability and testing. Additionally, classes such as `Capoo`, `Potion`, and `ElevatingWalls` saw expanded responsibilities as gameplay mechanics became clearer through playtesting.
 
 ------
 
-### **3.7 Conclusion**
+### **3.8 Conclusion**
 
 The UML models we developed played a crucial role in organizing our design and facilitating communication within the team. By combining a strong object-oriented foundation with agile iteration, we built a flexible and scalable game architecture that can accommodate future features such as multi-character control or extended puzzle mechanics.
 
@@ -327,7 +345,9 @@ Each challenge forced us to adapt and improve our technical approach. From anima
 
 ## 5. Evaluation
 
-### 5.1 Qualitative Evaluation: Heuristic Evaluation  
+### 5.1 Qualitative Evaluation
+
+<div align="center"><strong>Table 2 - Heuristic Evaluation  </strong></div>
 
 | Interface     | Issue                                                                                                                                 | Heuristic(s)                          | Frequency (0–4) | Impact (0–4) | Persistence (0–4) | Severity = (F + I + P) / 3 |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|------------------|---------------|---------------------|-----------------------------|
@@ -394,8 +414,10 @@ NASA TLX is a tool for measuring subjective workload across six dimensions (Hart
 
 ## Results
 
-### Data Overview
+<div align="center"><strong>Table 3 - Data Overview  </strong></div>
 
+<div align="center">
+  
 | User ID | L1 NASA TLX | L2 NASA TLX | L1 SUS | L2 SUS |
 | ------- | ----------- | ----------- | ------ | ------ |
 | V1      | 12.5        | 16.67       | 55     | 50     |
@@ -409,22 +431,25 @@ NASA TLX is a tool for measuring subjective workload across six dimensions (Hart
 | V9      | 37.5        | 45.83       | 35     | 35     |
 | V10     | 16.67       | 20.83       | 55     | 42.5   |
 
+</div>
+
 - **Averages**: 
   - L1 NASA TLX: 24.58, L2 NASA TLX: 28.75.
   - L1 SUS: 45.5, L2 SUS: 43.5.
 
 #### Graphical Representation
 
-- **Figure 1: NASA TLX Dimension Comparison**
+<div align="center"><strong>Figure 8 - NASA TLX Dimension Comparison</strong></div>
+
   ![NASA TLX Dimension Comparison](images/NASA_TLX_Dimension_Comparison.png)
 
 
-- **Figure 2: SUS Score Trends**
+<div align="center"><strong>Figure 9 - SUS Score Trends</strong></div>
 
 ![SUS Score Trends](images/SUS_Score_Trends.png)
 
 
-- **Figure 3: Correlation Between SUS and NASA TLX**
+<div align="center"><strong>Figure 10 - Correlation Between SUS and NASA TLX</strong></div>
 
 ![Correlation Between SUS and NASA TLX](images/Correlation_Between_SUS_and_NASA_TLX.png)
 
@@ -481,13 +506,58 @@ Capoo’s L2 workload is slightly higher than L1 (28.75 vs 24.58), and its SUS s
 
 ### 5.3 Code Testing and Debugging  
 
-The codebase underwent multiple rounds of testing, including:
+We used black-box testing with equivalence partitioning to validate the game. Test cases were designed based on input types and game states, without looking at the internal code. We focused on transitions (e.g. main menu to level select), controls (e.g. movement, jumping), and interactions (e.g. keys, traps, water). Each feature was tested using representative inputs from different equivalence classes to ensure correct behavior.
 
-- **Unit Tests**: Written for player controls, puzzle activation, and UI visibility logic.
-- **Integration Tests**: Verified smooth transitions between levels and puzzle dependencies.
-- **Manual Testing**: Developers performed end-to-end playthroughs on both Windows and Android devices.
+<div align="center"><strong>Table 3 - Game State and Scene Testing  </strong></div>
 
-A comprehensive bug tracker was maintained using GitHub Issues. Over 30 bugs were logged and resolved throughout the testing phase.
+| ID    | Description                        | Precondition                           | Test Steps                                                   | Expected Result                                              |
+| ----- | ---------------------------------- | -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TC-01 | Game Launch and Main Menu Test     | Launch the game                        | 1. Start the game2. Observe the main menu                    | - Game resources load correctly- "Capoo" title appears on the main menu- "Press ENTER To Start" prompt is shown- Background and cloud animation display properly |
+| TC-02 | Transition from Main to Level Menu | Game is at the main menu               | 1. Press ENTER on the main menu                              | - Game state changes from START to LEVEL_SELECT- Level selection screen displays correctly- "Use LEFT/RIGHT To Choose Press SPACE To Start" prompt appears- All level options are visible, with the current one highlighted |
+| TC-03 | Level Selection Functionality      | Game is at level selection screen      | 1. Press LEFT arrow key2. Press RIGHT arrow key3. Observe changes | - LEFT arrow decreases selected level index (unless at first level)- RIGHT arrow increases selected level index (unless at last level)- Selected level is highlighted |
+| TC-04 | Level Loading Function             | At level selection, one level selected | 1. Press SPACE                                               | - Game state changes from LEVEL_SELECT to PLAYING- Selected level loads and displays correctly- Character appears at initial position- Level background, terrain, and items are displayed correctly |
+
+------
+
+<div align="center"><strong>Table 4 - Character Movement and Control Testing  </strong></div>
+
+| ID    | Description                      | Precondition                                             | Test Steps                                                   | Expected Result                                              |
+| ----- | -------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TC-05 | Basic Character Movement         | Game is in PLAYING state, character on ground            | 1. Press LEFT2. Release LEFT3. Press RIGHT4. Release RIGHT   | - Character moves left and faces left when LEFT key is pressed- Character moves right and faces right when RIGHT key is pressed- Character stops moving when key is released |
+| TC-06 | Flying When Merged with Potion   | Game is in PLAYING state, character merged with potion   | 1. Press SPACE2. Hold SPACE3. Release SPACE                  | - Character flies upward when SPACE is pressed- Keeps flying while SPACE is held- Falls when SPACE is released |
+| TC-07 | Separation from Potion           | Game is in PLAYING state, character merged with potion   | 1. Press S                                                   | - Character separates from potion- Potion pops upward- Merge wall disappears (merge layer invisible) |
+| TC-08 | Potion Ejection After Separation | Game is in PLAYING state, potion and character separated | 1. Ensure potion is landed or stuck to wall2. Press A to test left ejection3. Press D for right | - Potion can be ejected from ground/wall- A triggers left-upward ejection- D triggers right-upward ejection- Potion has proper initial velocity and gravity scaling |
+| TC-09 | Climbing Feature                 | Game is in PLAYING state, near climbable wall            | 1. Move character near wall2. Press UP3. Press DOWN          | - Wall is detected as climbable- UP moves character upward- DOWN moves character downward- Gravity doesn't apply while climbing |
+| TC-10 | Automatic Remerge with Potion    | Game is in PLAYING state, potion and character separated | 1. Move character close to potion                            | - Potion automatically merges when close- Potion appears on back- Merge wall becomes visible again |
+
+------
+
+<div align="center"><strong>Table 5 - Game Mechanics and Interaction Testing  </strong></div>
+
+| ID    | Description                           | Precondition                                                 | Test Steps                                          | Expected Result                                              |
+| ----- | ------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------------ |
+| TC-11 | Spring Mechanism                      | Game is in PLAYING state, level contains spring bed          | 1. Move character onto spring bed                   | - Character gains upward speed- Bounce height exceeds regular jump- Spring sound plays |
+| TC-12 | Collecting Keys                       | Game is in PLAYING state, level contains visible key         | 1. Move character to contact key                    | - Key disappears on contact- Key count increases- UI updates- Key collection sound plays |
+| TC-13 | Level Completion                      | Game is in PLAYING state, all keys collected                 | 1. Move character to touch the flag                 | - State changes to LEVEL_COMPLETE- Completion screen shows- "Level Complete!" and continuation options appear- Completion sound plays |
+| TC-14 | Switch and Mechanism Wall Interaction | Game is in PLAYING state, level contains switch and wall     | 1. Touch switch2. Observe wall3. Touch switch again | - Switch changes state- Wall moves to target- Pressing again returns wall to original- Switch sound plays |
+| TC-15 | Water Hazard                          | Game is in PLAYING state, level contains water area          | 1. Lead character into water                        | - Character dies- Message "Cats dissolve easily in water!" shown- Respawn at starting point- Death sound plays |
+| TC-16 | Trap Hazard                           | Game is in PLAYING state, level contains traps               | 1. Lead character into trap                         | - Character dies- Message "You are trapped!" shown- Respawn at starting point- Death sound plays |
+| TC-17 | Potion Falling into Water             | Game is in PLAYING state, potion and character separated, level has water | 1. Make potion fall into water                      | - Game resets- Message "No water with my pot!" shown- Character and potion respawn and remerge- Death sound plays |
+| TC-18 | Ice Surface Limitation                | Game is in PLAYING state, level contains ice surface         | 1. Move character onto ice2. Attempt to jump        | - Jumping is disabled- Message "Ice! You can't jump!" shown  |
+
+------
+
+
+<div align="center"><strong>Table 6 - UI and Accessibility Testing  </strong></div>
+
+| ID    | Description                   | Precondition                    | Test Steps                                                   | Expected Result                                              |
+| ----- | ----------------------------- | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TC-19 | Help Interface                | Game is in PLAYING state        | 1. Press H to show help2. Press any key to close             | - H key shows help overlay with game controls- Any key hides help and returns to game |
+| TC-20 | Level Reset                   | Game is in PLAYING state        | 1. Press R                                                   | - Character resets to start- All keys reset- Switches and walls reset- Message "Restarting level..." shown- Death sound plays |
+| TC-21 | Return to Level Selection     | Game is in PLAYING state        | 1. Press ESC                                                 | - State changes to LEVEL_SELECT- Character and level state saved- Level selection screen shown |
+| TC-22 | Post-Level Completion Options | Game is in LEVEL_COMPLETE state | 1. Press any key (except ESC) to continue2. Press ESC after completion | - If not last level, any key starts next level- If last level, any key returns to selection- ESC returns to selection in all cases |
+
+
 
 ### 5.4 Summary  
 
@@ -538,12 +608,12 @@ Each member took on a primary role while remaining flexible to support other tas
 
 | Name        | Role             | Responsibilities                                         |
 | ----------- | ---------------- | -------------------------------------------------------- |
-| Shuyin Deng | Project Manager  |        |
-| Jiaxin Fan  | Technical Writer |   |
-| Peixuan Li  | Developer        | Early stage prototype / Physics and collision / Main logic implementation         |
-| Yibu Ma     | Developer        | OOP refactor / Spine model integration / Game website |
-| Yu Qiu      | Developer        | Player interaction      |
-| Jiahao Liu  | Test Engineer    | UI & Map design / Testing       |
+| Shuyin Deng | Project Manager  | Report / Tracking project progress / Task allocation     |
+| Jiaxin Fan  | Technical Writer | Documentation/Evaluations/video  |
+| Peixuan Li  | Developer        | Early stage prototype / Physics and collision / Main logic implementation          |
+| Yibu Ma     | Developer        | OOP refactor / Spine model integration / Documentation website  |
+| Yu Qiu      | Developer        | Player Interaction / Performance Optimization / Main logic implementation      |
+| Jiahao Liu  | Test Engineer    | UI design / Map design / Testing       |
 
 
 
@@ -662,96 +732,3 @@ Above all, this project gave us our first taste of end-to-end game development i
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-### Introduction
-
-- Describe your game, what is based on, what makes it novel? 
-
-### Requirements 
-
-- 15% ~750 words
-- Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop? 
-
-### Design
-
-- 15% ~750 words 
-- System architecture. Class diagrams, behavioural diagrams. 
-
-### Implementation
-
-- 15% ~750 words
-
-- Describe implementation of your game, in particular highlighting the three areas of challenge in developing your game. 
-
-### Evaluation
-
-- 15% ~750 words
-
-- One qualitative evaluation (your choice) 
-
-- One quantitative evaluation (of your choice) 
-
-- Description of how code was tested. 
-
-### Process 
-
-- 15% ~750 words
-
-- Teamwork. How did you work together, what tools did you use. Did you have team roles? Reflection on how you worked together. 
-
-### Conclusion
-
-- 10% ~500 words
-
-- Reflect on project as a whole. Lessons learned. Reflect on challenges. Future work. 
-
-### Contribution Statement
-
-- Provide a table of everyone's contribution, which may be used to weight individual grades. We expect that the contribution will be split evenly across team-members in most cases. Let us know as soon as possible if there are any issues with teamwork as soon as they are apparent. 
-
-### Additional Marks
-
-You can delete this section in your own repo, it's just here for information. in addition to the marks above, we will be marking you on the following two points:
-
-- **Quality** of report writing, presentation, use of figures and visual material (5%) 
-  - Please write in a clear concise manner suitable for an interested layperson. Write as if this repo was publicly available.
-
-- **Documentation** of code (5%)
-
-  - Is your repo clearly organised? 
-  - Is code well commented throughout?
