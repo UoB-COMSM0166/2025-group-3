@@ -49,6 +49,7 @@ export default class GameView {
             [GAME_STATE.PLAYING]: this.drawGameScreen.bind(this),
             [GAME_STATE.LEVEL_COMPLETE]: this.drawLevelCompleteScreen.bind(this),
             [GAME_STATE.GAME_OVER]: this.drawGameOverScreen.bind(this),
+            [GAME_STATE.ALLCOMPLETED]:this.drawAllCompleted.bind(this),
         };
         if (stateHandlers[this.gameModel.gameState]) {
             stateHandlers[this.gameModel.gameState]();
@@ -102,8 +103,7 @@ export default class GameView {
         }
 
         this.enterMessage.show();
-        image(window.assets.title, window.innerWidth / 4+50, window.innerHeight/50,800,300);
-        //this.titleMessage.show();
+        this.titleMessage.show();
     }
 
 
@@ -651,5 +651,21 @@ export default class GameView {
         strokeWeight(5);
         text("Press ANY KEY for next level", width/2, height/2 +200);
         text("Press ESC to return to level select", width/2, height/2 +250);
+    }
+
+    drawAllCompleted(){
+        image(window.assets.completed, 0, 0, width, height);
+        image(window.assets.title,window.innerWidth/4,window.innerHeight/25,900,300);
+        textSize(window.innerWidth / 50);
+        let dis = window.innerHeight / 19;
+        let textX = window.innerWidth / 2;
+        let textY = window.innerHeight / 2 + window.innerHeight / 13;
+
+        textAlign(CENTER, CENTER);
+        fill(255); 
+        stroke(255, 150, 180);
+        strokeWeight(5);
+
+        text("Thanks for playing !\npresented by YiBu MA, PeiXuan Li, Yu Qiu, JiaXin Fan, ShuYin Deng, JiaHao LIU", textX, textY);
     }
 }
