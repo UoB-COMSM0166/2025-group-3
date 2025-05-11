@@ -123,7 +123,8 @@ window.setup = function () {
         gameController.newGame(); // 读取地图文件到gameModel
         
         // 确保游戏一开始就进入说明页面状态
-        gameModel.gameState = GAME_STATE.INSTRUCTION;
+        gameModel.gameState = GAME_STATE.START;
+        //gameModel.gameState = GAME_STATE.INSTRUCTION;
 
         loop();  // 在音频加载完后启动 draw()
     }

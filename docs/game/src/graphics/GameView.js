@@ -140,19 +140,19 @@ export default class GameView {
         this.instructionMessage.show();
         this.instructionContinue.show();
         
-        // 绘制一个可爱的猫和钥匙图标
-        if (this.assets.catRight && this.assets.key) {
-            let catSize = 150;
-            let keySize = 60;
+        // // 绘制一个可爱的猫和钥匙图标
+        // if (this.assets.catRight && this.assets.key) {
+        //     let catSize = 150;
+        //     let keySize = 60;
             
-            // 绘制猫咪在左侧
-            image(this.assets.catRight, window.innerWidth / 4, window.innerHeight / 2 + 100, catSize, catSize * 0.6);
+        //     // 绘制猫咪在左侧
+        //     image(this.assets.catRight, window.innerWidth / 4, window.innerHeight / 2 + 100, catSize, catSize * 0.6);
             
-            // 绘制3个钥匙在右侧
-            for (let i = 0; i < 3; i++) {
-                image(this.assets.key, window.innerWidth * 3/4 - keySize + i * keySize, window.innerHeight / 2 + 100, keySize, keySize);
-            }
-        }
+        //     // 绘制3个钥匙在右侧
+        //     for (let i = 0; i < 3; i++) {
+        //         image(this.assets.key, window.innerWidth * 3/4 - keySize + i * keySize, window.innerHeight / 2 + 100, keySize, keySize);
+        //     }
+        // }
     }
 
     drawLevelSelectScreen() {
