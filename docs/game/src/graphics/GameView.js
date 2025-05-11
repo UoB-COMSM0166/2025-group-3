@@ -9,10 +9,10 @@ export default class GameView {
         this.img = this.gameModel.assets.rightArrow;
         this.titleMessage = new Message("Capoo", window.innerWidth / 2, window.innerHeight / 5-50, 10000, 200, {}, "Title"); // 标题消息
         this.enterMessage = new Message("Press ENTER To Start", window.innerWidth / 2, window.innerHeight/1.5, 10000, 50, { scaling: true }, "startScreen"); // 动态变化大小的消息
-        this.selectMessage = new Message("Use LEFT/RIGHT To Choose\nPress SPACE To Start", window.innerWidth / 2, window.innerHeight / 5-10, 10000, 50, {}, "levelSelectScreen");
+        this.selectMessage = new Message("Use LEFT/RIGHT To Choose\nPress ENTER To Start", window.innerWidth / 2, window.innerHeight / 5-10, 10000, 50, {}, "levelSelectScreen");
         this.tipMessage = new Message("Tip: Do you know\na cat always lands with its feet down\nBread always lands on the creamed side", window.innerWidth / 2, window.innerHeight / 1.2, 3000, 30, {changeAlpha: true}, "Tip");
-        this.instructionTitle = new Message("Game Instructions", window.innerWidth / 2, window.innerHeight / 3, 10000, 60, {}, "Title");
-        this.instructionMessage = new Message("You are a cute cat!\nCollect all three keys to make the flag appear.\nReach the flag to complete the level.", window.innerWidth / 2, window.innerHeight / 2 + 50, 10000, 40, {}, "Tip");
+        this.instructionTitle = new Message("Game Instructions",  window.innerWidth/2, window.innerHeight/6, 10000, 60, {}, "Title");
+        this.instructionMessage = new Message("You are a cute cat!\nCollect all three keys to make the flag appear.\nReach the flag to complete the level.", window.innerWidth / 2, window.innerHeight / 2 + 100, 10000, 40, {}, "Tip");
         this.instructionContinue = new Message("Press ENTER to continue", window.innerWidth / 2, window.innerHeight / 1.2 + 50, 10000, 30, { scaling: true }, "startScreen");
 
         this.startScreenClouds = [ // 初始化开始界面的云朵
@@ -53,6 +53,7 @@ export default class GameView {
             [GAME_STATE.PLAYING]: this.drawGameScreen.bind(this),
             [GAME_STATE.LEVEL_COMPLETE]: this.drawLevelCompleteScreen.bind(this),
             [GAME_STATE.GAME_OVER]: this.drawGameOverScreen.bind(this),
+            [GAME_STATE.ALLCOMPLETED]:this.drawAllCompleted.bind(this),
         };
         if (stateHandlers[this.gameModel.gameState]) {
             stateHandlers[this.gameModel.gameState]();
@@ -106,14 +107,13 @@ export default class GameView {
         }
 
         this.enterMessage.show();
-        image(window.assets.title, window.innerWidth / 4+50, window.innerHeight/50,800,300);
-        //this.titleMessage.show();
+        this.titleMessage.show();
     }
 
     // 新增游戏说明界面的渲染方法
     drawInstructionScreen() {
         // 使用和开始界面相同的背景
-        image(window.assets.startscreenbg, 0, 0, window.innerWidth, window.innerHeight);
+        image(window.assets.instructionbg, 0, 0, window.innerWidth, window.innerHeight);
         
         // 绘制和更新云朵
         for (let cloud of this.startScreenClouds) {
@@ -131,7 +131,12 @@ export default class GameView {
         }
         
         // 显示游戏说明界面的消息
-        this.instructionTitle.show();
+        textAlign(CENTER);  // 或 this.options.textAlign
+        fill(color(108, 140, 240));  // 文字颜色
+        stroke(color(255, 255, 143));  // 边框颜色
+        strokeWeight(10);  // 边框宽度
+        textSize(120);
+        text("Game Instructions", window.innerWidth/2, window.innerHeight/6);
         this.instructionMessage.show();
         this.instructionContinue.show();
         
@@ -379,9 +384,9 @@ export default class GameView {
         strokeWeight(5); 
         textSize(window.innerWidth / 38);
         textAlign(CORNER); 
-        text("ESC - Exit", window.innerHeight/20, window.innerWidth/25+10);
-        text("H - Help",window.innerHeight/20, window.innerWidth/60)
-
+        text("ESC - Exit", window.innerHeight/20, window.innerWidth/25+12);
+        text("H - Help",window.innerHeight/20, window.innerWidth/60);
+        text("R - Reset",window.innerHeight/20, window.innerWidth/9);
         // 显示所有提示消息
         for (let i = 0; i < this.gameModel.messages.length; i++) {
             this.gameModel.messages[i].show();
@@ -693,5 +698,21 @@ export default class GameView {
         strokeWeight(5);
         text("Press ANY KEY for next level", width/2, height/2 +200);
         text("Press ESC to return to level select", width/2, height/2 +250);
+    }
+
+    drawAllCompleted(){
+        image(window.assets.completed, 0, 0, width, height);
+        image(window.assets.title,window.innerWidth/4,window.innerHeight/25,900,300);
+        textSize(window.innerWidth / 50);
+        let dis = window.innerHeight / 19;
+        let textX = window.innerWidth / 2;
+        let textY = window.innerHeight / 2 + window.innerHeight / 13;
+
+        textAlign(CENTER, CENTER);
+        fill(255); 
+        stroke(255, 150, 180);
+        strokeWeight(5);
+
+        text("Thanks for playing !\npresented by YiBu MA, PeiXuan Li, Yu Qiu, JiaXin Fan, ShuYin Deng, JiaHao LIU", textX, textY);
     }
 }

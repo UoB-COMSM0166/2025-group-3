@@ -88,6 +88,8 @@ window.setup = function () {
   window.assets.level6bg = loadImage("/asset/bg/night1.png");
   window.assets.level7bg = loadImage("/asset/bg/ocean4.png");
   window.assets.level8bg = loadImage("/asset/bg/Summer7.png");
+  window.assets.completed = loadImage("/asset/bg/completed.png");
+  window.assets.instructionbg = loadImage("/asset/bg/instructionbg.png");
   window.assets.title = loadImage("/asset/title.png");
 
   // 用于开始界面和选关界面的移动云朵素材, 必须在preload中加载, 不可以在gamemodel中加载(因为是异步的)
@@ -296,7 +298,7 @@ window.keyPressed = function () {
         return;
       }
     }
-    
+
     // 如果显示帮助界面，阻止其他按键操作游戏
     if (gameModel.showHelp) {
       return;
@@ -309,15 +311,31 @@ window.keyPressed = function () {
   
   else if (gameModel.gameState === GAME_STATE.LEVEL_COMPLETE) {
       if (keyCode === ESCAPE) {
+        if(gameModel.selectedLevel === CONSTANT.LEVEL_LIST.length - 1){
+           gameModel.gameState = GAME_STATE.ALLCOMPLETED;
+           }
+    else{
           gameModel.gameState = GAME_STATE.LEVEL_SELECT;
+        }
       } else {
-          if (gameModel.selectedLevel < CONSTANT.LEVEL_LIST.length - 1) {
+        if(gameModel.selectedLevel === CONSTANT.LEVEL_LIST.length - 1){
+           gameModel.gameState = GAME_STATE.ALLCOMPLETED;
+           }
+          else if (gameModel.selectedLevel < CONSTANT.LEVEL_LIST.length - 1) {
               gameModel.selectedLevel++;
               gameModel.gameState = GAME_STATE.PLAYING;
           } else {
               gameModel.gameState = GAME_STATE.LEVEL_SELECT;
           }
       }
+  }
+  else if (gameModel.gameState === GAME_STATE.ALLCOMPLETED){
+    if(keyCode === ESCAPE){
+      gameModel.gameState = GAME_STATE.START;
+    }
+    else{
+      gameModel.gameState = GAME_STATE.START;
+    }
   }
 }
 
