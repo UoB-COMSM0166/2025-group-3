@@ -244,7 +244,7 @@ export default class GameController {
         let potionW = CONSTANT.POTION_WIDTH;  // 需要定义 POTION_WIDTH
         let potionH = CONSTANT.POTION_HEIGHT; // 需要定义 POTION_HEIGHT
         let offSetHalf = -potionW / 2;
-        let offSetFeet = potionH / 10; 
+        let offSetFeet = potionH / 2; 
     
         // 水平方向偏移量
         let offSetClimb = potionW / 4;
@@ -271,30 +271,53 @@ export default class GameController {
 
                 // 修改spinelayer, 猫和黄油分开渲染
                 this.gameModel.potion.x=this.gameModel.cat[selectedLevel].x;
+                // 黄油分离时初始位置向上偏移，避免立即碰撞检测
                 this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
+                // 给黄油一个向上的初速度
+                this.gameModel.potion.velocityY = -15;
                 setShowBack(false);
                 setShowPotion(true); 
         }
 
 
         if (this.gameModel.keys['q'] && this.gameModel.potion.tanshe ) {     
-            this.gameModel.potion.facingLeft=true;
-            this.gameModel.cat[selectedLevel].isMerged = false;
-            this.gameModel.potion.x=this.gameModel.cat[selectedLevel].x;
-                this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
+            // 如果能左弹射且按下Q键
+            if (this.gameModel.potion.canShootLeft) {
+                this.gameModel.cat[selectedLevel].isMerged = false;
+                this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
+                // 黄油分离时初始位置向上偏移，避免立即碰撞检测
+                this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y - 30;
                 setShowBack(false);
                 setShowPotion(true); 
            
+                this.gameModel.potion.speed = -10; // 减小水平初速度
+                this.gameModel.potion.velocityY = -15; // 减小竖直初速度
+                this.gameModel.potion.gravityScale = 0.4; // 大幅降低重力比例
+                this.gameModel.potion.tanshe = false; // 禁用弹射状态直到下次碰撞
+                this.gameModel.potion.onWall = false; // 弹射时重置墙上状态
+                this.gameModel.potion.onGround = false; // 弹射时重置地面状态
+                this.gameModel.potion.wallFrameCount = 0; // 重置墙上帧计数
+            }
         }
 
         if (this.gameModel.keys['w'] && this.gameModel.potion.tanshe ) {
+            // 如果能右弹射且按下W键
+            if (this.gameModel.potion.canShootRight) {
                  this.gameModel.cat[selectedLevel].isMerged = false;
-                 this.gameModel.potion.facingRight=true;
-                 this.gameModel.potion.x=this.gameModel.cat[selectedLevel].x;
-                this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
+                this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
+                // 黄油分离时初始位置向上偏移，避免立即碰撞检测
+                this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y - 30;
                 setShowBack(false);
                 setShowPotion(true); 
                
+                this.gameModel.potion.speed = 10; // 减小水平初速度
+                this.gameModel.potion.velocityY = -15; // 减小竖直初速度
+                this.gameModel.potion.gravityScale = 0.4; // 大幅降低重力比例
+                this.gameModel.potion.tanshe = false; // 禁用弹射状态直到下次碰撞
+                this.gameModel.potion.onWall = false; // 弹射时重置墙上状态
+                this.gameModel.potion.onGround = false; // 弹射时重置地面状态
+                this.gameModel.potion.wallFrameCount = 0; // 重置墙上帧计数
+            }
         }
         console.log("mykey",this.gameModel.keys);
 
@@ -302,98 +325,184 @@ export default class GameController {
         if (this.gameModel.cat[selectedLevel].isMerged) {
             // 如果结合，面包跟随猫的位置
             this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
-            this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y;
-            this.gameModel.potion.tanshe=true;
+            this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y-30;
+            this.gameModel.potion.tanshe = true; // 在猫身上时可以弹射
+            
+            // 合体状态下，可以向两个方向弹射
+            this.gameModel.potion.canShootLeft = true;
+            this.gameModel.potion.canShootRight = true;
         } 
         else {
-            // 否则正常自由落体
-            if(this.gameModel.potion.tanshe && (this.gameModel.potion.onWall || this.gameModel.potion.onGround))
-            {
-             if(this.gameModel.potion.facingLeft){
-                 this.gameModel.potion.speed=-15;
-                 this.gameModel.potion.facingLeft=false; 
-                 this.gameModel.potion.velocityY= -35; //发射初速度
-                this.gameModel.potion.tanshe=false;
-             }
-             if(this.gameModel.potion.facingRight){
-                this.gameModel.potion.speed=15;
-                this.gameModel.potion.facingRight=false;
-                this.gameModel.potion.velocityY= -35; //发射初速度
-                this.gameModel.potion.tanshe=false;
-            }
+            // 简化的碰撞检测函数
+            let checkCollision = (x, y) => {
+                return this.isColliding(x, y, selectedLevel, tileSize, levelWidth);
+            };
+            
+            // 检查四个关键点的碰撞
+            // 左侧碰撞检测点调整，向右偏移一点
+            let leftCollision = checkCollision(newX + offSetHalf, newY - potionH/2);
+            // 右侧碰撞检测点调整，向左偏移一点
+            let rightCollision = checkCollision(newX + potionW + offSetHalf, newY - potionH/2);
+            
+            // 底部检测三个点，向上偏移一点，提高底部碰撞的准确性
+            // 减少右下角检测点的使用，防止与右侧墙壁误判
+            let bottomLeftCollision = checkCollision(newX + offSetHalf , newY );
+            let bottomMiddleCollision = checkCollision(newX + potionW/2 + offSetHalf, newY);
+            // 如果检测到右侧墙壁碰撞，则不检测右下角
+            let bottomRightCollision = rightCollision ? false : checkCollision(newX + potionW + offSetHalf, newY );
+            let bottomCollision = bottomLeftCollision || bottomMiddleCollision || bottomRightCollision;
+            
+            // 根据碰撞情况设置弹射方向
+            if (leftCollision || rightCollision) {
+                // 标记为在墙上
+                this.gameModel.potion.onWall = true;
+                this.gameModel.potion.speed = 0; // 碰到墙速度归零
+                
+                // 如果刚刚开始触墙，初始化墙上帧计数和初始速度
+                if (!this.gameModel.potion.wallFrameCount) {
+                    this.gameModel.potion.wallFrameCount = 0;
+                    this.gameModel.potion.velocityY = 0.5; // 设置初始下滑速度为0.5
+                }
+                
+                // 根据碰撞的位置，设置可弹射的方向
+                this.gameModel.potion.canShootLeft = !leftCollision; // 左边有墙就不能向左弹射
+                this.gameModel.potion.canShootRight = !rightCollision; // 右边有墙就不能向右弹射
+                
+                this.gameModel.potion.tanshe = true; // 在墙上可以弹射
+                console.log("墙上碰撞: 左=" + leftCollision + ", 右=" + rightCollision);
             }
             
-        }
-
-    
-    
-        // **碰撞检测**   不完善，left和right的面积太大
-        let left = this.isColliding(newX + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
-    
-        let right = this.isColliding(newX + potionW + offSetHalf, newY - potionH / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX + potionW + offSetHalf, newY - potionH * 2 / 3 - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX + potionW + offSetHalf, newY - potionH - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
-    
-        let bottom = this.isCollidingWithGround(newX + potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-            || this.isCollidingWithGround(newX + 2 * potionW / 3 + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-            || this.isCollidingWithGround(newX + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth)
-            || this.isCollidingWithGround(newX + potionW + offSetHalf, newY - offSetFeet, this.gameModel.selectedLevel, tileSize, levelWidth);
-    
-
-        // 真正的底部碰撞: 新位置 bottom 且新位置下方也碰撞 bottom, 并且 potion 不在上升状态中
-        let bottomDown = this.isColliding(newX + potionW / 3 + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth) // 下方中间两个点
-        || this.isColliding(newX + 2 * potionW / 3 + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth)
-        || this.isColliding(newX + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth) // 左下角
-        || this.isColliding(newX + potionW + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth);  // 右下角
-
-        let bottomReal = bottom && bottomDown && this.gameModel.potion.velocityY >= 0;
-
-
-        if(left || right){
-            this.gameModel.potion.onWall=true;
-        }
-        // 处理水平碰撞
-        if (left && this.gameModel.potion.speed<0) { 
-        this.gameModel.potion.speed=0; 
-        this.gameModel.potion.tanshe=true;
-        this.gameModel.potion.facingLeft=false;
-        } 
-        if (right && this.gameModel.potion.speed>0) { 
-            this.gameModel.potion.speed=0; 
-            this.gameModel.potion.tanshe=true;
-            this.gameModel.potion.facingRight=false;
-            } 
-
-        // 处理垂直碰撞
-            console.log("speedd",this.gameModel.potion.velocityY,this.gameModel.potion.onWall);
-        if (!bottomReal && !this.gameModel.cat[selectedLevel].isMerged) { // 没有上方和下方碰撞时, 竖直方向自由落体
-            if(this.gameModel.potion.onWall){
-                if(this.gameModel.potion.velocityY<15){
-                this.gameModel.potion.velocityY=this.gameModel.potion.velocityY+1.5;
-                 }
+            // 检查是否在地面上
+            if (bottomCollision) {
+                this.gameModel.potion.onGround = true;
+                this.gameModel.potion.speed *= 0.8; // 减缓水平速度
+                // 在地面上时，如果速度很小，直接设置为0防止持续滑动
+                if (Math.abs(this.gameModel.potion.speed) < 0.5) {
+                    this.gameModel.potion.speed = 0;
+                }
+                this.gameModel.potion.velocityY = 0;
+                
+                // 在地上时，可以向两个方向弹射
+                this.gameModel.potion.canShootLeft = true;
+                this.gameModel.potion.canShootRight = true;
+                
+                this.gameModel.potion.tanshe = true; // 可以弹射
+                console.log("地面碰撞: 底部=" + bottomCollision);
+            } else {
+                this.gameModel.potion.onGround = false;
             }
-            else if(this.gameModel.potion.velocityY<15){
-            this.gameModel.potion.velocityY= this.gameModel.potion.velocityY+1.5;
+            
+            // 如果既不在墙上也不在地上，应用重力
+            if (!this.gameModel.potion.onWall && !this.gameModel.potion.onGround) {
+                // 应用重力，根据gravityScale调整重力大小
+                let gravityFactor = this.gameModel.potion.gravityScale || 1.0;
+                if (this.gameModel.potion.velocityY < 10) { // 降低最大下落速度上限
+                    this.gameModel.potion.velocityY += 1.5 * gravityFactor;
+                }
+                // 重置墙上帧计数
+                this.gameModel.potion.wallFrameCount = 0;
+            } else if (this.gameModel.potion.onWall) {
+                // 墙上下滑不受gravityScale影响
+                // 增加墙上帧计数
+                this.gameModel.potion.wallFrameCount++;
+                
+                // 前10帧使用较小的加速度，保证速度不超过2
+                if (this.gameModel.potion.wallFrameCount < 10) {
+                    // 在前10帧内，使速度平滑增加到接近2，但不超过2
+                    this.gameModel.potion.velocityY += 0.15;
+                    if (this.gameModel.potion.velocityY > 2) {
+                        this.gameModel.potion.velocityY = 2;
+                    }
+                } else {
+                    // 10帧后使用曲线增加公式，加速度随帧数增加而增加
+                    // 使用 0.05 + (帧数-10)/300 的公式，使加速度非常缓慢地增加
+                    let accelerationFactor = 0.05 + (this.gameModel.potion.wallFrameCount - 10) / 300;
+                    this.gameModel.potion.velocityY += accelerationFactor;
+                }
+                
+                console.log("墙上下滑: 帧数=" + this.gameModel.potion.wallFrameCount + 
+                            ", 速度=" + this.gameModel.potion.velocityY.toFixed(2));
             }
-            this.gameModel.potion.y=newY+this.gameModel.potion.velocityY;//重力逻辑
-            //this.gameModel.potion.speed= this.gameModel.potion.speed-0.5*(Math.sign(this.gameModel.potion.speed));
-            this.gameModel.potion.x=newX+this.gameModel.potion.speed;//空气阻力
-            this.gameModel.potion.onGround = false; // 空中
-        } else if (bottomReal) { // 碰到地面
-        if (this.gameModel.potion.velocityY > 0) { // 在下落并且有碰撞地面时, 设置状态为在地上
-            this.gameModel.potion.onGround = true;
-            this.gameModel.potion.velocityY = -this.gameModel.potion.velocityY * 0.1; // 轻微反弹，而不是完全清零
+            
+            // 尝试移动到新位置
+            let testX = newX + this.gameModel.potion.speed;
+            let testY = newY + this.gameModel.potion.velocityY;
+            
+            // 检查新位置是否有碰撞
+            let wouldCollideLeftX = this.gameModel.potion.speed < 0 && 
+                checkCollision(testX + offSetHalf, newY - potionH/2);
+            let wouldCollideRightX = this.gameModel.potion.speed > 0 && 
+                checkCollision(testX + potionW + offSetHalf, newY - potionH/2);
+            let wouldCollideX = wouldCollideLeftX || wouldCollideRightX;
+            
+            // 垂直碰撞检测
+            let wouldCollideBottomY = this.gameModel.potion.velocityY > 0 && (
+                checkCollision(newX + offSetHalf, testY ) || 
+                checkCollision(newX + potionW/2 + offSetHalf, testY ) || 
+                // 如果检测到右侧墙壁碰撞，则不检测右下角
+                (wouldCollideRightX ? false : checkCollision(newX + potionW + offSetHalf, testY ))
+            );
+            let wouldCollideTopY = this.gameModel.potion.velocityY < 0 && (
+                checkCollision(newX + offSetHalf , testY - potionH ) || 
+                checkCollision(newX + potionW/2 + offSetHalf, testY - potionH) || 
+                checkCollision(newX + potionW + offSetHalf, testY - potionH )
+            );
+            let wouldCollideY = wouldCollideBottomY || wouldCollideTopY;
+            
+            // 如果水平方向有碰撞，停止水平移动并缓慢下滑
+            if (wouldCollideX) {
+                this.gameModel.potion.speed = 0; // 停止水平移动
+                this.gameModel.potion.onWall = true; // 标记在墙上
+                
+                // 如果刚刚开始触墙，初始化墙上帧计数和初始速度
+                if (!this.gameModel.potion.wallFrameCount) {
+                    this.gameModel.potion.wallFrameCount = 0;
+                    this.gameModel.potion.velocityY = 0.5; // 设置初始下滑速度为0.5
+                }
+                
+                // 根据碰撞的位置，设置可弹射的方向
+                this.gameModel.potion.canShootLeft = !wouldCollideLeftX; // 左边有墙就不能向左弹射
+                this.gameModel.potion.canShootRight = !wouldCollideRightX; // 右边有墙就不能向右弹射
+                
+                this.gameModel.potion.tanshe = true; // 在墙上可以弹射
+                console.log("水平碰撞，开始下滑");
+            } else {
+                // 否则执行水平移动
+                this.gameModel.potion.x = testX;
+                // 不在这里重置onWall状态，只有在弹射或触地时才重置
+            }
+            
+            // 如果垂直方向有碰撞，停止垂直移动
+            if (wouldCollideY) {
+                if (wouldCollideBottomY) {
+                    // 如果是底部碰撞，设置地面状态
+                    this.gameModel.potion.onGround = true;
+                    this.gameModel.potion.onWall = false; // 接触地面时重置墙上状态
+                    this.gameModel.potion.canShootLeft = true;
+                    this.gameModel.potion.canShootRight = true;
+                    this.gameModel.potion.tanshe = true;
+                    this.gameModel.potion.velocityY = 0; // 垂直速度清零
+                    this.gameModel.potion.speed = 0; // 落地时水平速度也清零
+                    this.gameModel.potion.wallFrameCount = 0; // 重置墙上帧计数
+                    
+                    console.log("碰到地面，所有速度清零");
+                } else if (wouldCollideTopY) {
+                    // 顶部碰撞时将velocityY设为0
+                    this.gameModel.potion.velocityY = 0;
+                }
+                console.log("垂直碰撞阻止");
+            } else {
+                // 否则执行垂直移动
+                this.gameModel.potion.y = testY;
+            }
+            
+            console.log("Potion状态: 地面=" + this.gameModel.potion.onGround + 
+                        ", 墙=" + this.gameModel.potion.onWall + 
+                        ", 可弹射=" + this.gameModel.potion.tanshe +
+                        ", 左弹=" + this.gameModel.potion.canShootLeft +
+                        ", 右弹=" + this.gameModel.potion.canShootRight +
+                        ", 速度Y=" + this.gameModel.potion.velocityY);
         }
-        this.gameModel.potion.velocityY = 0; // 碰到地面时停止竖直向下的速度
-        this.gameModel.potion.speed=0;
-        this.gameModel.potion.tanshe=true;
-     
-        }
-
-
-
     }
     
 
