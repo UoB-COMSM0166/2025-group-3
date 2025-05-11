@@ -55,7 +55,12 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 The game draws inspiration from the visual charm of *Capoo Pals* and the whimsical absurdity of *Cato*, aiming to deliver a humorous yet polished experience that balances casual accessibility with cognitive engagement.
 
-*Capoo* introduces unique mechanics, such as the ability to separate Capoo from the can using key inputs, allowing for diverse platforming strategies. The game is structured across multiple levels, each representing increasing puzzle complexity and map decryption difficulty.
+*Capoo* introduces two unique mechanics:
+The ability to separate Capoo from the can using key inputs, enabling the player to control each component independently. This will allow for diverse platforming strategies, increasing gameplay variety and encouraging creative problem-solving.
+### Figure 1:Demonstration of separation
+
+The game is structured across multiple levels, each of which presents increasing puzzle complexity and map decryption difficulty. This will gradually raise the cognitive challenge, ensuring players remain mentally engaged as they progress through the game.
+### Figure 2:Demonstration of mutiple levels
 
 Its appeal lies in its distinctive art style, playful animations, and inventive gameplay. The development process followed agile methodologies and user-centered design, incorporating feedback from playtesting and usability evaluations.
 
