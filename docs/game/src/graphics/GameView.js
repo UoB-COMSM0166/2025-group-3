@@ -102,7 +102,8 @@ export default class GameView {
         }
 
         this.enterMessage.show();
-        this.titleMessage.show();
+        image(window.assets.title, window.innerWidth / 4+50, window.innerHeight/50,800,300);
+        //this.titleMessage.show();
     }
 
 
@@ -336,7 +337,8 @@ export default class GameView {
         strokeWeight(5); 
         textSize(window.innerWidth / 38);
         textAlign(CORNER); 
-        text("ESC - show help", window.innerHeight/20, window.innerWidth/25);
+        text("ESC - Exit", window.innerHeight/20, window.innerWidth/25+10);
+        text("H - Help",window.innerHeight/20, window.innerWidth/60)
 
         // 显示所有提示消息
         for (let i = 0; i < this.gameModel.messages.length; i++) {
@@ -366,7 +368,7 @@ export default class GameView {
 
     showhelpscreen(levelIndex){
         if(levelIndex == 0 && levelIndex ==1){
-            fill(255, 255, 255, 170); // 半透明背景
+        fill(255, 255, 255, 170); // 半透明背景
         stroke(255); // 白色描边
         strokeWeight(5);
         let padding = 50; // 四周留白
@@ -383,11 +385,19 @@ export default class GameView {
         //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         textSize(window.innerWidth / 38);
-        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Find three keys and touch the flag to pass.", window.innerWidth/2-20, window.innerHeight/2 - window.innerHeight/3.1-50);
+        fill(255, 255, 153);
+        stroke(255);
+        text("3 Keys       Flag  ",window.innerWidth/2-10, window.innerHeight/2 - window.innerHeight/3.1-10)
 
+
+        fill(255); // 白色文字
+        stroke(50,110,185);
+        strokeWeight(5); 
+        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
         fill(61, 170, 110);  // 绿色
         stroke(255);
-        text("   any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("   H                           ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(255);
         stroke(50,110,185);
@@ -464,17 +474,25 @@ export default class GameView {
         // textSize(window.innerWidth/38);
         // text("Press any key to return to the game.\nPress ESC to Exit.", 
         //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Find              and touch the           to pass.", window.innerWidth/2-20, window.innerHeight/2 - window.innerHeight/3.1-60);
+        fill(255, 223, 0);
+        stroke(255);
+        text("                       3 Keys                          Flag  ",window.innerWidth/2-200, window.innerHeight/2 - window.innerHeight/3.1-60)
 
+
+        fill(255); // 白色文字
+        stroke(50,110,185);
+        strokeWeight(5); 
         textSize(window.innerWidth / 38);
-        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Press         to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(61, 170, 110);  // 绿色
         stroke(255);
-        text("   any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("   H                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(255);
         stroke(50,110,185);
-        text("Press             to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
+        text("Press            to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
 
         fill(169, 59, 70); // 红色
         stroke(255);
@@ -482,7 +500,6 @@ export default class GameView {
 
         fill(255);
         stroke(50,110,185);
-        textSize(window.innerWidth / 50);
         let dis = window.innerHeight / 19;
         let textX = window.innerWidth / 2;
         let textY = window.innerHeight / 2 + window.innerHeight / 13;
@@ -492,7 +509,7 @@ export default class GameView {
         stroke(50, 110, 185);
         strokeWeight(5);
 
-        text("         will disappear when you drop the pot.", textX, textY);
+        text("                        will disappear when you drop the pot.", textX, textY);
         fill(169, 59, 70); // 红色
         stroke(255);
         text(" ! Wall", textX/1.6, textY);
@@ -513,17 +530,25 @@ export default class GameView {
         // textSize(window.innerWidth/38);
         // text("Press any key to return to the game.\nPress ESC to Exit.", 
         //     window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Find              and touch the           to pass.", window.innerWidth/2-20, window.innerHeight/2 - window.innerHeight/3.1-60);
+        fill(255, 223, 0);
+        stroke(255);
+        text("                       3 Keys                          Flag  ",window.innerWidth/2-200, window.innerHeight/2 - window.innerHeight/3.1-60)
 
+
+        fill(255); // 白色文字
+        stroke(50,110,185);
+        strokeWeight(5); 
         textSize(window.innerWidth / 38);
-        text("Press                 to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("Press         to return to the game.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(61, 170, 110);  // 绿色
         stroke(255);
-        text("   any key                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
+        text("   H                              ", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1);
 
         fill(255);
         stroke(50,110,185);
-        text("Press             to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
+        text("Press            to Exit.", window.innerWidth/2, window.innerHeight/2 - window.innerHeight/3.1 + window.innerWidth /24);
 
         fill(169, 59, 70); // 红色
         stroke(255);

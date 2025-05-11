@@ -85,6 +85,7 @@ window.setup = function () {
   window.assets.level6bg = loadImage("/asset/bg/night1.png");
   window.assets.level7bg = loadImage("/asset/bg/ocean4.png");
   window.assets.level8bg = loadImage("/asset/bg/Summer7.png");
+  window.assets.title = loadImage("/asset/title.png");
 
   // 用于开始界面和选关界面的移动云朵素材, 必须在preload中加载, 不可以在gamemodel中加载(因为是异步的)
   window.assets.startscreenbg_cloud1 = loadImage("/asset/bg/clouds/ocean-3-3-1.png");
@@ -257,23 +258,20 @@ window.keyPressed = function () {
     // 设置按键状态，允许多个按键同时生效
     gameModel.keys[key] = true;
     
-    // 处理H键显示和关闭帮助
-    if (key === 'h' || key === 'H') {
-      gameModel.showHelp = !gameModel.showHelp;
-      return;
-    }
-    
-    // 处理ESC键直接退出到选关页面
+    // 处理ESC键
     if (keyCode === ESCAPE) { 
-      gameModel.showHelp = false;
-      gameModel.keysESC = false;
-      gameModel.gameState = GAME_STATE.LEVEL_SELECT;
-      return;
+      if (!gameModel.showHelp) { // 按下esc, 如果没有展示游戏说明, 则展示
+          gameModel.showHelp = true;
+          gameModel.keysESC = true; 
+      } else {
+          gameModel.showHelp = false // 按下两次esc, 退出到选关页面
+          gameModel.keysESC = false;
+          gameModel.gameState = GAME_STATE.LEVEL_SELECT;
+      }
     }
-    
-    // 如果显示帮助界面，阻止其他按键操作游戏
-    if (gameModel.showHelp) {
-      return;
+    if (gameModel.showHelp && keyCode !== ESCAPE) {
+        gameModel.showHelp = false;
+        gameModel.keysESC = false; 
     }
   }
   
