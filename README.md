@@ -228,18 +228,29 @@ The sequence clearly demonstrates the flow of control from player input to game 
 
 ### **3.4 State Machine Diagram**
 
-To help us understand the dynamic behaviors and transitions of key game components, we decided to create a state diagram for Capoo. This diagram illustrates the lifecycle of major objects like `GameModel`, `GameController`, `Capoo`, `Wizard`, `Potion`, `ElevatingWalls`, `MapLoader`, `RenderLogic`, `GameView`, and `SpineLayer`. By mapping out their state transitions—such as how `Capoo` moves from `Idle` to `Walking`, or how the `GameModel` transitions from `Running` to `GameOver`—we gained deeper insights into how interactions flow during gameplay.
+We created a state diagram for *Capoo* to map the lifecycle of key game components like `GameModel`, `Capoo`, `Potion`, and others. The diagram illustrates state transitions—such as `Capoo` moving from `Idle` to `Walking`, or the `GameModel` transitioning to `GameOver`—which helped clarify the conditions for state changes during development.
 
-Moreover, the state diagram served as a blueprint during development, clarifying the conditions required for state changes. For example, the `Potion` object smoothly transitions from `Inactive` to `Active` upon pickup, and eventually to `Used` when consumed. Similarly, `ElevatingWalls` move from `Static` to `Moving` based on triggers, reflecting game mechanics in a visual and structured manner.
-
-This representation was crucial for identifying edge cases, preventing inconsistent states, and ensuring that the game's logic remains synchronized across different modules. Understanding these states early on allowed us to focus on game logic with confidence, supporting our modular design principles and reducing debugging time as new features were added.
+For instance, the `Potion` transitions from `Inactive` to `Active` upon pickup, and `ElevatingWalls` move from `Static` to `Moving` based on triggers. This visual representation helped identify edge cases, ensure synchronized game logic, and streamline development, ultimately reducing debugging time.
 images/state machine diagram.png
 ![machine diagram](images/state%20machine%20diagram.png)
 <p align="center"><b>state machine diagram</b></p>
 
 ------
 
-### **3.5 Design Considerations**
+### **3.5 Communication Diagram**
+
+The **Communication Diagram** for the *Capoo Game* illustrates the interactions between key components. The **Player** sends inputs to the *GameController*, which processes them and updates the *GameModel*. This triggers changes in entities like *Capoo*, *Potion*, *KeyItem*, *Flag*, and *ElevatingWalls*. These updates are rendered by *RenderLogic* and displayed in the *GameView*.
+
+The *MapLoader* initializes game levels and parses entity data for the *GameModel*. *Capoo* interacts with objects, triggering events that are reflected in the game state. *SpineLayer* manages character animations, ensuring smooth visuals. Error handling in *GameController* ensures stability during gameplay.
+
+This structure maintains synchronized game states, smooth animations, and consistent feedback to the player.  
+images/communication diagram.png
+![communication diagram](images/communication%20diagram.png)
+<p align="center"><b>state communication diagram</b></p>
+
+------
+
+### **3.6 Design Considerations**
 
 During design and implementation, we faced several technical challenges that led to important design decisions:
 
@@ -249,13 +260,13 @@ During design and implementation, we faced several technical challenges that led
 
 ------
 
-### **3.6 Iterative Development & Diagram Updates**
+### **3.7 Iterative Development & Diagram Updates**
 
 Consistent with agile methodology, our class and sequence diagrams evolved over time. For example, earlier prototypes had more monolithic controller logic, but we later separated `GameController` and `MapLoader` to improve maintainability and testing. Additionally, classes such as `Capoo`, `Potion`, and `ElevatingWalls` saw expanded responsibilities as gameplay mechanics became clearer through playtesting.
 
 ------
 
-### **3.7 Conclusion**
+### **3.8 Conclusion**
 
 The UML models we developed played a crucial role in organizing our design and facilitating communication within the team. By combining a strong object-oriented foundation with agile iteration, we built a flexible and scalable game architecture that can accommodate future features such as multi-character control or extended puzzle mechanics.
 
