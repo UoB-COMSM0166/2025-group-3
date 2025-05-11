@@ -300,7 +300,7 @@ export default class GameController {
      
 
         if(this.gameModel.cat[selectedLevel].isMerged 
-            && (this.gameModel.keys['s']||this.gameModel.keys['S'])){
+            && (this.gameModel.keys['s']||this.gameModel.keys['S'])&& this.gameModel.flagp<60){
                 this.gameModel.cat[selectedLevel].isMerged = false;
 
                 // 修改spinelayer, 猫和黄油分开渲染
@@ -310,6 +310,7 @@ export default class GameController {
                 // 给黄油一个向上的初速度
                 this.gameModel.potion.velocityY = -10;
                 this.gameModel.potion.speed =0; // 减小水平初速度
+                this.gameModel.potion.tanshe = false;
                 setShowBack(false);
                 setShowPotion(true); 
         }
@@ -446,8 +447,8 @@ export default class GameController {
             if (!this.gameModel.potion.onWall && !this.gameModel.potion.onGround) {
                 // 应用重力，根据gravityScale调整重力大小
                 let gravityFactor = this.gameModel.potion.gravityScale || 1.0;
-                if (this.gameModel.potion.velocityY < 10) { // 降低最大下落速度上限
-                    this.gameModel.potion.velocityY += 1.5 * gravityFactor;
+                if (this.gameModel.potion.velocityY < 20) { // 降低最大下落速度上限
+                    this.gameModel.potion.velocityY += 2 * gravityFactor;
                 }
                 // 重置墙上帧计数
                 this.gameModel.potion.wallFrameCount = 0;
