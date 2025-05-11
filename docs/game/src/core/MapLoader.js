@@ -38,33 +38,33 @@ export default class MapLoader {
     }
 
     loadGame() {
-        //this.gameModel.assets.startscreenbg = loadImage("/2025-group-3/game/asset/startscreenbg.png");
-        //this.gameModel.assets.selectscreenbg = loadImage("/2025-group-3/game/asset/selectscreenbg.png");
-        //this.gameModel.assets.level1bg = loadImage("/2025-group-3/game/asset/level1bg.png");
-        //this.gameModel.assets.level2bg = loadImage("/2025-group-3/game/asset/level2bg.png");
+        //this.gameModel.assets.startscreenbg = loadImage("/asset/startscreenbg.png");
+        //this.gameModel.assets.selectscreenbg = loadImage("/asset/selectscreenbg.png");
+        //this.gameModel.assets.level1bg = loadImage("/asset/level1bg.png");
+        //this.gameModel.assets.level2bg = loadImage("/asset/level2bg.png");
 
-        // this.gameModel.assets.startscreenbg_cloud1 = loadImage("/2025-group-3/game/asset/bg/clouds/ocean-3-3-1.png");
-        // this.gameModel.assets.startscreenbg_cloud2 = loadImage("/2025-group-3/game/asset/bg/clouds/ocean-3-3-2.png");
-        // this.gameModel.assets.startscreenbg_cloud3 = loadImage("/2025-group-3/game/asset/bg/clouds/ocean-3-4.png");
+        // this.gameModel.assets.startscreenbg_cloud1 = loadImage("/asset/bg/clouds/ocean-3-3-1.png");
+        // this.gameModel.assets.startscreenbg_cloud2 = loadImage("/asset/bg/clouds/ocean-3-3-2.png");
+        // this.gameModel.assets.startscreenbg_cloud3 = loadImage("/asset/bg/clouds/ocean-3-4.png");
 
-        //loadJSON('../../2025-group-3/game/asset/level1.json', (jsonData) => this.parseJSON(jsonData)); // Use arrow function to bind context
-        //loadJSON('../../2025-group-3/game/asset/level2-test.json', (jsonData) => this.parseJSON(jsonData));
+        //loadJSON('../../asset/level1.json', (jsonData) => this.parseJSON(jsonData)); // Use arrow function to bind context
+        //loadJSON('../../asset/level2-test.json', (jsonData) => this.parseJSON(jsonData));
 
         // 关卡映射关系
         // const levelMap = {
-        //     0: "../../2025-group-3/game/asset/level1.json",
-        //     1: "../../2025-group-3/game/asset/level2-test.json"
+        //     0: "../../asset/level1.json",
+        //     1: "../../asset/level2-test.json"
         // };
 
         const levels = [
-            "/2025-group-3/game/asset/level1.json",
-            "/2025-group-3/game/asset/level2.json",
-            "/2025-group-3/game/asset/level3.json",
-            "/2025-group-3/game/asset/level4.json",
-            "/2025-group-3/game/asset/level5.json",
-            "/2025-group-3/game/asset/level6.json",
-            "/2025-group-3/game/asset/level7.json",
-            "/2025-group-3/game/asset/level8.json",
+            "/asset/level1.json",
+            "/asset/level2.json",
+            "/asset/level3.json",
+            "/asset/level4.json",
+            "/asset/level5.json",
+            "/asset/level6.json",
+            "/asset/level7.json",
+            "/asset/level8.json",
         ];
         
         // 避免 this.levelIndex 影响所有关卡，每个关卡独立加载
@@ -82,10 +82,10 @@ export default class MapLoader {
         //     console.error(`Invalid level index: ${selectedLevel}`);
         // }
 
-        this.gameModel.assets.icon = loadImage("/2025-group-3/game/asset/spritesheet.png");
-        this.gameModel.assets.testcat = loadImage("/2025-group-3/game/asset/testcat.png");
-        this.gameModel.assets.bg = loadImage("/2025-group-3/game/asset/backgrounds.png");
-        this.gameModel.assets.teachCommand = loadImage("/2025-group-3/game/asset/teachCommand.png");
+        this.gameModel.assets.icon = loadImage("/asset/spritesheet.png");
+        this.gameModel.assets.testcat = loadImage("/asset/testcat.png");
+        this.gameModel.assets.bg = loadImage("/asset/backgrounds.png");
+        this.gameModel.assets.teachCommand = loadImage("/asset/teachCommand.png");
     }
 
     // Load the json file and parse it
