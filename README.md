@@ -294,7 +294,14 @@ Each challenge forced us to adapt and improve our technical approach. From anima
 
 ### 5.1 Qualitative Evaluation: Heuristic Evaluation  
 
-![Heuristic Evaluation](weekly%20updates/Week%207%20-%20Heuristic%20Evaluation.png)
+| Interface     | Issue                                                                                                                                 | Heuristic(s)                          | Frequency (0–4) | Impact (0–4) | Persistence (0–4) | Severity = (F + I + P) / 3 |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|------------------|---------------|---------------------|-----------------------------|
+| Game UI       | The color contrast is not distinct, making it difficult for players to see clearly.                                                   | Aesthetic and minimalist design        | 3                | 2             | 3                   | (3 + 2 + 3) / 3 = 2.67       |
+| Game Rules    | Players think they can step on monsters and do not understand the function of the mushroom, making the game rules unclear.            | Help and documentation                 | 4                | 3             | 4                   | (4 + 3 + 4) / 3 = 3.67       |
+| Controls      | Using the space key for jumping does not align with user habits and is not easy to operate.                                           | Flexibility and efficiency of use      | 3                | 2             | 3                   | (3 + 2 + 3) / 3 = 2.67       |
+| Game Objects  | Players believe that brown is a toxic color and touching it will cause them to lose health.                                           | Consistency and standards              | 2                | 2             | 3                   | (2 + 2 + 3) / 3 = 2.33       |
+| Exit Option   | There is no clear exit option.                                                                                                         | User control and freedom               | 3                | 3             | 4                   | (3 + 3 + 4) / 3 = 3.33       |
+
 
 ### 5.2 Quantitative Evaluation: NASA TLX & SUS  
 
