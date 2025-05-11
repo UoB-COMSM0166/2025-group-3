@@ -85,7 +85,8 @@ window.setup = function () {
   window.assets.level6bg = loadImage("/asset/bg/night1.png");
   window.assets.level7bg = loadImage("/asset/bg/ocean4.png");
   window.assets.level8bg = loadImage("/asset/bg/Summer7.png");
-  window.assets.completed = loadImage("/asset/bg/completed.png")
+  window.assets.completed = loadImage("/asset/bg/completed.png");
+  window.assets.instructionbg = loadImage("/asset/bg/instructionbg.png");
   window.assets.title = loadImage("/asset/title.png");
 
   // 用于开始界面和选关界面的移动云朵素材, 必须在preload中加载, 不可以在gamemodel中加载(因为是异步的)
