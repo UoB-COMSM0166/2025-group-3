@@ -14,4 +14,15 @@ seo:
   robots: "" # custom robot tags (optional)
 ---
 
+game source code lives in docs/game/src
+
+- .github : config file for github workflow (in website deploy)
+
+- GameProjectDoc : documentation website, our game demo lives under this website
+
+- docs : game source code and p5.js sketch exercise source code
+
+- images : image used in README.md
+
+- weekly updates : every week's assignment
 
