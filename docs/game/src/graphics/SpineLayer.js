@@ -6,12 +6,12 @@ import { showPotion,showBack,PotionX, PotionY,isFacingRight} from "../core/Utils
 
 
 
-let scene, camera, renderer; // 场景, 相机, 渲染器
-let canvas; // 画布
-let lastFrameTime = Date.now() / 1000;  // 上一帧时间,用于计算动画的时间增量
+let scene, camera, renderer; // Scene, camera, renderer
+let canvas; // Canvas
+let lastFrameTime = Date.now() / 1000;  // Last frame time, used to calculate animation time increment
 let baseUrl = "/asset/spine/"; 
 
-// 4 套 Spine 模型资源（主体、脸部、帽子、背部）
+// 4 Spine model resources (body, face, hat, back)
 let atlas;
 let assetManager;
 let atlasLoader;
@@ -20,16 +20,16 @@ let skeletonFile = "capoo_basic_002.json";
 let atlasFile = "capoo_basic_002.atlas";
 let animation = "run";
 
-// 添加脸部表情列表和当前表情索引
-// 可用的脸部动画列表
+// Add face expression list and current expression index
+// Available face animation list
 let faceAnimations = [
     "basic", "blankly", "blissful", "chew",
     "confidence", "delighted", "eager", "emoji",
     "happy", "kawaii", "like", "pleased", "poo",
     "serious", "shy", "sleep" 
   ];
-// 使用window.currentFaceIndex代替局部变量
-//export let currentFaceIndex = 0; // 当前表情索引
+// Use window.currentFaceIndex instead of local variable
+//export let currentFaceIndex = 0; 
 
 let atlas1;
 let assetManager1;
@@ -68,8 +68,8 @@ let assetManager5;
 let atlasLoader5;
 let skeletonMesh5;
 
-// 初始化 Three.js 场景
-// 创建 Three.js 场景、相机、渲染器，并将 <canvas> 添加到网页
+// Initialize Three.js scene
+// Create Three.js scene, camera, renderer, and add <canvas> to the webpage
 function init() {
     // create the THREE.JS camera, scene and renderer (WebGL)
     let width = window.innerWidth,
@@ -112,18 +112,18 @@ function init() {
     requestAnimationFrame(load);
 }
 
-// 加载 Spine 模型
-// 加载角色的 .json 骨骼结构和 .atlas 纹理贴图，并将其渲染到 Three.js 场景中
+// Load Spine model
+// Load character's .json skeleton structure and .atlas texture maps, and render them to the Three.js scene
 function load(name, scale) {
     console.log("SpineLayer loading");
-    if (assetManager.isLoadingComplete()  //等待资源加载完成后，创建模型并添加到场景
+    if (assetManager.isLoadingComplete()  // Wait for resources to load completely, then create models and add to scene
         && assetManager1.isLoadingComplete() 
         && assetManager2.isLoadingComplete() 
         && assetManager3.isLoadingComplete()) {
         //console.log("SpineLayer loading complete:" + assetManager.isLoadingComplete());
 
 
-        // --------------加载 Capoo 主体-------------
+        // --------------Loading Capoo Body-------------
 
         // Load the texture atlas using name.atlas and name.png from the AssetManager.
         // The function passed to TextureAtlas is used to resolve relative paths.
@@ -144,7 +144,7 @@ function load(name, scale) {
  
         
        
-        // --------------加载 Capoo 脸-------------
+        // --------------Loading Capoo Face-------------
         // add face
         atlas1 = assetManager1.require(atlasFile1);
         atlasLoader1 = new spine.AtlasAttachmentLoader(atlas1);
@@ -157,7 +157,7 @@ function load(name, scale) {
         skeletonMesh1.state.setAnimation(0, animation1, true);
         scene.add(skeletonMesh1);
 
-        // --------------加载 Capoo 帽子-------------
+        // --------------Loading Capoo Hat-------------
         // add hat
         atlas2 = assetManager2.require(atlasFile2);
         atlasLoader2 = new spine.AtlasAttachmentLoader(atlas2);
@@ -170,7 +170,7 @@ function load(name, scale) {
         skeletonMesh2.state.setAnimation(0, animation2, true);
         scene.add(skeletonMesh2);
 
-        // --------------加载 Capoo 罐子(需要分离)-------------
+        // --------------Loading Capoo Pot (needs separation)-------------
         // add potion
         atlas3 = assetManager3.require(atlasFile3);
         atlasLoader3 = new spine.AtlasAttachmentLoader(atlas3);
@@ -183,7 +183,7 @@ function load(name, scale) {
         skeletonMesh3.state.setAnimation(0, animation3, true);
         scene.add(skeletonMesh3);
 
-        //另外一个罐子
+        // Another pot
         atlas4 = assetManager3.require(atlasFile3);
         atlasLoader4 = new spine.AtlasAttachmentLoader(atlas4);
         let skeletonJson4 = new spine.SkeletonJson(atlasLoader4);
@@ -200,10 +200,10 @@ function load(name, scale) {
 }
 
 
-// 不断更新并渲染动画
+// Continuously update and render animation
 let lastTime = Date.now();
 function render() {
-    // 计算 delta（两帧之间的时间差），用于动画更新
+    // Calculate delta (time difference between frames) for animation update
     let now = Date.now() / 1000;
     let delta = now - lastFrameTime;
     lastFrameTime = now;
@@ -218,19 +218,19 @@ function render() {
     skeletonMesh3.update(delta);
     skeletonMesh4.update(delta);
 
-    // 设置角色朝向
+    // Set character orientation
     let rootBone = skeletonMesh.skeleton.findBone("root");
     if (rootBone) {
         rootBone.rotation = -1; // 设置根骨骼的旋转为0，使角色朝右
     }
  
-    // 应用新的表情动画
+    // Apply new facial animation
     if (skeletonMesh1) {
-        // 应用新的表情动画 - 使用window.currentFaceIndex
+        // Apply new facial animation - using window.currentFaceIndex
         skeletonMesh1.state.setAnimation(0, faceAnimations[window.currentFaceIndex], true);
     }
 
-    // 更新所有模型的动画状态
+    // Update animation states for all models
     // Synchronize the body_face bone of skeletonMesh1 with skeletonMesh
     let bodyFaceSlot = skeletonMesh.skeleton.findBone("body_face_root");
     let faceBodySlot = skeletonMesh1.skeleton.findBone("root");
@@ -244,7 +244,7 @@ function render() {
     let backBodySlot = skeletonMesh3.skeleton.findBone("root");
    
 
-    //设置罐子位置
+    // Set pot position
     skeletonMesh4.position.set(PotionX, PotionY, -1);
 
     // render the scene
@@ -261,12 +261,12 @@ function render() {
         skeletonMesh2.position.set(-(bodyHatSlot.worldX - hatBodySlot.worldX), (bodyHatSlot.worldY - hatBodySlot.worldY), 4); 
         skeletonMesh3.position.set(-(bodyBackSlot.worldX - backBodySlot.worldX), (bodyBackSlot.worldY - backBodySlot.worldY), -1);
     
-        //设置罐子位置
+        // Set pot position
         skeletonMesh4.position.set(PotionX, PotionY, -1);
         skeletonMesh.scale.x=-1;
         skeletonMesh1.scale.x=-1;
         skeletonMesh2.scale.x=-1;
-        // 调大帽子尺寸
+        // Increase hat size
         skeletonMesh2.scale.y=1;
         skeletonMesh3.scale.x=-1;
 
@@ -274,7 +274,7 @@ function render() {
             skeletonMesh.scale.x=1;
             skeletonMesh1.scale.x=1;
             skeletonMesh2.scale.x=1;
-            // 调大帽子尺寸
+            // Increase hat size
             skeletonMesh2.scale.y=1;
             skeletonMesh3.scale.x=1;
  
@@ -285,7 +285,7 @@ function render() {
         }
     }
     
-    //设置身体比例
+    // Set body proportion
     skeletonMesh.rotation.y = 0;
     //console.log("showCapoo:" + showCapoo);
 

@@ -1,16 +1,16 @@
 import MapLoader from "./MapLoader";
 import { CONSTANT, Message } from "./Utils";
 import Potion from "../entities/characters/Potion";
-import {setShowBack,setShowPotion,PotionX,PotionY,setFacingLeft,setFacingRight} from "../core/Utils";
+import { setShowBack, setShowPotion, PotionX, PotionY, setFacingLeft, setFacingRight } from "../core/Utils";
 //import { currentFaceIndex } from "../graphics/SpineLayer";
 //import { assets } from "../main";
 
 
-// 用于所有关卡的控制和交互
+// For controlling and interacting with all levels
 
 /*  
-    已解决碰撞时误判的bug
-    地图新增一个ground层, 该层不显示在游戏中, 仅用于检测真正的上下边碰撞
+    Fixed the bug of misjudgment during collision
+    Added a new ground layer to the map, which is not displayed in the game and is only used to detect real top and bottom collisions
 */
 
 export default class GameController {
@@ -23,17 +23,17 @@ export default class GameController {
         this.gameModel.selectedLevel = 0;
     }
 
-    // 读取地图文件到gameModel
+    // Load the map file into gameModel
     newGame() {
         this.gameModel.assets.startscreenbg = loadImage("/asset/startscreenbg.png")
         let mapLoader = new MapLoader(this.gameModel, this.gameModel.selectedLevel); 
         mapLoader.loadGame();
         
-        //console.log("GameController.newGame done");// 测试
-        //console.log(this.gameModel);// 测试
+        //console.log("GameController.newGame done");// Test
+        //console.log(this.gameModel);// Test
     }
     
-    // 控制猫的坐标移动, 以及遍历所有交互, 相当于原来类里的update
+    // Control the cat's coordinate movement and traverse all interactions, equivalent to the update in the original class
     moveCapoo() {
         let selectedLevel = this.gameModel.selectedLevel;
         let tileSize = CONSTANT.TILE_SIZE;
@@ -42,35 +42,37 @@ export default class GameController {
         let newY = this.gameModel.cat[selectedLevel].y;
         let catW = CONSTANT.CAT_WIDTH;
         let catH = CONSTANT.CAT_HEIGHT;
-        let offSetHalf = -catW/2; /* 猫实际坐标在猫图像正下方, 但是猫显示坐标在猫左侧半个身距处
-                                    因此所有计算都向左偏移半个身距(-catW/2) */
-        let offSetFeet = catH/10; /* 用于猫纵坐标的脚底距离偏移 */
-        
-        /* ------------------和所有对象层的交互----------------- */
+        let offSetHalf = -catW / 2; /* The cat's actual coordinate is right under its image,
+                                       but the display coordinate is half a body-width to the left.
+                                       Therefore all calculations shift left by half a body-width (-catW/2). */
+        let offSetFeet = catH / 10;  /* Vertical offset for the distance from the cat's feet */
 
-        // 检查是否按下R键重置位置
+        /* ------------------Interaction with all object layers----------------- */
+
+        // Check if the R key is pressed to reset the position
         if (this.gameModel.keys['r'] || this.gameModel.keys['R']) {
             window.assets.death.play();
             let message1 = "Restarting level...";
-            this.gameModel.messages.push(new Message(message1, width/2, 4*height/5, 2000, 30, {}, "restart"));
+            this.gameModel.messages.push(new Message(message1, width / 2, 4 * height / 5, 2000, 30, {}, "restart"));
             this.reLife();
             return;
         }
 
-        // 检查是否碰到钥匙
+        // Check if the key is picked up
         this.getkey(this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y, selectedLevel); 
 
-        // 钥匙满时, flag设置为显示
-        if(this.gameModel.cat[selectedLevel].keyNum == this.gameModel.keysItem[selectedLevel].length){
-            //console.log("旗子显示");
+        // When all keys are collected, set the flag to visible
+        if (this.gameModel.cat[selectedLevel].keyNum == this.gameModel.keysItem[selectedLevel].length) {
+            //console.log("Flag becomes visible");
             this.gameModel.flag[selectedLevel].visible = true;
         }
 
-        /* ------------------和所有碰撞层的交互----------------- */
+        /* ------------------Interaction with all collision layers----------------- */
 
-        // 控制黄油分离  待完成
-        // 按X键分离
+        // Control the separation of the butter (to be completed)
+        // Press X to separate
         
+
 
         // if(this.gameModel.keys['h']||this.gameModel.keys['H']){
         //     this.gameModel.potion.setPotionPosition(100,100);       
@@ -78,71 +80,68 @@ export default class GameController {
 
 
 
-        // 判断猫是否入水(以最下边中心点计算), 重置回出生点
-        if(this.inWater(this.gameModel.cat[selectedLevel].x-catW/2, this.gameModel.cat[selectedLevel].y, 
-            selectedLevel, tileSize, levelWidth)){
+        // Determine if the cat falls into water (calculated by the bottom center point), reset to the spawn point
+        if (this.inWater(this.gameModel.cat[selectedLevel].x - catW / 2, this.gameModel.cat[selectedLevel].y, 
+            selectedLevel, tileSize, levelWidth)) {
 
             window.assets.death.play();
 
             let message1 = "Cats dissolve easily in water!"
-            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,2000,30,{},"death"));
+            this.gameModel.messages.push(new Message(message1, width / 2, 4 * height / 5, 2000, 30, {}, "death"));
 
             this.reLife();
             return;
         }
 
-
         
-
-        
-        // 判断猫是否碰到陷阱(上下边分別检测两个点), 重置回出生点
-        let offSetTrapped = catW/4;
-        let beTrapedUp = this.beTraped(this.gameModel.cat[selectedLevel].x-offSetTrapped, this.gameModel.cat[selectedLevel].y-catH, 
+        // Determine if the cat hits a trap (check two points at the top and bottom), reset to the spawn point
+        let offSetTrapped = catW / 4;
+        let beTrapedUp = this.beTraped(this.gameModel.cat[selectedLevel].x - offSetTrapped, this.gameModel.cat[selectedLevel].y - catH, 
             selectedLevel, tileSize, levelWidth)
-            ||this.beTraped(this.gameModel.cat[selectedLevel].x+offSetTrapped, this.gameModel.cat[selectedLevel].y-catH, 
+            || this.beTraped(this.gameModel.cat[selectedLevel].x + offSetTrapped, this.gameModel.cat[selectedLevel].y - catH, 
                 selectedLevel, tileSize, levelWidth);
-        let beTrapedBottom = this.beTraped(this.gameModel.cat[selectedLevel].x-offSetTrapped, this.gameModel.cat[selectedLevel].y-offSetFeet*2, 
+        let beTrapedBottom = this.beTraped(this.gameModel.cat[selectedLevel].x - offSetTrapped, this.gameModel.cat[selectedLevel].y - offSetFeet * 2, 
             selectedLevel, tileSize, levelWidth) 
-            || this.beTraped(this.gameModel.cat[selectedLevel].x+offSetTrapped, this.gameModel.cat[selectedLevel].y-offSetFeet*2, 
+            || this.beTraped(this.gameModel.cat[selectedLevel].x + offSetTrapped, this.gameModel.cat[selectedLevel].y - offSetFeet * 2, 
                 selectedLevel, tileSize, levelWidth);
-        if(beTrapedUp || beTrapedBottom){
+        if (beTrapedUp || beTrapedBottom) {
             
             window.assets.death.play();
 
             let message1 = "You are trapped!"
-            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,2000,30,{},"death"));
+            this.gameModel.messages.push(new Message(message1, width / 2, 4 * height / 5, 2000, 30, {}, "death"));
 
             this.reLife();
             return;
         }
 
 
-        // 计算猫是否处于攀爬墙位置(给予一个offSetClimb的差值, 确保不是在刚碰到攀爬梯子的边缘时就能攀爬)
-        let offSetClimb = catW/4;  // 用于攀爬墙的水平偏移量
+        // Calculate whether the cat is in a climbable wall position (give an offSetClimb offset to ensure it can't climb just by touching the edge of the ladder)
+        let offSetClimb = catW / 4;  // Horizontal offset used for climbing walls
         
-        let catCanClimb = this.canClimb(this.gameModel.cat[selectedLevel].x+offSetHalf+offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet, 
-            selectedLevel, tileSize, levelWidth) // 左下角, 向上偏移一个脚底距离
-        || this.canClimb(this.gameModel.cat[selectedLevel].x+catW+offSetHalf-offSetClimb, this.gameModel.cat[selectedLevel].y-offSetFeet,
-            selectedLevel, tileSize, levelWidth); // 右下角, 向上偏移一个脚底距离
+        let catCanClimb = this.canClimb(this.gameModel.cat[selectedLevel].x + offSetHalf + offSetClimb, this.gameModel.cat[selectedLevel].y - offSetFeet, 
+            selectedLevel, tileSize, levelWidth) // Bottom-left corner, shifted up by one foot offset
+        || this.canClimb(this.gameModel.cat[selectedLevel].x + catW + offSetHalf - offSetClimb, this.gameModel.cat[selectedLevel].y - offSetFeet,
+            selectedLevel, tileSize, levelWidth); // Bottom-right corner, shifted up by one foot offset
 
 
-        // 计算是否弹簧床(取下方中点, 和左右1/5点)
-        let offSetSpring = catW/5;
-        let catUseSpring = this.canUseSpring(this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y-offSetFeet,
+        // Calculate if on a spring bed (take the bottom center and left/right 1/5 points)
+        let offSetSpring = catW / 5;
+        let catUseSpring = this.canUseSpring(this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y - offSetFeet,
             selectedLevel, tileSize, levelWidth)
-            || this.canUseSpring(this.gameModel.cat[selectedLevel].x + offSetSpring, this.gameModel.cat[selectedLevel].y-offSetFeet,
+            || this.canUseSpring(this.gameModel.cat[selectedLevel].x + offSetSpring, this.gameModel.cat[selectedLevel].y - offSetFeet,
                 selectedLevel, tileSize, levelWidth)
-            || this.canUseSpring(this.gameModel.cat[selectedLevel].x - offSetSpring, this.gameModel.cat[selectedLevel].y-offSetFeet,
+            || this.canUseSpring(this.gameModel.cat[selectedLevel].x - offSetSpring, this.gameModel.cat[selectedLevel].y - offSetFeet,
                 selectedLevel, tileSize, levelWidth);
-        if(catUseSpring){ // 给一个向上的加速度
-            //console.log("弹簧床");
+        if (catUseSpring) { // Give an upward acceleration
+            //console.log("Spring bed");
             window.assets.spring.play();
             //this.gameModel.cat[selectedLevel].velocityY = Math.abs(this.gameModel.cat[selectedLevel].velocityY) * 0.2;
-            this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength * 2; // 赋予向上的初速度
-            this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
+            this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength * 2; // Assign upward initial speed
+            this.gameModel.cat[selectedLevel].onGround = false; // Enter air
         }
 
-        // 水平移动的按键控制
+        // Horizontal movement key control
         if (this.gameModel.keys['ArrowLeft']) {
             newX -= this.gameModel.cat[selectedLevel].speed; 
             setFacingLeft();
@@ -152,8 +151,8 @@ export default class GameController {
             setFacingRight();
         }
             
-        // 攀爬墙 垂直移动的按键控制
-        if(catCanClimb){
+        // Vertical movement key control when climbing walls
+        if (catCanClimb) {
             if (this.gameModel.keys['ArrowUp']) {
                 newY -= this.gameModel.cat[selectedLevel].speed;
             }
@@ -162,58 +161,58 @@ export default class GameController {
             }
         }
 
-        // 合体时按空格可以持续向上飞
-        if(this.gameModel.keys[" "] && this.gameModel.cat[selectedLevel].isMerged){
-            this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength; // 赋予向上的初速度
-            this.gameModel.cat[selectedLevel].onGround = false; // 进入空中
+        // When merged, pressing space can keep flying upwards
+        if (this.gameModel.keys[" "] && this.gameModel.cat[selectedLevel].isMerged) {
+            this.gameModel.cat[selectedLevel].velocityY = this.gameModel.cat[selectedLevel].jumpStrength; // Assign upward initial speed
+            this.gameModel.cat[selectedLevel].onGround = false; // Enter air
         }
 
         
 
-        // 不在攀爬墙上时需要施加重力, 确保向下落下
-        if(!catCanClimb){
-            this.gameModel.cat[selectedLevel].velocityY += this.gameModel.cat[selectedLevel].gravity; // 施加向下的重力加速度
+        // Apply gravity when not on a climbable wall to ensure falling down
+        if (!catCanClimb) {
+            this.gameModel.cat[selectedLevel].velocityY += this.gameModel.cat[selectedLevel].gravity; // Apply downward gravitational acceleration
             newY += this.gameModel.cat[selectedLevel].velocityY;
         }
 
-        // 检查猫的四条边界是否碰撞: 每条边取至少三个点
-        /* 水平方向偏移半个身距(-catW/2), 并且竖直方向偏移一个脚底距离(offSetFeet=-catH/10)
-           注意碰撞检测不可以阉割, 因为猫的大小>>图块大小, 减少检测点会导致卡墙里 */
+        // Check if the four boundaries of the cat collide: take at least three points on each side
+        /* Horizontal offset half a body width (-catW/2), and vertical offset one foot distance (offSetFeet = -catH/10).
+           Note: collision detection cannot be trimmed, because the cat's size >> tile size; reducing detection points will cause the cat to get stuck in walls. */
 
-        let left   = this.isColliding(newX+offSetHalf, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth) // 左边中间两个点
-            || this.isColliding(newX+offSetHalf, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) // 左上角
-            || this.isColliding(newX+offSetHalf, newY-offSetFeet*3/2, selectedLevel, tileSize, levelWidth);  // 左下角向上一点
+        let left   = this.isColliding(newX + offSetHalf, newY - catH / 3 - offSetFeet, selectedLevel, tileSize, levelWidth) // Two middle points on the left
+            || this.isColliding(newX + offSetHalf, newY - catH * 2 / 3 - offSetFeet, selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + offSetHalf, newY - catH - offSetFeet, selectedLevel, tileSize, levelWidth) // Upper-left corner
+            || this.isColliding(newX + offSetHalf, newY - offSetFeet * 3 / 2, selectedLevel, tileSize, levelWidth);  // Lower-left corner, slightly up
 
-        let right  = this.isColliding(newX+catW+offSetHalf, newY-catH/3-offSetFeet, selectedLevel, tileSize, levelWidth)  // 右边中间两个点
-            || this.isColliding(newX+catW+offSetHalf, newY-catH*2/3-offSetFeet, selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet, selectedLevel, tileSize, levelWidth) // 右上
-            || this.isColliding(newX+catW+offSetHalf, newY-offSetFeet*3/2, selectedLevel, tileSize, levelWidth);  //右下角向上一点
+        let right  = this.isColliding(newX + catW + offSetHalf, newY - catH / 3 - offSetFeet, selectedLevel, tileSize, levelWidth)  // Two middle points on the right
+            || this.isColliding(newX + catW + offSetHalf, newY - catH * 2 / 3 - offSetFeet, selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + catW + offSetHalf, newY - catH - offSetFeet, selectedLevel, tileSize, levelWidth) // Upper-right
+            || this.isColliding(newX + catW + offSetHalf, newY - offSetFeet * 3 / 2, selectedLevel, tileSize, levelWidth);  // Lower-right corner, slightly up
 
-        let topOffset = catH/5; // 只用于top的偏移量,相当于加上罐子高度, 因为碰到顶的时候必有罐子在身上
-        let top    = this.isCollidingWithGround(newX+catW/3+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth) // 上方中间两个点
-            || this.isCollidingWithGround(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth) 
-            || this.isCollidingWithGround(newX+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth)     //左上角
-            || this.isCollidingWithGround(newX+catW+offSetHalf, newY-catH-offSetFeet-topOffset, selectedLevel, tileSize, levelWidth); //右上角
+        let topOffset = catH / 5; // Offset used only for the top, roughly equal to adding jar height, because a jar is always on the body when hitting the ceiling
+        let top    = this.isCollidingWithGround(newX + catW / 3 + offSetHalf, newY - catH - offSetFeet - topOffset, selectedLevel, tileSize, levelWidth) // Two middle points above
+            || this.isCollidingWithGround(newX + 2 * catW / 3 + offSetHalf, newY - catH - offSetFeet - topOffset, selectedLevel, tileSize, levelWidth) 
+            || this.isCollidingWithGround(newX + offSetHalf, newY - catH - offSetFeet - topOffset, selectedLevel, tileSize, levelWidth)     // Upper-left corner
+            || this.isCollidingWithGround(newX + catW + offSetHalf, newY - catH - offSetFeet - topOffset, selectedLevel, tileSize, levelWidth); // Upper-right corner
 
-        let bottom = this.isCollidingWithGround(newX+catW/3+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth) // 下方中间两个点
-            || this.isCollidingWithGround(newX+2*catW/3+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth)
-            || this.isCollidingWithGround(newX+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth) // 左下角
-            || this.isCollidingWithGround(newX+catW+offSetHalf, newY-offSetFeet, selectedLevel, tileSize, levelWidth);  // 右下角
+        let bottom = this.isCollidingWithGround(newX + catW / 3 + offSetHalf, newY - offSetFeet, selectedLevel, tileSize, levelWidth) // Two middle points below
+            || this.isCollidingWithGround(newX + 2 * catW / 3 + offSetHalf, newY - offSetFeet, selectedLevel, tileSize, levelWidth)
+            || this.isCollidingWithGround(newX + offSetHalf, newY - offSetFeet, selectedLevel, tileSize, levelWidth) // Lower-left corner
+            || this.isCollidingWithGround(newX + catW + offSetHalf, newY - offSetFeet, selectedLevel, tileSize, levelWidth);  // Lower-right corner
         
-        // 真正的顶部碰撞: 新位置碰撞top且新位置上方也碰撞top, 并且角色不在下落状态中
-        let topUp = this.isColliding(newX+catW/3+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth) // 上方中间两个点
-        || this.isColliding(newX+2*catW/3+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth) 
-        || this.isColliding(newX+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth)     //左上角
-        || this.isColliding(newX+catW+offSetHalf, newY-catH-offSetFeet-70-topOffset, selectedLevel, tileSize, levelWidth); //右上角
+        // Actual top collision: new position collides at the top and the position above also collides at the top, and the character is not falling
+        let topUp = this.isColliding(newX + catW / 3 + offSetHalf, newY - catH - offSetFeet - 70 - topOffset, selectedLevel, tileSize, levelWidth) // Two middle points above
+        || this.isColliding(newX + 2 * catW / 3 + offSetHalf, newY - catH - offSetFeet - 70 - topOffset, selectedLevel, tileSize, levelWidth) 
+        || this.isColliding(newX + offSetHalf, newY - catH - offSetFeet - 70 - topOffset, selectedLevel, tileSize, levelWidth)     // Upper-left corner
+        || this.isColliding(newX + catW + offSetHalf, newY - catH - offSetFeet - 70 - topOffset, selectedLevel, tileSize, levelWidth); // Upper-right corner
 
         let topReal = top && topUp && (this.gameModel.cat[selectedLevel].velocityY <= 0 || catCanClimb);
 
-        // 真正的底部碰撞: 新位置bottom且新位置下方也碰撞bottom, 并且角色不在上升状态中
-        let bottomDown = this.isColliding(newX+catW/3+offSetHalf, newY-offSetFeet+70, selectedLevel, tileSize, levelWidth) // 下方中间两个点
-            || this.isColliding(newX+2*catW/3+offSetHalf, newY-offSetFeet+70, selectedLevel, tileSize, levelWidth)
-            || this.isColliding(newX+offSetHalf, newY-offSetFeet+70, selectedLevel, tileSize, levelWidth) // 左下角
-            || this.isColliding(newX+catW+offSetHalf, newY-offSetFeet+70, selectedLevel, tileSize, levelWidth);  // 右下角
+        // Actual bottom collision: new position collides at the bottom and the position below also collides at the bottom, and the character is not rising
+        let bottomDown = this.isColliding(newX + catW / 3 + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth) // Two middle points below
+            || this.isColliding(newX + 2 * catW / 3 + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth)
+            || this.isColliding(newX + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth) // Lower-left corner
+            || this.isColliding(newX + catW + offSetHalf, newY - offSetFeet + 70, selectedLevel, tileSize, levelWidth);  // Lower-right corner
 
         let bottomReal = bottom && bottomDown && ( this.gameModel.cat[selectedLevel].velocityY >= 0 || catCanClimb);
 
@@ -221,218 +220,218 @@ export default class GameController {
 
         //console.log(right + "|"+ left + "||" + topReal + "|"+ bottomReal);
 
-        // 处理水平碰撞
+        // Handle horizontal collision
         if (!left && !right) { 
-            this.gameModel.cat[selectedLevel].x = newX; // 无碰撞可移动
+            this.gameModel.cat[selectedLevel].x = newX; // Move if no collision
         } 
 
-        // 处理垂直碰撞
-        if (topReal) { // 碰到天花板时给一个轻微反弹, 防止角色停滞
+        // Handle vertical collision
+        if (topReal) { // Give a slight rebound when hitting the ceiling to prevent the character from sticking
             this.gameModel.cat[selectedLevel].velocityY = Math.abs(this.gameModel.cat[selectedLevel].velocityY) * 0.2; 
         }        
-        else if (!topReal && !bottomReal) { // 没有上方和下方碰撞时, 竖直方向自由落体
+        else if (!topReal && !bottomReal) { // Free fall when there is no collision above or below
             this.gameModel.cat[selectedLevel].y = newY;
-            if(!catCanClimb){ // 不在攀爬墙上时, 重力生效
-                this.gameModel.cat[selectedLevel].onGround = false; // 空中
+            if (!catCanClimb) { // Gravity applies when not on a climbable wall
+                this.gameModel.cat[selectedLevel].onGround = false; // In the air
             }
-        } else if(bottomReal) { // 碰到地面
-             if (this.gameModel.cat[selectedLevel].velocityY > 0) { // 在下落并且有碰撞地面时, 设置状态为在地上
+        } else if (bottomReal) { // Hit the ground
+             if (this.gameModel.cat[selectedLevel].velocityY > 0) { // When falling and colliding with the ground, set state to on ground
                 this.gameModel.cat[selectedLevel].onGround = true;
-                //this.gameModel.cat[selectedLevel].velocityY = -this.gameModel.cat[selectedLevel].velocityY * 0.1; // 轻微反弹，而不是完全清零
+                //this.gameModel.cat[selectedLevel].velocityY = -this.gameModel.cat[selectedLevel].velocityY * 0.1; // Slight rebound instead of full stop
              }
-             this.gameModel.cat[selectedLevel].velocityY = 0; // 碰到地面时停止竖直向下的速度
+             this.gameModel.cat[selectedLevel].velocityY = 0; // Stop downward speed upon ground contact
         }
 
-        // 测试
-        //console.log("是否在地上: " + this.gameModel.cat[selectedLevel].onGround);
+        // Test
+        //console.log("On ground: " + this.gameModel.cat[selectedLevel].onGround);
     }
 
-    //Potion移动逻辑
+    // Potion movement logic
     movePotion() {
         let selectedLevel = this.gameModel.selectedLevel;
         let tileSize = CONSTANT.TILE_SIZE;
         let levelWidth = this.gameModel.levelWidth;
         let newX = this.gameModel.potion.x;
         let newY = this.gameModel.potion.y;
-        let potionW = CONSTANT.POTION_WIDTH;  // 需要定义 POTION_WIDTH
-        let potionH = CONSTANT.POTION_HEIGHT; // 需要定义 POTION_HEIGHT
+        let potionW = CONSTANT.POTION_WIDTH;  // POTION_WIDTH needs to be defined
+        let potionH = CONSTANT.POTION_HEIGHT; // POTION_HEIGHT needs to be defined
         let offSetHalf = -potionW / 2;
         let offSetFeet = potionH / 2; 
-        let isOnIce=false;
+        let isOnIce = false;
     
-        // 水平方向偏移量
+        // Horizontal offset
         let offSetClimb = potionW / 4;
-        this.gameModel.potion.updatePotion(this.gameModel.cat[selectedLevel].x,this.gameModel.cat[selectedLevel].y);
+        this.gameModel.potion.updatePotion(this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y);
         
-        // 判断罐子是否碰到水，如果碰到水则重置生命
-        if(!this.gameModel.cat[selectedLevel].isMerged && 
-           this.inWater(this.gameModel.potion.x, this.gameModel.potion.y, selectedLevel, tileSize, levelWidth)){
+        // Determine if the potion touches water, if so, reset life
+        if (!this.gameModel.cat[selectedLevel].isMerged && 
+           this.inWater(this.gameModel.potion.x, this.gameModel.potion.y, selectedLevel, tileSize, levelWidth)) {
             window.assets.death.play();
             let message = "No water with my pot！";
-            this.gameModel.messages.push(new Message(message, width/2, 4*height/5, 2000, 30, {}, "death"));
+            this.gameModel.messages.push(new Message(message, width / 2, 4 * height / 5, 2000, 30, {}, "death"));
             this.reLife();
             return;
         }
 
-        // 判断猫是否在冰上
-        if(this.beIced(this.gameModel.potion.x, this.gameModel.potion.y+offSetFeet, 
-            selectedLevel, tileSize, levelWidth) && !this.gameModel.cat[selectedLevel].isMerged){
-            isOnIce=true;
-        }else{
-            isOnIce=false;
+        // Determine if the cat is on ice
+        if (this.beIced(this.gameModel.potion.x, this.gameModel.potion.y + offSetFeet, 
+            selectedLevel, tileSize, levelWidth) && !this.gameModel.cat[selectedLevel].isMerged) {
+            isOnIce = true;
+        } else {
+            isOnIce = false;
         }
 
 
-        if((this.gameModel.keys["a"] || this.gameModel.keys["d"]) && !this.gameModel.cat[selectedLevel].isMerged && isOnIce){
+        if ((this.gameModel.keys["a"] || this.gameModel.keys["d"]) && !this.gameModel.cat[selectedLevel].isMerged && isOnIce) {
             let message1 = "Ice! Pot can't jump!"
-            this.gameModel.messages.push(new Message(message1,width/2,4*height/5,2000,30,{},"No Jump"));
+            this.gameModel.messages.push(new Message(message1, width / 2, 4 * height / 5, 2000, 30, {}, "No Jump"));
         }
         
-        //检测是否可以合体
-        if(Math.abs(newX-this.gameModel.cat[selectedLevel].x)<100 && Math.abs(newY-this.gameModel.cat[selectedLevel].y)<100 && this.gameModel.flagp>50){
+        // Check if can merge
+        if (Math.abs(newX - this.gameModel.cat[selectedLevel].x) < 100 && Math.abs(newY - this.gameModel.cat[selectedLevel].y) < 100 && this.gameModel.flagp > 50) {
             this.gameModel.cat[selectedLevel].isMerged = true;
             setShowBack(true);
             setShowPotion(false);
-            this.gameModel.flagp=0;
+            this.gameModel.flagp = 0;
         }
         
-        if(!this.gameModel.cat[selectedLevel].isMerged && this.gameModel.flagp<60){
+        if (!this.gameModel.cat[selectedLevel].isMerged && this.gameModel.flagp < 60) {
             this.gameModel.flagp++;
-        }    //用来屏蔽黄油刚开始分开的时候
+        }    // Used to block the butter just after separation
      
 
-        if(this.gameModel.cat[selectedLevel].isMerged 
-            && (this.gameModel.keys['s']||this.gameModel.keys['S'])&& this.gameModel.flagp<60){
+        if (this.gameModel.cat[selectedLevel].isMerged 
+            && (this.gameModel.keys['s'] || this.gameModel.keys['S']) && this.gameModel.flagp < 60) {
                 this.gameModel.cat[selectedLevel].isMerged = false;
 
-                // 修改spinelayer, 猫和黄油分开渲染
-                this.gameModel.potion.x=this.gameModel.cat[selectedLevel].x;
-                // 黄油分离时初始位置向上偏移，避免立即碰撞检测
-                this.gameModel.potion.y=this.gameModel.cat[selectedLevel].y;
-                // 给黄油一个向上的初速度
+                // Modify SpineLayer, render cat and butter separately
+                this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
+                // Offset butter upward upon separation to avoid immediate collision detection
+                this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y;
+                // Give the butter an initial upward velocity
                 this.gameModel.potion.velocityY = -10;
-                this.gameModel.potion.speed =0; // 减小水平初速度
+                this.gameModel.potion.speed = 0; // Reduce initial horizontal speed
                 this.gameModel.potion.tanshe = false;
                 setShowBack(false);
                 setShowPotion(true); 
         }
 
 
-        if ((this.gameModel.keys['A']||this.gameModel.keys['a']) && this.gameModel.potion.tanshe && !isOnIce && !this.gameModel.cat[selectedLevel].isMerged ) {     
-            // 如果能左弹射且按下a键
+        if ((this.gameModel.keys['A'] || this.gameModel.keys['a']) && this.gameModel.potion.tanshe && !isOnIce && !this.gameModel.cat[selectedLevel].isMerged) {     
+            // If it can shoot left and the A key is pressed
             if (this.gameModel.potion.canShootLeft) {
-                // 检查弹射起始位置
+                // Merged state: shoot from the cat's position
                 if (this.gameModel.cat[selectedLevel].isMerged) {
-                    // 合体状态：从猫的位置弹射
+                    // Merged state: shoot from the cat's position
                     this.gameModel.cat[selectedLevel].isMerged = false;
                     this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
                     this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y - 30;
                     setShowBack(false);
                     setShowPotion(true);
                 } else {
-                    // 分离状态：从potion当前位置弹射，保持当前位置不变
-                    // 不需要修改potion的位置
+                    // Separated state: shoot from the current potion position, keep position unchanged
+                    // No need to modify potion position
                 }
                 
-                // 设置速度和状态变量
-                this.gameModel.potion.speed = -10; // 减小水平初速度
-                this.gameModel.potion.velocityY = -15; // 减小竖直初速度
-                this.gameModel.potion.gravityScale = 0.4; // 大幅降低重力比例
-                this.gameModel.potion.tanshe = false; // 禁用弹射状态直到下次碰撞
-                this.gameModel.potion.onWall = false; // 弹射时重置墙上状态
-                this.gameModel.potion.onGround = false; // 弹射时重置地面状态
-                this.gameModel.potion.wallFrameCount = 0; // 重置墙上帧计数
+                // Set speed and state variables
+                this.gameModel.potion.speed = -10; // Reduce initial horizontal speed
+                this.gameModel.potion.velocityY = -15; // Reduce initial vertical speed
+                this.gameModel.potion.gravityScale = 0.4; // Significantly lower gravity scale
+                this.gameModel.potion.tanshe = false; // Disable projectile state until next collision
+                this.gameModel.potion.onWall = false; // Reset wall state when shooting
+                this.gameModel.potion.onGround = false; // Reset ground state when shooting
+                this.gameModel.potion.wallFrameCount = 0; // Reset wall frame count
             }
         }
 
-        if ((this.gameModel.keys['D']||this.gameModel.keys['d']) && this.gameModel.potion.tanshe && !isOnIce && !this.gameModel.cat[selectedLevel].isMerged) {
-            // 如果能右弹射且按下d键
+        if ((this.gameModel.keys['D'] || this.gameModel.keys['d']) && this.gameModel.potion.tanshe && !isOnIce && !this.gameModel.cat[selectedLevel].isMerged) {
+            // If it can shoot right and the D key is pressed
             if (this.gameModel.potion.canShootRight) {
-                // 检查弹射起始位置
+                // Merged state: shoot from the cat's position
                 if (this.gameModel.cat[selectedLevel].isMerged) {
-                    // 合体状态：从猫的位置弹射
+                    // Merged state: shoot from the cat's position
                     this.gameModel.cat[selectedLevel].isMerged = false;
                     this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
                     this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y - 30;
                     setShowBack(false);
                     setShowPotion(true);
                 } else {
-                    // 分离状态：从potion当前位置弹射，保持当前位置不变
-                    // 不需要修改potion的位置
+                    // Separated state: shoot from the current potion position, keep position unchanged
+                    // No need to modify potion position
                 }
                 
-                // 设置速度和状态变量
-                this.gameModel.potion.speed = 10; // 减小水平初速度
-                this.gameModel.potion.velocityY = -15; // 减小竖直初速度
-                this.gameModel.potion.gravityScale = 0.4; // 大幅降低重力比例
-                this.gameModel.potion.tanshe = false; // 禁用弹射状态直到下次碰撞
-                this.gameModel.potion.onWall = false; // 弹射时重置墙上状态
-                this.gameModel.potion.onGround = false; // 弹射时重置地面状态
-                this.gameModel.potion.wallFrameCount = 0; // 重置墙上帧计数
+                // Set speed and state variables
+                this.gameModel.potion.speed = 10; // Reduce initial horizontal speed
+                this.gameModel.potion.velocityY = -15; // Reduce initial vertical speed
+                this.gameModel.potion.gravityScale = 0.4; // Significantly lower gravity scale
+                this.gameModel.potion.tanshe = false; // Disable projectile state until next collision
+                this.gameModel.potion.onWall = false; // Reset wall state when shooting
+                this.gameModel.potion.onGround = false; // Reset ground state when shooting
+                this.gameModel.potion.wallFrameCount = 0; // Reset wall frame count
             }
         }
 
         if (this.gameModel.cat[selectedLevel].isMerged) {
-            // 如果结合，面包跟随猫的位置
+            // If merged, the bread follows the cat's position
             this.gameModel.potion.x = this.gameModel.cat[selectedLevel].x;
-            this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y-30;
-            this.gameModel.potion.tanshe = true; // 在猫身上时可以弹射
+            this.gameModel.potion.y = this.gameModel.cat[selectedLevel].y - 30;
+            this.gameModel.potion.tanshe = true; // Can shoot while on the cat
             
-            // 合体状态下，可以向两个方向弹射
+            // In merged state, can shoot in both directions
             this.gameModel.potion.canShootLeft = true;
             this.gameModel.potion.canShootRight = true;
         } 
         else {
-            // 简化的碰撞检测函数
+            // Simplified collision detection function
             let checkCollision = (x, y) => {
                 return this.isColliding(x, y, selectedLevel, tileSize, levelWidth);
             };
             
-            // 检查四个关键点的碰撞
-            // 左侧碰撞检测点调整，向右偏移一点
-            let leftCollision = checkCollision(newX + offSetHalf, newY - potionH/2);
-            // 右侧碰撞检测点调整，向左偏移一点
-            let rightCollision = checkCollision(newX + potionW + offSetHalf, newY - potionH/2);
+            // Check collision at four key points
+            // Adjust the left collision detection point, offset a bit to the right
+            let leftCollision = checkCollision(newX + offSetHalf, newY - potionH / 2);
+            // Adjust the right collision detection point, offset a bit to the left
+            let rightCollision = checkCollision(newX + potionW + offSetHalf, newY - potionH / 2);
             
-            // 底部检测三个点，向上偏移一点，提高底部碰撞的准确性
-            // 减少右下角检测点的使用，防止与右侧墙壁误判
+            // Check three points at the bottom, offset a bit upwards to improve bottom collision accuracy
+            // Reduce use of the lower-right detection point to avoid misjudgment with the right wall
             let bottomLeftCollision = checkCollision(newX + offSetHalf , newY );
-            let bottomMiddleCollision = checkCollision(newX + potionW/2 + offSetHalf, newY);
-            // 如果检测到右侧墙壁碰撞，则不检测右下角
+            let bottomMiddleCollision = checkCollision(newX + potionW / 2 + offSetHalf, newY);
+            // If detecting right wall collision, then don't check the bottom-right corner
             let bottomRightCollision = rightCollision ? false : checkCollision(newX + potionW + offSetHalf, newY );
             let bottomCollision = bottomLeftCollision || bottomMiddleCollision || bottomRightCollision;
             
-            // 根据碰撞情况设置弹射方向
+            // Set the shooting direction according to the collision situation
             if (leftCollision || rightCollision) {
-                // 标记为在墙上
+                // Mark as on the wall
                 this.gameModel.potion.onWall = true;
-                this.gameModel.potion.speed = 0; // 碰到墙速度归零
+                this.gameModel.potion.speed = 0; // Set speed to zero when hitting the wall
                 
-                // 如果刚刚开始触墙，初始化墙上帧计数和初始速度
+                // If just started touching the wall, initialize the wall frame count and initial speed
                 if (!this.gameModel.potion.wallFrameCount) {
                     this.gameModel.potion.wallFrameCount = 0;
-                    this.gameModel.potion.velocityY = 0.5; // 设置初始下滑速度为0.5
+                    this.gameModel.potion.velocityY = 0.5; // Set initial sliding speed to 0.5
                 }
                 
-                // 根据碰撞的位置，设置可弹射的方向
-                this.gameModel.potion.canShootLeft = !leftCollision; // 左边有墙就不能向左弹射
-                this.gameModel.potion.canShootRight = !rightCollision; // 右边有墙就不能向右弹射
+                // Set the shootable direction according to the collision position
+                this.gameModel.potion.canShootLeft = !leftCollision;  // Can't shoot left on the left wall
+                this.gameModel.potion.canShootRight = !rightCollision; // Can't shoot right on the right wall
                 
-                this.gameModel.potion.tanshe = true; // 在墙上可以弹射
+                this.gameModel.potion.tanshe = true; // Can shoot while on the wall
             }
             
-            // 检查是否在地面上
+            // Check if on the ground
             if (bottomCollision) {
                 this.gameModel.potion.onGround = true;
-                this.gameModel.potion.speed *= 0.8; // 减缓水平速度
-                // 在地面上时，如果速度很小，直接设置为0防止持续滑动
+                this.gameModel.potion.speed *= 0.8; // Slow horizontal speed
+                // When on the ground, if the speed is very small, set it to 0 to prevent continuous sliding
                 if (Math.abs(this.gameModel.potion.speed) < 0.5) {
                     this.gameModel.potion.speed = 0;
                 }
                 this.gameModel.potion.velocityY = 0;
                 
-                // 只有在不靠墙的情况下，地面才能重设弹射方向
-                // 保留墙壁碰撞的限制优先级
+                // Only when not against the wall can the ground reset the shooting direction
+                // Keep the priority of wall collision restriction
                 if (!leftCollision) {
                     this.gameModel.potion.canShootLeft = true;
                 }
@@ -440,106 +439,106 @@ export default class GameController {
                     this.gameModel.potion.canShootRight = true;
                 }
                 
-                this.gameModel.potion.tanshe = true; // 可以弹射
+                this.gameModel.potion.tanshe = true; // Can shoot
             } else {
                 this.gameModel.potion.onGround = false;
             }
             
-            // 如果既不在墙上也不在地上，应用重力
+            // If not on the wall or on the ground, apply gravity
             if (!this.gameModel.potion.onWall && !this.gameModel.potion.onGround) {
-                // 应用重力，根据gravityScale调整重力大小
+                // Apply gravity, adjust gravity size according to gravityScale
                 let gravityFactor = this.gameModel.potion.gravityScale || 1.0;
-                if (this.gameModel.potion.velocityY < 20) { // 降低最大下落速度上限
+                if (this.gameModel.potion.velocityY < 20) { // Reduce the upper limit of maximum falling speed
                     this.gameModel.potion.velocityY += 2 * gravityFactor;
                 }
-                // 重置墙上帧计数
+                // Reset wall frame count
                 this.gameModel.potion.wallFrameCount = 0;
             } else if (this.gameModel.potion.onWall) {
-                // 墙上下滑不受gravityScale影响
-                // 增加墙上帧计数
+                // Sliding on the wall is not affected by gravityScale
+                // Increase wall frame count
                 this.gameModel.potion.wallFrameCount++;
                 
-                // 前10帧使用较小的加速度，保证速度不超过2
+                // Use smaller acceleration in the first 10 frames to ensure the speed does not exceed 2
                 if (this.gameModel.potion.wallFrameCount < 10) {
-                    // 在前10帧内，使速度平滑增加到接近2，但不超过2
+                    // In the first 10 frames, make the speed increase smoothly to near 2, but not exceed 2
                     this.gameModel.potion.velocityY += 0.15;
                     if (this.gameModel.potion.velocityY > 2) {
                         this.gameModel.potion.velocityY = 2;
                     }
                 } else {
-                    // 10帧后使用曲线增加公式，加速度随帧数增加而增加
-                    // 使用 0.05 + (帧数-10)/300 的公式，使加速度非常缓慢地增加
+                    // After 10 frames, use a curve formula to increase acceleration as the frame count increases
+                    // Use the formula 0.05 + (frame count - 10)/300 to make the acceleration increase very slowly
                     let accelerationFactor = 0.05 + (this.gameModel.potion.wallFrameCount - 10) / 300;
                     this.gameModel.potion.velocityY += accelerationFactor;
                 }
             }
             
-            // 尝试移动到新位置
+            // Try to move to the new position
             let testX = newX + this.gameModel.potion.speed;
             let testY = newY + this.gameModel.potion.velocityY;
             
-            // 检查新位置是否有碰撞
+            // Check if the new position has a collision
             let wouldCollideLeftX = this.gameModel.potion.speed < 0 && 
-                checkCollision(testX + offSetHalf, newY - potionH/2);
+                checkCollision(testX + offSetHalf, newY - potionH / 2);
             let wouldCollideRightX = this.gameModel.potion.speed > 0 && 
-                checkCollision(testX + potionW + offSetHalf, newY - potionH/2);
+                checkCollision(testX + potionW + offSetHalf, newY - potionH / 2);
             let wouldCollideX = wouldCollideLeftX || wouldCollideRightX;
             
-            // 垂直碰撞检测
+            // Vertical collision detection
             let wouldCollideBottomY = this.gameModel.potion.velocityY > 0 && (
                 checkCollision(newX + offSetHalf, testY ) || 
-                checkCollision(newX + potionW/2 + offSetHalf, testY ) || 
-                // 如果检测到右侧墙壁碰撞，则不检测右下角
+                checkCollision(newX + potionW / 2 + offSetHalf, testY ) || 
+                // If detecting right wall collision, then don't check bottom-right corner
                 (wouldCollideRightX ? false : checkCollision(newX + potionW + offSetHalf, testY ))
             );
             let wouldCollideTopY = this.gameModel.potion.velocityY < 0 && (
                 checkCollision(newX + offSetHalf , testY - potionH ) || 
-                checkCollision(newX + potionW/2 + offSetHalf, testY - potionH) || 
+                checkCollision(newX + potionW / 2 + offSetHalf, testY - potionH) || 
                 checkCollision(newX + potionW + offSetHalf, testY - potionH )
             );
             let wouldCollideY = wouldCollideBottomY || wouldCollideTopY;
             
-            // 如果水平方向有碰撞，停止水平移动并缓慢下滑
+            // If there is a collision horizontally, stop horizontal movement and slide down slowly
             if (wouldCollideX) {
-                this.gameModel.potion.speed = 0; // 停止水平移动
-                this.gameModel.potion.onWall = true; // 标记在墙上
+                this.gameModel.potion.speed = 0; // Stop horizontal movement
+                this.gameModel.potion.onWall = true; // Mark as on the wall
                 
-                // 如果刚刚开始触墙，初始化墙上帧计数和初始速度
+                // If just started touching the wall, initialize the wall frame count and initial speed
                 if (!this.gameModel.potion.wallFrameCount) {
                     this.gameModel.potion.wallFrameCount = 0;
-                    this.gameModel.potion.velocityY = 0.5; // 设置初始下滑速度为0.5
+                    this.gameModel.potion.velocityY = 0.5; // Set initial sliding speed to 0.5
                 }
                 
-                // 根据碰撞的位置，设置可弹射的方向
-                this.gameModel.potion.canShootLeft = !wouldCollideLeftX; // 左边有墙就不能向左弹射
-                this.gameModel.potion.canShootRight = !wouldCollideRightX; // 右边有墙就不能向右弹射
+                // Set the shootable direction according to the collision position
+                this.gameModel.potion.canShootLeft = !wouldCollideLeftX;  // Can't shoot left on the left wall
+                this.gameModel.potion.canShootRight = !wouldCollideRightX; // Can't shoot right on the right wall
                 
-                this.gameModel.potion.tanshe = true; // 在墙上可以弹射
+                this.gameModel.potion.tanshe = true; // Can shoot while on the wall
             } else {
-                // 否则执行水平移动
+                // Otherwise, perform horizontal movement
                 this.gameModel.potion.x = testX;
-                // 不在这里重置onWall状态，只有在弹射或触地时才重置
+                // Don't reset onWall state here; only reset when shooting or touching the ground
             }
             
-            // 如果垂直方向有碰撞，停止垂直移动
+            // If there is a collision vertically, stop vertical movement
             if (wouldCollideY) {
                 if (wouldCollideBottomY) {
-                    // 如果是底部碰撞，设置地面状态
+                    // Bottom collision: set ground state
                     this.gameModel.potion.onGround = true;
-                    //this.gameModel.potion.onWall = false; // 接触地面时重置墙上状态
+                    //this.gameModel.potion.onWall = false; // Reset wall state when touching the ground
                     this.gameModel.potion.canShootLeft = true;
                     this.gameModel.potion.canShootRight = true;
                     this.gameModel.potion.tanshe = true;
-                    this.gameModel.potion.velocityY = 0; // 垂直速度清零
-                    this.gameModel.potion.speed = 0; // 落地时水平速度也清零
-                    this.gameModel.potion.wallFrameCount = 0; // 重置墙上帧计数
+                    this.gameModel.potion.velocityY = 0; // Set vertical speed to zero
+                    this.gameModel.potion.speed = 0;     // Set horizontal speed to zero when landing
+                    this.gameModel.potion.wallFrameCount = 0; // Reset wall frame count
                     
                 } else if (wouldCollideTopY) {
-                    // 顶部碰撞时将velocityY设为0
+                    // Set velocityY to 0 when a top collision occurs
                     this.gameModel.potion.velocityY = 0;
                 }
             } else {
-                // 否则执行垂直移动
+                // Otherwise, perform vertical movement
                 this.gameModel.potion.y = testY;
             }
         }
@@ -547,28 +546,28 @@ export default class GameController {
     
 
 
-    // 计算给定坐标是否在碰撞层
-    isColliding(px, py, selectedLevel, tileSize, levelWidth){ 
+    // Check whether the given coordinate is in the collision layer
+    isColliding(px, py, selectedLevel, tileSize, levelWidth) { 
         
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
-        // 碰撞检测：如果这个格子是碰撞体(非0), 返回 true
+        // Collision detection: if this tile is a collider (non-zero), return true
         let isColliding = this.gameModel.coll[selectedLevel].data[tileIndex] !== 0;
         
-        // 合体墙检测
+        // Merged wall detection
         let collWithMergedWall = false;
         let hasMergedWall = this.gameModel.merge[selectedLevel].data[tileIndex] !== 0;
         let mergeWallvisible = this.gameModel.merge[selectedLevel].visible;
-        if(hasMergedWall && mergeWallvisible){
+        if (hasMergedWall && mergeWallvisible) {
             collWithMergedWall = true;
         }
 
-        // 机关墙检测
+        // Mechanism wall detection
         let collwithElevatingWall = false;
-        for(let i = 0; i < this.gameModel.elevatingWalls[selectedLevel].length; i++){
-            if(this.gameModel.elevatingWalls[selectedLevel][i].isColling(px, py, tileSize, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)){
+        for (let i = 0; i < this.gameModel.elevatingWalls[selectedLevel].length; i++) {
+            if (this.gameModel.elevatingWalls[selectedLevel][i].isColling(px, py, tileSize, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)) {
                 collwithElevatingWall = true;
             }
         }
@@ -576,23 +575,23 @@ export default class GameController {
         return isColliding || collWithMergedWall || collwithElevatingWall;
     }
 
-    isCollidingWithGround(px, py, selectedLevel, tileSize, levelWidth){ 
+    isCollidingWithGround(px, py, selectedLevel, tileSize, levelWidth) { 
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
-        // 和ground的碰撞检测
+        // Collision detection with ground
         let isColliding = this.gameModel.ground[selectedLevel].data[tileIndex] !== 0;
-        // 合体墙检测
+        // Merged wall detection
         let collWithMergedWall = false;
         let hasMergedWall = this.gameModel.merge[selectedLevel].data[tileIndex] !== 0;
         let mergeWallvisible = this.gameModel.merge[selectedLevel].visible;
-        if(hasMergedWall && mergeWallvisible){
+        if (hasMergedWall && mergeWallvisible) {
             collWithMergedWall = true;
         }
-        // 机关墙检测
+        // Mechanism wall detection
         let collwithElevatingWall = false;
-        for(let i = 0; i < this.gameModel.elevatingWalls[selectedLevel].length; i++){
-            if(this.gameModel.elevatingWalls[selectedLevel][i].isColling(px, py, tileSize, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)){
+        for (let i = 0; i < this.gameModel.elevatingWalls[selectedLevel].length; i++) {
+            if (this.gameModel.elevatingWalls[selectedLevel][i].isColling(px, py, tileSize, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)) {
                 collwithElevatingWall = true;
             }
         }
@@ -600,44 +599,44 @@ export default class GameController {
     }
 
 
-    // 计算是否碰到水
-    inWater(px, py, selectedLevel, tileSize, levelWidth){
+    // Check whether it touches water
+    inWater(px, py, selectedLevel, tileSize, levelWidth) {
 
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
-        // 检测：如果这个格子是水, 返回真
+        // Detection: if this tile is water, return true
         return this.gameModel.water[selectedLevel].data[tileIndex] !== 0;
     }
 
-    beIced(px, py, selectedLevel, tileSize, levelWidth){
+    beIced(px, py, selectedLevel, tileSize, levelWidth) {
 
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
-        // 检测：如果这个格子是冰, 返回真
+        // Detection: if this tile is ice, return true
         return this.gameModel.ice[selectedLevel].data[tileIndex] !== 0;
     }
 
 
-    // 计算是否碰到陷阱
-    beTraped(px, py, selectedLevel, tileSize, levelWidth){
+    // Check whether it touches a trap
+    beTraped(px, py, selectedLevel, tileSize, levelWidth) {
 
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
 
-        // 检测：如果这个格子是trap, 返回真
+        // Detection: if this tile is a trap, return true
         return this.gameModel.trap[selectedLevel].data[tileIndex] !== 0;
     }
 
 
-    // 计算是否在攀爬墙
-    canClimb(px, py, selectedLevel, tileSize, levelWidth){
+    // Check whether it is on a climbable wall
+    canClimb(px, py, selectedLevel, tileSize, levelWidth) {
 
-        // 传递的坐标所处的格子行列和索引
+        // Row, column, and index of the tile containing the passed coordinates
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
@@ -645,10 +644,10 @@ export default class GameController {
         return this.gameModel.climb[selectedLevel].data[tileIndex] !== 0;
     }
 
-    // 计算是否在弹簧床
-    canUseSpring(px, py, selectedLevel, tileSize, levelWidth){
+    // Check whether it is on a spring bed
+    canUseSpring(px, py, selectedLevel, tileSize, levelWidth) {
 
-        // 传递的坐标所处的格子行列和索引
+        // Row, column, and index of the tile containing the passed coordinates
         let col = Math.floor(px / tileSize);
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[selectedLevel] + col;
@@ -657,82 +656,82 @@ export default class GameController {
     }
 
 
-    // 计算给定坐标是否碰到钥匙
-    getkey(px, py, selectedLevel){
-        for(let i = 0; i < this.gameModel.keysItem[selectedLevel].length; i++){
-            if(this.gameModel.keysItem[selectedLevel][i].visible 
-                && this.gameModel.keysItem[selectedLevel][i].isNear(px,py,CONSTANT.TILE_SIZE,CONSTANT.CAT_WIDTH,CONSTANT.CAT_HEIGHT)){
+    // Check whether the given coordinate touches a key
+    getkey(px, py, selectedLevel) {
+        for (let i = 0; i < this.gameModel.keysItem[selectedLevel].length; i++) {
+            if (this.gameModel.keysItem[selectedLevel][i].visible 
+                && this.gameModel.keysItem[selectedLevel][i].isNear(px, py, CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)) {
                 window.assets.getKey.play();
                 this.gameModel.keysItem[selectedLevel][i].visible = false;
                 this.gameModel.cat[selectedLevel].keyNum++;
-                //console.log("钥匙数量:", this.gameModel.cat[selectedLevel].keyNum);
+                //console.log("Key count:", this.gameModel.cat[selectedLevel].keyNum);
             }
         }
     }
 
 
-    // 根据猫和黄油是否分离来控制合体墙是否显示
-    controlMergedWall(){
+    // Control whether the merged wall is visible based on whether the cat and butter are separated
+    controlMergedWall() {
         let selectedLevel = this.gameModel.selectedLevel;
-        if(this.gameModel.cat[selectedLevel].isMerged){
+        if (this.gameModel.cat[selectedLevel].isMerged) {
             this.gameModel.merge[selectedLevel].visible = true;
         }
-        else{
+        else {
             this.gameModel.merge[selectedLevel].visible = false;
         }
     }
 
-    reLife(){
+    reLife() {
         let selectedLevel = this.gameModel.selectedLevel;
         this.gameModel.cat[selectedLevel].x = this.gameModel.cat[selectedLevel].iniX;
         this.gameModel.cat[selectedLevel].y = this.gameModel.cat[selectedLevel].iniY;
         this.gameModel.cat[selectedLevel].isMerged = true;
     }
 
-    // 猫触碰开关时, 机关墙自动移动
-    controlElevatingWall(){
+    // When the cat touches the switch, the mechanism wall moves automatically
+    controlElevatingWall() {
         let selectedLevel = this.gameModel.selectedLevel;
-        // 机关的更新
-        for(let i=0; i<this.gameModel.elevatingWalls[selectedLevel].length; i++){
+        // Update the mechanism
+        for (let i = 0; i < this.gameModel.elevatingWalls[selectedLevel].length; i++) {
             this.gameModel.elevatingWalls[selectedLevel][i].update();
         }
        
-        // 开关的控制
-        for(let i=0; i<this.gameModel.switches[selectedLevel].length; i++){ // 遍历所有开关
-            // 如果猫触碰到开关(并且不在无效状态时), 则开关状态反转, 并切换开关图标
-            // 设置无效状态并计时开始, 防止短时间多次触发同一开关
-            if(this.gameModel.switches[selectedLevel][i].isNear(
+        // Control the switch
+        for (let i = 0; i < this.gameModel.switches[selectedLevel].length; i++) { // Traverse all switches
+            // If the cat touches the switch (and it is not in an invalid state), reverse the switch state and toggle the switch icon
+            // Set invalid state and start timing to prevent multiple triggers of the same switch in a short time
+            if (this.gameModel.switches[selectedLevel][i].isNear(
                     this.gameModel.cat[selectedLevel].x, this.gameModel.cat[selectedLevel].y, 
                     CONSTANT.TILE_SIZE, CONSTANT.CAT_WIDTH, CONSTANT.CAT_HEIGHT)
-                && !this.gameModel.switches[selectedLevel][i].invincible ){
+                && !this.gameModel.switches[selectedLevel][i].invincible ) {
                 window.assets.switch.play();
-                this.gameModel.switches[selectedLevel][i].invincible = true; // 设置无效状态
-                this.gameModel.switches[selectedLevel][i].invincibleTimer = 0;//重置计时器
+                this.gameModel.switches[selectedLevel][i].invincible = true; // Set invalid state
+                this.gameModel.switches[selectedLevel][i].invincibleTimer = 0; // Reset timer
                 let img = this.gameModel.switches[selectedLevel][i].iniImgIndex;
-                if(this.gameModel.switches[selectedLevel][i].beActivated){ // 开关素材切换
+                if (this.gameModel.switches[selectedLevel][i].beActivated) { // Toggle switch texture
                     this.gameModel.switches[selectedLevel][i].imgIndex = img;
                 } else {
-                    this.gameModel.switches[selectedLevel][i].imgIndex = img+1;
+                    this.gameModel.switches[selectedLevel][i].imgIndex = img + 1;
                 }
-                // 开关状态反转
+                // Reverse the switch state
                 this.gameModel.switches[selectedLevel][i].beActivated = !this.gameModel.switches[selectedLevel][i].beActivated;
             }
-            // 开关状态切换时, 通知机关墙块移动
-            if(this.gameModel.switches[selectedLevel][i].prevState !== this.gameModel.switches[selectedLevel][i].beActivated){
-                for(let j=0; j<this.gameModel.elevatingWalls[selectedLevel].length; j++){
-                    if(this.gameModel.elevatingWalls[selectedLevel][j].id === this.gameModel.switches[selectedLevel][i].id){
+            // When the switch state changes, notify the mechanism wall block to move
+            if (this.gameModel.switches[selectedLevel][i].prevState !== this.gameModel.switches[selectedLevel][i].beActivated) {
+                for (let j = 0; j < this.gameModel.elevatingWalls[selectedLevel].length; j++) {
+                    if (this.gameModel.elevatingWalls[selectedLevel][j].id === this.gameModel.switches[selectedLevel][i].id) {
                         this.gameModel.elevatingWalls[selectedLevel][j].move();
                     }
                 }
             }
-            // 更新开关状态
+            // Update the switch state
             this.gameModel.switches[selectedLevel][i].prevState = this.gameModel.switches[selectedLevel][i].beActivated;
         
-            // 机关在无敌状态下: 计时器增加
+            // When the mechanism is in an invincible state: increase timer
             if (this.gameModel.switches[selectedLevel][i].invincible) {
                 this.gameModel.switches[selectedLevel][i].invincibleTimer++;
             } 
-            // 如果在无效状态下+无效时间计时到最大值, 则停止无敌状态
+            // If in invalid state and the timer reaches the max value, disable invincible state
             if (this.gameModel.switches[selectedLevel][i].invincible 
                 && this.gameModel.switches[selectedLevel][i].invincibleTimer >= this.gameModel.switches[selectedLevel][i].invincibleDuration) {
                 this.gameModel.switches[selectedLevel][i].invincible = false;
@@ -740,9 +739,4 @@ export default class GameController {
             }
         }
     }
-
-
-
-
-  
 }

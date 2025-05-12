@@ -1,4 +1,4 @@
-//几个控制动画用的参数
+//Parameters for controlling animation
 export let showPotion = false;
 export let showBack = true;
 export let PotionX = 0;
@@ -20,19 +20,19 @@ export const CONSTANT = Object.freeze({
   POTION_HEIGHT: 70
 });
 
-//用于修改全局变量是否显示分离的罐子
+//Used to modify the global variable for displaying the separated pot
 export function setShowPotion(value) {
   showPotion = value;
 }
 
 
-//用于修改全局变量是否显示背上的罐子
+//Used to modify the global variable for displaying the pot on the back
 export function setShowBack(value) {
   showBack = value;
 }
 
 
-//修改Potion动画坐标的几个参数
+//Parameters for modifying Potion animation coordinates
 export function setPotionX(value) {
   PotionX = value;
 }
@@ -70,46 +70,46 @@ export class Message {
     this.size = size;
     this.alpha = 220
 
-    // 默认选项，覆盖默认值
+    // Default options, override default values
     this.options = Object.assign({
-      maxbgAlpha: 200,   // 背景透明度
-      maxtextAlpha: 220, // 文本透明度
+      maxbgAlpha: 200,   // Background transparency
+      maxtextAlpha: 220, // Text transparency
       textAlign: CENTER,
       textColor: color(255, 255, 255),
       backgroundColor: color(0, 0, 0),
       borderColor: color(255, 255, 255),
       borderWidth: 2,
       font: "Comic Sans MS",
-      scaling: false,     // 是否应用文字大小变化效果
-      changeAlpha: false, // 是否应用渐变
-      textPos: "center",  // 文字的位置
+      scaling: false,     // Whether to apply text size change effect
+      changeAlpha: false, // Whether to apply gradient
+      textPos: "center",  // Position of the text
     }, options);
 
     this.messageType = messageType;
     this.startTime = millis();
   }
 
-  // 显示消息
+  // Display message
   show() {
     let elapsedTime = millis() - this.startTime;
 
     let textAlpha = this.alpha;
-    // 控制透明度渐变
+    // Control transparency gradient
     if(this.options.changeAlpha){
       if (elapsedTime <= this.duration) {
-        // 计算渐显透明度：逐渐增加透明度，直到达到 maxtextAlpha
+        // Calculate fade-in transparency: gradually increase transparency until reaching maxtextAlpha
         textAlpha = map(elapsedTime, 0, this.duration, 0, this.options.maxtextAlpha);
-        textAlpha = constrain(textAlpha, 0, this.options.maxtextAlpha); // 确保透明度在 0 到 maxtextAlpha 之间
+        textAlpha = constrain(textAlpha, 0, this.options.maxtextAlpha); // Ensure transparency is between 0 and maxtextAlpha
       } else {
-        this.alpha = this.options.maxtextAlpha; // 完全显示
+        this.alpha = this.options.maxtextAlpha; // Fully displayed
       }
     }
 
     //console.log("Showing message:", this.text, "at position:", this.x, this.y);
-    // 如果启用文字大小渐变效果
+    // If text size gradient effect is enabled
     let textSizeValue = this.size;
     if (this.options.scaling) {
-      textSizeValue = this.size + Math.sin(elapsedTime / 450) * 4; // 文字大小动态变化
+      textSizeValue = this.size + Math.sin(elapsedTime / 450) * 4; // Dynamic change in text size
     }
 
     this.applyMessageTypeAdjustments();
@@ -118,15 +118,15 @@ export class Message {
     this.drawMessageText(textSizeValue, textAlpha);
   }
 
-  // 根据不同的 messageType 调整消息显示方式
+  // Adjust message display based on different messageType
   applyMessageTypeAdjustments() {
     switch (this.messageType) {
       case "Title":
         this.options.textAlign = CENTER;
-        this.options.textColor = color(108, 140, 240); // 浅蓝色
-        this.options.backgroundColor = color(0, 0, 0, 150); // 半透明黑色背景
-        this.options.borderColor = color(255, 255, 143); // 边框颜色
-        this.options.borderWidth = 10;  // 边框宽度
+        this.options.textColor = color(108, 140, 240); // Light blue
+        this.options.backgroundColor = color(0, 0, 0, 150); // Semi-transparent black background
+        this.options.borderColor = color(255, 255, 143); // Border color
+        this.options.borderWidth = 10;  // Border width
         break;
 
       case "startScreen":
@@ -162,7 +162,7 @@ export class Message {
       case "gameOver":
         this.options.textAlign = CENTER;
         this.options.textColor = color(255, 0, 0);
-        this.options.backgroundColor = color(0, 0, 0, 180); // 暗色背景
+        this.options.backgroundColor = color(0, 0, 0, 180); // Dark background
         this.size = 40;
         break;
 
@@ -174,12 +174,12 @@ export class Message {
     }
   }
 
-  // 绘制消息的背景
+  // Draw message background
   drawMessageBackground(textSizeValue, bgalpha) {
     textAlign(this.options.textAlign, CENTER);
     rectMode(CENTER);
 
-    // 绘制背景
+    // Draw background
     fill(this.options.backgroundColor.levels[0], this.options.backgroundColor.levels[1], this.options.backgroundColor.levels[2], bgalpha);
     let lines = this.countLines(this.text);
     let boxWidth = Math.max(200, textWidth(this.text) + textSizeValue);
@@ -188,31 +188,31 @@ export class Message {
     rect(this.x, this.y - textSizeValue * 0.1, boxWidth, boxHeight, textSizeValue / 2);
   }
 
-  // 绘制消息文本
+  // Draw message text
 drawMessageText(textSizeValue, textalpha) {
-  // 使用渐变的透明度来控制文本的显示
+  // Use gradient transparency to control text display
   fill(this.options.textColor.levels[0], 
        this.options.textColor.levels[1], 
        this.options.textColor.levels[2], 
-       textalpha);  // 这里使用渐变透明度
+       textalpha);  // Use gradient transparency here
 
   strokeWeight(this.options.borderWidth);
   stroke(this.options.borderColor.levels[0], 
          this.options.borderColor.levels[1], 
          this.options.borderColor.levels[2], 
-         textalpha);  // 这里也应用渐变的透明度到边框
+         textalpha);  // Also apply gradient transparency to the border
 
   textSize(textSizeValue);
   textAlign(CENTER, CENTER);
   text(this.text, this.x, this.y);
 }
 
-  // 判断消息是否过期
+  // Check if message is expired
   isExpired() {
     return millis() - this.startTime > this.duration;
   }
 
-  // 计算行数
+  // Count number of lines
   countLines(text) {
     return text.split('\n').length;
   }

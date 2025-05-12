@@ -1,11 +1,11 @@
 import { GAME_STATE } from './Utils.js';
 
-// 用于初始化所有关卡所需要的所有图层
-// 存放所有关卡的所有图层数据
+// Used to initialize all layers needed for all levels
+// Stores all layer data for all levels
 export default class GameModel {
     // properties
     gameState;
-    selectedLevel; // 初始化0,之后用户选择关卡更改这里的值
+    selectedLevel; // Initialize to 0, later changed when user selects a level
     firstGameStarted;
     assets;
     levelHeight;
@@ -50,19 +50,19 @@ export default class GameModel {
         this.keysItem = [];//keys item in game
         this.elevatingWalls = [];
         this.flag = [];
-        this.flagp=0; //用来屏蔽黄油刚开始分开的时候(不然还在安全距离内就会开始判定)
+        this.flagp=0; //Used to block butter right after separation (prevents detection while still within safe distance)
         this.climb = [];
-        this.cat = []; // 存储每一关的主角猫对象
-        /* 地图未设置黄油层, 即默认所有关卡开始时猫和黄油都是一体的, 其对象存在cat中 */
+        this.cat = []; // Stores the main cat object for each level
+        /* Map doesn't have a butter layer, meaning cat and butter are merged by default at the start of all levels, their object is stored in cat */
 
         this.offsetX = 0; 
         this.offsetY = 0;  
         this.keys = {}; //keys pressed by keyboard
-        this.keysESC = false; // 记录是否按下过ESC
+        this.keysESC = false; // Records whether ESC has been pressed
         this.showHelp = false;
         this.messages = []; 
 
-        this.potion; // 用于存储黄油对象
+        this.potion; // Used to store the butter object
     }
     
     

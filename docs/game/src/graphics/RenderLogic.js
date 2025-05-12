@@ -4,8 +4,8 @@ import {PotionX,PotionY} from "../core/Utils.js";
 
 
 export function getTilePosition(i) {
-    i--; // 测试地图导出json后坐标从2开始, 需调整为1
-    let row = Math.floor((i - 1) / 30); // 瓦片png一行30个
+    i--; // Test map exported json starts from 2, need to adjust to 1
+    let row = Math.floor((i - 1) / 30); // 30 tiles per row in the tile png
     let col = (i - 1) % 30;
     let xCoordinate = col * (CONSTANT.TILE_SIZE + CONSTANT.TILE_MARGIN);
     let yCoordinate = row * (CONSTANT.TILE_SIZE + CONSTANT.TILE_MARGIN);
@@ -13,7 +13,7 @@ export function getTilePosition(i) {
 }
 
 export function getDrawPosition(i, levelWidth) {
-    let row = Math.floor(i / levelWidth); // 100替换为地图宽度
+    let row = Math.floor(i / levelWidth); // Replace 100 with map width
     let col = i % levelWidth;
     let xCoordinate = col * CONSTANT.TILE_SIZE;
     let yCoordinate = row * CONSTANT.TILE_SIZE;
@@ -22,10 +22,10 @@ export function getDrawPosition(i, levelWidth) {
 
 // export function showEntities(gameModel, assets) {
 //     const checkDataLoaded = setInterval(() => {
-//         if (gameModel.coll.length > 0) { // 确保数据已经加载
-            /* 这部分内容移动到GameView文件的drawGameScreen方法中 */
+//         if (gameModel.coll.length > 0) { // Make sure data is loaded
+            /* This part moved to the drawGameScreen method in GameView file */
 //         }
-//     }, 1); // 每 10ms 检查一次
+//     }, 1); // Check every 10ms
 // }
 
 export function showTerrain(entity, offsetX, offsetY, assets, levelWidth) {

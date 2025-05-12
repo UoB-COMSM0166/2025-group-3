@@ -14,7 +14,7 @@ export default class AbstractCharacter extends AbstractEntity {
         super();
         this.x = x;
         this.y = y;
-        this.iniX = x; //记录出生点坐标
+        this.iniX = x; 
         this.iniY = y;
         this.speed = 10;
         this.maxhp = 5; 
