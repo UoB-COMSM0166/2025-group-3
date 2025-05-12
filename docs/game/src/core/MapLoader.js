@@ -72,10 +72,7 @@ export default class MapLoader {
             loadJSON(levelPath, (jsonData) => this.parseJSON(jsonData, index));
         });
 
-        // const selectedLevel = this.gameModel.selectedLevel; // 获取当前选中的关卡
-        // const levelPath = levelMap[selectedLevel]; // 获取对应的 JSON 文件路径
 
-        // // 根据选中的关卡选择加载哪个地图
         // if (levelPath) {
         //     loadJSON(levelPath, (jsonData) => this.parseJSON(jsonData, selectedLevel));
         // } else {

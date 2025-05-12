@@ -8,13 +8,13 @@ export default class Switches extends AbstractItem {
         super(x,y,imgIndex,levelIndex);
         this.id = id;
         this.iniImgIndex = imgIndex;
-        this.beActivated = false; // 当前状态, 如果开关是开的状态则是true
-        this.prevState = false; // 上一次状态
+        this.beActivated = false; // Current state, true if the switch is in the on state
+        this.prevState = false; // Previous state
 
-        // 用于开关的无效状态参数(开关被触发后进入100帧无效时间, 防止多次触发)
-        this.invincible = false; // 是否处于无效状态
-        this.invincibleTimer = 0; // 计时器
-        this.invincibleDuration = 100; // 无敌持续时间
+        // Parameters for the invalid state of the switch (after being triggered, enters 100 frames of invalid time to prevent multiple triggers)
+        this.invincible = false; // Whether it is in an invalid state
+        this.invincibleTimer = 0; // Timer
+        this.invincibleDuration = 100; // Invincible duration
 
     }
 
