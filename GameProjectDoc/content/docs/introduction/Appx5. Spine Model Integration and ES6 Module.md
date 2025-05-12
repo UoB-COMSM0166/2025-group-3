@@ -1,5 +1,5 @@
 ---
-title: "Appx5. Spine Model Integration & ES6 Module"
+title: "Appx5. Spine Model Integration and ES6 Module"
 description: ""
 summary: ""
 date: 2025-02-18T11:39:50+00:00
