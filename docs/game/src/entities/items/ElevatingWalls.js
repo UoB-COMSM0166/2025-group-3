@@ -9,28 +9,28 @@ export default class ElevatingWalls extends AbstractItem {
     constructor(x,y,imgIndex,levelIndex,id,range,towards) {
         super(x,y,imgIndex,levelIndex);
         this.id = id;
-        this.range = range;// 应该移动的距离(tile数量)
-        this.towards = towards; // 从地图中读取的, 应该朝向哪里移动
+        this.range = range;// The distance that should move (number of tiles)
+        this.towards = towards; // Read from the map, which direction it should move towards
 
-        this.pixelRange = (range-1)*70; // 应该移动的距离(像素)
+        this.pixelRange = (range-1)*70; // The distance that should move (in pixels)
 
-        this.iniX = x; // 初始坐标, 不可更改
+        this.iniX = x; // Initial coordinates, cannot be changed
         this.iniY = y;
-        this.iniTargetX; // 初始目标坐标,不可更改
+        this.iniTargetX; // Initial target coordinates, cannot be changed
         this.iniTargetY;
 
-        this.targetX = x;  // 移动的时候要移动到的目标坐标, 需要根据状态切换为iniX或iniTargetX
+        this.targetX = x;  // Target coordinates when moving, needs to switch between iniX or iniTargetX based on state
         this.targetY = y;
 
-        this.beActivated = false; // 是否被激活 (由开关通知)
+        this.beActivated = false; // Whether it is activated (notified by switch)
         this.speed = 20; 
 
 
-        this.moving = false; // 是否处于移动状态
-        this.movingTimer = 0; // 计时器
-        this.movingDuration = 100; // 移动的持续时间
+        this.moving = false; // Whether it is in moving state
+        this.movingTimer = 0; // Timer
+        this.movingDuration = 100; // Duration of movement
 
-        // 初始化目标位置 
+        // Initialize target position
         switch (this.towards) {
             case "up": 
                 this.iniTargetX = x;
@@ -51,7 +51,7 @@ export default class ElevatingWalls extends AbstractItem {
         }
     }
 
-    // 判断某个点是否处于机关墙块的范围内
+    // Determine if a point is within the range of the mechanism wall block
     isColling(px, py, tileSize, catW, catH) { 
         let d = 30; 
 
@@ -67,19 +67,19 @@ export default class ElevatingWalls extends AbstractItem {
     }
 
 
-    // 更新每一帧的坐标(若处于移动状态)
+    // Update coordinates for each frame (if in moving state)
     update() {
-        if (!this.moving) return; // 不在移动状态，直接返回
+        if (!this.moving) return; // Not in moving state, return directly
 
         this.movingTimer++;
-        let progress = this.movingTimer / this.movingDuration; // 计算当前移动进度（0~1）
+        let progress = this.movingTimer / this.movingDuration; // Calculate current movement progress (0~1)
 
-        if (progress >= 1) { // 移动完成
+        if (progress >= 1) { // Movement completed
             this.x = this.targetX;
             this.y = this.targetY;
-            this.moving = false; // 停止移动
-            this.movingTimer = 0; // 计时器重置
-        } else { // 正在移动中, 差值计算当前帧的位置
+            this.moving = false; // Stop moving
+            this.movingTimer = 0; // Reset timer
+        } else { // In the process of moving, calculate the current frame position by interpolation
             let startX = this.beActivated ? this.iniX : this.iniTargetX;
             let endX = this.beActivated ? this.iniTargetX : this.iniX;
             let startY = this.beActivated ? this.iniY : this.iniTargetY;
@@ -91,11 +91,11 @@ export default class ElevatingWalls extends AbstractItem {
     }
     
 
-    // 该函数由开关类触发, 用来设定机关移动的目标位置
+    // This function is triggered by the switch class, used to set the target position for mechanism movement
     move() {
-        this.beActivated = !this.beActivated; // 确保每次调用 move() 方法时,机关墙的移动方向是交替变化的
+        this.beActivated = !this.beActivated; // Ensure that the movement direction of the mechanism wall alternates each time the move() method is called
 
-        // 机关墙被激活时, 设置目标位置
+        // When the mechanism wall is activated, set the target position
         if (this.beActivated) {
             this.targetX = this.iniTargetX;
             this.targetY = this.iniTargetY;
@@ -104,9 +104,9 @@ export default class ElevatingWalls extends AbstractItem {
             this.targetY = this.iniY;
         }
 
-        // 启动移动
+        // Start movement
         this.moving = true;
-        this.movingTimer = 0; // 计时器归零
+        this.movingTimer = 0; // Reset timer to zero
     }
 
 

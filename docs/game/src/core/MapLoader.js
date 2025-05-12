@@ -32,7 +32,7 @@ export default class MapLoader {
         this.gameModel = gameModel;
         //this.levelIndex = levelIndex; // which level to load
         //this.levelData = {};  // store parsed json data
-        this.levelData = [];  // store parsed json data 数组的每个元素代表每一关的json对象
+        this.levelData = [];  // store parsed json data - each element represents a level's json object
 
        
     }
@@ -50,7 +50,7 @@ export default class MapLoader {
         //loadJSON('../../asset/level1.json', (jsonData) => this.parseJSON(jsonData)); // Use arrow function to bind context
         //loadJSON('../../asset/level2-test.json', (jsonData) => this.parseJSON(jsonData));
 
-        // 关卡映射关系
+        // Level mapping relationship
         // const levelMap = {
         //     0: "../../asset/level1.json",
         //     1: "../../asset/level2-test.json"
@@ -67,7 +67,7 @@ export default class MapLoader {
             "/asset/level8.json",
         ];
         
-        // 避免 this.levelIndex 影响所有关卡，每个关卡独立加载
+        // Avoid this.levelIndex affecting all levels, load each level independently
         levels.forEach((levelPath, index) => {
             loadJSON(levelPath, (jsonData) => this.parseJSON(jsonData, index));
         });
@@ -90,8 +90,8 @@ export default class MapLoader {
 
     // Load the json file and parse it
     parseJSON(jsonData, index) {
-        this.levelData[index] = jsonData;  // 让每个关卡数据独立存储
-        console.log(`Loaded level ${index}:`, this.levelData[index]); // 每一关的json对象
+        this.levelData[index] = jsonData;  // Store each level's data independently
+        console.log(`Loaded level ${index}:`, this.levelData[index]); // Each level's json object
 
          // array initialization
          this.gameModel.levelHeight[index] = 0;
@@ -129,10 +129,10 @@ export default class MapLoader {
         console.log("this.levelIndex", index);
     }
 
-    // 从地图获取每一关猫的初始位置坐标
+    // Get the initial position coordinates of the cat from the map for each level
     getCatPosition(index){
         let Layer = this.levelData[index].layers.find(layer => layer.name === "cat");
-        let catX = Layer.objects[0].x + CONSTANT.CAT_WIDTH/2; // 让猫的显示位置和地图位置对齐
+        let catX = Layer.objects[0].x + CONSTANT.CAT_WIDTH/2; // Align the cat's display position with the map position
         let catY = Layer.objects[0].y;
         this.gameModel.cat[index] = new Capoo(catX, catY, index);
         this.gameModel.potion=new Potion(0,0);

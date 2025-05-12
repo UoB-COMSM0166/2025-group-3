@@ -1,5 +1,3 @@
-// 测试脚本初始化
-// 设置所有要用到的全局变量
 
 global.tileSize = 10;
 global.tilemargin = 0;

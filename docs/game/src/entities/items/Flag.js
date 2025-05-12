@@ -11,7 +11,7 @@ export default class Flag extends AbstractItem {
     this.frameCounter = 0; 
     this.frameIndex = 0; 
     this.animationFrames = [imgIndex, imgIndex+1]; 
-    this.visible = false; // 当本关钥匙全部集齐才能显现棋子,碰到旗子转换到下一关
+    this.visible = false; // Only appears when all keys in this level are collected, touching the flag transitions to the next level
   }
 
   isNear(px, py, tileSize, catW, catH) { 

@@ -4,19 +4,19 @@ import {setPotionX,setPotionY,PotionX,PotionY} from "../../core/Utils";
 export default class Potion extends AbstractCharacter {
     constructor(x=0, y=0) {
         super(x, y);
-        this.facingRight = false; // 记录朝向, 用于跳跃的方向, 初始默认向右
+        this.facingRight = false; // Records facing direction, used for jump direction, initially default to right
         this.facingLeft = false; 
 
-        // 重力参数 可删除
-        this.velocityY = 0; // 垂直速度
-        this.gravity = 0.4; // 重力
-        this.jumpStrength = -12; // 跳跃初速度
-        this.onGround = false; // 是否在地面上
-        this.tanshe=true; //弹射起步
+        // Gravity parameters (can be deleted)
+        this.velocityY = 0; // Vertical velocity
+        this.gravity = 0.4; // Gravity
+        this.jumpStrength = -12; // Initial jump velocity
+        this.onGround = false; // Whether on the ground
+        this.tanshe=true; //Ejection start
         this.onWall=false;
         this.scale=0.8;
-        this.canShootLeft = true; // 初始化为可以向左弹射
-        this.canShootRight = true; // 初始化为可以向右弹射
+        this.canShootLeft = true; // Initially can shoot to the left
+        this.canShootRight = true; // Initially can shoot to the right
     }
 
 
