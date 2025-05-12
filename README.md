@@ -6,13 +6,11 @@
 
 <div align="center">
   <a href="https://uob-comsm0166.github.io/2025-group-3/game/">🎮 Capoo Game Demo 😻</a>
+  <br>
+  <p>⬇⬇⬇Click the pic to watch our video⬇⬇⬇</p>
 </div>
-<br>
-<img src="./images/theme.jpg" alt="picture of game theme" />
 
-<div style="text-align: center;">
-  <video src="https://youtu.be/aLhNYnWlmEI?feature=shared" controls width="600"></video>
-</div>
+[![Watch the video](./images/theme.jpg)](https://youtu.be/aLhNYnWlmEI)
 
 ## Your Group
 
