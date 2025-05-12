@@ -10,7 +10,7 @@
   <p>⬇⬇⬇Click the pic to watch our video⬇⬇⬇</p>
 </div>
 
-[![Watch the video](./images/theme.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+[![Watch the video](./images/theme.jpg)](https://youtu.be/aLhNYnWlmEI)
 
 ## Your Group
 
