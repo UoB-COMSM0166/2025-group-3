@@ -10,9 +10,9 @@
 <br>
 <img src="./images/theme.jpg" alt="picture of game theme" />
 
-Your game lives in the [/docs](/docs) folder, and is published using Github pages to the link above.
-
-Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
+<div style="text-align: center;">
+  <video src="https://youtu.be/aLhNYnWlmEI?feature=shared" controls width="600"></video>
+</div>
 
 ## Your Group
 
